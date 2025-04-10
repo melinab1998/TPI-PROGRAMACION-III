@@ -1,7 +1,15 @@
+import { useState } from "react"
+import NavBar from "./components/NavBar/NavBar.jsx"
+
+
+
 function App() {
 
+
   return (
-    <h1>TPI</h1>
+    <div>
+      <NavBar/>
+    </div>
   )
 
 }
