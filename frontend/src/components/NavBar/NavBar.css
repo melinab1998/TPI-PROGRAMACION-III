@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.custom-navbar {
+  height: 100px;
+  background-color: #F8F3ED;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Logo */
+.custom-logo {
+  width: 100px;
+  height: auto;
+}
+
+/* Brand */
+.custom-navbar .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+}
+
+/* Links del navbar */
+.custom-navbar .nav-link {
+  font-size: 1rem;
+  margin-right: 12px;
+  color: black;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #f29a8e; /* salmón suave */
+}
+
+/* Dropdown menú */
+.custom-navbar .dropdown-menu {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.custom-navbar .dropdown-menu .dropdown-item {
+  transition: all 0.1s ease;
+}
+
+.custom-navbar .dropdown-menu .dropdown-item:hover,
+.custom-navbar .dropdown-menu .dropdown-item:focus {
+  background-color: #f29a8e;
+  color: white;
+}
+
+.custom-navbar .dropdown-menu .dropdown-item:active {
+  background-color: #f29a8e;
+  color: white;
+}
+
+/* Botones */
+.custom-navbar .btn {
+  background-color: #F8F3ED;
+  color: black;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-weight: 500;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-navbar .btn:hover {
+  background-color: #f29a8e;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border-color: #f29a8e;
+}
+
+.custom-navbar .btn:active,
+.custom-navbar .btn:focus,
+.custom-navbar .btn:focus-visible {
+  background-color: #f29a8e;
+  color: white;
+  border-color: #f29a8e;
+  box-shadow: none;
+}
