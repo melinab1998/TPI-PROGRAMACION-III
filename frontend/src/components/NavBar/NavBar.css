@@ -1,25 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 .custom-navbar {
-  height: 100px;
+  height: 105px;
   background-color: #F8F3ED;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Logo */
 .custom-logo {
   width: 100px;
   height: auto;
+  margin: 5px 10px;
 }
 
-/* Brand */
 .custom-navbar .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
   color: black;
 }
 
-/* Links del navbar */
 .custom-navbar .nav-link {
   font-size: 1rem;
   margin-right: 12px;
@@ -30,10 +28,9 @@
 }
 
 .custom-navbar .nav-link:hover {
-  color: #f29a8e; /* salmón suave */
+  color: #f29a8e;
 }
 
-/* Dropdown menú */
 .custom-navbar .dropdown-menu {
   background-color: #ffffff;
   border-radius: 5px;
@@ -41,7 +38,7 @@
 }
 
 .custom-navbar .dropdown-menu .dropdown-item {
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
 }
 
 .custom-navbar .dropdown-menu .dropdown-item:hover,
@@ -55,7 +52,6 @@
   color: white;
 }
 
-/* Botones */
 .custom-navbar .btn {
   background-color: #F8F3ED;
   color: black;
@@ -74,11 +70,45 @@
   border-color: #f29a8e;
 }
 
-.custom-navbar .btn:active,
 .custom-navbar .btn:focus,
-.custom-navbar .btn:focus-visible {
-  background-color: #f29a8e;
+.custom-navbar .btn:active {
+  outline: none;
+  background-color: #f29a8e !important;
   color: white;
-  border-color: #f29a8e;
+  border-color: #f29a8e !important;
   box-shadow: none;
+}
+
+@media (max-width: 768px) { 
+
+  .custom-logo {
+    margin: 0;
+    width: 85px;
+  }
+
+  .custom-navbar .d-flex {
+    flex-direction: column; 
+    gap: 8px; 
+    align-items: center; 
+  }
+
+  .custom-navbar .btn {
+    width: 100%;
+  }
+
+  .me-auto.navbar-nav{
+    margin: 15px 0;
+  }
+
+  .custom-navbar .navbar-collapse {
+    position: absolute;
+    top: 105px; 
+    left: 0;
+    width: 100vw;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 9998;
+  }
 }
