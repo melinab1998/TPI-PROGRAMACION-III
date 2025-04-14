@@ -6,8 +6,8 @@ function App() {
   return (
     <div>
       <NavBar />
-      <Login />
       <HeroSection />
+      <Login />
     </div>
   )
 }
