@@ -1,0 +1,76 @@
+.hero-section {
+  position: relative;
+  background-image: url("../../img/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  z-index: 1;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+}
+
+.btn-adopta {
+  background-color: #f29a8e !important;
+  font-weight: bold !important;
+  border: 1px solid #e27a6c !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border-radius: 25px !important;
+  padding: 0.75rem 1.75rem !important;
+  min-width: 180px;
+  font-size: 1.1rem;
+}
+
+.btn-adopta:hover {
+  background-color: #e2897d !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e27a6c;
+}
+
+.navbar {
+  position: relative;
+  z-index: 9999;
+}
+
+.dropdown-menu {
+  z-index: 9999;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 80vh;
+    padding: 2rem 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1.3rem;
+  }
+
+  .btn-adopta {
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+    min-width: 140px;
+  }
+}
