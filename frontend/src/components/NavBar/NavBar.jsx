@@ -2,7 +2,12 @@ import "../NavBar/NavBar.css"
 import logo from '../../img/logo.png';
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 
-const NavBar = () => {
+const NavBar = ({showLogin, setShowLogin}) => {
+  const toggleLogin = () => {
+    setShowLogin(!showLogin)
+    console.log(showLogin);
+    
+  }
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>
@@ -37,7 +42,7 @@ const NavBar = () => {
           </Nav>
 
           <div className="d-flex gap-2">
-            <Button variant="outline-primary">INICIAR SESIÓN</Button>
+            <Button variant="outline-primary" onClick={toggleLogin}>INICIAR SESIÓN</Button>
             <Button variant="primary">REGISTRARSE</Button>
           </div>
         </Navbar.Collapse>
