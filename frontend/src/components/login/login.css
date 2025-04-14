@@ -1,17 +1,38 @@
 Form {
-    background-color: white;
-    width: 25%;
-    margin: 50px auto;
-    /* margin in top and bottom will be 50px  */
-    /* left and right auto  */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.065);
-  
-    /* horizon offset vertical offset blur offset  */
-    /* opacity of shadow */
-    /* red, green, blue, and (opacity ). */
-  }
+  position: relative;
+  background-color: white;
+  width: 25%;
+  margin: 50px auto;
+  border-radius: 20px;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.065);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 3%;
+  padding-bottom: 1%;
+  overflow: hidden
+}
+
+Form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('../../img/fondo-patitas2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1; /* ajustá este valor como quieras */
+  z-index: 0;
+}
+
+Form > * {
+  position: relative;
+  z-index: 1;
+}
+
   
   Form h3 {
     text-align: center;
@@ -30,6 +51,7 @@ Form {
     opacity: 50%;
     border: #f29a8e;
     width: 100%;
+    border-radius: 10px;
   }
 
 
