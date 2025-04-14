@@ -3,7 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import logo from '../../img/logo.png';
 import './login.css'
-const Login = () => {
+const Login = ({showLogin}) => {
+    if(showLogin){
     return (
         <Form>
             <img
@@ -70,7 +71,7 @@ const Login = () => {
         </Form>
 
 
-    )
+    )}
 }
 
 export default Login
