@@ -10,12 +10,12 @@ const Login = ({showLogin}) => {
             <img
                 src={logo}
                 alt="Logo"
-                className="custom-logo"
+                className="custom-logo block mx-auto w-[100px]"
             />
-            <h3>Iniciar Sesión</h3>
+            <h4>Iniciar Sesión</h4>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email </Form.Label>
-                <Form.Control type="email" placeholder="Email" />
+                <Form.Label>E-mail </Form.Label>
+                <Form.Control type="email" placeholder="ejemplo@gmail.com" />
                 <Form.Text className="text-muted">
                     ¿No tienes cuenta? <a href="/">Registrate aqui</a>
                 </Form.Text>
@@ -23,7 +23,7 @@ const Login = ({showLogin}) => {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="@#*%" />
                 <Form.Text className="text-muted">
                     <a href="/">¿Olvidaste tu contraseña?</a>
                 </Form.Text>
@@ -58,7 +58,7 @@ const Login = ({showLogin}) => {
                 Continuar con Google
             </button>
             <button
-                className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100"
+                className="w-full  flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100 "
             >
                 <img
                     src="https://ucarecdn.com/6f56c0f1-c9c0-4d72-b44d-51a79ff38ea9/"
