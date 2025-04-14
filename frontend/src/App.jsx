@@ -1,17 +1,15 @@
-import NavBar from "./components/NavBar/NavBar.jsx"
-import Login from "./components/login/Login.jsx"
-import HeroSection from "./components/HeroSection/HeroSection.jsx"
-import { useState } from "react"
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout/Layout"
+import Home from "./pages/Home/Home"
 
 function App() {
-  const [showLogin, setShowLogin] = useState(false)
   return (
-    <div>
-      <NavBar showLogin = {showLogin} setShowLogin = {setShowLogin}/>
-      <HeroSection />
-      <Login showLogin = {showLogin}/>
-    </div>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home/>} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;

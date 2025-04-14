@@ -2,7 +2,8 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import logo from '../../img/logo.png';
-import './login.css'
+import './Login.css'
+
 const Login = ({ showLogin }) => {
     if (showLogin) {
         return (
