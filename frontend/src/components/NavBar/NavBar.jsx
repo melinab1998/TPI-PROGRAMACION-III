@@ -43,7 +43,10 @@ const NavBar = ({showLogin, setShowLogin}) => {
 
           <div className="d-flex gap-2">
             <Button variant="outline-primary" onClick={toggleLogin}>INICIAR SESIÓN</Button>
-            <Button variant="primary">REGISTRARSE</Button>
+            <a href="/register" target="_blank" rel="noopener noreferrer">
+              <Button variant="primary">REGISTRARSE</Button>
+            </a>
+
           </div>
         </Navbar.Collapse>
       </Container>

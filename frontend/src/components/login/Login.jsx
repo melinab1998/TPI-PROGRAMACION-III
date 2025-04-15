@@ -7,7 +7,7 @@ import './Login.css'
 const Login = ({ showLogin }) => {
     if (showLogin) {
         return (
-            <Form>
+            <Form className='login-form'>
                 <img
                     src={logo}
                     alt="Logo"
