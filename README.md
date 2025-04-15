@@ -5,15 +5,15 @@
 ## Descripción
 **Mi Hogar** es una plataforma web dedicada a mejorar la vida de las mascotas y sus familias. Permite publicar mascotas en adopción, reportar mascotas perdidas y acceder a una tienda online con productos para el cuidado animal.
 
-## Funcionalidades Principales
+## Funcionalidades principales
 
-- **Adopción de Mascotas** 🐶  
+- **Adopción de mascotas** 🐶  
   Publicá y descubrí mascotas que están buscando un hogar.
 
-- **Mascotas Perdidas** 🔎  
+- **Mascotas perdidas** 🔎  
   Reportá mascotas perdidas o encontradas y ayudá a reunirlas con sus familias.
 
-- **Petshop Online** 🛍️  
+- **Petshop online** 🛍️  
   Comprá alimentos, juguetes y accesorios para tu mascota.
 
 
