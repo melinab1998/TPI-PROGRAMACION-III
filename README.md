@@ -1,4 +1,6 @@
-<img src="https://github.com/melinab1998/TPI-PROGRAMACION-III/blob/main/frontend/src/img/logo.png?raw=true" alt="Logo-MiHogar" width="250"/>
+<p align="center">
+  <img src="https://github.com/melinab1998/TPI-PROGRAMACION-III/blob/main/frontend/src/img/logo.png?raw=true" alt="Logo-MiHogar" width="200"/>
+</p>
 
 ## Descripción
 **Mi Hogar** es una plataforma web dedicada a mejorar la vida de las mascotas y sus familias. Permite publicar mascotas en adopción, reportar mascotas perdidas y acceder a una tienda online con productos para el cuidado animal.
