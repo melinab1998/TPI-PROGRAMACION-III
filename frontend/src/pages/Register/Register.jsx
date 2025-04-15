@@ -62,7 +62,7 @@ const Register = () => {
             </Col>
           </Row>
         </Form>
-        <p className='p'>Ya tienes cuenta? <a href="/">Inicia Sesion</a></p>
+        <p className='p'>¿Ya tienes cuenta? <a href="/">Inicia Sesión</a></p>
         <div className='social'>
         <a href="">
           <FaFacebook size={40} />

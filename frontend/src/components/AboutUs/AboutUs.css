@@ -55,4 +55,8 @@
   .about-us-info {
     text-align: center;
   }
+  .about-us-p{
+    font-size: 1rem;
+    margin: 0 10px;
+  }
 }
