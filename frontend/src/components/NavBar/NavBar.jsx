@@ -23,7 +23,7 @@ const NavBar = ({showLogin, setShowLogin}) => {
         <Navbar.Collapse id="main-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#inicio">INICIO</Nav.Link>
-            <Nav.Link href="#nosotros">NOSOTROS</Nav.Link>
+            <Nav.Link href="#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
               <NavDropdown.Item href="#servicio1">CONÓCELOS</NavDropdown.Item>
