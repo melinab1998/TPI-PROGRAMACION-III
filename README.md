@@ -11,7 +11,7 @@
   Publicá y descubrí mascotas que están buscando un hogar.
 
 - **Mascotas Perdidas** 🔎  
-  Reportá mascotas extraviadas o encontradas y ayudá a reunirlas con sus dueños.
+  Reportá mascotas perdidas o encontradas y ayudá a reunirlas con sus familias.
 
 - **Petshop Online** 🛍️  
   Comprá alimentos, juguetes y accesorios para tu mascota.
