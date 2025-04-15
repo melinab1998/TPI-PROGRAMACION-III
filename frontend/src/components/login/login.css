@@ -7,6 +7,7 @@
     z-index: 10;
     background-color: white;
     width: 25%;
+    min-width: 335px;
     height: auto;
     min-height: 85%;
     margin: 50px auto;
