@@ -21,40 +21,40 @@ const Register = () => {
         <Form>
           <Row className="mb-3 ">
             <Col md={6}>
-              <Form.Label htmlFor="nombre">Nombre</Form.Label>
+              <Form.Label htmlFor="nombre" className='font-semibold'>Nombre</Form.Label>
               <Form.Control type="text" id="nombre" required />
             </Col>
             <Col md={6}>
-              <Form.Label htmlFor="apellido" cl>Apellido</Form.Label>
+              <Form.Label htmlFor="apellido" className='font-semibold'>Apellido</Form.Label>
               <Form.Control type="text" id="apellido" required />
             </Col>
           </Row>
 
-          <Row className="mb-3">
+          <Row className="mb-3"> 
             <Col md={6}>
-              <Form.Label htmlFor="email">Email</Form.Label>
+              <Form.Label htmlFor="email" className='font-semibold'>Email</Form.Label>
               <Form.Control type="email" id="email" required />
             </Col>
             <Col md={6}>
-              <Form.Label htmlFor="telefono">Teléfono</Form.Label>
+              <Form.Label htmlFor="telefono" className='font-semibold'>Teléfono</Form.Label>
               <Form.Control type="tel" id="telefono" required />
             </Col>
           </Row>
 
           <Row className="mb-3">
             <Col md={6}>
-              <Form.Label htmlFor="contrasena">Contraseña</Form.Label>
+              <Form.Label htmlFor="contrasena" className='font-semibold'>Contraseña</Form.Label>
               <Form.Control type="password" id="contrasena" required />
             </Col>
             <Col md={6}>
-              <Form.Label htmlFor="confirmarContrasena">Confirmar Contraseña</Form.Label>
+              <Form.Label htmlFor="confirmarContrasena" className='font-semibold'>Confirmar Contraseña</Form.Label>
               <Form.Control type="password" id="confirmarContrasena" required />
             </Col>
           </Row>
 
           <Row className="mb-3 d-flex align-items-center">
             <Col md={6}>
-              <Form.Label htmlFor="direccion">Dirección</Form.Label>
+              <Form.Label htmlFor="direccion" className='font-semibold'>Dirección</Form.Label>
               <Form.Control type="text" id="direccion" />
             </Col>
             <Col md={2} className="d-flex justify-content-center mt-4">
