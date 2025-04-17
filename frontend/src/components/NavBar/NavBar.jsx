@@ -24,7 +24,7 @@ const NavBar = ({ showLogin, setShowLogin }) => {
             <Nav.Link href="#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
-              <NavDropdown.Item href="#servicio1">CONÓCELOS</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to = "/meet">CONÓCELOS</NavDropdown.Item>
               <NavDropdown.Item href="#servicio2">
                 QUIERO ADOPTAR
               </NavDropdown.Item>

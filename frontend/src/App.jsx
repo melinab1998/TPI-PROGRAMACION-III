@@ -3,6 +3,7 @@ import Layout from "./layout/Layout/Layout"
 import Home from "./pages/Home/Home"
 import Register from "./pages/Register/Register";
 import Contact from "./pages/Contact/Contact";
+import Meet from "./pages/Meet/Meet";
 
 
 
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="/meet" element={<Meet />} />
       </Route>
       <Route path="/register" element={<Register />} />
     </Routes>
