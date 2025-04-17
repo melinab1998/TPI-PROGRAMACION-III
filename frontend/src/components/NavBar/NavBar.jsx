@@ -18,7 +18,9 @@ const NavBar = ({ showLogin, setShowLogin }) => {
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#inicio">INICIO</Nav.Link>
+          <Nav.Link as={Link} to="/">
+              INICIO
+            </Nav.Link>
             <Nav.Link href="#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
@@ -41,9 +43,10 @@ const NavBar = ({ showLogin, setShowLogin }) => {
             </NavDropdown>
 
             <Nav.Link href="#donaciones">DONACIONES</Nav.Link>
-            <Nav.Link href="#contacto">CONTACTO</Nav.Link>
+            <Nav.Link as={Link} to="/contact">
+              CONTACTO
+            </Nav.Link>
           </Nav>
-
           <div className="d-flex gap-2">
             <Button variant="outline-primary" onClick={toggleLogin}>
               INICIAR SESIÓN
