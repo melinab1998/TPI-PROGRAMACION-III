@@ -26,7 +26,7 @@ const NavBar = ({ showLogin, setShowLogin }) => {
               <NavDropdown.Item href="#servicio2">
                 QUIERO ADOPTAR
               </NavDropdown.Item>
-              <NavDropdown.Item href="#servicio3">
+              <NavDropdown.Item href="#adoption-section">
                 REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
             </NavDropdown>

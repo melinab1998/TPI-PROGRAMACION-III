@@ -1,0 +1,111 @@
+.adoption-section {
+    padding: 5rem 0;
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    background-color: white; 
+    background: white url("../../img/patitas.png") repeat;
+    background-size: 300px; 
+    opacity: 0.9; 
+    background-repeat: cover; 
+    background-attachment: fixed; 
+    background-position: center;
+    z-index: 1; 
+    overflow: hidden;
+}
+
+.adoption-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7); 
+    z-index: -1;
+}
+
+.adoption-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.adoption-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600; 
+    font-size: 2rem;
+    color: #333;
+    position: relative;
+}
+
+.adoption-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #e57373;
+    border-radius: 3px;
+}
+
+.adoption-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.requisito-item {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    max-width: 320px;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.requisito-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    border-color: rgba(242, 154, 142, 0.3); 
+}
+
+.requisito-icono {
+    font-size: 1.5rem;
+    margin-right: 1.2rem;
+    color: #e57373;
+    flex-shrink: 0;
+}
+
+.requisito-texto {
+    color: #444;
+    font-size: 1rem;
+    font-weight: 500; 
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .adoption-section {
+        padding: 3rem 1rem;
+    }
+    
+    .adoption-title {
+        font-size: 1.6rem;
+    }
+    
+    .adoption-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+}
