@@ -11,7 +11,7 @@ const NavBar = ({ showLogin, setShowLogin }) => {
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img src={logo} alt="Logo" className="custom-logo" />
         </Navbar.Brand>
 
@@ -21,14 +21,14 @@ const NavBar = ({ showLogin, setShowLogin }) => {
           <Nav.Link as={Link} to="/">
               INICIO
             </Nav.Link>
-            <Nav.Link href="#about-us">NOSOTROS</Nav.Link>
+            <Nav.Link href="/#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
               <NavDropdown.Item as={Link} to = "/meet">CONÓCELOS</NavDropdown.Item>
               <NavDropdown.Item href="#servicio2">
                 QUIERO ADOPTAR
               </NavDropdown.Item>
-              <NavDropdown.Item href="#adoption-section">
+              <NavDropdown.Item href="/#adoption-section">
                 REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
             </NavDropdown>
