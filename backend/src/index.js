@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware para parsear JSON
+// no olvidar de instalar morgan
 app.use(express.json());
 
 app.get('/', (req, res) => {

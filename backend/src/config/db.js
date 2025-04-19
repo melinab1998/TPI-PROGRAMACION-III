@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
     host: process.env.DB_HOST,
     dialect: 'postgres',
     port: process.env.DB_PORT,
-    logging: false,
+    logging: false,// Si ponés true, Sequelize te muestra las consultas SQL en consola
   }
 );
 
