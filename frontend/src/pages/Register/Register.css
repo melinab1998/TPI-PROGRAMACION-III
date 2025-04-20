@@ -58,3 +58,52 @@ body{
     gap: 4px;
     margin-bottom: 10px;
 }
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .form {
+        width: 100% !important;
+        padding: 20px;
+    }
+
+    .cont-header-form {
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .titulo {
+        margin-top: 20px;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .logo {
+        width: 60px;
+    }
+
+    .social {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    
+    .row > .col-md-6, 
+    .row > .col-md-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .row {
+        gap: 10px;
+    }
+}
