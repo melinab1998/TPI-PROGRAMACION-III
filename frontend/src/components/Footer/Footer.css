@@ -1,0 +1,9 @@
+.links-footer {
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.links-footer:hover {
+text-decoration: underline;
+}
