@@ -14,16 +14,16 @@ const Footer = () => {
             <h5 className="text-danger">Información</h5>
             <ul className="list-unstyled">
                 <li>
-                <a href="#sobrenosotros">Sobre nosotros</a>
+                <a href="#" className="links-footer">Sobre nosotros</a>
                 </li>
                 <li>
-                <a href="#">Medios de contacto</a>
+                <a href="#" className="links-footer">Medios de contacto</a>
                 </li>
                 <li>
-                <a href="#">Aplicación móvil</a>
+                <a href="#"className="links-footer">Aplicación móvil</a>
                 </li>
                 <li>
-                <a href="#">¿Cómo ayudar?</a>
+                <a href="#"className="links-footer">¿Cómo ayudar?</a>
                 </li>
             </ul>
             </Col>
@@ -47,10 +47,10 @@ const Footer = () => {
             <h5 className="text-danger">Términos y configuración</h5>
             <ul className="list-unstyled">
             <li>
-                <a href="#">Privacidad y cookies</a>
+                <a href="#"className="links-footer">Privacidad y cookies</a>
             </li>
             <li>
-                <a href="#">Términos y condiciones</a>
+                <a href="#" className="links-footer">Términos y condiciones</a>
             </li>
             </ul>
             </Col>
