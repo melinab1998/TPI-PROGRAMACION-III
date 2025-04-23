@@ -7,11 +7,11 @@ import whatsappIcon from "../../img/whatsapp-icon.svg";
 
 const Footer = () => {
     return (
-    <footer className="bg-light py-5 mt-5 border-top">
+    <footer className="bg-light py-5 border-top custom-footer">
         <Container>
         <Row className="text-center text-md-start">
             <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center">
-            <h5 className="text-danger">Información</h5>
+            <h5 className="custom-title">Información</h5>
             <ul className="list-unstyled">
                 <li>
                 <a href="#" className="links-footer">Sobre nosotros</a>
@@ -44,7 +44,7 @@ const Footer = () => {
             </Col>
 
             <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center my-10">
-            <h5 className="text-danger">Términos y configuración</h5>
+            <h5 className="custom-title">Términos y configuración</h5>
             <ul className="list-unstyled">
             <li>
                 <a href="#"className="links-footer">Privacidad y cookies</a>
