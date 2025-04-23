@@ -3,7 +3,7 @@ import sequelize from "./config/db.js";
 import userRoutes from "./routes/users.routes.js"
 
 const app = express();
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.EX_PORT|| 3000;
 
 // Middleware para parsear JSON
 // no olvidar de instalar morgan
