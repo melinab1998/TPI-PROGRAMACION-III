@@ -6,6 +6,7 @@ import Contact from "./pages/Contact/Contact";
 import Meet from "./pages/Meet/Meet";
 import NotFound from "./pages/NotFound/NotFound";
 import Donation from "./pages/Donation/Donation";
+import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/meet" element={<Meet />} />
         <Route path="/donation" element={<Donation/>} />
+        <Route path="/adoption-form" element={<AdoptionForm/>} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/register" element={<Register />} />
