@@ -28,7 +28,7 @@ const Footer = () => {
                 </Col>
     
                 <Col md={4} className="d-flex flex-column align-items-center text-center h-100 my-4 my-md-0">
-                <img src={footerLogo} alt="Mi Hogar Logo" style={{ width: "80px" }} />
+                <img src={footerLogo} alt="Mi Hogar Logo" width={80} />
                 <div className="mt-3 d-flex justify-content-center gap-3">
                     <a href="#">
                         <FaFacebook size={40} />
@@ -45,6 +45,7 @@ const Footer = () => {
                 <Col md={4} className="d-flex flex-column align-items-center text-center h-100">
                 <h5 className="text-danger">Términos y configuración</h5>
                 <ul className="list-unstyled">
+
                 <li>
                     <a href="#"className="links-footer">Privacidad y cookies</a>
                 </li>
