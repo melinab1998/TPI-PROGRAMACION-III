@@ -42,7 +42,9 @@ const NavBar = ({ showLogin, setShowLogin }) => {
               </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link href="#donaciones">DONACIONES</Nav.Link>
+            <Nav.Link as={Link} to="/donation">
+              DONACIONES
+            </Nav.Link>
             <Nav.Link as={Link} to="/contact">
               CONTACTO
             </Nav.Link>
