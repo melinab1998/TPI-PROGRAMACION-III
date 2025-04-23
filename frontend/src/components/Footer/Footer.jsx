@@ -45,6 +45,7 @@ const Footer = () => {
                 <Col md={4} className="d-flex flex-column align-items-center justify-content-center text- h-100 ">
                 <h5 className="custom-title">Términos y configuración</h5>
                 <ul className="list-unstyled">
+
                 <li>
                     <a href="#"className="links-footer">Privacidad y cookies</a>
                 </li>
