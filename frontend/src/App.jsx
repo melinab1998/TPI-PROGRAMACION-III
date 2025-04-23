@@ -4,6 +4,10 @@ import Home from "./pages/Home/Home"
 import Register from "./pages/Register/Register";
 import Contact from "./pages/Contact/Contact";
 import Meet from "./pages/Meet/Meet";
+import NotFound from "./pages/NotFound/NotFound";
+import Donation from "./pages/Donation/Donation";
+import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
+
 
 
 
@@ -12,8 +16,11 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/meet" element={<Meet />} />
+        <Route path="/donation" element={<Donation/>} />
+        <Route path="/adoption-form" element={<AdoptionForm/>} />
+        <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/register" element={<Register />} />
     </Routes>

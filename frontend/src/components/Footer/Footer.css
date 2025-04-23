@@ -1,0 +1,18 @@
+.links-footer {
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.links-footer:hover {
+text-decoration: underline;
+}
+
+.custom-title{
+    color: #cd5c5c;
+}
+
+.custom-footer{
+    background-color: #F8F3ED !important;
+    border: none !important; 
+}

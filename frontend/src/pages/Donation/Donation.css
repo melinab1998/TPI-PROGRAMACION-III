@@ -1,0 +1,95 @@
+.donacion-contenedor {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fffaf4;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.donacion-titulo {
+    text-align: center;
+    color: #ff7f50;
+    margin: 10px 0;
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+}
+
+.donacion-texto {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-style: italic;
+}
+
+.donacion-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.donacion-label {
+    display: flex;
+    flex-direction: column;
+    color: #555;
+    font-weight: bold;
+}
+
+.donacion-input,
+.donacion-textarea,
+.donacion-formulario select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.donacion-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.donacion-boton {
+    padding: 12px;
+    background-color: #ff7f50; 
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.donacion-boton:hover {
+    background-color: #e06b45; 
+}
+
+@media (max-width: 768px) {
+    .donacion-contenedor {
+        margin: 20px 15px;
+        padding: 15px;
+    }
+
+    .donacion-titulo {
+        font-size: 1.8rem;
+    }
+
+    .donacion-texto {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .donacion-input,
+    .donacion-textarea,
+    .donacion-formulario select {
+        font-size: 14px;
+    }
+
+    .donacion-boton {
+        font-size: 15px;
+        padding: 10px;
+    }
+}

@@ -1,19 +1,27 @@
-import React from 'react';
-import { Form, Button, Col, Row } from 'react-bootstrap'; // Importando los componentes de react-bootstrap
+import React, { useEffect } from 'react';
+import { Form, Button, Col, Row } from 'react-bootstrap'; 
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { BsTwitterX } from "react-icons/bs";
 import logo from '../../img/logo.png';
 import './Register.css';
 
 const Register = () => {
+
+  useEffect(() => {
+    document.body.classList.add("custom-register");
+    return () => {
+      document.body.classList.remove("custom-register");
+    };
+  }, []);
+
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
       <div className='imagen d-none d-lg-block me-4'>
       </div>
-      <div className="card p-4 form"  style={{ width: '800px', borderRadius: '10px' }}>
+      <div className="card p-4 form" style={{ width: '800px', borderRadius: '10px' }}>
         <div className='cont-header-form'>
-        <h2 className="mb-4 titulo font-semibold ">Regístrate</h2>
-        <img className='logo' src={logo} alt="Logo" />
+          <h2 className="mb-4 titulo font-semibold ">Regístrate</h2>
+          <img className='logo' src={logo} alt="Logo" />
         </div>
        
         <Form>
@@ -23,7 +31,7 @@ const Register = () => {
               <Form.Control type="text" id="nombre" required />
             </Col>
             <Col md={6}>
-              <Form.Label htmlFor="apellido" cl>Apellido</Form.Label>
+              <Form.Label htmlFor="apellido">Apellido</Form.Label>
               <Form.Control type="text" id="apellido" required />
             </Col>
           </Row>
@@ -60,17 +68,17 @@ const Register = () => {
             </Col>
           </Row>
         </Form>
-        <p className='p'>Ya tienes cuenta? <a href="/">Inicia Sesion</a></p>
+        <p className='p'>¿Ya tienes cuenta? <a href="/">Inicia Sesión</a></p>
         <div className='social'>
-        <a href="">
-          <FaFacebook size={40} />
-        </a>
-        <a href="">
-          <BsTwitterX size={40} color='black' />
-        </a>
-        <a href="">
-          <FaInstagram size={40} color='#E1306C' />
-        </a>
+          <a href="">
+            <FaFacebook size={40} />
+          </a>
+          <a href="">
+            <BsTwitterX size={40} color='black' />
+          </a>
+          <a href="">
+            <FaInstagram size={40} color='#E1306C' />
+          </a>
         </div>
       </div>
     </div>
