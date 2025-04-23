@@ -1,6 +1,7 @@
-body{
-    background-color: #f0ccae;
+body.custom-register {
+    background-color: #f0ccae !important;
 }
+
 .imagen {
     background-image: url('../../img/fondo-patitas.png');
     background-size: cover; 
