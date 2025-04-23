@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import React from 'react'
 import { useState } from 'react';
 
@@ -41,13 +41,12 @@ const AdoptionForm = () => {
           <Form.Control />
         </Form.Group>
 
-        {/*         <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
-          </Form.Select>
-        </Form.Group> */}
+        <Form.Group as={Col} controlId="formGridState">
+          <Form.Label>Provincia</Form.Label>
+          <Form.Control />
+        </Form.Group>
+
+
 
         <Form.Group as={Col} controlId='formGridDni'>
           <Form.Label>DNI</Form.Label>
@@ -55,13 +54,8 @@ const AdoptionForm = () => {
         </Form.Group>
       </Row>
 
-      {/*       <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
- */}
-      {/*       <Button variant="primary" type="submit">
-        Submit
-      </Button> */}
+
+
 
       <Form.Group>
         <Form.Label>¿En qué tipo de vivienda habitás?</Form.Label>
@@ -99,23 +93,6 @@ const AdoptionForm = () => {
         </div>
       </Form.Group>
       <Form.Group>
-        <Form.Label>¿Cuenta con patio la vivienda?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="courtyardStatus"
-            id="courtyard-ownership"
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="courtyardStatus"
-            id="courtyard-ownership"
-          />
-        </div>
-      </Form.Group>
-      <Form.Group>
         <Form.Label>En caso de alquilar, ¿lo consultaste con el dueño?</Form.Label>
         <div className="mb-3">
           <Form.Check
@@ -138,6 +115,24 @@ const AdoptionForm = () => {
           />
         </div>
       </Form.Group>
+      <Form.Group>
+        <Form.Label>¿Cuenta con patio la vivienda?</Form.Label>
+        <div className="mb-3">
+          <Form.Check
+            type="radio"
+            label="Sí"
+            name="courtyardStatus"
+            id="courtyard-ownership"
+          />
+          <Form.Check
+            type="radio"
+            label="No"
+            name="courtyardStatus"
+            id="courtyard-ownership"
+          />
+        </div>
+      </Form.Group>
+
       <Form.Group>
         <Form.Label>¿Tenés otros animales?</Form.Label>
         <div className="mb-3">
@@ -185,7 +180,71 @@ const AdoptionForm = () => {
           />
         </div>
       </Form.Group>
-
+      <Form.Group>
+        <Form.Label>¿Tuviste otras mascotas?</Form.Label>
+        <div className="mb-3">
+          <Form.Check
+            type="radio"
+            label="Sí"
+            name="petsNeutered"
+            id="pets-neutered-yes"
+            disabled={hasPets !== 'yes'}
+          />
+          <Form.Check
+            type="radio"
+            label="No"
+            name="petsNeutered"
+            id="pets-neutered-no"
+            disabled={hasPets !== 'yes'}
+          />
+        </div>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>¿Qué harías con el animal en caso de vacaciones?</Form.Label>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>¿Qué harías con el animal en caso de mudanza?</Form.Label>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>¿Contas con el tiempo para paseos diarios?</Form.Label>
+        <div className="mb-3">
+          <Form.Check
+            type="radio"
+            label="Sí"
+            name="petsNeutered"
+            id="pets-neutered-yes"
+          />
+          <Form.Check
+            type="radio"
+            label="No"
+            name="petsNeutered"
+            id="pets-neutered-no"
+          />
+        </div>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>¿Estas de acuerdo con un seguimiento vía whatsapp?</Form.Label>
+        <div className="mb-3">
+          <Form.Check
+            type="radio"
+            label="Sí"
+            name="petsNeutered"
+            id="pets-neutered-yes"
+          />
+          <Form.Check
+            type="radio"
+            label="No"
+            name="petsNeutered"
+            id="pets-neutered-no"
+          />
+        </div>
+      </Form.Group>
+      <Form.Group className="mb-3" id="formGridCheckbox">
+        <Form.Check type="checkbox" label="Acepto los terminos y condiciones." />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Enviar
+      </Button>
     </Form>
   )
 }
