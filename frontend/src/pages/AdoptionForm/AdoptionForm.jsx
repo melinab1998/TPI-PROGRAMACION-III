@@ -1,18 +1,18 @@
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import React from 'react'
 import { useState } from 'react';
+import './AdoptioForm.css'
 
 const AdoptionForm = () => {
-  const [hasPets, setHasPets] = useState(null);
-  const [hasPermission, setHasPermission] = useState(null);
+  const [hasPets, setHasPets] = useState('null');
+  const [ownerConsultationStatus, setOwnerConsultationStatus] = useState('null')
 
-  const handlePetStatus = (e) => {
-    setHasPets(e.target.value);
-    console.log(hasPets);
-
-  }
+  const handleStatus = (setter) => (e) => {
+    setter(e.target.value);
+  };
+  
   return (
-    <Form>
+    <Form className="adoption-form">
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridName">
           <Form.Label>Nombre</Form.Label>
@@ -83,12 +83,16 @@ const AdoptionForm = () => {
             label="PROPIETARIO"
             name="ownershipStatus"
             id="ownership-owner"
+
+            onChange={handleStatus(setOwnerConsultationStatus)}
           />
           <Form.Check
             type="radio"
             label="INQUILINO"
             name="ownershipStatus"
             id="ownership-tenant"
+            value= 'tenant'
+            onChange={handleStatus(setOwnerConsultationStatus)}
           />
         </div>
       </Form.Group>
@@ -100,18 +104,21 @@ const AdoptionForm = () => {
             label="Sí, pregunté y admite mascotas"
             name="ownerConsultation"
             id="owner-yes"
+            disabled = {ownerConsultationStatus !== 'tenant'}
           />
           <Form.Check
             type="radio"
             label="No pregunté, pero el edificio admite"
             name="ownerConsultation"
             id="owner-building-allows"
+            disabled = {ownerConsultationStatus !== 'tenant'}
           />
           <Form.Check
             type="radio"
             label="No pregunté"
             name="ownerConsultation"
             id="owner-no"
+            disabled = {ownerConsultationStatus !== 'tenant'}
           />
         </div>
       </Form.Group>
@@ -142,7 +149,7 @@ const AdoptionForm = () => {
             name="petStatus"
             id="pets-yes"
             value="yes"
-            onChange={handlePetStatus}
+            onChange={handleStatus(setHasPets)}
           />
           <Form.Check
             type="radio"
@@ -150,7 +157,7 @@ const AdoptionForm = () => {
             name="petStatus"
             id="pets-no"
             value="no"
-            onChange={handlePetStatus}
+            onChange={handleStatus(setHasPets)}
           />
         </div>
       </Form.Group>
@@ -186,56 +193,67 @@ const AdoptionForm = () => {
           <Form.Check
             type="radio"
             label="Sí"
-            name="petsNeutered"
-            id="pets-neutered-yes"
-            disabled={hasPets !== 'yes'}
+            name="hadOtherPets"
+            id="had-other-pets-yes"
+            value="yes"
           />
           <Form.Check
             type="radio"
             label="No"
-            name="petsNeutered"
-            id="pets-neutered-no"
-            disabled={hasPets !== 'yes'}
+            name="hadOtherPets"
+            id="had-other-pets-no"
+            value="no"
           />
         </div>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3" controlId="formReason">
+        <Form.Label>¿Por qué querés adoptar una mascota?</Form.Label>
+        <Form.Control as="textarea" rows={3} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formVacationPlan">
         <Form.Label>¿Qué harías con el animal en caso de vacaciones?</Form.Label>
+        <Form.Control as="textarea" rows={3} />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3" controlId="formControlTextarea">
         <Form.Label>¿Qué harías con el animal en caso de mudanza?</Form.Label>
+        <Form.Control as="textarea" rows={3} />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>¿Contas con el tiempo para paseos diarios?</Form.Label>
+      <Form.Group className="mb-3" controlId="formDailyWalks">
+        <Form.Label>¿Contás con el tiempo para paseos diarios?</Form.Label>
         <div className="mb-3">
           <Form.Check
             type="radio"
             label="Sí"
-            name="petsNeutered"
-            id="pets-neutered-yes"
+            name="dailyWalks"
+            id="daily-walks-yes"
+            value="yes"
           />
           <Form.Check
             type="radio"
             label="No"
-            name="petsNeutered"
-            id="pets-neutered-no"
+            name="dailyWalks"
+            id="daily-walks-no"
+            value="no"
           />
         </div>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>¿Estas de acuerdo con un seguimiento vía whatsapp?</Form.Label>
+
+      <Form.Group className="mb-3" controlId="formFollowUp">
+        <Form.Label>¿Estás de acuerdo con un seguimiento vía WhatsApp?</Form.Label>
         <div className="mb-3">
           <Form.Check
             type="radio"
             label="Sí"
-            name="petsNeutered"
-            id="pets-neutered-yes"
+            name="whatsappFollowUp"
+            id="whatsapp-follow-up-yes"
+            value="yes"
           />
           <Form.Check
             type="radio"
             label="No"
-            name="petsNeutered"
-            id="pets-neutered-no"
+            name="whatsappFollowUp"
+            id="whatsapp-follow-up-no"
+            value="no"
           />
         </div>
       </Form.Group>
