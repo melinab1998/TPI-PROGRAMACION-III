@@ -6,11 +6,11 @@ import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
     return (
-        <footer className="bg-light py-5 border-top custom-footer">
+        <footer className="py-5 border-top custom-footer">
             <Container>
-            <Row className="text-center text-md-start align-items-center">
-                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text- h-100">
-                <h5 className="custom-title">Información</h5>
+            <Row className="text-center text-md-start align-items-start">
+            <Col md={4} className="d-flex flex-column align-items-center text-center h-100">
+                <h5 className="text-danger">Información</h5>
                 <ul className="list-unstyled">
                     <li>
                     <a href="#" className="links-footer">Sobre nosotros</a>
@@ -27,7 +27,7 @@ const Footer = () => {
                 </ul>
                 </Col>
     
-                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center my-4 my-md-0">
+                <Col md={4} className="d-flex flex-column align-items-center text-center h-100 my-4 my-md-0">
                 <img src={footerLogo} alt="Mi Hogar Logo" style={{ width: "80px" }} />
                 <div className="mt-3 d-flex justify-content-center gap-3">
                     <a href="#">
@@ -42,8 +42,8 @@ const Footer = () => {
                 </div>
                 </Col>
     
-                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text- h-100 ">
-                <h5 className="custom-title">Términos y configuración</h5>
+                <Col md={4} className="d-flex flex-column align-items-center text-center h-100">
+                <h5 className="text-danger">Términos y configuración</h5>
                 <ul className="list-unstyled">
                 <li>
                     <a href="#"className="links-footer">Privacidad y cookies</a>
@@ -64,6 +64,5 @@ const Footer = () => {
         </footer>
         );
     };
-
-
 export default Footer;
+
