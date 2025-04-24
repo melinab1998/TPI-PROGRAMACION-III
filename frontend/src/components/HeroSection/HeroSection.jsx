@@ -1,5 +1,6 @@
 import { Container, Button } from "react-bootstrap";
 import "../HeroSection/HeroSection.css"
+import {Link} from "react-router-dom"
 
 const HeroSection = () => {
   return (
@@ -9,9 +10,9 @@ const HeroSection = () => {
         <p className="lead">
           El amor no se compra, se adopta.
         </p>
-        <Button className="btn-adopta">
+        <Link to="/meet"><Button className="btn-adopta">
           ADOPTÁ
-        </Button>
+        </Button></Link>
       </Container>
     </div>
   );
