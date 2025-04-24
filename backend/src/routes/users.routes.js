@@ -3,7 +3,7 @@ import {Router} from "express";
 
 const router = Router();
 
-router.post("/users", createUser);
+router.post("/api/users", createUser);
 
 export default router;
 
