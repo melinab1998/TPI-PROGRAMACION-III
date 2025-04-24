@@ -46,6 +46,7 @@ body.custom-register {
     background-color: #f29a8e;
     border: none;
     opacity: 50%;
+    margin: 10px 0;
 }
 
 .button:hover{

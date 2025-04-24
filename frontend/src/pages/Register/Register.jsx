@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import { Form, Button, Col, Row } from 'react-bootstrap'; 
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import React, { useEffect } from "react";
+import { Form, Button, Col, Row } from "react-bootstrap";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
-import logo from '../../img/logo.png';
-import './Register.css';
+import logo from "../../img/logo.png";
+import "./Register.css";
 
 const Register = () => {
-
   useEffect(() => {
     document.body.classList.add("custom-register");
     return () => {
@@ -16,16 +15,19 @@ const Register = () => {
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
-      <div className='imagen d-none d-lg-block me-4'>
-      </div>
-      <div className="card p-4 form" style={{ width: '800px', borderRadius: '10px' }}>
-        <div className='cont-header-form'>
-          <h2 className="mb-4 titulo font-semibold ">Regístrate</h2>
-          <img className='logo' src={logo} alt="Logo" />
+      <div className="imagen d-none d-lg-block me-4"></div>
+
+      <div
+        className="card p-4 form"
+        style={{ width: "800px", borderRadius: "10px" }}
+      >
+        <div className="cont-header-form">
+          <h2 className="mb-4 titulo font-semibold">Regístrate</h2>
+          <img className="logo" src={logo} alt="Logo" />
         </div>
-       
+
         <Form>
-          <Row className="mb-3 ">
+          <Row className="mb-3">
             <Col md={6}>
               <Form.Label htmlFor="nombre">Nombre</Form.Label>
               <Form.Control type="text" id="nombre" required />
@@ -49,35 +51,50 @@ const Register = () => {
 
           <Row className="mb-3">
             <Col md={6}>
-              <Form.Label htmlFor="contrasena">Contraseña</Form.Label>
-              <Form.Control type="password" id="contrasena" required />
+              <Form.Label htmlFor="birth_date">Fecha de nacimiento</Form.Label>
+              <Form.Control type="date" id="birth_date" required />
             </Col>
-            <Col md={6}>
-              <Form.Label htmlFor="confirmarContrasena">Confirmar Contraseña</Form.Label>
-              <Form.Control type="password" id="confirmarContrasena" required />
-            </Col>
-          </Row>
-
-          <Row className="mb-3 d-flex align-items-center">
             <Col md={6}>
               <Form.Label htmlFor="direccion">Dirección</Form.Label>
               <Form.Control type="text" id="direccion" />
             </Col>
-            <Col md={2} className="d-flex justify-content-start mt-4 lg:justify-content-center">
-              <Button type="submit" variant="primary" className=" lg:w-60 button">Registrarse</Button>
+          </Row>
+
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Label htmlFor="contrasena">Contraseña</Form.Label>
+              <Form.Control type="password" id="contrasena" required />
+            </Col>
+            <Col md={6}>
+              <Form.Label htmlFor="confirmarContrasena">
+                Confirmar Contraseña
+              </Form.Label>
+              <Form.Control type="password" id="confirmarContrasena" required />
+            </Col>
+          </Row>
+
+          <Row className="justify-content-center mt-3">
+            <Col xs="auto">
+              <Button type="submit" variant="primary" className="button">
+                Registrarse
+              </Button>
             </Col>
           </Row>
         </Form>
-        <p className='p'>¿Ya tienes cuenta? <a href="/">Inicia Sesión</a></p>
-        <div className='social'>
+
+        <p className="p mt-3">
+          ¿Ya tienes cuenta? <a href="/">Inicia Sesión</a>
+        </p>
+
+        <div className="social mt-3">
           <a href="">
             <FaFacebook size={40} />
           </a>
           <a href="">
-            <BsTwitterX size={40} color='black' />
+            <BsTwitterX size={40} color="black" />
           </a>
           <a href="">
-            <FaInstagram size={40} color='#E1306C' />
+            <FaInstagram size={40} color="#E1306C" />
           </a>
         </div>
       </div>
