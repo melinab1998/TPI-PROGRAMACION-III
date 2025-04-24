@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
@@ -13,6 +13,49 @@ const Register = () => {
     };
   }, []);
 
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    mobile: "",
+    birth_date: "",
+    address: "",
+    password: ""
+  });
+  const handleData = (e) => {
+    setFormData({ 
+      ...formData,
+      [e.target.id]: e.target.value 
+    });
+    console.log(formData);
+    
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+  
+    try {
+      const response = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+  
+      if (response.ok) {
+        alert("Usuario creado correctamente");
+      } else {
+        const errorData = await response.json();
+        alert("Error: " + errorData.message);
+      }
+    } catch (error) {
+      console.error("Error en el registro:", error);
+      alert("Hubo un error al conectar con el servidor");
+    }
+  };
+
+  
+
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
       <div className="imagen d-none d-lg-block me-4"></div>
@@ -26,44 +69,44 @@ const Register = () => {
           <img className="logo" src={logo} alt="Logo" />
         </div>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Col md={6}>
               <Form.Label htmlFor="nombre">Nombre</Form.Label>
-              <Form.Control type="text" id="nombre" required />
+              <Form.Control type="text" id="first_name"   value={formData.first_name} onChange={handleData} required/>
             </Col>
             <Col md={6}>
               <Form.Label htmlFor="apellido">Apellido</Form.Label>
-              <Form.Control type="text" id="apellido" required />
+              <Form.Control type="text" id="last_name" required  value={formData.last_name} onChange={handleData}/>
             </Col>
           </Row>
 
           <Row className="mb-3">
             <Col md={6}>
               <Form.Label htmlFor="email">Email</Form.Label>
-              <Form.Control type="email" id="email" required />
+              <Form.Control type="email" id="email" required value={formData.email} onChange={handleData} />
             </Col>
             <Col md={6}>
               <Form.Label htmlFor="telefono">Teléfono</Form.Label>
-              <Form.Control type="tel" id="telefono" required />
+              <Form.Control type="tel" id="mobile" required value={formData.mobile} onChange={handleData}/>
             </Col>
           </Row>
 
           <Row className="mb-3">
             <Col md={6}>
               <Form.Label htmlFor="birth_date">Fecha de nacimiento</Form.Label>
-              <Form.Control type="date" id="birth_date" required />
+              <Form.Control type="date" id="birth_date" required value={formData.birth_date} onChange={handleData}/>
             </Col>
             <Col md={6}>
               <Form.Label htmlFor="direccion">Dirección</Form.Label>
-              <Form.Control type="text" id="direccion" />
+              <Form.Control type="text" id="address" value={formData.address} onChange={handleData}/>
             </Col>
           </Row>
 
           <Row className="mb-3">
             <Col md={6}>
               <Form.Label htmlFor="contrasena">Contraseña</Form.Label>
-              <Form.Control type="password" id="contrasena" required />
+              <Form.Control type="password" id="password" required value={formData.password} onChange={handleData}/>
             </Col>
             <Col md={6}>
               <Form.Label htmlFor="confirmarContrasena">
