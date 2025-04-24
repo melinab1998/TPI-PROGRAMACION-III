@@ -8,7 +8,6 @@ export const createUser = async (req, res) => {
         const newUser = await User.create({
             first_name, last_name, email, birth_date, mobile, password, address, role
         });
-
         res.status(201).json(newUser);
     } catch (error) {
         res.status(500).json({ message: "An error occurred while creating an user." });
