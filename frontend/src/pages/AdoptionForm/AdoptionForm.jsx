@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, InputGroup, Card } from 'react-bootstrap';
 import React from 'react'
 import { useState } from 'react';
 import './AdoptioForm.css'
@@ -6,11 +6,15 @@ import './AdoptioForm.css'
 const AdoptionForm = () => {
   const [hasPets, setHasPets] = useState('null');
   const [ownerConsultationStatus, setOwnerConsultationStatus] = useState('null')
-
+  const [showTerms, setShowTerms] = useState(false);
   const handleStatus = (setter) => (e) => {
     setter(e.target.value);
   };
-  
+
+  const handleTerms = () => {
+    setShowTerms(!showTerms);
+  };
+
   return (
     <Form className="adoption-form">
       <Row className="mb-3">
@@ -91,7 +95,7 @@ const AdoptionForm = () => {
             label="INQUILINO"
             name="ownershipStatus"
             id="ownership-tenant"
-            value= 'tenant'
+            value='tenant'
             onChange={handleStatus(setOwnerConsultationStatus)}
           />
         </div>
@@ -104,21 +108,21 @@ const AdoptionForm = () => {
             label="Sí, pregunté y admite mascotas"
             name="ownerConsultation"
             id="owner-yes"
-            disabled = {ownerConsultationStatus !== 'tenant'}
+            disabled={ownerConsultationStatus !== 'tenant'}
           />
           <Form.Check
             type="radio"
             label="No pregunté, pero el edificio admite"
             name="ownerConsultation"
             id="owner-building-allows"
-            disabled = {ownerConsultationStatus !== 'tenant'}
+            disabled={ownerConsultationStatus !== 'tenant'}
           />
           <Form.Check
             type="radio"
             label="No pregunté"
             name="ownerConsultation"
             id="owner-no"
-            disabled = {ownerConsultationStatus !== 'tenant'}
+            disabled={ownerConsultationStatus !== 'tenant'}
           />
         </div>
       </Form.Group>
@@ -257,9 +261,42 @@ const AdoptionForm = () => {
           />
         </div>
       </Form.Group>
+      {showTerms && (
+        <Card>
+          <Card.Body className="terms-card" >
+            <Card.Title className='terms-title'>Términos y Condiciones</Card.Title>
+            <Card.Text className='terms-text'>
+              Completar el “formulario de adopción” es el primer paso para avanzar con la posibilidad de adoptar.
+              Es importante que sepas que la solicitud no garantiza la adopción inmediata, ya que el proceso depende de varios factores:
+              la veracidad de los datos brindados, una entrevista previa y la disponibilidad del animal elegido.
+              <br /><br />
+              Para poder considerar tu postulación, necesitamos que completes todos los campos con información real y precisa de la persona interesada en adoptar.
+              Si los datos no son completos o no se cumplen ciertos requisitos, es posible que no podamos continuar con la solicitud.
+              <br /><br />
+              Nos tomamos muy en serio cada caso, por eso puede llevarnos un tiempo responder.
+              Agradecemos tu paciencia mientras revisamos cada formulario con el cuidado que se merece.
+              <br /><br />
+              <span className="font-semibold">IMPORTANTE:</span> Está prohibido adoptar para terceros. Los adoptantes son responsables de la integridad física de la mascota.
+            </Card.Text>
+            <div className="flex justify-end mt-4">
+              <Button variant="secondary" onClick={handleTerms}>
+                Cerrar
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      )}
       <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Acepto los terminos y condiciones." />
+        <Form.Check
+          type="checkbox"
+          label={
+            <>
+              Acepto los <span onClick={handleTerms} className="text-[#f29a8e] opacity-80 underline cursor-pointer">términos y condiciones</span>.
+            </>
+          }
+        />
       </Form.Group>
+
       <Button variant="primary" type="submit">
         Enviar
       </Button>
