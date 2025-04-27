@@ -69,3 +69,14 @@
 		height: 2.5rem;
 	}
 }
+
+@media (max-height: 580px) {
+	.login-form {
+		max-width: 500px;
+		padding: 16px 12px;
+		transform: translate(-50%, -50%) scale(0.75);
+	}
+	.login-form .btn {
+		height: 2.5rem;
+	}
+  }
