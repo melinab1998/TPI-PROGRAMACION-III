@@ -2,6 +2,8 @@ import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import logo from '../../img/logo.png';
+import { FaFacebook } from 'react-icons/fa';
+import { FcGoogle } from "react-icons/fc";
 import './Login.css'
 
 const Login = ({ showLogin }) => {
@@ -35,8 +37,7 @@ const Login = ({ showLogin }) => {
                 <Button className='b' variant="primary" type="submit">
                     Iniciar Sesión
                 </Button>
-                <div className='mt-10 flex flex-col gap-4'>
-
+                <div className='mt-1 flex flex-col gap-4'>
                     <div className="mt-6">
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
@@ -51,24 +52,19 @@ const Login = ({ showLogin }) => {
                     <button
                         className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100"
                     >
-                        <img
-                            src="https://raw.githubusercontent.com/sidiDev/remote-assets/7cd06bf1d8859c578c2efbfda2c68bd6bedc66d8/google-icon.svg"
-                            alt="Google"
-                            className="w-5 h-5"
-                        />
+                        <a href="#">
+                            <FcGoogle size={40}  className="w-8 h-8"/>
+                        </a>
 
                         Continuar con Google
                     </button>
                     <button
                         className="w-full  flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100 "
                     >
-                        <img
-                            src="https://ucarecdn.com/6f56c0f1-c9c0-4d72-b44d-51a79ff38ea9/"
-                            alt="Google"
-                            className="w-5 h-5"
-                        />
-
-                        Continuar con Google
+                        <a href="#">
+                            <FaFacebook size={40}  className="w-8 h-8 text-[#1877F2]"/>
+                        </a>
+                        Continuar con Facebook
                     </button>
                 </div>
             </Form>

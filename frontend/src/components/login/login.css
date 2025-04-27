@@ -1,66 +1,71 @@
-/* Estilos específicos para el formulario de login */
 .login-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    background-color: white;
-    width: 25%;
-    min-width: 335px;
-    height: auto;
-    min-height: 85%;
-    margin: 50px auto;
-    border-radius: 20px;
-    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.065);
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    padding-left: 1%;
-    padding-right: 1%;
-    padding-top: 3%;
-    padding-bottom: 1%;
-    overflow: hidden;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 9999;
+	background-color: white;
+	width: 90%;
+	max-width: 500px;
+	min-width: 320px;
+	border-radius: 20px;
+	box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.065);
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	padding: 24px 16px;
 }
 
 .login-form::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: url("../../img/fondo-patitas2.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 1;
-    z-index: 0;
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: url("../../img/fondo-patitas2.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 1;
+	z-index: 0;
 }
 
 .login-form > * {
-    position: relative;
-    z-index: 1;
+	position: relative;
+	z-index: 1;
 }
 
 .login-form h4 {
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .login-form a {
-    color: #f29a8e;
-    opacity: 50%;
+	color: #f29a8e;
+	opacity: 50%;
 }
 
 .login-form .btn {
-    background-color: #f29a8e;
-    opacity: 50%;
-    border: #f29a8e;
-    width: 100%;
-    border-radius: 10px;
+	background-color: #f29a8e;
+	opacity: 50%;
+	border: #f29a8e;
+	width: 100%;
+	border-radius: 10px;
 }
 
 .login-form .btn:hover {
-    background-color: #f29a8e;
-    opacity: 100%;
+	background-color: #f29a8e;
+	opacity: 100%;
+}
+
+@media (max-width: 1366px) and (max-height: 768px) {
+	.login-form {
+		width: 60%;
+		max-width: 500px;
+		padding: 16px 12px;
+		transform: translate(-50%, -50%) scale(0.85);
+	}
+	.login-form .btn {
+		height: 2.5rem;
+	}
 }
