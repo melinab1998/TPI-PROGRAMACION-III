@@ -4,12 +4,15 @@ import Form from 'react-bootstrap/Form';
 import logo from '../../img/logo.png';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
+import { SlClose } from "react-icons/sl";
 import './Login.css'
 
-const Login = ({ showLogin }) => {
+const Login = ({ showLogin, toggleLogin }) => {
     if (showLogin) {
         return (
             <Form className='login-form'>
+                <div className="flex justify-end text-3xl hover:text-[#f29a8e]" onClick={toggleLogin}><SlClose/></div>
+                
                 <img
                     src={logo}
                     alt="Logo"
