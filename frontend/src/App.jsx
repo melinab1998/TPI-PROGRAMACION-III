@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Layout from "./layout/Layout/Layout"
 import Home from "./pages/Home/Home"
 import Register from "./pages/Register/Register";
@@ -8,10 +9,11 @@ import NotFound from "./pages/NotFound/NotFound";
 import Donation from "./pages/Donation/Donation";
 import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
 
-
-
-
 function App() {
+
+  const location = useLocation();
+  document.body.className = location.pathname === "/register" ? "custom-register" : "default-body";
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

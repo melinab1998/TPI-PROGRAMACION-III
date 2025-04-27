@@ -60,4 +60,17 @@
     font-size: 1rem;
     margin: 0 10px;
   }
+  .about-us-section .row.g-4 {
+    justify-content: center;
+  }
+
+  .icon-box {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+
+  .about-us-section .row.g-4 > .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
