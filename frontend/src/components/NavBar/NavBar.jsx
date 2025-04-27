@@ -3,11 +3,7 @@ import logo from "../../img/logo.png";
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ showLogin, setShowLogin }) => {
-  const toggleLogin = () => {
-    setShowLogin(!showLogin);
-    console.log(showLogin);
-  };
+const NavBar = ({ toggleLogin }) => {
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>

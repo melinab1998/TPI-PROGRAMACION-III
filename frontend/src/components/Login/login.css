@@ -51,6 +51,7 @@
 	border: #f29a8e;
 	width: 100%;
 	border-radius: 10px;
+	height: 2.5rem;
 }
 
 .login-form .btn:hover {
