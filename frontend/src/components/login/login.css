@@ -66,8 +66,4 @@
 	transform: translate(-50%, -50%) scale(0.8);
   }
 
-  .login-form input, .login-form button {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
 }
