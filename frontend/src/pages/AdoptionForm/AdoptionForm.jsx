@@ -261,6 +261,31 @@ const AdoptionForm = () => {
           />
         </div>
       </Form.Group>
+      {showTerms && (
+        <Card>
+          <Card.Body className="terms-card" >
+            <Card.Title className='terms-title'>Términos y Condiciones</Card.Title>
+            <Card.Text className='terms-text'>
+              Completar el “formulario de adopción” es el primer paso para avanzar con la posibilidad de adoptar.
+              Es importante que sepas que la solicitud no garantiza la adopción inmediata, ya que el proceso depende de varios factores:
+              la veracidad de los datos brindados, una entrevista previa y la disponibilidad del animal elegido.
+              <br /><br />
+              Para poder considerar tu postulación, necesitamos que completes todos los campos con información real y precisa de la persona interesada en adoptar.
+              Si los datos no son completos o no se cumplen ciertos requisitos, es posible que no podamos continuar con la solicitud.
+              <br /><br />
+              Nos tomamos muy en serio cada caso, por eso puede llevarnos un tiempo responder.
+              Agradecemos tu paciencia mientras revisamos cada formulario con el cuidado que se merece.
+              <br /><br />
+              <span className="font-semibold">IMPORTANTE:</span> Está prohibido adoptar para terceros. Los adoptantes son responsables de la integridad física de la mascota.
+            </Card.Text>
+            <div className="flex justify-end mt-4">
+              <Button variant="secondary" onClick={handleTerms}>
+                Cerrar
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
+      )}
       <Form.Group className="mb-3" id="formGridCheckbox">
         <Form.Check
           type="checkbox"
@@ -271,20 +296,7 @@ const AdoptionForm = () => {
           }
         />
       </Form.Group>
-      {showTerms && (
-        <Card className="mb-3">
-          <Card.Body>
-            <Card.Title>Términos y Condiciones</Card.Title>
-            <Card.Text>
-              Completar el “formulario de adopción” es el primer paso para avanzar con la posibilidad de adoptar. Es importante que sepas que la solicitud no garantiza la adopción inmediata, ya que el proceso depende de varios factores: la veracidad de los datos brindados, una entrevista previa y la disponibilidad del animal elegido.
-              Para poder considerar tu postulación, necesitamos que completes todos los campos con información real y precisa de la persona interesada en adoptar. Si los datos no son completos o no se cumplen ciertos requisitos, es posible que no podamos continuar con la solicitud.
-              Nos tomamos muy en serio cada caso, por eso puede llevarnos un tiempo responder. Agradecemos tu paciencia mientras revisamos cada formulario con el cuidado que se merece.
-              IMPORTANTE: esta prohibido adoptar para terceros. Los adoptantes son responsables de la integridad fisica de la mascota.
-            </Card.Text>
-            <Button variant="secondary" onClick={handleTerms}>Cerrar</Button>
-          </Card.Body>
-        </Card>
-      )}
+
       <Button variant="primary" type="submit">
         Enviar
       </Button>
