@@ -20,7 +20,7 @@ const NavBar = ({ toggleLogin }) => {
             <Nav.Link href="/#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
-              <NavDropdown.Item as={Link} to = "/meet">CONÓCELOS</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to = "/pets">CONÓCELOS</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/adoption-form">
                 QUIERO ADOPTAR
               </NavDropdown.Item>

@@ -36,7 +36,6 @@ const Pets = () => {
   const [filter, setFilter] = useState('all')
 
   const filteredPets = pets.filter((p)=>{
-    console.log(p);
     if(filter === 'all') return true;
     return p.species.toLowerCase() == filter;
   });
@@ -68,7 +67,7 @@ const Pets = () => {
               <Card.Title className="name">{pet.name}</Card.Title>
               <Card.Text className="text">Edad: {pet.age}</Card.Text>
               <Card.Text className="text">Raza: {pet.race}</Card.Text>
-              <Link to={`/pets/${pet.id_pet}`}><Button className="button">Conocer más</Button></Link>
+              <Link to={`/pets/${pet.id_pet}`}><Button className="button-details">Conocer más</Button></Link>
             </Card.Body>
           </Card>
         </Col>

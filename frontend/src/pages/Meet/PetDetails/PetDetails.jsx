@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from "react-router-dom"
 import { Card, Button } from 'react-bootstrap';
 import './PetDetails.css';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -24,7 +25,7 @@ const PetDetails = () => {
     };
 
     fetchPet();
-  }, [id]);
+  }, []);
 
   if (error) {
     return <div className="not-found">{error}</div>;
@@ -67,9 +68,11 @@ const PetDetails = () => {
             >
               Volver
             </Button>
+            <Link to={'/adoption-form'}>
             <Button className="btn-adopt">
               Solicitar adopción
             </Button>
+            </Link>
           </div>
         </Card.Body>
       </Card>
