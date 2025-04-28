@@ -66,11 +66,9 @@ const Pets = () => {
             <Card.Img variant="top" src={pet.imageUrl} className="object-cover h-64 w-full" />
             <Card.Body>
               <Card.Title className="name">{pet.name}</Card.Title>
-              <Card.Text className="text">
-                <div>Edad: {pet.age}</div>
-                <div>Raza: {pet.race}</div>
-              </Card.Text>
-              <Link to={`/pets/${pet.id}`}><Button className="button">Conocer más</Button></Link>
+              <Card.Text className="text">Edad: {pet.age}</Card.Text>
+              <Card.Text className="text">Raza: {pet.race}</Card.Text>
+              <Link to={`/pets/${pet.id_pet}`}><Button className="button">Conocer más</Button></Link>
             </Card.Body>
           </Card>
         </Col>
