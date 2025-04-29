@@ -7,7 +7,7 @@ import Contact from "./pages/Contact/Contact";
 import Pets from "./pages/Meet/Pets/Pets";
 import NotFound from "./pages/NotFound/NotFound";
 import Donation from "./pages/Donation/Donation";
-import AdoptionForm from "./pages/AdoptionForm/AdoptionForm";
+import AdoptionForm from "./pages/AdoptionForm/AdoptionForm"
 import PetDetails from "./pages/Meet/PetDetails/PetDetails";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
         element={<PetDetails/>}  
       />
         <Route path="/donation" element={<Donation/>} />
-        <Route path="/adoption-form" element={<AdoptionForm/>} />
+        <Route path="/adoption/:id" element={<AdoptionForm />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route path="/register" element={<Register />} />

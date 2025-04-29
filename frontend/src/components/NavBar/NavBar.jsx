@@ -21,9 +21,6 @@ const NavBar = ({ toggleLogin }) => {
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
               <NavDropdown.Item as={Link} to = "/pets">CONÓCELOS</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/adoption-form">
-                QUIERO ADOPTAR
-              </NavDropdown.Item>
               <NavDropdown.Item href="/#adoption-section">
                 REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
