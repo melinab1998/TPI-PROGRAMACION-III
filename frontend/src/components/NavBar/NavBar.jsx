@@ -27,8 +27,11 @@ const NavBar = ({ toggleLogin }) => {
             </NavDropdown>
 
             <NavDropdown title="MASCOTAS PERDIDAS" id="dropdown-productos">
-              <NavDropdown.Item as={Link} to="/lostpets">
+              <NavDropdown.Item as={Link} to="/lostform">
                 PERDÍ MI MASCOTA
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/lostlist">
+                MASCOTAS PERDIDAS
               </NavDropdown.Item>
               <NavDropdown.Item href="#producto2">
                 ENCONTRÉ UNA MASCOTA
