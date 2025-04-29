@@ -70,7 +70,7 @@ const PetDetails = () => {
             </Button>
 
             <Link
-              to="/adoption-form"
+              to={`/adoption/${pet.id_pet}`}
               className="btn-adopt"
               style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
