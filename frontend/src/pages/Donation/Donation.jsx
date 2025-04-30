@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Donation.css';
+import { Container, Form, Button } from 'react-bootstrap';
 
-const Donation = () => {
+function Donation() {
+
+  const donationState = {
+    name: "",
+    amount: "",
+    payment_method: "",
+    message: "",
+  };
+  const [formData, setFormData] = useState(donationState)
+
+
+
+  const handleData = (e) => {
+    const { id, value } = e.target;
+    // Actualiza el estado con el nuevo valor
+    setFormData(prev => ({ ...prev, [id]: value }));
+    console.log(formData);
+    
+  };
   return (
-    <div className="donacion-contenedor">
+    <Container className="donacion-contenedor my-5">
       <h1 className="donacion-titulo">Doná a nuestra causa</h1>
 
       <p className="donacion-texto">
@@ -11,42 +30,40 @@ const Donation = () => {
         ¡Gracias por tu apoyo!
       </p>
 
-      <form className="donacion-formulario">
-        <label className="donacion-label">
-          Nombre:
-          <input type="text" name="nombre" placeholder="Tu nombre" className="donacion-input" />
-        </label>
+      <Form className="donacion-formulario">
+        <Form.Group className="mb-3">
+          <Form.Label className="donacion-label">Nombre:</Form.Label>
+          <Form.Control type="text" placeholder="Tu nombre" id="name" className="donacion-input" onChange={handleData} value={formData.name} />
+        </Form.Group>
 
-        <label className="donacion-label">
-          Email:
-          <input type="email" name="email" placeholder="tu@email.com" className="donacion-input" />
-        </label>
+        <Form.Group className="mb-3">
+          <Form.Label className="donacion-label">Monto a donar:</Form.Label>
+          <Form.Control type="number" placeholder="$500" id="amount" className="donacion-input" onChange={handleData} value={formData.amount} />
+        </Form.Group>
 
-        <label className="donacion-label">
-          Monto a donar:
-          <input type="number" name="monto" placeholder="$500" className="donacion-input" />
-        </label>
+        <Form.Group className="mb-3">
+          <Form.Label className="donacion-label">Método de pago:</Form.Label>
+          <Form.Select id="payment_method" className="donacion-input" onChange={handleData} value={formData.payment_method}>
+            <option >Seleccionar...</option>
+            <option >Tarjeta de crédito / débito</option>
+            <option >Mercado Pago</option>
+            <option >PayPal</option>
+            <option >Transferencia bancaria</option>
+          </Form.Select>
+        </Form.Group>
 
-        <label className="donacion-label">
-          Método de pago:
-          <select name="metodoPago" className="donacion-input">
-            <option value="">Seleccionar...</option>
-            <option value="tarjeta">Tarjeta de crédito / débito</option>
-            <option value="mercadopago">Mercado Pago</option>
-            <option value="paypal">PayPal</option>
-            <option value="transferencia">Transferencia bancaria</option>
-          </select>
-        </label>
+        <Form.Group className="mb-3">
+          <Form.Label className="donacion-label">Mensaje (opcional):</Form.Label>
+          <Form.Control as="textarea" rows={3} placeholder="¿Querés dejar un mensajito?" id="message" className="donacion-textarea"onChange={handleData} value={formData.message}/>
+        </Form.Group>
 
-        <label className="donacion-label">
-          Mensaje (opcional):
-          <textarea name="mensaje" placeholder="¿Querés dejar un mensajito?" className="donacion-textarea" />
-        </label>
-
-        <button type="submit" className="donacion-boton">Donar ahora</button>
-      </form>
-    </div>
+        <Button type="submit" className="donacion-boton">Donar ahora</Button>
+      </Form>
+    </Container>
   );
-};
+}
+
+
+
 
 export default Donation;
