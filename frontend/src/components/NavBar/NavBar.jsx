@@ -20,18 +20,18 @@ const NavBar = ({ toggleLogin }) => {
             <Nav.Link href="/#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
-              <NavDropdown.Item as={Link} to = "/meet">CONÓCELOS</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/adoption-form">
-                QUIERO ADOPTAR
-              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to = "/pets">CONÓCELOS</NavDropdown.Item>
               <NavDropdown.Item href="/#adoption-section">
                 REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title="MASCOTAS PERDIDAS" id="dropdown-productos">
-              <NavDropdown.Item href="#producto1">
+              <NavDropdown.Item as={Link} to="/lostform">
                 PERDÍ MI MASCOTA
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/lostlist">
+                MASCOTAS PERDIDAS
               </NavDropdown.Item>
               <NavDropdown.Item href="#producto2">
                 ENCONTRÉ UNA MASCOTA

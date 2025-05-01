@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FiCheckCircle } from 'react-icons/fi';
 import './AdoptionRequirements.css';
+import {  motion } from 'framer-motion';
 
 const AdoptionRequirements = () => {
     const requirements = [
@@ -12,24 +13,64 @@ const AdoptionRequirements = () => {
       "Compromiso de esterilización",
       "Brindar atención veterinaria y amor constante"
     ];
+
+const fadeInDowm = {
+  hidden: {opacity: 0, y: -50},
+  visible: {opacity: 1, y: 0}
+}
+
+const fadeInCascade = {
+  hidden: {opacity: 0, y: 20},
+  visible: (i = 1) => ({
+    opacity:1,
+    y: 0,
+    transition:{delay: i * 0.2, duration:0.8}
+  })
+}
   
     return (
       <section className="adoption-section" id="adoption-section">
         <Container>
-          <h2 className="adoption-title">Requisitos de adopción</h2>
-          <p className="adoption-subtitle">Estos son los criterios esenciales para ofrecerle un hogar seguro y amoroso.</p>
+          <motion.h2
+          className="adoption-title"
+          variants={fadeInDowm}
+          initial = "hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ duration: 2.5 }}  
+          >
+            Requisitos de adopcion
+          </motion.h2>
+          <motion.p
+          className="adoption-subtitle"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7, duration: 1.5 }} 
+          >
+          Estos son los criterios esenciales para ofrecerle un hogar seguro y amoroso.
+          </motion.p>
           <Row className="justify-content-center">
-            {requirements.map((req, idx) => (
-              <Col key={idx} xs={12} md={6} lg={4} className="mb-4">
-                <div className="requisito-item">
-                  <div className="requisito-circle">
-                    <FiCheckCircle className="requisito-icono" />
-                  </div>
-                  <span className="requisito-texto">{req}</span>
-                </div>
-              </Col>
-            ))}
-          </Row>
+  {requirements.map((req, idx) => (
+    <Col key={idx} xs={12} md={6} lg={4} className="mb-4">
+      <motion.div
+        variants={fadeInCascade}
+        custom={idx}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <div className="requisito-item">
+          <div className="requisito-circle">
+            <FiCheckCircle className="requisito-icono" />
+          </div>
+          <span className="requisito-texto">{req}</span>
+        </div>
+      </motion.div>
+    </Col>
+  ))}
+</Row>
+
         </Container>
       </section>
     );

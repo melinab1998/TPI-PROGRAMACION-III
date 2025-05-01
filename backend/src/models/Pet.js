@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import  sequelize  from "../config/db.js"
 
-export const Pets = sequelize.define("pets", {
+export const Pet = sequelize.define("Pet", {
     
     id_pet: {
         type: DataTypes.INTEGER,
@@ -34,6 +34,14 @@ export const Pets = sequelize.define("pets", {
         allowNull: false,
         
     },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    shelter: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     adopted: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
@@ -48,4 +56,4 @@ export const Pets = sequelize.define("pets", {
     timestamps: false
 });
 
-export default Pets;
+export default Pet;

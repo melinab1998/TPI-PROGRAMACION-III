@@ -8,8 +8,8 @@ const Footer = () => {
     return (
         <footer className="bg-light py-5 border-top custom-footer">
             <Container>
-            <Row className="text-center text-md-start align-items-center">
-                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text- h-100">
+            <Row className="text-center text-md-start align-items-stretch h-100">
+                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center h-100">
                 <h5 className="custom-title">Información</h5>
                 <ul className="list-unstyled">
                     <li>
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
                 </Col>
     
-                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text- h-100 ">
+                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center h-100 ">
                 <h5 className="custom-title">Términos y configuración</h5>
                 <ul className="list-unstyled">
 
