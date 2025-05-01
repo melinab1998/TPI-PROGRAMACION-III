@@ -18,18 +18,18 @@ const Login = ({ showLogin, toggleLogin }) => {
                         alt="Logo"
                         className="custom-logo block mx-auto w-[100px]"
                     />
-                    <Modal.Title>Iniciar Sesión</Modal.Title>
+                    <Modal.Title className='modal-title'>Iniciar Sesión</Modal.Title>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>E-mail</Form.Label>
-                        <Form.Control type="email" placeholder="ejemplo@gmail.com" />
+                        <Form.Label className='modal-title'>E-mail</Form.Label>
+                        <Form.Control type="email" />
                         <Form.Text className="text-muted">
                             ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin}>Registrate aquí</Link>
                         </Form.Text>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control type="password" placeholder="********" />
+                        <Form.Label className='modal-title'>Contraseña</Form.Label>
+                        <Form.Control type="password"/>
                         <Form.Text className="text-muted">
                             <a href="/">¿Olvidaste tu contraseña?</a>
                         </Form.Text>
@@ -42,17 +42,17 @@ const Login = ({ showLogin, toggleLogin }) => {
                     <Button variant="primary" type="submit" className="login-btn">
                         Iniciar Sesión
                     </Button>
-                        <div className="separator my-4 text-center text-muted">
+                        <div className=" separator my-4 text-center text-muted ">
                             <span>O Inicia Sesión con</span>
                         </div>
 
                         <Button variant="light" className="w-100 d-flex align-items-center justify-content-center gap-2 mb-2 border">
-                            <FcGoogle size={20} />
+                            <FcGoogle size={25} />
                             Continuar con Google
                         </Button>
 
-                        <Button variant="light" className="w-100 d-flex align-items-center justify-content-center gap-2 border">
-                            <FaFacebook size={20} className="text-primary" />
+                        <Button variant="light" className="w-100 d-flex align-items-center justify-content-center gap-2 border mt-10">
+                            <FaFacebook size={25} className="text-primary" />
                             Continuar con Facebook
                         </Button>
                 </Form>
