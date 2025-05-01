@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import Users from "./Users.js";
+import User from "./User.js";
 
 export const Donation = sequelize.define(
-	"donation",
+	"Donation",
 	{
 		id_donation: {
 			type: DataTypes.INTEGER,
@@ -11,7 +11,7 @@ export const Donation = sequelize.define(
 			autoIncrement: true,
 		},
 
-/* 		id_user: {
+		/* 		id_user: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: Users,
@@ -23,6 +23,12 @@ export const Donation = sequelize.define(
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
+		},
+
+		email: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			unique: false,
 		},
 
 		amount: {
