@@ -7,7 +7,7 @@ import "../Layout/Layout.css"
 
 
 const Layout = () => {
-  
+
   const [showLogin, setShowLogin] = useState(false);
   const toggleLogin = () => {
     setShowLogin(!showLogin);
@@ -16,13 +16,15 @@ const Layout = () => {
 
   return (
     <>
-      {<NavBar toggleLogin={toggleLogin}/>}
+      <Login showLogin={showLogin} toggleLogin={toggleLogin} />
+      
+      {<NavBar toggleLogin={toggleLogin} />}
 
-      <Outlet/>
+      <Outlet />
 
       <Footer />
 
-      <Login showLogin={showLogin} toggleLogin={toggleLogin}/>
+
     </>
   );
 };
