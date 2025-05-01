@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -10,39 +11,45 @@ import './Login.css';
 
 const Login = ({ showLogin, toggleLogin }) => {
     return (
-        <Modal show={showLogin} onHide={toggleLogin} centered className='modal-form'>
-            <Modal.Body className="modal-login" >
-                <Form className='login-form'>
-                    <img
-                        src={logo}
-                        alt="Logo"
-                        className="custom-logo block mx-auto w-[100px]"
-                    />
-                    <Modal.Title className='modal-title'>Iniciar Sesión</Modal.Title>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className='modal-title'>E-mail</Form.Label>
-                        <Form.Control type="email" />
-                        <Form.Text className="text-muted">
-                            ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin}>Registrate aquí</Link>
-                        </Form.Text>
-                    </Form.Group>
+        <Modal show={showLogin} onHide={toggleLogin} centered className='modal-form' animation={false}>
+            <Modal.Body className="modal-login">
+                <motion.div
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                >
+                    <Form className='login-form'>
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            className="custom-logo block mx-auto w-[100px]"
+                        />
+                        <Modal.Title className='modal-title'>Iniciar Sesión</Modal.Title>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label className='modal-title'>E-mail</Form.Label>
+                            <Form.Control type="email" />
+                            <Form.Text className="text-muted">
+                                ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin}> Registrate aquí</Link>
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label className='modal-title'>Contraseña</Form.Label>
-                        <Form.Control type="password"/>
-                        <Form.Text className="text-muted">
-                            <a href="/">¿Olvidaste tu contraseña?</a>
-                        </Form.Text>
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label className='modal-title'>Contraseña</Form.Label>
+                            <Form.Control type="password" />
+                            <Form.Text className="text-muted">
+                                <a href="/">¿Olvidaste tu contraseña?</a>
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Recuérdame" />
-                    </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Recuérdame" />
+                        </Form.Group>
 
-                    <Button variant="primary" type="submit" className="login-btn">
-                        Iniciar Sesión
-                    </Button>
-                        <div className=" separator my-4 text-center text-muted ">
+                        <Button variant="primary" type="submit" className="login-btn">
+                            Iniciar Sesión
+                        </Button>
+
+                        <div className="separator my-4 text-center text-muted">
                             <span>O Inicia Sesión con</span>
                         </div>
 
@@ -55,7 +62,8 @@ const Login = ({ showLogin, toggleLogin }) => {
                             <FaFacebook size={25} className="text-primary" />
                             Continuar con Facebook
                         </Button>
-                </Form>
+                    </Form>
+                </motion.div>
             </Modal.Body>
         </Modal>
     );
