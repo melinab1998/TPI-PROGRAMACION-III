@@ -60,13 +60,23 @@
 .button {
   background-color: #f29a8e;
   border: none;
-  opacity: 50%;
-  margin: 10px 0;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 30px;
+  border-radius: 25px;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 0.5px;
+  margin: 1rem 0;
 }
 
 .button:hover {
-  background-color: #f29a8e;
-  opacity: 100%;
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
 .social {
