@@ -36,22 +36,6 @@ const LostPetsList = () => {
       contactName: "Carlos Méndez",
       contactPhone: "0987654321",
       district: "Centro Histórico, Quito"
-    },
-    {
-      id: 3,
-      name: "Rocky",
-      type: "Perro",
-      breed: "Bulldog Francés",
-      age: 4,
-      gender: "Macho",
-      description: "Bulldog francés gris con manchas blancas. Usa arnés negro.",
-      photo: "https://images.unsplash.com/photo-1600077106724-946750eeaf3c?w=300",
-      lostDate: "2023-05-20",
-      lostTime: "19:45",
-      location: "Av. 6 de Diciembre y Whymper",
-      contactName: "Andrea Pazmiño",
-      contactPhone: "0976543210",
-      district: "La Floresta, Quito"
     }
   ];
 

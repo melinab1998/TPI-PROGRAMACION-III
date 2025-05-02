@@ -1,8 +1,12 @@
 import React from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import './LostPetsForm.css';
 
 const LostPetsForm = () => {
+
+  const navigate = useNavigate();
+
   return (
     <Container className="my-5">
       <Row className="justify-content-center">
@@ -14,15 +18,15 @@ const LostPetsForm = () => {
             <Card.Body>
               <Form>
                 <h5 className="section-title">Información de la Mascota</h5>
-                
+
                 <Row className="mb-3">
                   <Col md={6}>
                     <Form.Group controlId="petName">
                       <Form.Label>Nombre de la mascota *</Form.Label>
-                      <Form.Control 
-                        type="text" 
-                        placeholder="Ej: Toby, Luna" 
-                        required 
+                      <Form.Control
+                        type="text"
+                        placeholder="Ej: Toby, Luna"
+                        required
                       />
                     </Form.Group>
                   </Col>
@@ -43,21 +47,21 @@ const LostPetsForm = () => {
                   <Col md={6}>
                     <Form.Group controlId="petBreed">
                       <Form.Label>Raza o tipo *</Form.Label>
-                      <Form.Control 
-                        type="text" 
-                        placeholder="Ej: Labrador, Mestizo" 
-                        required 
+                      <Form.Control
+                        type="text"
+                        placeholder="Ej: Labrador, Mestizo"
+                        required
                       />
                     </Form.Group>
                   </Col>
                   <Col md={3}>
                     <Form.Group controlId="petAge">
                       <Form.Label>Edad (años)</Form.Label>
-                      <Form.Control 
-                        type="number" 
-                        min="0" 
-                        max="30" 
-                        placeholder="3" 
+                      <Form.Control
+                        type="number"
+                        min="0"
+                        max="30"
+                        placeholder="3"
                       />
                     </Form.Group>
                   </Col>
@@ -85,10 +89,10 @@ const LostPetsForm = () => {
 
                 <Form.Group className="mb-3" controlId="petPhoto">
                   <Form.Label>Foto de la mascota *</Form.Label>
-                  <Form.Control 
-                    type="file" 
-                    accept="image/*" 
-                    required 
+                  <Form.Control
+                    type="file"
+                    accept="image/*"
+                    required
                   />
                   <Form.Text className="text-muted">
                     Sube una foto clara (máx. 5MB)
@@ -102,9 +106,9 @@ const LostPetsForm = () => {
                   <Col md={6}>
                     <Form.Group controlId="lossDate">
                       <Form.Label>Fecha en que se perdió *</Form.Label>
-                      <Form.Control 
-                        type="date" 
-                        required 
+                      <Form.Control
+                        type="date"
+                        required
                       />
                     </Form.Group>
                   </Col>
@@ -141,20 +145,20 @@ const LostPetsForm = () => {
                   <Col md={6}>
                     <Form.Group controlId="contactName">
                       <Form.Label>Nombre completo *</Form.Label>
-                      <Form.Control 
-                        type="text" 
-                        placeholder="Nombre y apellido" 
-                        required 
+                      <Form.Control
+                        type="text"
+                        placeholder="Nombre y apellido"
+                        required
                       />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
                     <Form.Group controlId="contactPhone">
                       <Form.Label>Teléfono *</Form.Label>
-                      <Form.Control 
-                        type="tel" 
-                        placeholder="Ej: 0991234567" 
-                        required 
+                      <Form.Control
+                        type="tel"
+                        placeholder="Ej: 0991234567"
+                        required
                       />
                     </Form.Group>
                   </Col>
@@ -164,33 +168,31 @@ const LostPetsForm = () => {
                   <Col md={6}>
                     <Form.Group controlId="contactEmail">
                       <Form.Label>Correo electrónico</Form.Label>
-                      <Form.Control 
-                        type="email" 
-                        placeholder="tu@email.com" 
+                      <Form.Control
+                        type="email"
+                        placeholder="tu@email.com"
                       />
                     </Form.Group>
                   </Col>
                   <Col md={6}>
                     <Form.Group controlId="contactDistrict">
                       <Form.Label>Barrio/Ciudad *</Form.Label>
-                      <Form.Control 
-                        type="text" 
-                        placeholder="Ej: La Floresta, Quito" 
-                        required 
+                      <Form.Control
+                        type="text"
+                        placeholder="Ej: La Floresta, Quito"
+                        required
                       />
                     </Form.Group>
                   </Col>
                 </Row>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <Button 
-                    variant="secondary" 
-                    className="btn-lost-pet-secondary"
-                  >
-                    Cancelar
-                  </Button>
-                  <Button 
-                    type="submit" 
+                  <Button variant="secondary" className="btn-lost-pet-secondary" onClick={() => {
+                    window.scrollTo(0, 0);
+                    navigate('/');
+                  }}>Cancelar</Button>
+                  <Button
+                    type="submit"
                     className="btn-lost-pet-primary"
                   >
                     Reportar Mascota Perdida
