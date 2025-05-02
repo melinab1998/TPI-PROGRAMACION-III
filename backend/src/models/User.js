@@ -7,24 +7,11 @@ export const User = sequelize.define("User", {
     primaryKey: true,
     autoIncrement: true,
   },
-  first_name: {
+  user_name: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
-  last_name: {
-    type: DataTypes.STRING,
-    allowNull: false
   },
   email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  birth_date: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-  },
-  mobile: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
@@ -32,10 +19,6 @@ export const User = sequelize.define("User", {
   password: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: true
   },
   role: {
     type: DataTypes.ENUM('user', 'admin', 'superadmin'),
