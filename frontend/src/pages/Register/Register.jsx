@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Col, Row, Alert } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const Register = () => {
   
   // Estado inicial para los datos del formulario
   const initialFormState = {
-    username: "",
+    user_name: "",
     email: "",
     password: "",
     confirm_password: ""
@@ -20,60 +20,23 @@ const Register = () => {
 
   // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState(initialFormState);
-  // Estado para almacenar mensajes de error de validación
-  const [errors, setErrors] = useState(initialFormState);
   // Estado para mensajes generales (éxito/error)
   const [formMessage, setFormMessage] = useState({ type: "", text: "" });
 
-  
-  //Maneja cambios en los campos del formulario
-
+  // Maneja cambios en los campos del formulario
   const handleData = (e) => {
     const { id, value } = e.target;
     // Actualiza el estado con el nuevo valor
     setFormData(prev => ({ ...prev, [id]: value }));
-    // Limpia el error si existe
-    if (errors[id]) setErrors(prev => ({ ...prev, [id]: "" }));
+    
   };
 
-  //Valida un campo específico del formulario
-
-  const validateField = (id, value) => {
-    let error = "";
-
-    switch(id) {
-      case "username":
-        error = !value.trim() ? "Este campo es obligatorio" : "";
-        break;
-      case "email":
-        if (!value) error = "Email es obligatorio.";
-        else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)) 
-          error = "El formato del email es incorrecto.";
-        break;
-      case "password":
-        if (!value) error = "Contraseña es obligatoria.";
-        else if (value.length < 6) error = "La contraseña debe tener al menos 6 caracteres.";
-        break;
-      case "confirm_password":
-        if (!value) error = "Debe confirmar la contraseña.";
-        else if (value !== formData.password) error = "Las contraseñas no coinciden.";
-        break;
-    }
-
-    // Actualiza los errores
-    setErrors(prev => ({ ...prev, [id]: error }));
-    // Retorna si el campo es válido
-    return !error;
-  };
-
-  
-  //Valida todo el formulario
+  // Valida el formulario completo (solo los campos esenciales)
   const validateForm = () => {
-    // Verifica que todos los campos pasen la validación
-    return Object.keys(formData).every(key => validateField(key, formData[key]));
+    return formData.password === formData.confirm_password;
   };
 
-  //Maneja el envío del formulario
+  // Maneja el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Limpia mensajes anteriores
@@ -81,7 +44,7 @@ const Register = () => {
 
     // Valida el formulario completo
     if (!validateForm()) {
-      setFormMessage({ type: "danger", text: "Por favor complete todos los campos correctamente" });
+      setFormMessage({ type: "danger", text: "Las contraseñas no coinciden" });
       return;
     }
 
@@ -101,13 +64,7 @@ const Register = () => {
         // Redirige después de 2 segundos
         setTimeout(() => navigate("/"), 2000);
       } else {
-        // Manejo de errores específicos
-        const errorType = responseData.error;
-        const message = responseData.message || "Error al crear el usuario";
-        
-        setFormMessage({ type: "danger", text: message });
-        // Marca campos específicos si hay errores de duplicados
-        if (errorType === "email_exists") setErrors(prev => ({ ...prev, email: message }));
+        setFormMessage({ type: "danger", text: responseData.message || "Error al crear el usuario" });
       }
     } catch (error) {
       console.error("Error en el registro:", error);
@@ -118,76 +75,59 @@ const Register = () => {
   // Renderizado del componente
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100">
-      <div className="imagen d-none d-lg-block me-4"></div>
-      <div className="card p-4 form" style={{ width: "800px", borderRadius: "10px" }}>
+      <div className="card p-4 form" style={{ width: "500px", borderRadius: "10px" }}>
         <div className="cont-header-form">
           <h2 className="mb-4 titulo font-semibold">Regístrate</h2>
           <img className="logo" src={logo} alt="Logo" />
         </div>
         {formMessage.text && (
-          <Alert variant={formMessage.type} dismissible onClose={() => setFormMessage({ type: "", text: "" })}>
+          <div className={`alert alert-${formMessage.type}`} role="alert">
             {formMessage.text}
-          </Alert>
+          </div>
         )}
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
-            <Col md={6}>
-              <Form.Label htmlFor="username">Usuario</Form.Label>
+            <Col>
+              <Form.Label htmlFor="user_name">Nombre de usuario</Form.Label>
               <Form.Control
                 type="text"
-                id="username"
-                value={formData.first_name}
+                id="user_name"
+                value={formData.user_name}
                 onChange={handleData}
-                onBlur={(e) => validateField("username", e.target.value)}
-                isInvalid={!!errors.username}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.username}
-              </Form.Control.Feedback>
             </Col>
-            <Col md={6}>
+          </Row>
+          <Row className="mb-3">
+            <Col>
               <Form.Label htmlFor="email">Email</Form.Label>
               <Form.Control
                 type="email"
                 id="email"
                 value={formData.email}
                 onChange={handleData}
-                onBlur={(e) => validateField("email", e.target.value)}
-                isInvalid={!!errors.email}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row className="mb-3">
-            <Col md={6}>
+            <Col>
               <Form.Label htmlFor="password">Contraseña</Form.Label>
               <Form.Control
                 type="password"
                 id="password"
                 value={formData.password}
                 onChange={handleData}
-                onBlur={(e) => validateField("password", e.target.value)}
-                isInvalid={!!errors.password}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
             </Col>
-            <Col md={6}>
+          </Row>
+          <Row className="mb-3">
+            <Col>
               <Form.Label htmlFor="confirm_password">Confirmar Contraseña</Form.Label>
               <Form.Control
                 type="password"
                 id="confirm_password"
                 value={formData.confirm_password}
                 onChange={handleData}
-                onBlur={(e) => validateField("confirm_password", e.target.value)}
-                isInvalid={!!errors.confirm_password}
               />
-              <Form.Control.Feedback type="invalid">
-                {errors.confirm_password}
-              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row className="justify-content-center mt-3">

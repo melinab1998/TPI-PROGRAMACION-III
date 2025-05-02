@@ -34,7 +34,7 @@ export const Pet = sequelize.define("Pet", {
         allowNull: false,
         
     },
-    decription: {
+    description: {
         type: DataTypes.TEXT,
         allowNull: false,
     },

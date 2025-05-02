@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom"
 import { Card, Button } from 'react-bootstrap';
 import './PetDetails.css';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const PetDetails = () => {
-  const { id } = useParams();  
+  const { id } = useParams();
   const navigate = useNavigate();
   const [pet, setPet] = useState(null);
   const [error, setError] = useState("");
@@ -24,7 +25,7 @@ const PetDetails = () => {
     };
 
     fetchPet();
-  }, [id]);
+  }, []);
 
   if (error) {
     return <div className="not-found">{error}</div>;
@@ -61,15 +62,20 @@ const PetDetails = () => {
           )}
 
           <div className="pet-card-buttons">
-            <Button 
+            <Button
               className="btn-adopt"
               onClick={() => navigate(-1)}
             >
               Volver
             </Button>
-            <Button className="btn-adopt">
+
+            <Link
+              to={`/adoption/${pet.id_pet}`}
+              className="btn-adopt"
+              style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
               Solicitar adopción
-            </Button>
+            </Link>
           </div>
         </Card.Body>
       </Card>
