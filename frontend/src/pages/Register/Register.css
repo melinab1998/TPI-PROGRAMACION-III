@@ -58,7 +58,7 @@
   text-decoration: underline;
 }
 
-.button {
+.button-reg{
   background-color: #f29a8e;
   border: none;
   color: white;
@@ -76,10 +76,21 @@
   text-align: center;
 }
 
-.button:hover {
+.button-reg:hover {
   opacity: 1;
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  background-color: #e57373;
+  border-color: #e57373;
+}
+
+.button-reg:focus,
+.button-reg:active,
+.button-reg:focus:active {
+  background-color: #e57373 !important;
+  border-color: #e57373 !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .social {

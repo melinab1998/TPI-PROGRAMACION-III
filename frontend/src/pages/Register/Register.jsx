@@ -132,7 +132,7 @@ const Register = () => {
           </Row>
           <Row className="justify-content-center mt-3">
             <Col xs="auto">
-              <Button type="submit" variant="primary" className="button">
+              <Button type="submit" variant="primary" className="button-reg">
                 Registrarse
               </Button>
             </Col>
