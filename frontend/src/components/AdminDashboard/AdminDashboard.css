@@ -1,0 +1,62 @@
+
+.dashboard-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+    margin: 4rem 0;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+  }
+  
+  .custom-card {
+    background-color: #fff5f0; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .btn-coral {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-coral:hover {
+    background-color: #e85a47;
+  }
+  
+  .container {
+    min-height: 60vh; 
+  }
+
+  .stats-card {
+    text-align: center;
+    background-color: #fff5f0; 
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e85a47; 
+  }
+  
+  .stat-label {
+    font-size: 1rem;
+    color: #5f4b3a; 
+  }
+
+  .card-sub{
+    line-height: 2;
+  }

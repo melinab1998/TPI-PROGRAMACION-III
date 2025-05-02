@@ -11,6 +11,7 @@ import AdoptionForm from "./pages/AdoptionForm/AdoptionForm"
 import PetDetails from "./pages/Meet/PetDetails/PetDetails";
 import LostPetsForm from "./pages/LostPets/LostPetsForm/LostPetsForm";
 import LostPetsList from "./pages/LostPets/LostPetsList/LostPetsList";
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 
 function App() {
 
@@ -20,7 +21,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+      <Route index element={<AdminDashboard />} />
+        {/*<Route index element={<Home />} />*/}
         <Route path="/contact" element={<Contact />} />
         <Route path="/pets" element={<Pets />} />
         <Route path="/pets/:id" 
