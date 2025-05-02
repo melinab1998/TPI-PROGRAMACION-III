@@ -1,59 +1,31 @@
-.donacion-contenedor {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fffaf4;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-}
-
-.donacion-titulo {
-    text-align: center;
-    color: #CD5C5C;
-    margin: 10px 0;
-    font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;
-}
-
-.donacion-texto {
+.donation-card {
+    border-color: #CD5C5C;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+.donation-header {
+    background-color: #CD5C5C;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    }
+    
+.donation-text {
     text-align: center;
     margin-bottom: 30px;
     color: #333;
     font-style: italic;
-}
-
-.donacion-formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.donacion-label {
-    display: flex;
-    flex-direction: column;
-    color: #555;
-    font-weight: bold;
-}
-
-.donacion-input,
-.donacion-textarea,
-.donacion-formulario select {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-top: 5px;
-    font-size: 15px;
-}
-
-.donacion-textarea {
-    resize: vertical;
-    min-height: 80px;
-}
-
-.donacion-boton {
+    }
+    
+.donation-form .section-title {
+    color: #CD5C5C;
+    margin-bottom: 1rem;
+    }
+    
+.donation-boton {
     padding: 12px;
-    background-color: #F88379; 
+    background-color: #F88379;
     color: white;
     font-weight: bold;
     border: none;
@@ -61,35 +33,19 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-}
-
-.donacion-boton:hover {
-    background-color: #CD5C5C; 
-}
-
-@media (max-width: 768px) {
-    .donacion-contenedor {
-        margin: 20px 15px;
-        padding: 15px;
     }
 
-    .donacion-titulo {
-        font-size: 1.8rem;
+.donation-boton:hover {
+    background-color: #CD5C5C;
     }
-
-    .donacion-texto {
-        font-size: 14px;
-        margin-bottom: 20px;
+    
+.form-label {
+    font-weight: 500;
+    color: #5D4037;
     }
-
-    .donacion-input,
-    .donacion-textarea,
-    .donacion-formulario select {
-        font-size: 14px;
+    
+.form-control:focus,
+.form-select:focus {
+    border-color: #F88379;
+    box-shadow: 0 0 0 0.25rem rgba(205, 92, 92, 0.25);
     }
-
-    .donacion-boton {
-        font-size: 15px;
-        padding: 10px;
-    }
-}
