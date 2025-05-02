@@ -74,7 +74,7 @@ const Register = () => {
 
   // Renderizado del componente
   return (
-    <div className="container d-flex justify-content-center align-items-center min-vh-100">
+    <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">
       <div className="card p-4 form" style={{ width: "500px", borderRadius: "10px" }}>
         <div className="cont-header-form">
           <h2 className="mb-4 titulo font-semibold">Regístrate</h2>

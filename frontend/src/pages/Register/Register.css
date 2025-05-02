@@ -7,16 +7,23 @@
 }
 
 .imagen {
-  background-image: url("../../img/fondo-patitas.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 25%;
+  position: relative; 
+}
+
+.imagen::before {
+  content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  width: 100%;
+  left: -30vh;
+  height: 100%;
+  background-image: url("../../img/fondo-patitas.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: auto 100%; 
+  z-index: -1; 
 }
+
 .cont-header-form {
   display: flex;
   justify-content: space-between;
