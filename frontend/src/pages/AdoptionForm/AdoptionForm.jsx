@@ -1,12 +1,12 @@
 import { Container, Row, Col, Form, Button, InputGroup, Card } from 'react-bootstrap';
-import React from 'react'
-import { useState } from 'react';
-import './AdoptioForm.css'
+import React, { useState, useEffect } from 'react';
+import './AdoptionForm.css';
 
 const AdoptionForm = () => {
   const [hasPets, setHasPets] = useState('null');
-  const [ownerConsultationStatus, setOwnerConsultationStatus] = useState('null')
+  const [ownerConsultationStatus, setOwnerConsultationStatus] = useState('null');
   const [showTerms, setShowTerms] = useState(false);
+
   const handleStatus = (setter) => (e) => {
     setter(e.target.value);
   };
@@ -15,258 +15,287 @@ const AdoptionForm = () => {
     setShowTerms(!showTerms);
   };
 
+  // Bloquear scroll cuando el modal esté visible
+  useEffect(() => {
+    if (showTerms) {
+      document.body.style.overflow = 'hidden'; // Desactivar el scroll
+    } else {
+      document.body.style.overflow = ''; // Rehabilitar el scroll
+    }
+
+    return () => {
+      document.body.style.overflow = ''; // Limpiar en caso de desmontaje
+    };
+  }, [showTerms]);
+
   return (
-    <Form className="adoption-form">
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridName">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" placeholder="Nombre" />
-        </Form.Group>
+    <Container className="adoption-form-container">
+      <Row className="justify-content-center">
+        <Col md={10} lg={8}>
+          <Card className="adoption-form-card">
+            <Card.Header className="adoption-header">
+              <h2 className="mb-0">Formulario de adopción</h2>
+              </Card.Header>
+              <Card.Body>
+              <p className="adoption-text">
+                Completa este formulario para solicitar la adopción.
+              </p>
+              <Form className="adoption-form">
+                <Row className="mb-3">
+                  <Form.Group as={Col} controlId="formGridName">
+                    <Form.Label>Nombre</Form.Label>
+                    <Form.Control type="text" placeholder="Nombre" />
+                  </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridLastname">
-          <Form.Label>Apellido</Form.Label>
-          <Form.Control type="text" placeholder="Apellido" />
-        </Form.Group>
-      </Row>
+                  <Form.Group as={Col} controlId="formGridLastname">
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control type="text" placeholder="Apellido" />
+                  </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridAddress1">
+                  <Form.Label>Dirección</Form.Label>
+                  <Form.Control placeholder="San Lorenzo 2500" />
+                </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Dirección</Form.Label>
-        <Form.Control placeholder="San Lorenzo 2500" />
-      </Form.Group>
+                <Form.Group as={Col} controlId="formGridAddress2">
+                  <Form.Label>Teléfono</Form.Label>
+                  <Form.Control placeholder="celular/fijo" />
+                </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                  <Form.Group as={Col} controlId="formGridCity">
+                    <Form.Label>Localidad</Form.Label>
+                    <Form.Control />
+                  </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>Dirección 2(Opcional)</Form.Label>
-        <Form.Control placeholder="Apartamento" />
-      </Form.Group>
+                  <Form.Group as={Col} controlId="formGridState">
+                    <Form.Label>Provincia</Form.Label>
+                    <Form.Control />
+                  </Form.Group>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>Localidad</Form.Label>
-          <Form.Control />
-        </Form.Group>
+                  <Form.Group as={Col} controlId='formGridDni'>
+                    <Form.Label>DNI</Form.Label>
+                    <Form.Control />
+                  </Form.Group>
+                </Row>
 
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>Provincia</Form.Label>
-          <Form.Control />
-        </Form.Group>
+                <Form.Group>
+                  <Form.Label>¿En qué tipo de vivienda habitás?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="CASA"
+                      name="housingType"
+                      id="housing-house"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="DEPARTAMENTO"
+                      name="housingType"
+                      id="housing-apartment"
+                    />
+                  </div>
+                </Form.Group>
 
+                <Form.Group>
+                  <Form.Label>Seleccioná la opción correcta:</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="PROPIETARIO"
+                      name="ownershipStatus"
+                      id="ownership-owner"
+                      onChange={handleStatus(setOwnerConsultationStatus)}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="INQUILINO"
+                      name="ownershipStatus"
+                      id="ownership-tenant"
+                      value='tenant'
+                      onChange={handleStatus(setOwnerConsultationStatus)}
+                    />
+                  </div>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>En caso de alquilar, ¿lo consultaste con el dueño?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí, pregunté y admite mascotas"
+                      name="ownerConsultation"
+                      id="owner-yes"
+                      disabled={ownerConsultationStatus !== 'tenant'}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No pregunté, pero el edificio admite"
+                      name="ownerConsultation"
+                      id="owner-building-allows"
+                      disabled={ownerConsultationStatus !== 'tenant'}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No pregunté"
+                      name="ownerConsultation"
+                      id="owner-no"
+                      disabled={ownerConsultationStatus !== 'tenant'}
+                    />
+                  </div>
+                </Form.Group>
 
+                <Form.Group>
+                  <Form.Label>¿Cuenta con patio la vivienda?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí"
+                      name="courtyardStatus"
+                      id="courtyard-ownership"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No"
+                      name="courtyardStatus"
+                      id="courtyard-ownership"
+                    />
+                  </div>
+                </Form.Group>
 
-        <Form.Group as={Col} controlId='formGridDni'>
-          <Form.Label>DNI</Form.Label>
-          <Form.Control />
-        </Form.Group>
-      </Row>
+                <Form.Group>
+                  <Form.Label>¿Tenés otros animales?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí"
+                      name="petStatus"
+                      id="pets-yes"
+                      value="yes"
+                      onChange={handleStatus(setHasPets)}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No"
+                      name="petStatus"
+                      id="pets-no"
+                      value="no"
+                      onChange={handleStatus(setHasPets)}
+                    />
+                  </div>
+                </Form.Group>
 
+                <Form.Group>
+                  <Form.Label>En caso afirmativo, ¿están castrados?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí"
+                      name="petsNeutered"
+                      id="pets-neutered-yes"
+                      disabled={hasPets !== 'yes'}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No"
+                      name="petsNeutered"
+                      id="pets-neutered-no"
+                      disabled={hasPets !== 'yes'}
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="Algunos sí, otros no"
+                      name="petsNeutered"
+                      id="pets-neutered-some"
+                      disabled={hasPets !== 'yes'}
+                    />
+                  </div>
+                </Form.Group>
 
+                <Form.Group>
+                  <Form.Label>¿Tuviste otras mascotas?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí"
+                      name="hadOtherPets"
+                      id="had-other-pets-yes"
+                      value="yes"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No"
+                      name="hadOtherPets"
+                      id="had-other-pets-no"
+                      value="no"
+                    />
+                  </div>
+                </Form.Group>
 
+                <Form.Group className="mb-3" controlId="formReason">
+                  <Form.Label>¿Por qué querés adoptar una mascota?</Form.Label>
+                  <Form.Control as="textarea" rows={3} />
+                </Form.Group>
 
-      <Form.Group>
-        <Form.Label>¿En qué tipo de vivienda habitás?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="CASA"
-            name="housingType"
-            id="housing-house"
-          />
-          <Form.Check
-            type="radio"
-            label="DEPARTAMENTO"
-            name="housingType"
-            id="housing-apartment"
-          />
-        </div>
-      </Form.Group>
+                <Form.Group className="mb-3" controlId="formVacationPlan">
+                  <Form.Label>¿Qué harías con el animal en caso de vacaciones?</Form.Label>
+                  <Form.Control as="textarea" rows={3} />
+                </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Seleccioná la opción correcta:</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="PROPIETARIO"
-            name="ownershipStatus"
-            id="ownership-owner"
+                <Form.Group className="mb-3" controlId="formControlTextarea">
+                  <Form.Label>¿Qué harías con el animal en caso de mudanza?</Form.Label>
+                  <Form.Control as="textarea" rows={3} />
+                </Form.Group>
 
-            onChange={handleStatus(setOwnerConsultationStatus)}
-          />
-          <Form.Check
-            type="radio"
-            label="INQUILINO"
-            name="ownershipStatus"
-            id="ownership-tenant"
-            value='tenant'
-            onChange={handleStatus(setOwnerConsultationStatus)}
-          />
-        </div>
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>En caso de alquilar, ¿lo consultaste con el dueño?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí, pregunté y admite mascotas"
-            name="ownerConsultation"
-            id="owner-yes"
-            disabled={ownerConsultationStatus !== 'tenant'}
-          />
-          <Form.Check
-            type="radio"
-            label="No pregunté, pero el edificio admite"
-            name="ownerConsultation"
-            id="owner-building-allows"
-            disabled={ownerConsultationStatus !== 'tenant'}
-          />
-          <Form.Check
-            type="radio"
-            label="No pregunté"
-            name="ownerConsultation"
-            id="owner-no"
-            disabled={ownerConsultationStatus !== 'tenant'}
-          />
-        </div>
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>¿Cuenta con patio la vivienda?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="courtyardStatus"
-            id="courtyard-ownership"
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="courtyardStatus"
-            id="courtyard-ownership"
-          />
-        </div>
-      </Form.Group>
+                <Form.Group className="mb-3" controlId="formDailyWalks">
+                  <Form.Label>¿Contás con el tiempo para paseos diarios?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí"
+                      name="dailyWalks"
+                      id="daily-walks-yes"
+                      value="yes"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No"
+                      name="dailyWalks"
+                      id="daily-walks-no"
+                      value="no"
+                    />
+                  </div>
+                </Form.Group>
 
-      <Form.Group>
-        <Form.Label>¿Tenés otros animales?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="petStatus"
-            id="pets-yes"
-            value="yes"
-            onChange={handleStatus(setHasPets)}
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="petStatus"
-            id="pets-no"
-            value="no"
-            onChange={handleStatus(setHasPets)}
-          />
-        </div>
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>En caso afirmativo, ¿están castrados?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="petsNeutered"
-            id="pets-neutered-yes"
-            disabled={hasPets !== 'yes'}
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="petsNeutered"
-            id="pets-neutered-no"
-            disabled={hasPets !== 'yes'}
-          />
-          <Form.Check
-            type="radio"
-            label="Algunos sí, otros no"
-            name="petsNeutered"
-            id="pets-neutered-some"
-            disabled={hasPets !== 'yes'}
-          />
-        </div>
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>¿Tuviste otras mascotas?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="hadOtherPets"
-            id="had-other-pets-yes"
-            value="yes"
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="hadOtherPets"
-            id="had-other-pets-no"
-            value="no"
-          />
-        </div>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formReason">
-        <Form.Label>¿Por qué querés adoptar una mascota?</Form.Label>
-        <Form.Control as="textarea" rows={3} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formVacationPlan">
-        <Form.Label>¿Qué harías con el animal en caso de vacaciones?</Form.Label>
-        <Form.Control as="textarea" rows={3} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formControlTextarea">
-        <Form.Label>¿Qué harías con el animal en caso de mudanza?</Form.Label>
-        <Form.Control as="textarea" rows={3} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formDailyWalks">
-        <Form.Label>¿Contás con el tiempo para paseos diarios?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="dailyWalks"
-            id="daily-walks-yes"
-            value="yes"
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="dailyWalks"
-            id="daily-walks-no"
-            value="no"
-          />
-        </div>
-      </Form.Group>
+                <Form.Group className="mb-3" controlId="formFollowUp">
+                  <Form.Label>¿Estás de acuerdo con un seguimiento vía WhatsApp?</Form.Label>
+                  <div className="mb-3">
+                    <Form.Check
+                      type="radio"
+                      label="Sí"
+                      name="whatsappFollowUp"
+                      id="whatsapp-follow-up-yes"
+                      value="yes"
+                    />
+                    <Form.Check
+                      type="radio"
+                      label="No"
+                      name="whatsappFollowUp"
+                      id="whatsapp-follow-up-no"
+                      value="no"
+                    />
+                  </div>
+                </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formFollowUp">
-        <Form.Label>¿Estás de acuerdo con un seguimiento vía WhatsApp?</Form.Label>
-        <div className="mb-3">
-          <Form.Check
-            type="radio"
-            label="Sí"
-            name="whatsappFollowUp"
-            id="whatsapp-follow-up-yes"
-            value="yes"
-          />
-          <Form.Check
-            type="radio"
-            label="No"
-            name="whatsappFollowUp"
-            id="whatsapp-follow-up-no"
-            value="no"
-          />
-        </div>
-      </Form.Group>
-      {showTerms && (
-        <Card>
-          <Card.Body className="terms-card" >
-            <Card.Title className='terms-title'>Términos y Condiciones</Card.Title>
-            <Card.Text className='terms-text'>
-              Completar el “formulario de adopción” es el primer paso para avanzar con la posibilidad de adoptar.
+                {showTerms && (
+                  <>
+                <div className="terms-overlay" />
+                  <div className="terms-modal">
+                    <Card>
+                      <Card.Body className="terms-card">
+                        <Card.Title className="terms-title">Términos y Condiciones</Card.Title>
+                        <Card.Text className="terms-text">
+                        Completar el “formulario de adopción” es el primer paso para avanzar con la posibilidad de adoptar.
               Es importante que sepas que la solicitud no garantiza la adopción inmediata, ya que el proceso depende de varios factores:
               la veracidad de los datos brindados, una entrevista previa y la disponibilidad del animal elegido.
               <br /><br />
@@ -277,31 +306,35 @@ const AdoptionForm = () => {
               Agradecemos tu paciencia mientras revisamos cada formulario con el cuidado que se merece.
               <br /><br />
               <span className="font-semibold">IMPORTANTE:</span> Está prohibido adoptar para terceros. Los adoptantes son responsables de la integridad física de la mascota.
-            </Card.Text>
-            <div className="flex justify-end mt-4">
-              <Button variant="secondary" onClick={handleTerms}>
-                Cerrar
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
-      )}
-      <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check
-          type="checkbox"
-          label={
-            <>
-              Acepto los <span onClick={handleTerms} className="text-[#f29a8e] opacity-80 underline cursor-pointer">términos y condiciones</span>.
-            </>
-          }
-        />
-      </Form.Group>
+                        </Card.Text>
+                        <Button className="close-modal-btn" onClick={handleTerms}>Cerrar</Button>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                  </>
+                )}
 
-      <Button variant="primary" type="submit">
-        Enviar
-      </Button>
-    </Form>
-  )
+                <Form.Group className="mb-3" id="formGridCheckbox">
+                  <Form.Check
+                    type="checkbox"
+                    label={
+                      <>
+                        Acepto los <span onClick={handleTerms} className="text-[#CD5C5C] opacity-80 underline cursor-pointer">términos y condiciones</span>.
+                      </>
+                    }
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                  Enviar
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
-export default AdoptionForm
+export default AdoptionForm;
