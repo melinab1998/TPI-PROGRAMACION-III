@@ -2,6 +2,7 @@ import "../NavBar/NavBar.css";
 import logo from "../../img/logo.png";
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 
 const NavBar = ({ toggleLogin }) => {
   return (
@@ -17,12 +18,12 @@ const NavBar = ({ toggleLogin }) => {
           <Nav.Link as={Link} to="/">
               INICIO
             </Nav.Link>
-            <Nav.Link href="/#about-us">NOSOTROS</Nav.Link>
+            <Nav.Link as={HashLink} smooth to="/#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
               <NavDropdown.Item as={Link} to = "/pets">CONÓCELOS</NavDropdown.Item>
-              <NavDropdown.Item href="/#adoption-section">
-                REQUISITOS DE ADOPCIÓN
+              <NavDropdown.Item as={HashLink} smooth to="/#adoption-section">
+              REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
             </NavDropdown>
 
