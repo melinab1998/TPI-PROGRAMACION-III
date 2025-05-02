@@ -10,7 +10,7 @@
 
 .donacion-titulo {
     text-align: center;
-    color: #ff7f50;
+    color: #CD5C5C;
     margin: 10px 0;
     font-family: 'Pacifico', cursive;
     font-size: 2.5rem;
@@ -53,7 +53,7 @@
 
 .donacion-boton {
     padding: 12px;
-    background-color: #ff7f50; 
+    background-color: #F88379; 
     color: white;
     font-weight: bold;
     border: none;
@@ -64,7 +64,7 @@
 }
 
 .donacion-boton:hover {
-    background-color: #e06b45; 
+    background-color: #CD5C5C; 
 }
 
 @media (max-width: 768px) {
