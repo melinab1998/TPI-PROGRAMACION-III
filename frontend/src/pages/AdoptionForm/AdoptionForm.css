@@ -1,0 +1,127 @@
+.adoption-form-container{
+  padding: 2rem;
+}
+
+/* ---- CARD ---- */
+.adoption-form-card {
+  border-radius: 12px;
+  border: 3px solid #f29a8e;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- ENCABEZADO ---- */
+.adoption-header {
+  background-color: #CD5C5C;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.adoption-text {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-style: italic;
+}
+
+/* ---- BOTÓN ENVIAR ---- */
+.adoption-form .btn[type="submit"],
+.adoption-form button[type="submit"] {
+  background-color: #f29a8e !important;
+  border-color: #f29a8e !important;
+  color: white;
+}
+
+.adoption-form .btn[type="submit"]:hover,
+.adoption-form button[type="submit"]:hover {
+  background-color: #F88379 !important;
+  border-color: #e5877a !important;
+}
+
+.adoption-form input[type="radio"]:checked,
+.adoption-form input[type="checkbox"]:checked {
+  background-color: #f29a8e;
+  border-color: #f29a8e;
+}
+
+.adoption-form input[type="radio"],
+.adoption-form input[type="checkbox"] {
+  accent-color: #f29a8e; /* Soporte moderno */
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+}
+
+/* ---- MODAL FONDO OSCURO ---- */
+.terms-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+}
+
+/* ---- MODAL TARJETA ---- */
+.terms-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.terms-card {
+  border-radius: 12px;
+}
+
+.terms-title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #CD5C5C;
+  margin-bottom: 15px;
+}
+
+.terms-text {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.terms-modal .btn {
+  margin-top: 10px;
+}
+
+/* ---- BLOQUEO DE SCROLL ---- */
+body {
+  transition: overflow 0.3s ease;
+}
+
+/* ---- FORM MÁS ANCHO EN DESKTOP ---- */
+@media (min-width: 992px) {
+  .adoption-form-container .col-lg-8 {
+    max-width: 850px;
+  }
+}
+
+.close-modal-btn {
+  background-color: #f29a8e !important;
+  border-color: #f29a8e !important;
+  color: white;
+  display: block;
+  margin: 0 auto; /* centrado horizontal */
+  margin-top: 15px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+}
+
+.close-modal-btn:hover {
+  background-color: #e5877a !important;
+  border-color: #e5877a !important;
+}

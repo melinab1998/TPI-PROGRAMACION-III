@@ -7,8 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #F08080;
-    border-color: #F08080;
+    border-color: #f29a8e;
     color: #fff;
     font-weight: 500;
     font-size: 1.1rem;             
@@ -16,6 +15,8 @@
     border-radius: 8px;             
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 12px rgba(240, 128, 128, 0.3);
+    background-color: #f29a8e;
+    opacity: 100%;
 }
 
 .button:hover {

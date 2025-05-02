@@ -30,7 +30,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          <Link to="/meet">
+          <Link to="/pets">
             <Button className="btn-adopta">ADOPTÁ</Button>
           </Link>
         </motion.div>

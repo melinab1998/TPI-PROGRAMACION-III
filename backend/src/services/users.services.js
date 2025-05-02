@@ -2,7 +2,7 @@ import { User } from "../models/User.js";
 
 export const createUser = async (req, res) => {
     try {
-        const { first_name, last_name, email, birth_date, mobile, password, address, role } = req.body;
+        const { user_name, email, password, role } = req.body;
 
         const existingEmail = await User.findOne({ where: { email } });
         if (existingEmail) {
@@ -12,16 +12,8 @@ export const createUser = async (req, res) => {
             });
         }
 
-        const existingMobile = await User.findOne({ where: { mobile } });
-        if (existingMobile) {
-            return res.status(409).json({ 
-                error: 'mobile_exists',
-                message: 'El teléfono ya está registrado' 
-            });
-        }
-
         const newUser = await User.create({
-            first_name, last_name, email, birth_date, mobile, password, address, role
+            user_name, email, password, role
         });
         
         res.status(201).json(newUser);
