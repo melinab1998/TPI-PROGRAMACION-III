@@ -34,9 +34,6 @@ const NavBar = ({ toggleLogin }) => {
               <NavDropdown.Item as={Link} to="/lostlist">
                 MASCOTAS PERDIDAS
               </NavDropdown.Item>
-              <NavDropdown.Item href="#producto2">
-                ENCONTRÉ UNA MASCOTA
-              </NavDropdown.Item>
             </NavDropdown>
 
             <Nav.Link as={Link} to="/donation">

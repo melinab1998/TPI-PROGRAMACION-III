@@ -10,7 +10,7 @@ import { Alert } from "react-bootstrap";
 const Register = () => {
   // Hook para navegación entre rutas
   const navigate = useNavigate();
-  
+
   // Estado inicial para los datos del formulario
   const initialFormState = {
     user_name: "",
@@ -30,19 +30,19 @@ const Register = () => {
     const { id, value } = e.target;
     // Actualiza el estado con el nuevo valor
     setFormData(prev => ({ ...prev, [id]: value }));
-     // Limpia el error si existe
-     if (errors[id]) setErrors(prev => ({ ...prev, [id]: "" }));
+    // Limpia el error si existe
+    if (errors[id]) setErrors(prev => ({ ...prev, [id]: "" }));
   };
 
   const validateField = (id, value) => {
     let error = "";
-    switch(id) {
+    switch (id) {
       case "user_name":
         error = !value.trim() ? "Este campo es obligatorio" : "";
         break;
       case "email":
         if (!value) error = "Email es obligatorio.";
-        else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)) 
+        else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value))
           error = "El formato del email es incorrecto.";
         break;
       case "password":
@@ -99,7 +99,7 @@ const Register = () => {
         // Manejo de errores específicos
         const errorType = responseData.error;
         const message = responseData.message || "Error al crear el usuario";
-        
+
         setFormMessage({ type: "danger", text: message });
         // Marca campos específicos si hay errores de duplicados
         if (errorType === "email_exists") setErrors(prev => ({ ...prev, email: message }));
@@ -110,20 +110,20 @@ const Register = () => {
       setFormMessage({ type: "danger", text: "Hubo un error al conectar con el servidor" });
     }
   };
-    
+
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">
       <div className="card p-4 form" style={{ width: "500px", borderRadius: "10px" }}>
         <div className="cont-header-form">
-        <h2 className="titulo font-semibold">Regístrate</h2>
+          <h2 className="titulo font-semibold">Regístrate</h2>
           <img className="logo" src={logo} alt="Logo" />
         </div>
         {formMessage.text && (
-           <Alert variant={formMessage.type} dismissible onClose={() => setFormMessage({ type: "", text: "" })}>
-             {formMessage.text}
-           </Alert>
-         )}
+          <Alert variant={formMessage.type} dismissible onClose={() => setFormMessage({ type: "", text: "" })}>
+            {formMessage.text}
+          </Alert>
+        )}
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Col>
@@ -134,11 +134,11 @@ const Register = () => {
                 value={formData.user_name}
                 onChange={handleData}
                 onBlur={(e) => validateField("user_name", e.target.value)}
-                isInvalid ={!!errors.user_name}
+                isInvalid={!!errors.user_name}
               />
-               <Form.Control.Feedback type="invalid">
-                 {errors.user_name}
-               </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.user_name}
+              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row className="mb-3">
@@ -150,11 +150,11 @@ const Register = () => {
                 value={formData.email}
                 onChange={handleData}
                 onBlur={(e) => validateField("email", e.target.value)}
-                 isInvalid={!!errors.email}
+                isInvalid={!!errors.email}
               />
-               <Form.Control.Feedback type="invalid">
-                 {errors.email}
-               </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.email}
+              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row className="mb-3">
@@ -168,9 +168,9 @@ const Register = () => {
                 onBlur={(e) => validateField("password", e.target.value)}
                 isInvalid={!!errors.password}
               />
-               <Form.Control.Feedback type="invalid">
-                 {errors.password}
-               </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.password}
+              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row className="mb-3">
@@ -184,9 +184,9 @@ const Register = () => {
                 onBlur={(e) => validateField("confirm_password", e.target.value)}
                 isInvalid={!!errors.confirm_password}
               />
-               <Form.Control.Feedback type="invalid">
-                 {errors.confirm_password}
-               </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.confirm_password}
+              </Form.Control.Feedback>
             </Col>
           </Row>
           <Row className="justify-content-center mt-3">
@@ -198,7 +198,10 @@ const Register = () => {
           </Row>
         </Form>
         <p className="p mt-3">
-          ¿Ya tienes cuenta? <a href="/">Inicia Sesión</a>
+          ¿Ya tienes cuenta? <a href="/" onClick={(e) => {
+            e.preventDefault();
+            navigate("/", { state: { showLogin: true } });
+          }}>Inicia Sesión</a>
         </p>
         <div className="social mt-3">
           <a href="">
