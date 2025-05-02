@@ -101,6 +101,11 @@
 }
 
 @media (max-width: 768px) {
+
+  .imagen::before{
+    display: none;
+  }
+
   .container {
     flex-direction: column;
     padding: 20px;
@@ -147,3 +152,4 @@
     gap: 10px;
   }
 }
+

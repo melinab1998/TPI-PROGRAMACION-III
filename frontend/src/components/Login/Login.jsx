@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,8 +8,46 @@ import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import './Login.css';
+import { toast } from 'react-toastify';
+
+
 
 const Login = ({ showLogin, toggleLogin }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+
+    const handleLogin = async (e) =>{
+        e.preventDefault();
+
+        try{
+            const response = await fetch('http://localhost:3000/api/login',{
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({email, password})
+            });
+
+            const data = await response.json()
+            console.log(data)
+
+            if(!response.ok){
+                setError(data.message || "Error al iniciar sesión")
+            } else {
+                setError(null);
+                setEmail('');
+                setPassword('');
+                toggleLogin();
+                toast.success(`¡Bienvenido a MiHogar, ${data.user_name || 'usuario'}!`);
+
+               
+            }
+        } catch (err) {
+            setError("Error de conexión con el servidor");
+            console.error(err);
+        }
+    };
     return (
         <Modal show={showLogin} onHide={toggleLogin} centered className='modal-form' animation={false}>
             <Modal.Body className="modal-login">
@@ -18,7 +56,7 @@ const Login = ({ showLogin, toggleLogin }) => {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.4 }}
                 >
-                    <Form className='login-form'>
+                    <Form onSubmit={handleLogin} className='login-form'>
                         <img
                             src={logo}
                             alt="Logo"
@@ -27,7 +65,9 @@ const Login = ({ showLogin, toggleLogin }) => {
                         <Modal.Title className='modal-title'>Iniciar Sesión</Modal.Title>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className='modal-title'>E-mail</Form.Label>
-                            <Form.Control type="email" />
+                            <Form.Control type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} />
                             <Form.Text className="text-muted">
                                 ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin}> Registrate aquí</Link>
                             </Form.Text>
@@ -35,7 +75,9 @@ const Login = ({ showLogin, toggleLogin }) => {
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label className='modal-title'>Contraseña</Form.Label>
-                            <Form.Control type="password" />
+                            <Form.Control type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value) } />
                             <Form.Text className="text-muted">
                                 <a href="/">¿Olvidaste tu contraseña?</a>
                             </Form.Text>
@@ -48,6 +90,8 @@ const Login = ({ showLogin, toggleLogin }) => {
                         <Button variant="primary" type="submit" className="login-btn">
                             Iniciar Sesión
                         </Button>
+
+                        {error && <p className="text-danger mt-2">{error}</p>}
 
                         <div className="separator my-4 text-center text-muted">
                             <span>O Inicia Sesión con</span>

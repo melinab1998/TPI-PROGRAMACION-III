@@ -1,0 +1,15 @@
+.Toastify__toast-icon {
+    display: none !important;
+  }
+
+.Toastify__toast {
+    background-color: #f29a8e !important; 
+    color: #fff !important;               
+    border-radius: 8px;               
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  }
+
+.Toastify__progress-bar {
+    background: #fff !important;
+    height: 4px;                  
+  }
