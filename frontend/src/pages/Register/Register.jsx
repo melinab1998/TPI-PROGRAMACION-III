@@ -124,13 +124,13 @@ const Register = () => {
         setFormMessage({ type: "danger", text: message });
         // Marca campos específicos si hay errores de duplicados
         if (errorType === "email_exists") setErrors(prev => ({ ...prev, email: message }));
-        if (errorType === "mobile_exists") setErrors(prev => ({ ...prev, mobile: message }));
       }
     } catch (error) {
       console.error("Error en el registro:", error);
       setFormMessage({ type: "danger", text: "Hubo un error al conectar con el servidor" });
     }
   };
+    
 
   // Renderizado del componente
   return (
