@@ -33,12 +33,13 @@
 }
 
 .logo {
-  width: 70px;
+  width: 80px;
 }
 
 .titulo {
-  margin-top: 40px;
   font-family: 'Raleway', sans-serif;
+  margin: 20px 0px;
+  font-weight:bold;
 }
 
 .p {
@@ -71,6 +72,8 @@
   font-family: 'Raleway', sans-serif;
   letter-spacing: 0.5px;
   margin: 1rem 0;
+  width: 100%;
+  text-align: center;
 }
 
 .button:hover {

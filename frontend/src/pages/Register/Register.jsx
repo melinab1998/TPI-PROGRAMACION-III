@@ -77,7 +77,7 @@ const Register = () => {
     <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">
       <div className="card p-4 form" style={{ width: "500px", borderRadius: "10px" }}>
         <div className="cont-header-form">
-          <h2 className="mb-4 titulo font-semibold">Regístrate</h2>
+        <h2 className="titulo font-semibold">Regístrate</h2>
           <img className="logo" src={logo} alt="Logo" />
         </div>
         {formMessage.text && (
