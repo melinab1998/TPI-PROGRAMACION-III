@@ -12,12 +12,8 @@ const Register = () => {
   
   // Estado inicial para los datos del formulario
   const initialFormState = {
-    first_name: "",
-    last_name: "",
+    username: "",
     email: "",
-    mobile: "",
-    birth_date: "",
-    address: "",
     password: "",
     confirm_password: ""
   };
@@ -46,19 +42,13 @@ const Register = () => {
     let error = "";
 
     switch(id) {
-      case "first_name":
-      case "last_name":
+      case "username":
         error = !value.trim() ? "Este campo es obligatorio" : "";
         break;
       case "email":
         if (!value) error = "Email es obligatorio.";
         else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value)) 
           error = "El formato del email es incorrecto.";
-        break;
-      case "mobile":
-        if (!value) error = "Teléfono es obligatorio.";
-        else if (!/^\+?(\d{1,4})?(\d{10})$/.test(value)) 
-          error = "El teléfono no es válido.";
         break;
       case "password":
         if (!value) error = "Contraseña es obligatoria.";
@@ -67,12 +57,6 @@ const Register = () => {
       case "confirm_password":
         if (!value) error = "Debe confirmar la contraseña.";
         else if (value !== formData.password) error = "Las contraseñas no coinciden.";
-        break;
-      case "birth_date":
-        error = !value ? "Fecha de nacimiento es obligatoria." : "";
-        break;
-      case "address":
-        error = !value.trim() ? "Dirección es obligatoria." : "";
         break;
     }
 
@@ -124,7 +108,6 @@ const Register = () => {
         setFormMessage({ type: "danger", text: message });
         // Marca campos específicos si hay errores de duplicados
         if (errorType === "email_exists") setErrors(prev => ({ ...prev, email: message }));
-        if (errorType === "mobile_exists") setErrors(prev => ({ ...prev, mobile: message }));
       }
     } catch (error) {
       console.error("Error en el registro:", error);
@@ -149,35 +132,19 @@ const Register = () => {
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Col md={6}>
-              <Form.Label htmlFor="first_name">Nombre</Form.Label>
+              <Form.Label htmlFor="username">Usuario</Form.Label>
               <Form.Control
                 type="text"
-                id="first_name"
+                id="username"
                 value={formData.first_name}
                 onChange={handleData}
-                onBlur={(e) => validateField("first_name", e.target.value)}
-                isInvalid={!!errors.first_name}
+                onBlur={(e) => validateField("username", e.target.value)}
+                isInvalid={!!errors.username}
               />
               <Form.Control.Feedback type="invalid">
-                {errors.first_name}
+                {errors.username}
               </Form.Control.Feedback>
             </Col>
-            <Col md={6}>
-              <Form.Label htmlFor="last_name">Apellido</Form.Label>
-              <Form.Control
-                type="text"
-                id="last_name"
-                value={formData.last_name}
-                onChange={handleData}
-                onBlur={(e) => validateField("last_name", e.target.value)}
-                isInvalid={!!errors.last_name}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.last_name}
-              </Form.Control.Feedback>
-            </Col>
-          </Row>
-          <Row className="mb-3">
             <Col md={6}>
               <Form.Label htmlFor="email">Email</Form.Label>
               <Form.Control
@@ -190,50 +157,6 @@ const Register = () => {
               />
               <Form.Control.Feedback type="invalid">
                 {errors.email}
-              </Form.Control.Feedback>
-            </Col>
-            <Col md={6}>
-              <Form.Label htmlFor="mobile">Teléfono</Form.Label>
-              <Form.Control
-                type="tel"
-                id="mobile"
-                value={formData.mobile}
-                onChange={handleData}
-                onBlur={(e) => validateField("mobile", e.target.value)}
-                isInvalid={!!errors.mobile}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.mobile}
-              </Form.Control.Feedback>
-            </Col>
-          </Row>
-          <Row className="mb-3">
-            <Col md={6}>
-              <Form.Label htmlFor="birth_date">Fecha de nacimiento</Form.Label>
-              <Form.Control
-                type="date"
-                id="birth_date"
-                value={formData.birth_date}
-                onChange={handleData}
-                onBlur={(e) => validateField("birth_date", e.target.value)}
-                isInvalid={!!errors.birth_date}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.birth_date}
-              </Form.Control.Feedback>
-            </Col>
-            <Col md={6}>
-              <Form.Label htmlFor="address">Dirección</Form.Label>
-              <Form.Control
-                type="text"
-                id="address"
-                value={formData.address}
-                onChange={handleData}
-                onBlur={(e) => validateField("address", e.target.value)}
-                isInvalid={!!errors.address}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.address}
               </Form.Control.Feedback>
             </Col>
           </Row>
