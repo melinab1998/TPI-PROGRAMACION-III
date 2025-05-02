@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./AdminDashboard.css"; // Asegúrate de importar el archivo CSS
+import "./AdminDashboard.css"; 
 
 const AdminDashboard = () => {
   return (
