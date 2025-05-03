@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Alert, Card, Container, Row, Col } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 import './Donation.css';
+import donationImg from "../../img/donation-alert.png";
 
 function Donation() {
   const navigate = useNavigate();
@@ -55,12 +57,12 @@ function Donation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormMessage({ type: "", text: "" });
-
+  
     if (!validateForm()) {
       setFormMessage({ type: "danger", text: "Por favor completá todos los campos obligatorios correctamente." });
       return;
     }
-
+  
     try {
       const response = await fetch("http://localhost:3000/donations", {
         method: "POST",
@@ -69,16 +71,23 @@ function Donation() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Error al donar.");
       }
-
-      const result = await response.json();
-      console.log("Donación exitosa:", result);
-      alert("¡Gracias por tu donación!");
-
+  
+      Swal.fire({
+        title: "¡Gracias por tu donación!",
+        text: "Tu apoyo hace una gran diferencia 💖",
+        imageUrl: donationImg,
+        imageWidth: 300,
+        imageHeight: 300,
+        imageAlt: "Imagen de agradecimiento",
+        confirmButtonText: "Volver",
+        confirmButtonColor:  "#CD5C5C"
+      });
+  
       setFormData({
         name: "",
         email: "",
@@ -88,7 +97,12 @@ function Donation() {
       });
     } catch (error) {
       console.error("Error:", error);
-      alert("Ocurrió un error al procesar tu donación.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocurrió un error al procesar tu donación.',
+        confirmButtonColor:  "#CD5C5C"
+      });
     }
   };
 
