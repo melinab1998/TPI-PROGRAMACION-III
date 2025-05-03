@@ -4,6 +4,7 @@ import { Form, Button, Alert, Card, Container, Row, Col } from 'react-bootstrap'
 import Swal from 'sweetalert2';
 import './Donation.css';
 import donationImg from "../../img/donation-alert.png";
+import { FaPaw } from 'react-icons/fa';
 
 function Donation() {
   const navigate = useNavigate();
@@ -111,9 +112,12 @@ function Donation() {
       <Row className="justify-content-center">
         <Col md={8}>
           <Card className="donation-card">
-            <Card.Header className="donation-header">
-              <h2 className="mb-0">Doná a nuestra causa</h2>
-            </Card.Header>
+          <Card.Header className="donation-header text-center">
+  <h2 className="titulo-con-icono mb-0">
+    <FaPaw className="icono-patita me-2" />
+    Doná a nuestra causa
+  </h2>
+</Card.Header>
             <Card.Body>
               <p className="donation-text">
                 Con tu ayuda, podemos seguir rescatando, alimentando y cuidando a más animales que lo necesitan. ¡Gracias por tu apoyo!
@@ -200,7 +204,7 @@ function Donation() {
                   <Button variant="secondary" className="btn-lost-pet-secondary" onClick={() => {
                   window.scrollTo(0, 0);
                   navigate('/');
-                  }}>Cancelar</Button>
+                  }}>Volver</Button>
                   <Button type="submit" className="btn-lost-pet-primary">Donar ahora</Button>
                 </div>
               </Form>

@@ -8,8 +8,27 @@
     background-color: #CD5C5C;
     color: white;
     padding: 1rem;
+    text-align: center;
     border-radius: 0.5rem 0.5rem 0 0;
-    }
+}
+
+.icono-patita {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.titulo-con-icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; 
+    color: white;
+  }
+  
+  .icono-patita {
+    font-size: 1.8rem;
+    color: white;
+  }
     
 .donation-text {
     text-align: center;
