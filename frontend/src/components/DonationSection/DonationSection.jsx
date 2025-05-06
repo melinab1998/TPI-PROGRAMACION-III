@@ -46,7 +46,7 @@ const DonationSection = () => {
                         Tu apoyo hace la diferencia
                         </motion.h2>
                         <motion.p
-                        className='donation-text'
+                        className='donation-section-text'
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
