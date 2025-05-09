@@ -36,7 +36,7 @@ const Login = ({ showLogin, toggleLogin }) => {
                 setEmail('');
                 setPassword('');
                 toggleLogin();
-                toast.info(`¡Bienvenido a MiHogar, ${data.user_name || 'usuario'}!`);
+                toast.info(`¡Bienvenido a Mi Hogar, ${data.user_name || 'usuario'}!`);
             }
         } catch (err) {
             toast.error("Error de conexión con el servidor");

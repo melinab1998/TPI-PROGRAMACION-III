@@ -5,13 +5,12 @@ import { BsTwitterX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import "./Register.css";
-import { Alert } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
-  // Hook para navegación entre rutas
   const navigate = useNavigate();
 
-  // Estado inicial para los datos del formulario
   const initialFormState = {
     user_name: "",
     email: "",
@@ -19,18 +18,12 @@ const Register = () => {
     confirm_password: ""
   };
 
-  // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState(initialFormState);
-  // Estado para mensajes generales (éxito/error)
   const [errors, setErrors] = useState(initialFormState);
-  const [formMessage, setFormMessage] = useState({ type: "", text: "" });
 
-  // Maneja cambios en los campos del formulario
   const handleData = (e) => {
     const { id, value } = e.target;
-    // Actualiza el estado con el nuevo valor
     setFormData(prev => ({ ...prev, [id]: value }));
-    // Limpia el error si existe
     if (errors[id]) setErrors(prev => ({ ...prev, [id]: "" }));
   };
 
@@ -55,31 +48,22 @@ const Register = () => {
         break;
     }
     setErrors(prev => ({ ...prev, [id]: error }));
-    // Retorna si el campo es válido
     return !error;
   };
 
-
-
   const validateForm = () => {
-    // Verifica que todos los campos pasen la validación
     return Object.keys(formData).every(key => validateField(key, formData[key]));
   };
 
-  // Maneja el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Limpia mensajes anteriores
-    setFormMessage({ type: "", text: "" });
 
-    // Valida el formulario completo
     if (!validateForm()) {
-      setFormMessage({ type: "danger", text: "Por favor complete todos los campos correctamente" });
+      toast.error("Por favor complete todos los campos correctamente");
       return;
     }
 
     try {
-      // Envía los datos al servidor
       const response = await fetch("http://localhost:3000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -88,29 +72,26 @@ const Register = () => {
 
       const responseData = await response.json();
 
-      // Si la respuesta es exitosa
       if (response.ok) {
-        setFormMessage({ type: "success", text: "¡Registro exitoso! Redirigiendo..." });
-        // Redirige después de 2 segundos
+        toast.success("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => {
           navigate("/", { state: { showLogin: true } });
         }, 2000);
       } else {
-        // Manejo de errores específicos
         const errorType = responseData.error;
         const message = responseData.message || "Error al crear el usuario";
 
-        setFormMessage({ type: "danger", text: message });
-        // Marca campos específicos si hay errores de duplicados
-        if (errorType === "email_exists") setErrors(prev => ({ ...prev, email: message }));
-        setFormMessage({ type: "danger", text: responseData.message || "Error al crear el usuario" });
+        if (errorType === "email_exists") {
+          setErrors(prev => ({ ...prev, email: message }));
+        }
+
+        toast.error(message);
       }
     } catch (error) {
       console.error("Error en el registro:", error);
-      setFormMessage({ type: "danger", text: "Hubo un error al conectar con el servidor" });
+      toast.error("Hubo un error al conectar con el servidor");
     }
   };
-
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">
@@ -119,11 +100,6 @@ const Register = () => {
           <h2 className="titulo font-semibold">Regístrate</h2>
           <img className="logo" src={logo} alt="Logo" />
         </div>
-        {formMessage.text && (
-          <Alert variant={formMessage.type} dismissible onClose={() => setFormMessage({ type: "", text: "" })}>
-            {formMessage.text}
-          </Alert>
-        )}
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Col>
@@ -204,15 +180,9 @@ const Register = () => {
           }}>Inicia Sesión</a>
         </p>
         <div className="social mt-3">
-          <a href="">
-            <FaFacebook size={40} />
-          </a>
-          <a href="">
-            <BsTwitterX size={40} color="black" />
-          </a>
-          <a href="">
-            <FaInstagram size={40} color="#E1306C" />
-          </a>
+          <a href=""><FaFacebook size={40} /></a>
+          <a href=""><BsTwitterX size={40} color="black" /></a>
+          <a href=""><FaInstagram size={40} color="#E1306C" /></a>
         </div>
       </div>
     </div>
