@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { Card, Button } from 'react-bootstrap';
 import './PetDetails.css';
 import { useParams, useNavigate } from 'react-router-dom';
+import { getPetById } from '../../../services/api.services.js';
 
 const PetDetails = () => {
   const { id } = useParams();
@@ -13,17 +14,12 @@ const PetDetails = () => {
   useEffect(() => {
     const fetchPet = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/pets/${id}`);
-        if (!response.ok) {
-          throw new Error("No se pudo obtener la mascota");
-        }
-        const data = await response.json();
+        const data = await getPetById(id);
         setPet(data);
       } catch (error) {
         setError(error.message);
       }
-    };
-
+    };  
     fetchPet();
   }, []);
 

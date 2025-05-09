@@ -7,6 +7,7 @@ import './Donation.css';
 import donationImg from "../../img/donation-alert.png";
 import { FaPaw } from 'react-icons/fa';
 import {validateDonationName, validateEmail, validateAmount, validatePaymentMethod} from '../../utils/validations.js';
+import { createDonation } from '../../services/api.services.js';
 
 function Donation() {
   const navigate = useNavigate();
@@ -63,18 +64,7 @@ function Donation() {
     }
   
     try {
-      const response = await fetch("http://localhost:3000/donations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error al donar.");
-      }
+      await createDonation(formData);
   
       Swal.fire({
         title: "¡Gracias por tu donación!",
@@ -84,7 +74,7 @@ function Donation() {
         imageHeight: 300,
         imageAlt: "Imagen de agradecimiento",
         confirmButtonText: "Volver",
-        confirmButtonColor:  "#CD5C5C"
+        confirmButtonColor: "#CD5C5C"
       });
   
       setFormData({

@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import './Login.css';
 import { infoToast, errorToast } from '../../utils/notifications.js';
+import { loginUser } from '../../services/api.services.js';
 
 
 const Login = ({ showLogin, toggleLogin }) => {
@@ -18,20 +19,10 @@ const Login = ({ showLogin, toggleLogin }) => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
+    
         try {
-            const response = await fetch('http://localhost:3000/api/login', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password })
-            });
-
-            const data = await response.json();
-            console.log(data);
-
-            if (!response.ok) {
+            const { ok, data } = await loginUser({ email, password });
+            if (!ok) {
                 errorToast(data.message || "Error al iniciar sesión");
             } else {
                 setEmail('');

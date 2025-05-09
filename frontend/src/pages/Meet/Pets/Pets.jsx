@@ -6,6 +6,7 @@ import gatoFilter from '../../../img/gato-filter.png';
 import perroFilter from '../../../img/perro-filter.png';
 import ambosFilter from '../../../img/ambos-filter.png';
 import { Link } from "react-router-dom"
+import { getPets } from '../../../services/api.services.js';
 
 const Pets = () => {
 
@@ -13,25 +14,18 @@ const Pets = () => {
   const [errors, setErrors] = useState("");
 
   useEffect(() => {
-
     const fetchPets = async () => {
-
       try {
-        const response = await fetch("http://localhost:3000/api/pets")
-        if (!response.ok) {
-          throw new Error("No se pudo obtener las mascotas");
-        }
-        const data = await response.json()
-        setPets(data)
+        const data = await getPets();
+        setPets(data);
         console.log(data);
       } catch (error) {
         setErrors(error.message);
       }
-    }
-
+    };
+  
     fetchPets();
-
-  }, [])
+  }, []);
 
   const [filter, setFilter] = useState('all')
 

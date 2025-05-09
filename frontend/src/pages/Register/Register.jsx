@@ -8,6 +8,7 @@ import "./Register.css";
 import {errorToast, successToast} from '../../utils/notifications.js';
 import "react-toastify/dist/ReactToastify.css";
 import { validateUserName, validateEmail, validatePassword, validateConfirmPassword} from "../../utils/validations.js";
+import { registerUser } from "../../services/api.services.js"
 
 const Register = () => {
   const navigate = useNavigate();
@@ -61,27 +62,21 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const responseData = await response.json();
-
-      if (response.ok) {
+      const { ok, data } = await registerUser(formData);
+    
+      if (ok) {
         successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => {
           navigate("/", { state: { showLogin: true } });
         }, 2000);
       } else {
-        const errorType = responseData.error;
-        const message = responseData.message || "Error al crear el usuario";
-
+        const errorType = data.error;
+        const message = data.message || "Error al crear el usuario";
+    
         if (errorType === "email_exists") {
           setErrors(prev => ({ ...prev, email: message }));
         }
-
+    
         errorToast(message);
       }
     } catch (error) {
