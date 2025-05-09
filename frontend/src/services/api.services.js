@@ -47,3 +47,27 @@ export const getPetById = async (id) => {
         throw error;
     }
 };
+
+export const createDonation = async (formData) => {
+    try {
+        const response = await fetch(`${baseUrl}/donations`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Error al donar.");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error en createDonation:", error);
+        throw error;
+    }
+};
+
+
