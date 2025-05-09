@@ -5,8 +5,9 @@ import { BsTwitterX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import "./Register.css";
-import { toast } from "react-toastify";
+import {errorToast, successToast} from '../../utils/notifications.js';
 import "react-toastify/dist/ReactToastify.css";
+import { validateUserName, validateEmail, validatePassword, validateConfirmPassword} from "../../utils/validations.js";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,20 +32,16 @@ const Register = () => {
     let error = "";
     switch (id) {
       case "user_name":
-        error = !value.trim() ? "Este campo es obligatorio" : "";
+        error = validateUserName(value);
         break;
       case "email":
-        if (!value) error = "Email es obligatorio.";
-        else if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value))
-          error = "El formato del email es incorrecto.";
+        error = validateEmail(value);
         break;
       case "password":
-        if (!value) error = "Contraseña es obligatoria.";
-        else if (value.length < 6) error = "La contraseña debe tener al menos 6 caracteres.";
+        error = validatePassword(value);
         break;
       case "confirm_password":
-        if (!value) error = "Debe confirmar la contraseña.";
-        else if (value !== formData.password) error = "Las contraseñas no coinciden.";
+        error = validateConfirmPassword(value, formData.password);
         break;
     }
     setErrors(prev => ({ ...prev, [id]: error }));
@@ -59,7 +56,7 @@ const Register = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error("Por favor complete todos los campos correctamente");
+      errorToast("Por favor complete todos los campos correctamente");
       return;
     }
 
@@ -73,7 +70,7 @@ const Register = () => {
       const responseData = await response.json();
 
       if (response.ok) {
-        toast.success("¡Registro exitoso! Ahora puedes iniciar sesión.");
+        successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => {
           navigate("/", { state: { showLogin: true } });
         }, 2000);
@@ -85,11 +82,11 @@ const Register = () => {
           setErrors(prev => ({ ...prev, email: message }));
         }
 
-        toast.error(message);
+        errorToast(message);
       }
     } catch (error) {
       console.error("Error en el registro:", error);
-      toast.error("Hubo un error al conectar con el servidor");
+      errorToast("Hubo un error al conectar con el servidor");
     }
   };
 

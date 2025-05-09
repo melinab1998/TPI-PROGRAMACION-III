@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap');
 
-/* Estilos personalizados solo para toast.info (mensajes generales) */
+/*Estilos para infoToast*/
 .Toastify__toast--info {
   background-color: #f0b5ad !important;
   color: #fff !important;
@@ -23,7 +23,7 @@
   display: none !important;
 }
 
-/* Estilos para success y error */
+/* Estilos para successToast y errorToast*/
 .Toastify__toast--success,
 .Toastify__toast--error {
   font-family: 'Quicksand', sans-serif !important;

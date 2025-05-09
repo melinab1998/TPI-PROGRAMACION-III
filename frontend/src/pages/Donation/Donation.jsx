@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import { toast } from 'react-toastify'; 
+import {errorToast} from '../../utils/notifications.js';
 import './Donation.css';
 import donationImg from "../../img/donation-alert.png";
 import { FaPaw } from 'react-icons/fa';
+import {validateDonationName, validateEmail, validateAmount, validatePaymentMethod} from '../../utils/validations.js';
 
 function Donation() {
   const navigate = useNavigate();
@@ -30,20 +31,18 @@ function Donation() {
     let error = "";
     switch (id) {
       case "name":
-        error = !value.trim() ? "El nombre es obligatorio." : "";
+        error = validateDonationName(value);
         break;
       case "email":
-        if (!value.trim()) error = "El email es obligatorio.";
-        else if (!/^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,4}$/.test(value)) error = "Formato de email inválido.";
+        error = validateEmail(value);
         break;
       case "amount":
-        error = !value || parseFloat(value) <= 0 ? "El monto debe ser mayor a 0." : "";
+        error = validateAmount(value);
         break;
       case "payment_method":
-        error = !value || value === "Seleccionar..." ? "Debe elegir un método de pago." : "";
+        error = validatePaymentMethod(value);
         break;
     }
-
     setErrors(prev => ({ ...prev, [id]: error }));
     return !error;
   };
@@ -59,7 +58,7 @@ function Donation() {
     e.preventDefault();
   
     if (!validateForm()) {
-      toast.error("Por favor completá todos los campos obligatorios correctamente.");
+      errorToast("Por favor completá todos los campos correctamente.");
       return;
     }
   
@@ -97,7 +96,7 @@ function Donation() {
       });
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Ocurrió un error al procesar tu donación.");
+      errorToast("Ocurrió un error al procesar tu donación.");
     }
   };
 
