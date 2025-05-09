@@ -33,3 +33,17 @@ export const getPets = async () => {
         throw error;
     }
 };
+
+export const getPetById = async (id) => {
+    try {
+        const response = await fetch(`${baseUrl}/api/pets/${id}`);
+        if (!response.ok) {
+            throw new Error("No se pudo obtener la mascota");
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error al obtener mascota por ID:", error);
+        throw error;
+    }
+};
