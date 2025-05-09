@@ -14,7 +14,7 @@ import LostPetsList from "./pages/LostPets/LostPetsList/LostPetsList";
 import Login from "./components/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './utils/ToastStyles.css'
+import './utils/notifications.css'
 
 function App() {
 
