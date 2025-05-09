@@ -19,3 +19,17 @@ export const registerUser = async (formData) => {
         throw error;
     }
 };
+
+export const getPets = async () => {
+    try {
+        const response = await fetch(`${baseUrl}/api/pets`);
+        if (!response.ok) {
+            throw new Error("No se pudo obtener las mascotas");
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error al obtener mascotas:", error);
+        throw error;
+    }
+};
