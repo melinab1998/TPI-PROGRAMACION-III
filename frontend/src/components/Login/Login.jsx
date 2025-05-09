@@ -39,7 +39,7 @@ const Login = ({ showLogin, toggleLogin }) => {
                 setEmail('');
                 setPassword('');
                 toggleLogin();
-                toast.success(`¡Bienvenido a MiHogar, ${data.user_name || 'usuario'}!`);
+                toast.info(`¡Bienvenido a MiHogar, ${data.user_name || 'usuario'}!`);
 
                
             }

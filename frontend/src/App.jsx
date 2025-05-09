@@ -12,10 +12,9 @@ import PetDetails from "./pages/Meet/PetDetails/PetDetails";
 import LostPetsForm from "./pages/LostPets/LostPetsForm/LostPetsForm";
 import LostPetsList from "./pages/LostPets/LostPetsList/LostPetsList";
 import Login from "./components/Login/Login";
-import './ToastStyles.css'; 
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './ToastStyles.css'; 
 
 function App() {
   
