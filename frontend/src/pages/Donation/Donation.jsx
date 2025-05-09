@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Alert, Card, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify'; 
 import './Donation.css';
 import donationImg from "../../img/donation-alert.png";
 import { FaPaw } from 'react-icons/fa';
@@ -18,7 +19,6 @@ function Donation() {
 
   const [formData, setFormData] = useState(initialState);
   const [errors, setErrors] = useState(initialState);
-  const [formMessage, setFormMessage] = useState({ type: "", text: "" });
 
   const handleData = (e) => {
     const { id, value } = e.target;
@@ -57,10 +57,9 @@ function Donation() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormMessage({ type: "", text: "" });
   
     if (!validateForm()) {
-      setFormMessage({ type: "danger", text: "Por favor completá todos los campos obligatorios correctamente." });
+      toast.error("Por favor completá todos los campos obligatorios correctamente.");
       return;
     }
   
@@ -98,12 +97,7 @@ function Donation() {
       });
     } catch (error) {
       console.error("Error:", error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Ocurrió un error al procesar tu donación.',
-        confirmButtonColor:  "#CD5C5C"
-      });
+      toast.error("Ocurrió un error al procesar tu donación.");
     }
   };
 
@@ -112,22 +106,16 @@ function Donation() {
       <Row className="justify-content-center">
         <Col md={8}>
           <Card className="donation-card">
-          <Card.Header className="donation-header text-center">
-  <h2 className="titulo-con-icono mb-0">
-    <FaPaw className="icono-patita me-2" />
-    Doná a nuestra causa
-  </h2>
-</Card.Header>
+            <Card.Header className="donation-header text-center">
+              <h2 className="titulo-con-icono mb-0">
+                <FaPaw className="icono-patita me-2" />
+                Doná a nuestra causa
+              </h2>
+            </Card.Header>
             <Card.Body>
               <p className="donation-text">
                 Con tu ayuda, podemos seguir rescatando, alimentando y cuidando a más animales que lo necesitan. ¡Gracias por tu apoyo!
               </p>
-
-              {formMessage.text && (
-                <Alert variant={formMessage.type} dismissible onClose={() => setFormMessage({ type: "", text: "" })}>
-                  {formMessage.text}
-                </Alert>
-              )}
 
               <Form className="donation-form" onSubmit={handleSubmit}>
                 <h5 className="section-title">Tus Datos</h5>
@@ -203,8 +191,7 @@ function Donation() {
                 <div className="d-flex justify-content-between mt-4">
                   <Button variant="secondary" className="btn-lost-pet-secondary" onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate('/');
-                  }}>Volver</Button>
+                  navigate('/');}}>Volver</Button>
                   <Button type="submit" className="btn-lost-pet-primary">Donar ahora</Button>
                 </div>
               </Form>
