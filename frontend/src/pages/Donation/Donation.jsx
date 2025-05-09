@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import { toast } from 'react-toastify'; 
+import {errorToast} from '../../utils/notifications.js';
 import './Donation.css';
 import donationImg from "../../img/donation-alert.png";
 import { FaPaw } from 'react-icons/fa';
@@ -59,7 +59,7 @@ function Donation() {
     e.preventDefault();
   
     if (!validateForm()) {
-      toast.error("Por favor completá todos los campos obligatorios correctamente.");
+      errorToast("Por favor completá todos los campos obligatorios correctamente.");
       return;
     }
   
@@ -97,7 +97,7 @@ function Donation() {
       });
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Ocurrió un error al procesar tu donación.");
+      errorToast("Ocurrió un error al procesar tu donación.");
     }
   };
 

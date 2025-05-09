@@ -14,10 +14,9 @@ import LostPetsList from "./pages/LostPets/LostPetsList/LostPetsList";
 import Login from "./components/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './ToastStyles.css'; 
+import './utils/ToastStyles.css'
 
 function App() {
-  
 
 const [showLogin, setShowLogin] = useState(false);
 
@@ -50,17 +49,7 @@ const [showLogin, setShowLogin] = useState(false);
       </Routes>
       
       <Login showLogin={showLogin} toggleLogin={() => setShowLogin(false)} />
-
-      <ToastContainer 
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer />
     </>
   );
 }

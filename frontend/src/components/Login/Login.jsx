@@ -8,7 +8,8 @@ import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import './Login.css';
-import { toast } from 'react-toastify';
+import { infoToast, errorToast } from '../../utils/notifications.js';
+
 
 const Login = ({ showLogin, toggleLogin }) => {
 
@@ -31,15 +32,15 @@ const Login = ({ showLogin, toggleLogin }) => {
             console.log(data);
 
             if (!response.ok) {
-                toast.error(data.message || "Error al iniciar sesión");
+                errorToast(data.message || "Error al iniciar sesión");
             } else {
                 setEmail('');
                 setPassword('');
                 toggleLogin();
-                toast.info(`¡Bienvenido a Mi Hogar, ${data.user_name || 'usuario'}!`);
+                infoToast(`¡Bienvenido a Mi Hogar, ${data.user_name || 'usuario'}!`);
             }
         } catch (err) {
-            toast.error("Error de conexión con el servidor");
+            errorToast("Error de conexión con el servidor");
             console.error(err);
         }
     };

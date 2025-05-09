@@ -5,7 +5,7 @@ import { BsTwitterX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import "./Register.css";
-import { toast } from "react-toastify";
+import {errorToast, successToast} from '../../utils/notifications.js';
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
@@ -59,7 +59,7 @@ const Register = () => {
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error("Por favor complete todos los campos correctamente");
+      errorToast("Por favor complete todos los campos correctamente");
       return;
     }
 
@@ -73,7 +73,7 @@ const Register = () => {
       const responseData = await response.json();
 
       if (response.ok) {
-        toast.success("¡Registro exitoso! Ahora puedes iniciar sesión.");
+        successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => {
           navigate("/", { state: { showLogin: true } });
         }, 2000);
@@ -85,11 +85,11 @@ const Register = () => {
           setErrors(prev => ({ ...prev, email: message }));
         }
 
-        toast.error(message);
+        errorToast(message);
       }
     } catch (error) {
       console.error("Error en el registro:", error);
-      toast.error("Hubo un error al conectar con el servidor");
+      errorToast("Hubo un error al conectar con el servidor");
     }
   };
 
