@@ -26,8 +26,9 @@
 /* Estilos para success y error */
 .Toastify__toast--success,
 .Toastify__toast--error {
+  font-family: 'Quicksand', sans-serif !important;
   background-color: white !important;
-  color: rgb(91, 89, 89) !important;
+  color: rgb(93, 93, 93) !important;
   box-shadow: none !important;
 }
 
