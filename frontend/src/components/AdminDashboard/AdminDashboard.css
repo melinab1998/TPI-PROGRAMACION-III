@@ -1,0 +1,168 @@
+.admin-dashboard {
+  padding: 4rem 0;
+  max-width: 1200px;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #5D4037; 
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-subtitle {
+  font-size: 1.2rem;
+  color: #8D6E63; 
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stats-row {
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(93, 64, 55, 0.1);
+  background-color: #FFF8F0; 
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: #FF6F61;
+}
+
+.stat-content {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #CD5C5C; 
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 1rem;
+  color: #5D4037;
+  margin-top: 0.5rem;
+}
+
+.management-cards {
+  margin-top: 1rem;
+}
+
+.management-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(93, 64, 55, 0.1);
+  margin-bottom: 2rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  background-color: #FFF8F0; 
+  padding: 1.5rem;
+}
+
+.management-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 24px rgba(93, 64, 55, 0.15);
+}
+
+.pets-card .card-icon-container {
+  background-color: rgba(255, 111, 97, 0.1); 
+}
+
+.requests-card .card-icon-container {
+  background-color: rgba(205, 92, 92, 0.1); 
+}
+
+.card-icon-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon {
+  font-size: 1.8rem;
+}
+
+.pets-card .card-icon {
+  color: #FF6F61; 
+}
+
+.requests-card .card-icon {
+  color: #CD5C5C; 
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5D4037; 
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  color: #8D6E63; 
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.primary-btn {
+  background-color: #ff8c7f; 
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: -30px;
+}
+
+.primary-btn:hover {
+  background-color: #CD5C5C; 
+}
+
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 2rem;
+  }
+
+  .stat-card,
+  .management-card {
+    margin-bottom: 1.5rem;
+    transform: scale(0.9); 
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .stat-label,
+  .card-title,
+  .card-text {
+    font-size: 0.9rem;
+  }
+
+  .primary-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}

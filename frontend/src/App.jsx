@@ -15,6 +15,7 @@ import Login from "./components/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './utils/notifications.css'
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 
 function App() {
 
@@ -36,6 +37,7 @@ const [showLogin, setShowLogin] = useState(false);
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="/admin" element={<AdminDashboard/>}/>
           <Route path="/contact" element={<Contact />} />
           <Route path="/pets" element={<Pets />} />
           <Route path="/pets/:id" element={<PetDetails />} />
