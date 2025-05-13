@@ -1,0 +1,179 @@
+.pets-management {
+  padding: 3rem;
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #5D4037;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.section-title .icon {
+  margin-right: 10px;
+  color: #f6847a;
+}
+
+.add-btn {
+  background-color: #f6847a;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #CD5C5C;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(205, 92, 92, 0.3);
+}
+
+.pet-card-admin {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(93, 64, 55, 0.1);
+  transition: all 0.3s ease;
+  background-color: #FFF8F0;
+}
+
+.pet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(93, 64, 55, 0.15);
+}
+
+.pet-image-container {
+  position: relative;
+  height: 160px;
+  overflow: hidden;
+}
+
+.pet-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.pet-card:hover .pet-image-container img {
+  transform: scale(1.05);
+}
+
+.adopted-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #CD5C5C !important;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.pet-header {
+  margin-bottom: 0.5rem;
+}
+
+.pet-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #5D4037;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.25rem;
+}
+
+.species-icon {
+  font-size: 1rem;
+  color: #f6847a;
+}
+
+.pet-shelter {
+  display: block;
+  font-size: 0.8rem;
+  color: #8D6E63;
+  font-style: italic;
+}
+
+.pet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: #8D6E63;
+  margin-bottom: 0.5rem;
+}
+
+.pet-detail strong {
+  color: #5D4037;
+}
+
+.pet-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-edit {
+  color: #5D4037;
+  border-color: #FFD3B5;
+  background-color: #FFD3B5;
+}
+
+.btn-outline-edit:hover {
+  background-color: #ff8c7f;
+  border-color: #ff8c7f;
+  color: white;
+}
+
+.btn-outline-delete {
+  color: #5D4037;
+  border-color: #F5E6D8;
+  background-color: #F5E6D8;
+}
+
+.btn-outline-delete:hover {
+  background-color: #CD5C5C;
+  border-color: #CD5C5C;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pet-actions {
+    flex-direction: row;
+  }
+
+  .action-btn {
+    width: auto;
+  }
+}

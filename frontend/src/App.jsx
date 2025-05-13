@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './utils/notifications.css'
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
+import PetManagement from "./pages/PetManagement/PetManagement/PetManagement";
 
 function App() {
 
@@ -38,6 +39,7 @@ const [showLogin, setShowLogin] = useState(false);
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/admin" element={<AdminDashboard/>}/>
+          <Route path="/petmanagement" element={<PetManagement/>}/>
           <Route path="/contact" element={<Contact />} />
           <Route path="/pets" element={<Pets />} />
           <Route path="/pets/:id" element={<PetDetails />} />

@@ -17,7 +17,7 @@ const NavBarAdmin = () => {
                             INICIO
                         </Nav.Link>
 
-                        <Nav.Link as={Link} to="/petsmanagement">
+                        <Nav.Link as={Link} to="/petmanagement">
                             GESTIÓN DE MASCOTAS
                         </Nav.Link>
                         <Nav.Link as={Link} to="">
