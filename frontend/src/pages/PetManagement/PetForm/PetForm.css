@@ -75,5 +75,33 @@
 }
 
 .pet-form-modal .modal-dialog {
-  z-index: 2000 !important;
+  z-index: 3000 !important;
+  max-height: 90vh;
+  margin-top: 80px; 
+}
+
+.pet-form-modal .modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .pet-form-modal .modal-dialog {
+    max-width: 90vw;
+    margin: 10vh auto;
+  }
+  .pet-form-modal .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: #FFF8F0;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
+    border: none;
+  }
+  .pet-form-modal .modal-title {
+    font-size: 1.2rem;
+  }
+  .pet-form-modal .form-label {
+    font-size: 0.9rem;
+  }
 }

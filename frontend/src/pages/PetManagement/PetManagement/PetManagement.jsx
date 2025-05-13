@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
-import { FaEdit, FaPlus, FaTrash, FaPaw, FaDog, FaCat } from 'react-icons/fa';
+import { FaEdit, FaPlus, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
 import PetForm from '../PetForm/PetForm';
 import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import './PetManagement.css';
@@ -79,6 +79,14 @@ const PetsManagement = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [error, setError] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const filteredPets = pets.filter(pet =>
+        pet.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
     const resetForm = () => {
         setFormData({
@@ -152,9 +160,22 @@ const PetsManagement = () => {
                     <FaPlus /> Agregar Mascota
                 </Button>
             </div>
-
+            <div className="search-section mb-4">
+                <div className="input-group">
+                    <span className="input-group-text">
+                        <FaSearch/>
+                    </span>
+                    <input
+                        type="text"
+                        className="form-control search-input"
+                        placeholder="Buscar por nombre de mascota"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                </div>
+            </div>
             <Row className="pets-list g-4">
-                {pets.map((pet) => (
+                {filteredPets.map((pet) => (
                     <Col key={pet.id_pet} xl={3} lg={4} md={6} sm={12}>
                         <Card className="pet-card-admin h-100">
                             <div className="pet-image-container">
