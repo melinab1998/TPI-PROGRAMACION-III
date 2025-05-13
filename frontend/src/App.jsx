@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './utils/notifications.css'
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import PetManagement from "./pages/PetManagement/PetManagement/PetManagement";
+import RequestManagement from "./pages/RequestManagement/RequestManagement";
 
 function App() {
 
@@ -33,6 +34,62 @@ const [showLogin, setShowLogin] = useState(false);
     document.body.className = location.pathname === "/register" ? "custom-register" : "default-body";
   }, [location]);
 
+const mockRequests = [
+  {
+    id: 1,
+    name: "Juan",
+    lastname: "Pérez",
+    address: "Calle Falsa 123",
+    city: "Córdoba",
+    province: "Córdoba",
+    phone: "3511234567",
+    dni: "30123456",
+    housingType: "Casa",
+    ownershipStatus: "owner",
+    ownerConsultation: "",
+    hasCourtyard: "yes",
+    hasPets: "yes",
+    petsNeutered: "yes",
+    hadOtherPets: "yes",
+    reason: "Me encantan los animales y quiero dar un hogar.",
+    vacationPlan: "Lo llevaría conmigo o lo dejaría con familia.",
+    movingPlan: "No tengo planes de mudanza.",
+    dailyWalks: "Dos veces al día.",
+    whatsappFollowUp: "yes",
+    termsAccepted: true,
+    petName: "Luna",
+    shelterName: "Refugio Patitas Felices",
+    status: "pending",
+  },
+  {
+    id: 2,
+    name: "María",
+    lastname: "Gómez",
+    address: "Av. Siempreviva 742",
+    city: "Rosario",
+    province: "Santa Fe",
+    phone: "3417654321",
+    dni: "28987654",
+    housingType: "Departamento",
+    ownershipStatus: "tenant",
+    ownerConsultation: "Sí, ya consulté y me permiten tener mascotas.",
+    hasCourtyard: "no",
+    hasPets: "no",
+    petsNeutered: "",
+    hadOtherPets: "no",
+    reason: "Quiero un compañero para mi hijo.",
+    vacationPlan: "Lo dejaría con un familiar de confianza.",
+    movingPlan: "Podría mudarme el próximo año.",
+    dailyWalks: "Una vez por la tarde.",
+    whatsappFollowUp: "no",
+    termsAccepted: true,
+    petName: "Firulais",
+    shelterName: "Huellas del Alma",
+    status: "approved",
+  }
+];
+
+
   return (
     <>
       <Routes>
@@ -40,6 +97,7 @@ const [showLogin, setShowLogin] = useState(false);
           <Route index element={<Home />} />
           <Route path="/admin" element={<AdminDashboard/>}/>
           <Route path="/petmanagement" element={<PetManagement/>}/>
+          <Route path="/requestmanagement" element={<RequestManagement requests={mockRequests} />}/>
           <Route path="/contact" element={<Contact />} />
           <Route path="/pets" element={<Pets />} />
           <Route path="/pets/:id" element={<PetDetails />} />
