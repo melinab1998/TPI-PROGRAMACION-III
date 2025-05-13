@@ -20,12 +20,20 @@ export const registerUser = async (formData) => {
     }
 };
 
-export const getPets = async () => {
+export const getPets = async (options = {}) => {
     try {
-        const response = await fetch(`${baseUrl}/api/pets`);
+        const response = await fetch(`${baseUrl}/api/pets`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                ...(options.headers || {}),
+            },
+        });
+
         if (!response.ok) {
             throw new Error("No se pudo obtener las mascotas");
         }
+
         const data = await response.json();
         return data;
     } catch (error) {

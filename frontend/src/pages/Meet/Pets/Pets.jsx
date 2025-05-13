@@ -7,19 +7,28 @@ import perroFilter from '../../../img/perro-filter.png';
 import ambosFilter from '../../../img/ambos-filter.png';
 import { Link } from "react-router-dom"
 import { getPets } from '../../../services/api.services.js';
+import { useNavigate } from 'react-router-dom';
 
 const Pets = () => {
-
+const navigate = useNavigate();
   const [pets, setPets] = useState([]);
   const [errors, setErrors] = useState("");
 
   useEffect(() => {
     const fetchPets = async () => {
+      const token = localStorage.getItem("token");
+      console.log("TOKEN ENVIADO:", token)
       try {
-        const data = await getPets();
+        const data = await getPets({
+          headers:{
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
         setPets(data);
         console.log(data);
       } catch (error) {
+        navigate('/register');
         setErrors(error.message);
       }
     };

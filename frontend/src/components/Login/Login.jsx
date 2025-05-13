@@ -25,6 +25,8 @@ const Login = ({ showLogin, toggleLogin }) => {
             if (!ok) {
                 errorToast(data.message || "Error al iniciar sesión");
             } else {
+                localStorage.setItem("token", data.token )
+                console.log(data.token);
                 setEmail('');
                 setPassword('');
                 toggleLogin();

@@ -3,8 +3,26 @@ import logo from "../../img/logo.png";
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { infoToast } from '../../utils/notifications.js';
 const NavBar = ({ toggleLogin }) => {
+
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLogged(!!token); // true si hay token
+  }, []);
+  
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    setIsLogged(false);
+      navigate("/", { state: { showLogin: true } });
+    infoToast("Cerro sesión con éxito")
+  }
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>
@@ -43,13 +61,26 @@ const NavBar = ({ toggleLogin }) => {
               CONTACTO
             </Nav.Link>
           </Nav>
+          
           <div className="d-flex gap-2">
-            <Button variant="outline-primary" onClick={toggleLogin}>
-              INICIAR SESIÓN
-            </Button>
-            <Link to="/register">
-              <Button variant="primary">REGISTRARSE</Button>
-            </Link>
+            {!isLogged ? (
+              <>
+                <Button variant="outline-primary" onClick={toggleLogin}>
+                  INICIAR SESION
+                </Button>
+                <Link to="/register">
+                  <Button variant="primary">REGISTRARSE</Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Button variant="outline-primary" onClick={handleLogout}>
+                  CERRAR SESION
+                </Button>
+              </>
+            )
+          }
+            
           </div>
         </Navbar.Collapse>
       </Container>

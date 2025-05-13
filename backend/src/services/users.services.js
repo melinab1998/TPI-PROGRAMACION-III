@@ -1,5 +1,11 @@
 import { User } from "../models/User.js";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv'
+dotenv.config()
+
+
+
 
 export const createUser = async (req, res) => {
     try {
@@ -61,8 +67,21 @@ export const loginUser = async (req, res) =>{
             return res.status(401).json({message: "Email y/o contraseña incorrecta"})
         }
         const user_name = user.user_name; 
-        res.status(200).json({ message: "Inicio de sesión exitoso", user_name });
+       
+        
+        const secretKey = process.env.SECRETKEY
+
+        const token = jwt.sign({email}, secretKey, {expiresIn: '1h'})
+
+        return res.status(200).json({
+            message: "Inicio de sesión exitoso",
+            user_name,
+            token
+        });
+
+       
     }catch (error){
         console.error("Error en el login:", error);
     }
-}
+};
+
