@@ -14,7 +14,8 @@ import LostPetsList from "./pages/LostPets/LostPetsList/LostPetsList";
 import Login from "./components/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './utils/notifications.css'
+import MobileApp from "./pages/MobileApp/MobileApp";
+import './utils/notifications.css';
 
 function App() {
 
@@ -43,6 +44,7 @@ const [showLogin, setShowLogin] = useState(false);
           <Route path="/lostlist" element={<LostPetsList />} />
           <Route path="/donation" element={<Donation />} />
           <Route path="/adoption/:id" element={<AdoptionForm />} />
+          <Route path="/app-movil" element={<MobileApp />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/register" element={<Register />} />

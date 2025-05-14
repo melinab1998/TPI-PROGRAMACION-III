@@ -3,6 +3,7 @@ import "./Footer.css";
 import footerLogo from "../../img/logo.png";
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { BsTwitterX } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -19,7 +20,7 @@ const Footer = () => {
                     <a href="#" className="links-footer">Medios de contacto</a>
                     </li>
                     <li>
-                    <a href="#"className="links-footer">Aplicación móvil</a>
+                    <Link to="/app-movil" className="links-footer">Aplicación móvil</Link>
                     </li>
                     <li>
                     <a href="#"className="links-footer">¿Cómo ayudar?</a>
