@@ -53,37 +53,33 @@ const Register = () => {
     return Object.keys(formData).every(key => validateField(key, formData[key]));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!validateForm()) {
-      errorToast("Por favor complete todos los campos correctamente");
-      return;
-    }
+  if (!validateForm()) {
+    errorToast("Por favor complete todos los campos correctamente");
+    return;
+  }
 
-    try {
-      const { ok, data } = await registerUser(formData);
-    
-      if (ok) {
-        successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
-        setTimeout(() => {
-          navigate("/", { state: { showLogin: true } });
-        }, 2000);
-      } else {
-        const errorType = data.error;
-        const message = data.message || "Error al crear el usuario";
-    
-        if (errorType === "email_exists") {
-          setErrors(prev => ({ ...prev, email: message }));
-        }
-    
-        errorToast(message);
+  registerUser(
+    formData,
+    () => {
+      successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
+      setTimeout(() => {
+        navigate("/", { state: { showLogin: true } });
+      }, 2000);
+    },
+    ({ data, error }) => {
+      if (data?.error === "email_exists") {
+        setErrors((prev) => ({ ...prev, email: data.message }));
       }
-    } catch (error) {
-      console.error("Error en el registro:", error);
-      errorToast("Hubo un error al conectar con el servidor");
+
+      const message =
+        data?.message || error?.message || "Hubo un error al conectar con el servidor";
+      errorToast(message);
     }
-  };
+  );
+};
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">

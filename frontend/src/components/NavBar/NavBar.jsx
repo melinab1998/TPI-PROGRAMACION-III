@@ -3,26 +3,21 @@ import logo from "../../img/logo.png";
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { infoToast } from '../../utils/notifications.js';
+import { AuthenticationContext } from "../../services/auth/AuthContext.jsx"
+
 const NavBar = ({ toggleLogin }) => {
-
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(false);
+  const { token, handleUserLogout } = useContext(AuthenticationContext);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLogged(!!token); // true si hay token
-  }, []);
-  
+  const handleLogout = () => {
+    handleUserLogout(); // Usamos la función del contexto
+    navigate("/", { state: { showLogin: true } });
+    infoToast("Cerraste sesión con éxito");
+  };
 
-  const handleLogout = () =>{
-    localStorage.removeItem("token");
-    setIsLogged(false);
-      navigate("/", { state: { showLogin: true } });
-    infoToast("Cerro sesión con éxito")
-  }
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>
@@ -33,15 +28,15 @@ const NavBar = ({ toggleLogin }) => {
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav">
           <Nav className="me-auto">
-          <Nav.Link as={Link} to="/">
+            <Nav.Link as={Link} to="/">
               INICIO
             </Nav.Link>
             <Nav.Link as={HashLink} smooth to="/#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
-              <NavDropdown.Item as={Link} to = "/pets">CONÓCELOS</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/pets">CONÓCELOS</NavDropdown.Item>
               <NavDropdown.Item as={HashLink} smooth to="/#adoption-section">
-              REQUISITOS DE ADOPCIÓN
+                REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
             </NavDropdown>
 
@@ -63,24 +58,20 @@ const NavBar = ({ toggleLogin }) => {
           </Nav>
           
           <div className="d-flex gap-2">
-            {!isLogged ? (
+            {!token ? (
               <>
                 <Button variant="outline-primary" onClick={toggleLogin}>
-                  INICIAR SESION
+                  INICIAR SESIÓN
                 </Button>
                 <Link to="/register">
                   <Button variant="primary">REGISTRARSE</Button>
                 </Link>
               </>
             ) : (
-              <>
-                <Button variant="outline-primary" onClick={handleLogout}>
-                  CERRAR SESION
-                </Button>
-              </>
-            )
-          }
-            
+              <Button variant="outline-primary" onClick={handleLogout}>
+                CERRAR SESIÓN
+              </Button>
+            )}
           </div>
         </Navbar.Collapse>
       </Container>

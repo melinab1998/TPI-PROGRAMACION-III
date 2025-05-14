@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -10,32 +10,33 @@ import { Link } from "react-router-dom";
 import './Login.css';
 import { infoToast, errorToast } from '../../utils/notifications.js';
 import { loginUser } from '../../services/api.services.js';
-
+import { AuthenticationContext } from '../../services/auth/AuthContext.jsx'
 
 const Login = ({ showLogin, toggleLogin }) => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { handleUserLogin } = useContext(AuthenticationContext);
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-    
-        try {
-            const { ok, data } = await loginUser({ email, password });
-            if (!ok) {
-                errorToast(data.message || "Error al iniciar sesión");
-            } else {
-                localStorage.setItem("token", data.token )
+
+        loginUser(
+            { email, password },
+            (data) => {
+                // onSuccess
+                handleUserLogin(data.token); // Usamos el contexto para manejar el login
                 console.log(data.token);
                 setEmail('');
                 setPassword('');
                 toggleLogin();
                 infoToast(`¡Bienvenido a Mi Hogar, ${data.user_name || 'usuario'}!`);
+            },
+            (error) => {
+                // onError
+                errorToast(error.message || "Error al iniciar sesión");
+                console.error(error);
             }
-        } catch (err) {
-            errorToast("Error de conexión con el servidor");
-            console.error(err);
-        }
+        );
     };
 
     return (
