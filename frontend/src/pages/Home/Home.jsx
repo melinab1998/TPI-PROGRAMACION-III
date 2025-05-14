@@ -8,9 +8,13 @@ const Home = () => {
   return (
     <div>
       <HeroSection/>
-      <AboutUs/>
-      <DonationSection/>
-      <AdoptionRequirements/>
+      <div id="about-us">
+        <AboutUs />
+      </div>
+      <DonationSection />
+      <div id="adoption-section">
+        <AdoptionRequirements />
+      </div>
     </div>
   )
 }

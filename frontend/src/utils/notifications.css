@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap');
+
+/*Estilos para infoToast*/
+.Toastify__toast--info {
+  background-color: #f0b5ad !important;
+  color: #fff !important;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  font-family: 'Quicksand', sans-serif !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.Toastify__progress-bar--info {
+  background: white !important;
+  opacity: 0.7 !important;
+}
+
+.Toastify__progress-bar--animated {
+  background: #c77171 !important;
+}
+
+.Toastify__toast--info .Toastify__toast-icon {
+  display: none !important;
+}
+
+/* Estilos para successToast y errorToast*/
+.Toastify__toast--success,
+.Toastify__toast--error {
+  font-family: 'Quicksand', sans-serif !important;
+  background-color: white !important;
+  color: rgb(93, 93, 93) !important;
+  box-shadow: none !important;
+}
+
+.Toastify__toast--success .Toastify__toast-icon,
+.Toastify__toast--error .Toastify__toast-icon {
+  display: inline-block !important;
+}
+
+.Toastify__toast--success .Toastify__progress-bar--animated {
+  background: #4caf50 !important;
+}
+
+.Toastify__toast--error .Toastify__progress-bar--animated {
+  background: #f44336 !important;
+}

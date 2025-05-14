@@ -2,12 +2,27 @@ import "../NavBar/NavBar.css";
 import logo from "../../img/logo.png";
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { infoToast } from '../../utils/notifications.js';
+const NavBar = ({ toggleLogin }) => {
 
-const NavBar = ({ showLogin, setShowLogin }) => {
-  const toggleLogin = () => {
-    setShowLogin(!showLogin);
-    console.log(showLogin);
-  };
+  const navigate = useNavigate();
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLogged(!!token); // true si hay token
+  }, []);
+  
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    setIsLogged(false);
+      navigate("/", { state: { showLogin: true } });
+    infoToast("Cerro sesión con éxito")
+  }
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>
@@ -21,24 +36,21 @@ const NavBar = ({ showLogin, setShowLogin }) => {
           <Nav.Link as={Link} to="/">
               INICIO
             </Nav.Link>
-            <Nav.Link href="/#about-us">NOSOTROS</Nav.Link>
+            <Nav.Link as={HashLink} smooth to="/#about-us">NOSOTROS</Nav.Link>
 
             <NavDropdown title="ADOPCIÓN" id="dropdown-servicios">
-              <NavDropdown.Item as={Link} to = "/meet">CONÓCELOS</NavDropdown.Item>
-              <NavDropdown.Item href="#servicio2">
-                QUIERO ADOPTAR
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/#adoption-section">
-                REQUISITOS DE ADOPCIÓN
+              <NavDropdown.Item as={Link} to = "/pets">CONÓCELOS</NavDropdown.Item>
+              <NavDropdown.Item as={HashLink} smooth to="/#adoption-section">
+              REQUISITOS DE ADOPCIÓN
               </NavDropdown.Item>
             </NavDropdown>
 
             <NavDropdown title="MASCOTAS PERDIDAS" id="dropdown-productos">
-              <NavDropdown.Item href="#producto1">
+              <NavDropdown.Item as={Link} to="/lostform">
                 PERDÍ MI MASCOTA
               </NavDropdown.Item>
-              <NavDropdown.Item href="#producto2">
-                ENCONTRÉ UNA MASCOTA
+              <NavDropdown.Item as={Link} to="/lostlist">
+                MASCOTAS PERDIDAS
               </NavDropdown.Item>
             </NavDropdown>
 
@@ -49,13 +61,26 @@ const NavBar = ({ showLogin, setShowLogin }) => {
               CONTACTO
             </Nav.Link>
           </Nav>
+          
           <div className="d-flex gap-2">
-            <Button variant="outline-primary" onClick={toggleLogin}>
-              INICIAR SESIÓN
-            </Button>
-            <Link to="/register">
-              <Button variant="primary">REGISTRARSE</Button>
-            </Link>
+            {!isLogged ? (
+              <>
+                <Button variant="outline-primary" onClick={toggleLogin}>
+                  INICIAR SESION
+                </Button>
+                <Link to="/register">
+                  <Button variant="primary">REGISTRARSE</Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Button variant="outline-primary" onClick={handleLogout}>
+                  CERRAR SESION
+                </Button>
+              </>
+            )
+          }
+            
           </div>
         </Navbar.Collapse>
       </Container>
