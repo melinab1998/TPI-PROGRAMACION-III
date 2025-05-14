@@ -13,7 +13,7 @@ export const AuthenticationContextProvider = ({children}) => {
     }
 
     const handleUserLogout = () => {
-        localStorage.removeItem("book-champions-token");
+        localStorage.removeItem("token");
         setToken(null);
     }
 
