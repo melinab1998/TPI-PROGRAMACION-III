@@ -1,46 +1,39 @@
-import React from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './Pets.css';
-import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import gatoFilter from '../../../img/gato-filter.png';
 import perroFilter from '../../../img/perro-filter.png';
 import ambosFilter from '../../../img/ambos-filter.png';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { getPets } from '../../../services/api.services.js';
-import { useNavigate } from 'react-router-dom';
+import { AuthenticationContext } from "../../../services/auth/AuthContext.jsx"
+import { errorToast } from '../../../utils/notifications.js';
 
 const Pets = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { token } = useContext(AuthenticationContext);
   const [pets, setPets] = useState([]);
-  const [errors, setErrors] = useState("");
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    const fetchPets = async () => {
-      const token = localStorage.getItem("token");
-      console.log("TOKEN ENVIADO:", token)
-      try {
-        const data = await getPets({
-          headers:{
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-        setPets(data);
-        console.log(data);
-      } catch (error) {
-        navigate('/register');
-        setErrors(error.message);
-      }
-    };
-  
-    fetchPets();
-  }, []);
 
-  const [filter, setFilter] = useState('all')
+    if (!token) {
+      navigate("/", { state: { showLogin: true, fromPets: true } });
+      return;
+    }
+
+    getPets(
+      (data) => setPets(data),
+      (error) => {
+        errorToast(error.message || "Error al obtener mascotas");
+        console.error("Error fetching pets:", error);
+      }
+    );
+  }, []);
 
   const filteredPets = pets.filter((p) => {
     if (filter === 'all') return true;
-    return p.species.toLowerCase() == filter;
+    return p.species.toLowerCase() === filter;
   });
 
   return (

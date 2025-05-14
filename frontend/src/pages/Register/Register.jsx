@@ -5,9 +5,9 @@ import { BsTwitterX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import "./Register.css";
-import {errorToast, successToast} from '../../utils/notifications.js';
+import { errorToast, successToast } from '../../utils/notifications.js';
 import "react-toastify/dist/ReactToastify.css";
-import { validateUserName, validateEmail, validatePassword, validateConfirmPassword} from "../../utils/validations.js";
+import { validateUserName, validateEmail, validatePassword, validateConfirmPassword } from "../../utils/validations.js";
 import { registerUser } from "../../services/api.services.js"
 
 const Register = () => {
@@ -53,7 +53,7 @@ const Register = () => {
     return Object.keys(formData).every(key => validateField(key, formData[key]));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -61,28 +61,22 @@ const Register = () => {
       return;
     }
 
-    try {
-      const { ok, data } = await registerUser(formData);
-    
-      if (ok) {
+    registerUser(
+      formData,
+      () => {
         successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
         setTimeout(() => {
           navigate("/", { state: { showLogin: true } });
         }, 2000);
-      } else {
-        const errorType = data.error;
-        const message = data.message || "Error al crear el usuario";
-    
-        if (errorType === "email_exists") {
-          setErrors(prev => ({ ...prev, email: message }));
+      },
+      ({ data, message }) => {
+        if (data?.error === "email_exists") {
+          setErrors(prev => ({ ...prev, email: data.message }));
         }
-    
-        errorToast(message);
+        errorToast(message || "Hubo un error al conectar con el servidor");
       }
-    } catch (error) {
-      console.error("Error en el registro:", error);
-      errorToast("Hubo un error al conectar con el servidor");
-    }
+    );
+
   };
 
   return (

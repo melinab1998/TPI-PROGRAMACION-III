@@ -1,102 +1,69 @@
 const baseUrl = import.meta.env.VITE_BASE_SERVER_URL;
 
-export const registerUser = async (formData) => {
-    try {
-        const response = await fetch(`${baseUrl}/api/register`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-        });
+/*handleResponse:
+- Se encarga de verificar si la respuesta de la solicitud fetch es OK (200-299) o no.
+- Si la respuesta no es OK, lanza un error con los datos y el mensaje de error.*/
 
-        const responseData = await response.json();
-
-        return {
-            ok: response.ok,
-            data: responseData,
-        };
-    } catch (error) {
-        console.error("Error en registerUser:", error);
-        throw error;
+const handleResponse = async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+        throw { data, message: data.message || "Error en la solicitud" };
     }
+    return data;
 };
 
-export const getPets = async (options = {}) => {
-    try {
-        const response = await fetch(`${baseUrl}/api/pets`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                ...(options.headers || {}),
-            },
-        });
+/*onSuccess: La función a llamar cuando la solicitud es exitosa
+onError: La función a llamar cuando se produce un error*/
 
-        if (!response.ok) {
-            throw new Error("No se pudo obtener las mascotas");
-        }
-
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error al obtener mascotas:", error);
-        throw error;
-    }
+export const registerUser = (formData, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
 };
 
-export const getPetById = async (id) => {
-    try {
-        const response = await fetch(`${baseUrl}/api/pets/${id}`);
-        if (!response.ok) {
-            throw new Error("No se pudo obtener la mascota");
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error al obtener mascota por ID:", error);
-        throw error;
-    }
+export const getPets = (onSuccess, onError) => {
+    fetch(`${baseUrl}/api/pets`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
 };
 
-export const createDonation = async (formData) => {
-    try {
-        const response = await fetch(`${baseUrl}/donations`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Error al donar.");
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("Error en createDonation:", error);
-        throw error;
-    }
+export const getPetById = (id, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/pets/${id}`)
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
 };
 
+export const createDonation = (formData, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/donations`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
 
-export const loginUser = async (credentials) => {
-    try {
-        const response = await fetch(`${baseUrl}/api/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(credentials),
-        });
-
-        const data = await response.json();
-
-        return {
-            ok: response.ok,
-            data,
-        };
-    } catch (error) {
-        console.error("Error en loginUser:", error);
-        throw error;
-    }
+export const loginUser = (credentials, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
 };
