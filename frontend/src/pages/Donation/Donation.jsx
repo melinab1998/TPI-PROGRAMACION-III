@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import {errorToast} from '../../utils/notifications.js';
+import { errorToast } from '../../utils/notifications.js';
 import './Donation.css';
 import donationImg from "../../img/donation-alert.png";
 import { FaPaw } from 'react-icons/fa';
-import {validateDonationName, validateEmail, validateAmount, validatePaymentMethod} from '../../utils/validations.js';
+import { validateDonationName, validateEmail, validateAmount, validatePaymentMethod } from '../../utils/validations.js';
 import { createDonation } from '../../services/api.services.js';
 
 function Donation() {
@@ -55,39 +55,35 @@ function Donation() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     if (!validateForm()) {
       errorToast("Por favor completá todos los campos correctamente.");
       return;
     }
-  
-    try {
-      await createDonation(formData);
-  
-      Swal.fire({
-        title: "¡Gracias por tu donación!",
-        text: "Tu apoyo hace una gran diferencia 💖",
-        imageUrl: donationImg,
-        imageWidth: 300,
-        imageHeight: 300,
-        imageAlt: "Imagen de agradecimiento",
-        confirmButtonText: "Volver",
-        confirmButtonColor: "#CD5C5C"
-      });
-  
-      setFormData({
-        name: "",
-        email: "",
-        amount: "",
-        payment_method: "",
-        message: "",
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      errorToast("Ocurrió un error al procesar tu donación.");
-    }
+
+    createDonation(
+      formData,
+      () => {
+        Swal.fire({
+          title: "¡Gracias por tu donación!",
+          text: "Tu apoyo hace una gran diferencia 💖",
+          imageUrl: donationImg,
+          imageWidth: 300,
+          imageHeight: 300,
+          imageAlt: "Imagen de agradecimiento",
+          confirmButtonText: "Volver",
+          confirmButtonColor: "#CD5C5C",
+        });
+
+        setFormData(initialState);
+      },
+      (err) => {
+        errorToast("Ocurrió un error al procesar tu donación");
+        console.error("Error:", err);
+      }
+    );
   };
 
   return (
@@ -179,8 +175,9 @@ function Donation() {
 
                 <div className="d-flex justify-content-between mt-4">
                   <Button variant="secondary" className="btn-lost-pet-secondary" onClick={() => {
-                  window.scrollTo(0, 0);
-                  navigate('/');}}>Volver</Button>
+                    window.scrollTo(0, 0);
+                    navigate('/');
+                  }}>Volver</Button>
                   <Button type="submit" className="btn-lost-pet-primary">Donar ahora</Button>
                 </div>
               </Form>

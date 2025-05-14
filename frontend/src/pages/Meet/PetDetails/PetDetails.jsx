@@ -12,15 +12,11 @@ const PetDetails = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchPet = async () => {
-      try {
-        const data = await getPetById(id);
-        setPet(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };  
-    fetchPet();
+    getPetById(
+      id,
+      (data) => setPet(data),  
+      (error) => setError(error.message) 
+    );
   }, []);
 
   if (error) {
@@ -30,6 +26,7 @@ const PetDetails = () => {
   if (!pet) {
     return <div className="not-found">Cargando mascota...</div>;
   }
+
 
   return (
     <div className="container-pet-card">
