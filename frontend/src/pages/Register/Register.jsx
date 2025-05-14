@@ -5,9 +5,9 @@ import { BsTwitterX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import "./Register.css";
-import {errorToast, successToast} from '../../utils/notifications.js';
+import { errorToast, successToast } from '../../utils/notifications.js';
 import "react-toastify/dist/ReactToastify.css";
-import { validateUserName, validateEmail, validatePassword, validateConfirmPassword} from "../../utils/validations.js";
+import { validateUserName, validateEmail, validatePassword, validateConfirmPassword } from "../../utils/validations.js";
 import { registerUser } from "../../services/api.services.js"
 
 const Register = () => {
@@ -53,33 +53,31 @@ const Register = () => {
     return Object.keys(formData).every(key => validateField(key, formData[key]));
   };
 
- const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  if (!validateForm()) {
-    errorToast("Por favor complete todos los campos correctamente");
-    return;
-  }
-
-  registerUser(
-    formData,
-    () => {
-      successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
-      setTimeout(() => {
-        navigate("/", { state: { showLogin: true } });
-      }, 2000);
-    },
-    ({ data, error }) => {
-      if (data?.error === "email_exists") {
-        setErrors((prev) => ({ ...prev, email: data.message }));
-      }
-
-      const message =
-        data?.message || error?.message || "Hubo un error al conectar con el servidor";
-      errorToast(message);
+    if (!validateForm()) {
+      errorToast("Por favor complete todos los campos correctamente");
+      return;
     }
-  );
-};
+
+    registerUser(
+      formData,
+      () => {
+        successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
+        setTimeout(() => {
+          navigate("/", { state: { showLogin: true } });
+        }, 2000);
+      },
+      ({ data, message }) => {
+        if (data?.error === "email_exists") {
+          setErrors(prev => ({ ...prev, email: data.message }));
+        }
+        errorToast(message || "Hubo un error al conectar con el servidor");
+      }
+    );
+
+  };
 
   return (
     <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">

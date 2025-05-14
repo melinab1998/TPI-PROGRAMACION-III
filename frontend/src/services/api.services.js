@@ -1,25 +1,39 @@
 const baseUrl = import.meta.env.VITE_BASE_SERVER_URL;
 
+/*handleResponse:
+- Se encarga de verificar si la respuesta de la solicitud fetch es OK (200-299) o no.
+- Si la respuesta es OK, devuelve los datos en formato JSON.
+- Si la respuesta no es OK, lanza un error con los datos y el mensaje de error.*/
+
+const handleResponse = async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+        throw { data, message: data.message || "Error en la solicitud" };
+    }
+    return data;
+};
+
+/*handleError:
+- Se encarga de manejar el error que se produce cuando la solicitud fetch falla.
+- Registra el error en la consola y llama a la función onError con el error.*/
+
+const handleError = (error, onError) => {
+    console.error("Error:", error);
+    onError(error);
+};
+
+/*onSuccess: La función a llamar cuando la solicitud es exitosa
+onError: La función a llamar cuando se produce un error*/
+
 export const registerUser = (formData, onSuccess, onError) => {
     fetch(`${baseUrl}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
     })
-        .then(async (response) => {
-            const responseData = await response.json();
-            const result = { ok: response.ok, data: responseData };
-
-            if (response.ok) {
-                onSuccess(result);
-            } else {
-                onError(result);
-            }
-        })
-        .catch((error) => {
-            console.error("Error al registrar usuario:", error);
-            onError({ ok: false, error });
-        });
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch((error) => handleError(error, onError));
 };
 
 export const getPets = (onSuccess, onError) => {
@@ -27,67 +41,39 @@ export const getPets = (onSuccess, onError) => {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem("token")}`
-        }
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
     })
-        .then(async res => {
-            if (!res.ok) {
-                const errData = await res.json();
-                throw new Error(errData.message || "No se pudieron obtener las mascotas");
-            }
-            return res.json();
-        })
+        .then(handleResponse)
         .then(onSuccess)
-        .catch(onError);
+        .catch((error) => handleError(error, onError));
 };
 
 export const getPetById = (id, onSuccess, onError) => {
     fetch(`${baseUrl}/api/pets/${id}`)
-        .then(async res => {
-            if (!res.ok) {
-                const errData = await res.json();
-                throw new Error(errData.message || "No se pudo obtener la mascota");
-            }
-            return res.json();
-        })
+        .then(handleResponse)
         .then(onSuccess)
-        .catch(onError);
+        .catch((error) => handleError(error, onError));
 };
 
 export const createDonation = (formData, onSuccess, onError) => {
-    fetch(`${baseUrl}/donations`, {
+    fetch(`${baseUrl}/api/donations`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
     })
-        .then(async res => {
-            if (!res.ok) {
-                const errData = await res.json();
-                throw new Error(errData.message || "Error al procesar la donación");
-            }
-            return res.json();
-        })
+        .then(handleResponse)
         .then(onSuccess)
-        .catch(onError);
+        .catch((error) => handleError(error, onError));
 };
 
 export const loginUser = (credentials, onSuccess, onError) => {
     fetch(`${baseUrl}/api/login`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
     })
-        .then(async res => {
-            if (!res.ok) {
-                const errData = await res.json();
-                throw new Error(errData.message || "Error al iniciar sesión");
-            }
-            return res.json();
-        })
+        .then(handleResponse)
         .then(onSuccess)
-        .catch(onError);
+        .catch((error) => handleError(error, onError));
 };
