@@ -3,10 +3,11 @@ import "./Footer.css";
 import footerLogo from "../../img/logo.png";
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { BsTwitterX } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <footer className="bg-light py-5 border-top custom-footer">
+        <footer className="py-5 border-top custom-footer">
             <Container>
             <Row className="text-center text-md-start align-items-stretch h-100">
                 <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center h-100">
@@ -19,7 +20,7 @@ const Footer = () => {
                     <a href="#" className="links-footer">Medios de contacto</a>
                     </li>
                     <li>
-                    <a href="#"className="links-footer">Aplicación móvil</a>
+                    <Link to="/app-movil" className="links-footer">Aplicación móvil</Link>
                     </li>
                     <li>
                     <a href="#"className="links-footer">¿Cómo ayudar?</a>
@@ -27,8 +28,8 @@ const Footer = () => {
                 </ul>
                 </Col>
     
-                <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center my-4 my-md-0">
-                <img src={footerLogo} alt="Mi Hogar Logo" style={{ width: "80px" }} />
+                <Col md={4} className="d-flex flex-column align-items-center text-center h-100 my-4 my-md-0">
+                <img src={footerLogo} alt="Mi Hogar Logo" width={80} />
                 <div className="mt-3 d-flex justify-content-center gap-3">
                     <a href="#">
                         <FaFacebook size={40} />
@@ -65,6 +66,5 @@ const Footer = () => {
         </footer>
         );
     };
-
-
 export default Footer;
+

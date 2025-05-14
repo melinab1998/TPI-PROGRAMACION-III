@@ -8,11 +8,8 @@
 text-decoration: underline;
 }
 
-.custom-title{
-    color: #cd5c5c;
+
+footer{
+    background-color:#F8F3ED;
 }
 
-.custom-footer{
-    background-color: #F8F3ED !important;
-    border: none !important; 
-}

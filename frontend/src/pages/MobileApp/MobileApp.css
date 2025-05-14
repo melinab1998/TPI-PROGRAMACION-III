@@ -1,0 +1,53 @@
+.contacto-section {
+    padding: 4rem 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff5f0;
+}
+
+.qr-block {
+    border: 2px solid #f5c6b3;
+    padding: 2rem;
+    border-radius: 20px;
+    background-color: #fff7f5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.qr-block:hover {
+    transform: scale(1.02);
+}
+
+.qr-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin: 1rem 0;
+}
+
+.qr-texto,
+.download-texto {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #5C2E00;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.store-badge {
+    margin-top: 1rem;
+    width: 160px;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.store-badge:hover {
+    transform: scale(1.05);
+}
