@@ -41,8 +41,8 @@ const AdminDashboard = () => {
                             <div className="card-icon-container">
                                 <FaPaw className="card-icon" />
                             </div>
-                            <Card.Title className="card-title">Gestión de Mascotas</Card.Title>
-                            <Card.Text className="card-text">
+                            <Card.Title className="card-title-dash">Gestión de Mascotas</Card.Title>
+                            <Card.Text className="card-text-dash">
                                 Administra el listado completo de mascotas disponibles para adopción.
                                 Agrega nuevas mascotas, edita información existente o actualiza su estado.
                             </Card.Text>

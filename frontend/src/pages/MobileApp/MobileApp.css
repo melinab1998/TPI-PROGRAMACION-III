@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff5f0;
 }
 
 .qr-block {
@@ -19,6 +18,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    min-height: 600px;
 }
 
 .qr-block:hover {

@@ -112,14 +112,14 @@
     color: #CD5C5C;
 }
 
-.card-title {
+.card-title-dash{
     font-size: 1.5rem;
     font-weight: 600;
     color: #5D4037;
     margin-bottom: 1rem;
 }
 
-.card-text {
+.card-text-dash {
     color: #8D6E63;
     margin-bottom: 2rem;
     line-height: 1.6;
