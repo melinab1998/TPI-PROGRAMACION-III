@@ -1,0 +1,110 @@
+.pet-form-modal .modal-content {
+    background-color: #FFF8F0;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
+    border: none;
+}
+
+.pet-form-modal .modal-header {
+    background-color: #FFD3B5;
+    border-bottom: 1px solid #f5e6d8;
+    color: #5D4037;
+    font-weight: 600;
+}
+
+.pet-form-modal .modal-title {
+    font-size: 1.5rem;
+    color: #5D4037;
+}
+
+.pet-form-modal .form-label {
+    font-weight: 500;
+    color: #5D4037;
+}
+
+.pet-form-modal .form-control,
+.pet-form-modal .form-select {
+    border-radius: 6px;
+    border: 1px solid #F5E6D8;
+    background-color: #fff;
+    color: #5D4037;
+    transition: border-color 0.3s ease;
+}
+
+.pet-form-modal .form-control:focus,
+.pet-form-modal .form-select:focus {
+    border-color: #f6847a;
+    box-shadow: 0 0 0 0.2rem rgba(246, 132, 122, 0.25);
+}
+
+.pet-form-modal .form-check-label {
+    color: #5D4037;
+    font-weight: 500;
+}
+
+.pet-form-modal .alert-danger {
+    background-color: #ff8c7f;
+    border: none;
+    color: white;
+    font-weight: 500;
+}
+
+.pet-form-modal .modal-footer {
+    border-top: 1px solid #f5e6d8;
+}
+
+.pet-form-modal .btn-secondary {
+    background-color: #F5E6D8;
+    color: #5D4037;
+    border: none;
+}
+
+.pet-form-modal .btn-secondary:hover {
+    background-color: #8D6E63;
+    color: white;
+}
+
+.pet-form-modal .btn-primary {
+    background-color: #f6847a;
+    border: none;
+    color: white;
+}
+
+.pet-form-modal .btn-primary:hover {
+    background-color: #CD5C5C;
+}
+
+.pet-form-modal .modal-dialog {
+    z-index: 3000 !important;
+    max-height: 90vh;
+    margin-top: 80px;
+}
+
+.pet-form-modal .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .pet-form-modal .modal-dialog {
+        max-width: 90vw;
+        margin: 10vh auto;
+    }
+
+    .pet-form-modal .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+        background-color: #FFF8F0;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
+        border: none;
+    }
+
+    .pet-form-modal .modal-title {
+        font-size: 1.2rem;
+    }
+
+    .pet-form-modal .form-label {
+        font-size: 0.9rem;
+    }
+}

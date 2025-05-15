@@ -18,6 +18,7 @@ import MobileApp from "./pages/MobileApp/MobileApp";
 import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDashboard"
 import './utils/notifications.css';
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
+import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
 
 function App() {
 
@@ -51,6 +52,7 @@ const { userRole } = useContext(AuthenticationContext);
           <Route path="/donation" element={<Donation />} />
           <Route path="/adoption/:id" element={<AdoptionForm />} />
           <Route path="/app-movil" element={<MobileApp />} />
+          <Route path="/petsmanagement" element={<PetsManagement/>}/>
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/register" element={<Register />} />
