@@ -6,18 +6,51 @@ import { HashLink } from 'react-router-hash-link';
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { infoToast } from '../../utils/notifications.js';
-import { AuthenticationContext } from "../../services/auth/AuthContext.jsx"
+import { AuthenticationContext } from "../../services/auth/AuthContext.jsx";
 
 const NavBar = ({ toggleLogin }) => {
   const navigate = useNavigate();
-  const { token, handleUserLogout } = useContext(AuthenticationContext);
+  const { token, handleUserLogout, userRole } = useContext(AuthenticationContext);
 
   const handleLogout = () => {
-    handleUserLogout(); // Usamos la función del contexto
+    handleUserLogout();
     navigate("/", { state: { showLogin: true } });
     infoToast("Cerraste sesión con éxito");
   };
 
+  // NavBar para administradores
+  if (userRole === "admin") {
+    return (
+      <Navbar expand="lg" className="custom-navbar px-3">
+        <Container fluid>
+          <Navbar.Brand href="/">
+            <img src={logo} alt="Logo" className="custom-logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="main-navbar-nav" />
+          <Navbar.Collapse id="main-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/">
+                INICIO
+              </Nav.Link>
+              <Nav.Link as={Link} to="/petmanagement">
+                GESTIÓN DE MASCOTAS
+              </Nav.Link>
+              <Nav.Link as={Link} to="/adoption-requests">
+                SOLICITUDES DE ADOPCIÓN
+              </Nav.Link>
+            </Nav>
+            <div className="d-flex gap-2">
+              <Button variant="outline-primary" onClick={handleLogout}>
+                CERRAR SESIÓN
+              </Button>
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    );
+  }
+
+  // NavBar para usuarios normales
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
       <Container fluid>
