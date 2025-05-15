@@ -1,0 +1,69 @@
+.pet-delete-modal .modal-content {
+    background-color: #FFF8F0;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
+    overflow: hidden;
+    color: #5D4037;
+}
+
+.pet-delete-modal .modal-header {
+    background-color: #FFD3B5;
+    border-bottom: 1px solid #F5E6D8;
+}
+
+.pet-delete-modal .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #5D4037;
+    margin: 0;
+}
+
+.pet-delete-modal .modal-body {
+    font-size: 1rem;
+    padding: 1.5rem;
+    color: #5D4037;
+}
+
+.pet-delete-modal .modal-body strong {
+    color: #CD5C5C;
+}
+
+.pet-delete-modal .modal-footer {
+    border-top: 1px solid #F5E6D8;
+    background-color: #FFF8F0;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pet-delete-modal .btn-secondary {
+    background-color: #F5E6D8;
+    border: none;
+    color: #5D4037;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.pet-delete-modal .btn-secondary:hover {
+    background-color: #8D6E63;
+    color: white;
+}
+
+.pet-delete-modal .btn-danger {
+    background-color: #f6847a;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.pet-delete-modal .btn-danger:hover {
+    background-color: #CD5C5C;
+    color: white;
+}
+
+.pet-delete-modal .btn-danger svg {
+    vertical-align: middle;
+    margin-right: 0.4rem;
+}

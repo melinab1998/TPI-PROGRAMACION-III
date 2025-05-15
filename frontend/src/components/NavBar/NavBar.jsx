@@ -32,10 +32,10 @@ const NavBar = ({ toggleLogin }) => {
               <Nav.Link as={Link} to="/">
                 INICIO
               </Nav.Link>
-              <Nav.Link as={Link} to="/petmanagement">
+              <Nav.Link as={Link} to="/petsmanagement">
                 GESTIÓN DE MASCOTAS
               </Nav.Link>
-              <Nav.Link as={Link} to="/adoption-requests">
+              <Nav.Link as={Link} to="/#">
                 SOLICITUDES DE ADOPCIÓN
               </Nav.Link>
             </Nav>
