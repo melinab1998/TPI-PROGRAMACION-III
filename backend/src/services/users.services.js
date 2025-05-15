@@ -20,7 +20,7 @@ export const createUser = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-     
+
         const newUser = await User.create({
             user_name,
             email,
@@ -35,7 +35,7 @@ export const createUser = async (req, res) => {
     } catch (error) {
         console.error("Error al crear usuario:", error);
 
-        
+
         if (error.name === 'SequelizeUniqueConstraintError') {
             return res.status(409).json({
                 message: "Error en la base de datos: email ya registrado"
@@ -49,29 +49,36 @@ export const createUser = async (req, res) => {
 };
 
 
-export const loginUser = async (req, res) =>{
-    try{
-        const {email, password} = req.body
+export const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body
         const user = await User.findOne({
             where: {
                 email
             }
         });
-        if(!user){
+        if (!user) {
             return res.status(401).json({ message: "Email y/o contraseña incorrecta" });
         }
 
         const comparison = await bcrypt.compare(password, user.password)
 
-        if(!comparison){
-            return res.status(401).json({message: "Email y/o contraseña incorrecta"})
+        if (!comparison) {
+            return res.status(401).json({ message: "Email y/o contraseña incorrecta" })
         }
-        const user_name = user.user_name; 
-       
-        
+        const user_name = user.user_name;
+
         const secretKey = process.env.SECRETKEY
 
-        const token = jwt.sign({email}, secretKey, {expiresIn: '1h'})
+        const token = jwt.sign(
+            {
+                email: user.email,
+                role: user.role,           
+                user_name: user.user_name  
+            },
+            secretKey,
+            { expiresIn: '1h' }
+        );
 
         return res.status(200).json({
             message: "Inicio de sesión exitoso",
@@ -79,8 +86,7 @@ export const loginUser = async (req, res) =>{
             token
         });
 
-       
-    }catch (error){
+    } catch (error) {
         console.error("Error en el login:", error);
     }
 };
