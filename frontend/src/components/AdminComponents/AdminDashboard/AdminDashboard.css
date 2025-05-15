@@ -140,6 +140,14 @@
     background-color: #CD5C5C;
 }
 
+.users-card .card-icon-container {
+    background-color: rgba(255, 111, 97, 0.1); 
+}
+
+.shelters-card .card-icon-container {
+    background-color: rgba(205, 92, 92, 0.1); 
+}
+
 @media (max-width: 768px) {
     .dashboard-title {
         font-size: 2rem;
@@ -164,5 +172,10 @@
     .primary-btn {
         font-size: 0.9rem;
         padding: 0.6rem 1.2rem;
+    }
+
+    .stats-row .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 }
