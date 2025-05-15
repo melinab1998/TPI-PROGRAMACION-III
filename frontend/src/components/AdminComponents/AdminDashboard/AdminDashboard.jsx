@@ -58,8 +58,8 @@ const AdminDashboard = () => {
                             <div className="card-icon-container">
                                 <FaClipboardList className="card-icon" />
                             </div>
-                            <Card.Title className="card-title">Solicitudes de Adopción</Card.Title>
-                            <Card.Text className="card-text">
+                            <Card.Title className="card-title-dash">Solicitudes de Adopción</Card.Title>
+                            <Card.Text className="card-text-dash">
                                 Revisa y gestiona todas las solicitudes de adopción. Aprueba solicitudes,
                                 programa entrevistas y realiza seguimiento del proceso de adopción.
                             </Card.Text>
