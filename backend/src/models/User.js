@@ -29,5 +29,6 @@ export const User = sequelize.define("User", {
   tableName: 'users',     
   timestamps: false       
 });
-
+//Eso significa que un user puede hacer muchas solicitudes
+User.hasMany(Requests, { foreignKey: 'id_user' });
 export default User;

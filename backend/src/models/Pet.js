@@ -56,4 +56,7 @@ export const Pet = sequelize.define("Pet", {
     timestamps: false
 });
 
+//Eso significa que una mascota puede tener muchas solicitudes
+//Se puede hacer las relaciones en un archivo aparte
+Pet.hasMany(Requests, { foreignKey: 'id_pet' });
 export default Pet;
