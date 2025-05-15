@@ -3,47 +3,77 @@ import  sequelize  from "../config/db.js"
 import Users from './Users.js';
 import Pets from './Pets.js';
 
-export const Requests = sequelize.define("requests", {
-    id_request: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-    },
-    
-    id_user: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Users, 
-            key: "id_user"
-        }
-    },
-    id_pet: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Pets, 
-            key: "id_pet"
-        }
-    },
-    age: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    message: {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
-    state: {
-        type: DataTypes.ENUM("Pendiente", "Aceptado", "Rechazado"),
-        allowNull: false,
-        defaultValue: "Pendiente"
-    },
-    requestDate:{
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-}, {
-    tableName: 'requests',
-    timestamps: false
+const Requests = sequelize.define("requests", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastname: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  city: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  province: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  dni: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  housingType: {
+    type: DataTypes.STRING
+  },
+  ownershipStatus: {
+    type: DataTypes.STRING
+  },
+  ownerConsultation: {
+    type: DataTypes.STRING
+  },
+  hasCourtyard: {
+    type: DataTypes.STRING
+  },
+  hasPets: {
+    type: DataTypes.STRING
+  },
+  petsNeutered: {
+    type: DataTypes.STRING
+  },
+  hadOtherPets: {
+    type: DataTypes.STRING
+  },
+  reason: {
+    type: DataTypes.TEXT
+  },
+  vacationPlan: {
+    type: DataTypes.TEXT
+  },
+  movingPlan: {
+    type: DataTypes.TEXT
+  },
+  dailyWalks: {
+    type: DataTypes.STRING
+  },
+  whatsappFollowUp: {
+    type: DataTypes.STRING
+  },
+  termsAccepted: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  }
 });
 
+Requests.belongsTo(Users, { foreignKey: 'id_user' });
+Requests.belongsTo(Pets, { foreignKey: 'id_pet' });
 export default Requests;
