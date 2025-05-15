@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Layout from "./layout/Layout/Layout"
 import Home from "./pages/Home/Home"
 import Register from "./pages/Register/Register";
@@ -15,11 +15,14 @@ import Login from "./components/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MobileApp from "./pages/MobileApp/MobileApp";
+import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDashboard"
 import './utils/notifications.css';
+import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 
 function App() {
 
 const [showLogin, setShowLogin] = useState(false);
+const { userRole } = useContext(AuthenticationContext);
 
   const location = useLocation();
   useEffect(() => {
@@ -36,6 +39,9 @@ const [showLogin, setShowLogin] = useState(false);
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route index element={
+            userRole === "admin" ? <AdminDashboard /> : <Home />
+          }/>
           <Route index element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pets" element={<Pets />} />
