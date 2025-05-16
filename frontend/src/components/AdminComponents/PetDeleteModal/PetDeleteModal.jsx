@@ -1,15 +1,15 @@
 import { Modal, Button } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
-import "./PetDeleteModal.css"
+import "./PetDeleteModal.css"; 
 
-const PetDeleteModal = ({ show, onHide, onConfirm, petName }) => {
+const PetDeleteModal = ({ show, onHide, onConfirm, itemName, itemType }) => {
     return (
         <Modal show={show} onHide={onHide} centered className="pet-delete-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Confirmar Eliminación</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                ¿Estás seguro que deseas eliminar a <strong>{petName}</strong>? Esta acción no se puede deshacer.
+                ¿Estás seguro que deseas eliminar {itemType} <strong>{itemName}</strong>? Esta acción no se puede deshacer.
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onHide}>
