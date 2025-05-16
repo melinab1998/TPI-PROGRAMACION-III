@@ -21,6 +21,7 @@ import { AuthenticationContext } from "../../frontend/src/services/auth/AuthCont
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
 import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDashboard/SuperAdminDashboard";
 import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
+import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
           <Route path="/app-movil" element={<MobileApp />} />
           <Route path="/petsmanagement" element={<PetsManagement />} />
           <Route path="/usersmanagement" element={<UsersManagement/>}/>
+          <Route path="/sheltersmanagement" element={<SheltersManagement/>}/>
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/register" element={<Register />} />
