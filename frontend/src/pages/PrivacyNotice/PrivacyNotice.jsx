@@ -78,7 +78,7 @@ const PrivacyNotice = () => {
                     Conservamos sus datos personales solo durante el tiempo necesario para cumplir con los fines para los cuales fueron recolectados o para cumplir con obligaciones legales.
                 </p>
 
-                <h5 className="privacy-subtitle">9. Seguridad</h5>
+                <h5 className="privacy-subtitle">8. Seguridad</h5>
                 <p className="privacy-text">
                     Implementamos medidas técnicas y organizativas razonables para proteger sus datos personales contra pérdida, mal uso, acceso no autorizado, divulgación, alteración o destrucción.
                 </p>
