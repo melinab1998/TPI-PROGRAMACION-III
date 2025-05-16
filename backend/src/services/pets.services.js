@@ -15,7 +15,7 @@ export const getPetById = async (req, res) => {
         const {id} = req.params
         const pet = await Pet.findByPk(id)
         if(!pet){
-           return res.status(404).json({ message: "Ocurrió un error al obtener la mascota." });
+           return res.status(404).json({ message: "Mascota no encontrada." });
         }
         res.json(pet)
 
@@ -50,7 +50,7 @@ export const createPet = async (req, res) => {
         imageUrl
       });
   
-      res.status(201).json(newPet);
+      return res.status(201).json({ message: "Mascota creada exitosamente.", pet });
     } catch (error) {
       res.status(500).json({ message: "Ocurrió un error al crear la mascota." });
     }
@@ -80,9 +80,27 @@ export const createPet = async (req, res) => {
         adopted,  
         imageUrl
       })
-      res.status(200).json(pet);
+      return res.status(200).json({ message: "Mascota actualizada exitosamente.", pet });
 
     }catch(error){
       res.status(500).json({ message: "Error al actualizar la mascota." });
     }
   }
+
+
+export const deletePet = async(req, res) =>{
+  const {id} = req.params
+  try{
+    const pet = await Pet.findByPk(id);
+    if(!pet){
+      return res.status(404).json({ message: "Mascota no encontrada." });
+    }
+
+    await pet.destroy();
+    return res.status(200).json({ message: "Mascota eliminada exitosamente.", pet });
+
+
+  }catch (error){
+    res.status(500).json({ message: "Error al eliminar la mascota." });
+  }
+}

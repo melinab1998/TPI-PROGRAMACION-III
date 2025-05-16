@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaAndroid, FaApple } from "react-icons/fa";
 import "./MobileApp.css";
@@ -8,6 +8,10 @@ import GoogleStoreIcon from "../../img/google-play-badge-es.png";
 import AppStoreIcon from "../../img/app-store-badge.svg";
 
 const MobileApp = () => {
+    useEffect(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        }, []);
+
     return (
     <section className="contacto-section">
         <Container className="text-center">

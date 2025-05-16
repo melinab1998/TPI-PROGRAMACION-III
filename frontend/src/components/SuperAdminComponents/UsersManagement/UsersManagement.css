@@ -1,0 +1,146 @@
+.users-management {
+    padding: 3rem;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #5D4037;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.section-title .icon {
+    margin-right: 10px;
+    color: #f6847a;
+}
+
+.add-btn {
+    background-color: #f6847a;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #CD5C5C;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(205, 92, 92, 0.3);
+}
+
+.users-table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    width: 100%;
+}
+
+.users-table thead tr {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.users-table th {
+    background-color: #FFD3B5;
+    color: #5D4037;
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+}
+
+.users-table th:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.users-table th:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.users-table tbody tr {
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.users-table td {
+    padding: 1rem;
+    border: none;
+}
+
+.users-table td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.users-table td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.role-selector {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #F5E6D8;
+    border-radius: 6px;
+}
+
+.role-selector:focus {
+    box-shadow: none;
+    border-color: #ff8c7f;
+}
+
+.delete-btn {
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: indianred;
+    border-color: indianred;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.delete-btn:hover {
+    background-color: #CD5C5C;
+    border-color: #CD5C5C;
+    color: white;
+}
+
+.actions-column {
+    width: 100px;
+}
+
+.actions-cell {
+    width: 100px;
+    text-align: center;
+}
+
+.search-section {
+    margin-bottom: 1.5rem;
+}
+
+.search-section .input-group-text {
+    background-color: #FFF8F0;
+    border-color: #F5E6D8;
+}
+
+.search-section .form-control {
+    background-color: #FFF8F0;
+    border-color: #F5E6D8;
+}

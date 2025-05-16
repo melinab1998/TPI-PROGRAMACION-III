@@ -89,3 +89,14 @@ export const updatePet = (id, formData, onSuccess, onError) => {
         .then(onSuccess)
         .catch(onError);
 };
+
+export const deletePet = (id, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/pets/${id}`, {
+        method: "DELETE",
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+

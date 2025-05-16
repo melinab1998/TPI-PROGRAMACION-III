@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
-import { getPets, createPet, updatePet } from '../../../services/api.services.js';
+import { getPets, createPet, updatePet, deletePet } from '../../../services/api.services.js';
 import PetForm from "../PetForm/PetForm"
 import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import "../PetsManagement/PetsManagement.css"
@@ -109,10 +109,21 @@ const PetsManagement = () => {
         );
     };
     const handleDeleteSubmit = () => {
-        const updatedPets = pets.filter((pet) => pet.id_pet !== currentPet.id_pet);
-        setPets(updatedPets);
-        setShowDeleteModal(false);
-        setCurrentPet(null);
+
+        deletePet(
+            currentPet.id_pet,
+            (deletedPet) =>{
+                const updatedPets = pets.filter((pet) => 
+                    pet.id_pet !== currentPet.id_pet);
+                setPets(updatedPets);
+                setShowDeleteModal(false);
+                setCurrentPet(null);
+            },
+            (error) => {
+                console.error("Error al eliminar la  mascota:", error);
+                setError("No se pudo eliminar la mascota.");
+            }
+        );
     };
 
     const openEditModal = (pet) => {
@@ -140,7 +151,7 @@ const PetsManagement = () => {
             <div className="search-section mb-4">
                 <div className="input-group">
                     <span className="input-group-text">
-                        <FaSearch/>
+                        <FaSearch />
                     </span>
                     <input
                         type="text"
@@ -216,7 +227,8 @@ const PetsManagement = () => {
                 show={showDeleteModal}
                 onHide={() => setShowDeleteModal(false)}
                 onConfirm={handleDeleteSubmit}
-                petName={currentPet?.name}
+                itemName={currentPet?.name}
+                itemType="a la mascota"
             />
         </Container>
     );
