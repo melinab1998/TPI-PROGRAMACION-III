@@ -23,12 +23,12 @@
     align-items: center;
     gap: 0.5rem; 
     color: white;
-  }
-  
-  .icono-patita {
+}
+
+.icono-patita {
     font-size: 1.8rem;
     color: white;
-  }
+}
     
 .donation-text {
     text-align: center;
