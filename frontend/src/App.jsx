@@ -19,6 +19,9 @@ import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDas
 import './utils/notifications.css';
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
+import PrivacyNotice from "./pages/PrivacyNotice/PrivacyNotice";
+import CookiesNotice from "./pages/CookiesNotice/CookiesNotice";
 import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDashboard/SuperAdminDashboard";
 import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
 import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
@@ -61,7 +64,10 @@ function App() {
           <Route path="/donation" element={<Donation />} />
           <Route path="/adoption/:id" element={<AdoptionForm />} />
           <Route path="/app-movil" element={<MobileApp />} />
-          <Route path="/petsmanagement" element={<PetsManagement />} />
+          <Route path="/privacy-notice" element={<PrivacyNotice />} />
+          <Route path="/cookies-notice" element={<CookiesNotice />} />
+          <Route path="/terms-conditions" element={<TermsAndConditions />} />
+          <Route path="/petsmanagement" element={<PetsManagement/>}/>
           <Route path="/usersmanagement" element={<UsersManagement/>}/>
           <Route path="/sheltersmanagement" element={<SheltersManagement/>}/>
           <Route path="*" element={<NotFound />} />

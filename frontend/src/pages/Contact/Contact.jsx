@@ -16,9 +16,9 @@ const Contact = () => {
               Completá el formulario o escribinos por nuestras redes sociales:
             </p>
             <div className="contacto-redes">
-              <a href="#"><FaFacebookF /></a>
-              <a href="#"><FaXTwitter /></a>
-              <a href="#"><FaInstagram /></a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+              <a href="https://x.com/" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
             </div>
           </Col>
 
