@@ -83,7 +83,7 @@ const UsersManagement = () => {
                     </Col>
                 </Row>
             )}
-            <Table striped bordered hover responsive className="users-table">
+            <Table responsive className="users-table">
                 <thead>
                     <tr>
                         <th>Nombre de Usuario</th>

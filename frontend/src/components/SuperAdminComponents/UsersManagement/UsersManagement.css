@@ -72,6 +72,11 @@
     border-bottom-right-radius: 12px;
 }
 
+.users-table tbody tr {
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
 .users-table td {
     padding: 1rem;
     border: none;
@@ -124,4 +129,18 @@
 .actions-cell {
     width: 100px;
     text-align: center;
+}
+
+.search-section {
+    margin-bottom: 1.5rem;
+}
+
+.search-section .input-group-text {
+    background-color: #FFF8F0;
+    border-color: #F5E6D8;
+}
+
+.search-section .form-control {
+    background-color: #FFF8F0;
+    border-color: #F5E6D8;
 }
