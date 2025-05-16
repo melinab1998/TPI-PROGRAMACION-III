@@ -15,8 +15,8 @@ const SuperAdminDashboard = () => {
                     <Col md={6}>
                     <Card className="management-card">
                         <Card.Body>
-                            <div className="card-icon-container">
-                                <FaUsers className="card-icon stat-icon" />
+                            <div className="card-icon-container pets-card">
+                                <FaUsers className="card-icon" />
                             </div>
                             <Card.Title className="card-title-dash">Gestión de Usuarios</Card.Title>
                             <Card.Text className="card-text-dash">
@@ -25,23 +25,6 @@ const SuperAdminDashboard = () => {
                             </Card.Text>
                             <Link to="">
                                 <Button className="primary-btn">Administrar Usuarios</Button>
-                            </Link>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col md={6}>
-                    <Card className="management-card">
-                        <Card.Body>
-                            <div className="card-icon-container">
-                                <FaHome className="card-icon stat-icon" />
-                            </div>
-                            <Card.Title className="card-title-dash">Gestión de Refugios</Card.Title>
-                            <Card.Text className="card-text-dash">
-                                Gestiona los refugios asociados a la plataforma. Aprueba nuevos refugios,
-                                edita información y asigna administradores para cada organización.
-                            </Card.Text>
-                            <Link to="">
-                                <Button className="primary-btn">Administrar Refugios</Button>
                             </Link>
                         </Card.Body>
                     </Card>
@@ -64,10 +47,27 @@ const SuperAdminDashboard = () => {
                     </Card>
                 </Col>
                 <Col md={6}>
-                    <Card className="management-card requests-card">
+                    <Card className="management-card">
+                        <Card.Body>
+                            <div className="card-icon-container pets-card">
+                                <FaHome className="card-icon" />
+                            </div>
+                            <Card.Title className="card-title-dash">Gestión de Refugios</Card.Title>
+                            <Card.Text className="card-text-dash">
+                                Gestiona los refugios asociados a la plataforma. Aprueba nuevos refugios,
+                                edita información y asigna administradores para cada organización.
+                            </Card.Text>
+                            <Link to="">
+                                <Button className="primary-btn">Administrar Refugios</Button>
+                            </Link>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col md={6}>
+                    <Card className="management-card pets-card">
                         <Card.Body>
                             <div className="card-icon-container">
-                                <FaClipboardList className="stat-icon" />
+                                <FaClipboardList className="card-icon" />
                             </div>
                             <Card.Title className="card-title-dash">Solicitudes de Adopción</Card.Title>
                             <Card.Text className="card-text-dash">
