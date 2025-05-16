@@ -53,7 +53,7 @@ const AdminDashboard = () => {
                     </Card>
                 </Col>
                 <Col md={6}>
-                    <Card className="management-card requests-card">
+                    <Card className="management-card pets-card">
                         <Card.Body>
                             <div className="card-icon-container">
                                 <FaClipboardList className="card-icon" />
