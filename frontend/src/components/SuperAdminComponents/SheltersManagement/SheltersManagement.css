@@ -1,0 +1,193 @@
+/* SheltersManagement.css */
+.shelters-management {
+    padding: 3rem;
+    min-height: 60vh;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #5D4037;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.section-title .icon {
+    margin-right: 10px;
+    color: #f6847a;
+}
+
+.add-btn {
+    background-color: #f6847a;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    background-color: #CD5C5C;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(205, 92, 92, 0.3);
+}
+
+.shelter-card-admin {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(93, 64, 55, 0.1);
+    transition: all 0.3s ease;
+    background-color: #FFF8F0;
+}
+
+.shelter-card-admin:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(93, 64, 55, 0.15);
+}
+
+.shelter-header {
+    margin-bottom: 0.5rem;
+}
+
+.shelter-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #5D4037;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.25rem;
+}
+
+.shelter-icon {
+    font-size: 1rem;
+    color: #f6847a;
+}
+
+.shelter-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #8D6E63;
+    margin-bottom: 0.5rem;
+}
+
+.shelter-detail strong {
+    color: #5D4037;
+}
+
+.shelter-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-edit {
+    color: #5D4037;
+    border-color: #FFD3B5;
+    background-color: #FFD3B5;
+}
+
+.btn-outline-edit:hover {
+    background-color: #ff8c7f;
+    border-color: #ff8c7f;
+    color: white;
+}
+
+.btn-outline-delete {
+    color: #5D4037;
+    border-color: #F5E6D8;
+    background-color: #F5E6D8;
+}
+
+.btn-outline-delete:hover {
+    background-color: #CD5C5C;
+    border-color: #CD5C5C;
+    color: white;
+}
+
+.search-section {
+    width: 100%;
+    max-width: 300px;
+    margin: 0px auto;
+}
+
+.search-section input {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+}
+
+.search-section .input-group {
+    border: 1px solid #F5E6D8;
+    border-radius: 8px;
+    background-color: #FFF8F0;
+}
+
+.search-section .input-group-text {
+    background-color: #FFF8F0;
+    border: none;
+    color: #8D6E63;
+}
+
+.search-section .search-input {
+    background-color: #FFF8F0;
+    border: none;
+    color: #5D4037;
+}
+
+.search-section .search-input:focus {
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .add-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        margin: 0 auto;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin: 10px 0;
+    }
+
+    .shelter-actions {
+        flex-direction: row;
+    }
+
+    .action-btn {
+        width: auto;
+    }
+}
