@@ -163,7 +163,7 @@ const PetsManagement = () => {
             <div className="search-section mb-4">
                 <div className="input-group">
                     <span className="input-group-text">
-                        <FaSearch/>
+                        <FaSearch />
                     </span>
                     <input
                         type="text"
@@ -239,7 +239,8 @@ const PetsManagement = () => {
                 show={showDeleteModal}
                 onHide={() => setShowDeleteModal(false)}
                 onConfirm={handleDeleteSubmit}
-                petName={currentPet?.name}
+                itemName={currentPet?.name}
+                itemType="a la mascota"
             />
         </Container>
     );
