@@ -50,7 +50,7 @@ export const createPet = async (req, res) => {
         imageUrl
       });
   
-      return res.status(201).json({ message: "Mascota creada exitosamente.", pet });
+      return res.status(201).json({ message: "Mascota creada exitosamente.", newPet });
     } catch (error) {
       res.status(500).json({ message: "Ocurrió un error al crear la mascota." });
     }
