@@ -42,39 +42,49 @@ const Request = sequelize.define(
 		},
 		housingType: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		ownershipStatus: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		ownerConsultation: {
 			type: DataTypes.STRING,
 		},
 		hasCourtyard: {
-			type: DataTypes.STRING,
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
 		},
 		hasPets: {
-			type: DataTypes.STRING,
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
 		},
 		petsNeutered: {
 			type: DataTypes.STRING,
 		},
 		hadOtherPets: {
-			type: DataTypes.STRING,
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
 		},
 		reason: {
 			type: DataTypes.TEXT,
+			allowNull: false,
 		},
 		vacationPlan: {
 			type: DataTypes.TEXT,
+			allowNull: false,
 		},
 		movingPlan: {
 			type: DataTypes.TEXT,
+			allowNull: false,
 		},
 		dailyWalks: {
 			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		whatsappFollowUp: {
-			type: DataTypes.STRING,
+			type: DataTypes.BOOLEAN,
+			allowNull: false,
 		},
 		termsAccepted: {
 			type: DataTypes.BOOLEAN,
