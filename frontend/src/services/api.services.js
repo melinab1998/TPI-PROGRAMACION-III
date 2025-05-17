@@ -99,4 +99,41 @@ export const deletePet = (id, onSuccess, onError) => {
         .catch(onError);
 };
 
+export const deleteUser = (id, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/users/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
 
+export const updateUserRole = (id, newRole, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/users/${id}/role`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ role: newRole })
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const getUsers = (onSuccess, onError) => {
+    fetch(`${baseUrl}/api/users`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
