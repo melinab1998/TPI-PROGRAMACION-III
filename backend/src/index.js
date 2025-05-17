@@ -5,7 +5,7 @@ import petsRoutes from "./routes/pets.routes.js";
 import donationRoutes from "./routes/donations.routes.js";
 import requestRoutes from "./routes/requests.routes.js";
 import cors from "cors";
-import "./models/init.models.js";
+import initModels from "./models/init.models.js";
 
 const app = express();
 const PORT = process.env.EX_PORT || 3000;
@@ -14,7 +14,7 @@ const PORT = process.env.EX_PORT || 3000;
 app.use(express.json());
 
 app.use(cors());
-
+initModels();
 app.use(userRoutes);
 app.use(petsRoutes);
 app.use(donationRoutes);
