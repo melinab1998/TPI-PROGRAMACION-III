@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://github.com/melinab1998/TPI-PROGRAMACION-III/blob/main/frontend/src/img/logo.png?raw=true" alt="Logo-MiHogar" width="200"/>
+  <img src="https://raw.githubusercontent.com/melinab1998/TPI-PROGRAMACION-III/main/frontend/src/img/logo.png" alt="Logo-MiHogar" width="200"/>
 </p>
 
 ## Descripción
-**Mi Hogar** es una plataforma web dedicada a mejorar la vida de las mascotas y sus familias. Permite publicar mascotas en adopción, reportar mascotas perdidas y acceder a una tienda online con productos para el cuidado animal.
+**Mi Hogar** es una plataforma web dedicada a mejorar la vida de las mascotas y sus familias. Permite publicar mascotas en adopción, postularse como adoptante, reportar mascotas perdidas o encontradas.
 
 ## Funcionalidades principales
 
@@ -13,12 +13,8 @@
 - **Mascotas perdidas** 🔎  
   Reportá mascotas perdidas o encontradas y ayudá a reunirlas con sus familias.
 
-- **Petshop online** 🛍️  
-  Comprá alimentos, juguetes y accesorios para tu mascota.
-
 
 ### Frontend:
-
 
 - ![HTML5](https://img.shields.io/badge/-HTML5-333333?style=flat&logo=HTML5)
 
@@ -31,9 +27,12 @@
 - ![Bootstrap](https://img.shields.io/badge/-Bootstrap-333333?style=flat-square&logo=bootstrap)
 
 ### Backend:
+
 - ![NodeJS](https://img.shields.io/badge/Node.js-333333?logo=node.js&logoColor=white)
 
-- ![SQlite](https://img.shields.io/badge/-SQlite-333333?style=flat&logo=sqlite)
+- ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-333333?style=flat&logo=PostgreSQL)
+
+- ![Docker](https://img.shields.io/badge/-Docker-333333?style=flat&logo=docker)
 
 ## Equipo de desarrollo
 

@@ -1,65 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
+import { getPets, createPet, updatePet, deletePet } from '../../../services/api.services.js';
 import PetForm from "../PetForm/PetForm"
 import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import "../PetsManagement/PetsManagement.css"
 
 const PetsManagement = () => {
-    const [pets, setPets] = useState([
-        {
-            id_pet: 1,
-            name: "Max",
-            species: "Perro",
-            race: "Labrador",
-            age: 3,
-            weight: 25.5,
-            gender: "Macho",
-            description: "Perro juguetón y cariñoso.",
-            shelter: "Refugio Esperanza",
-            adopted: false,
-            imageUrl: "https://images.unsplash.com/photo-1552053831-71594a27632d?w=300"
-        },
-        {
-            id_pet: 2,
-            name: "Luna",
-            species: "Gato",
-            race: "Siamés",
-            age: 2,
-            weight: 4.2,
-            gender: "Hembra",
-            description: "Gata tranquila que disfruta de los mimos.",
-            shelter: "Hogar Felino",
-            adopted: true,
-            imageUrl: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300"
-        },
-        {
-            id_pet: 3,
-            name: "Rocky",
-            species: "Perro",
-            race: "Bulldog",
-            age: 4,
-            weight: 18.0,
-            gender: "Macho",
-            description: "Tranquilo y amigable con niños.",
-            shelter: "Patitas Felices",
-            adopted: false,
-            imageUrl: "https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=300"
-        },
-        {
-            id_pet: 4,
-            name: "Mía",
-            species: "Gato",
-            race: "Persa",
-            age: 1,
-            weight: 3.8,
-            gender: "Hembra",
-            description: "Juguetona y curiosa.",
-            shelter: "Gatitos Unidos",
-            adopted: false,
-            imageUrl: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=300"
-        }
-    ]);
+    const [pets, setPets] = useState([]);
+     useEffect(() => {
+        getPets(
+          (data) => setPets(data),
+          (error) => {
+            errorToast(error.message || "Error al obtener mascotas");
+            console.error("Error fetching pets:", error);
+          }
+        );
+      }, []);
+
 
     const [formData, setFormData] = useState({
         name: '',
@@ -115,27 +73,57 @@ const PetsManagement = () => {
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
-        const newPet = { ...formData, id_pet: pets.length + 1 };
-        setPets([...pets, newPet]);
-        setShowAddModal(false);
-        resetForm();
+        
+        createPet(
+            formData,
+            (newPet) => {
+                setPets([...pets, newPet]);
+                setShowAddModal(false);
+                resetForm();
+            },
+            (error) => {
+                console.error("Error al agregar mascota:", error);
+                setError("No se pudo agregar la mascota.");
+            }
+        );
     };
-
+    
     const handleEditSubmit = (e) => {
         e.preventDefault();
-        const updatedPets = pets.map((pet) =>
-            pet.id_pet === currentPet.id_pet ? { ...formData, id_pet: currentPet.id_pet } : pet
+    
+        updatePet(
+            currentPet.id_pet,   
+            formData,             
+            (updatedPet) => {     
+                const updatedPets = pets.map((pet) =>
+                    pet.id_pet === updatedPet.id_pet ? updatedPet : pet
+                );
+                setPets(updatedPets);       
+                setShowEditModal(false);    
+                resetForm();                
+            },
+            (error) => {
+                console.error("Error al actualizar mascota:", error);
+                setError("No se pudo actualizar la mascota.");
+            }
         );
-        setPets(updatedPets);
-        setShowEditModal(false);
-        resetForm();
     };
-
     const handleDeleteSubmit = () => {
-        const updatedPets = pets.filter((pet) => pet.id_pet !== currentPet.id_pet);
-        setPets(updatedPets);
-        setShowDeleteModal(false);
-        setCurrentPet(null);
+
+        deletePet(
+            currentPet.id_pet,
+            (deletedPet) =>{
+                const updatedPets = pets.filter((pet) => 
+                    pet.id_pet !== currentPet.id_pet);
+                setPets(updatedPets);
+                setShowDeleteModal(false);
+                setCurrentPet(null);
+            },
+            (error) => {
+                console.error("Error al eliminar la  mascota:", error);
+                setError("No se pudo eliminar la mascota.");
+            }
+        );
     };
 
     const openEditModal = (pet) => {
@@ -163,7 +151,7 @@ const PetsManagement = () => {
             <div className="search-section mb-4">
                 <div className="input-group">
                     <span className="input-group-text">
-                        <FaSearch/>
+                        <FaSearch />
                     </span>
                     <input
                         type="text"
@@ -239,7 +227,8 @@ const PetsManagement = () => {
                 show={showDeleteModal}
                 onHide={() => setShowDeleteModal(false)}
                 onConfirm={handleDeleteSubmit}
-                petName={currentPet?.name}
+                itemName={currentPet?.name}
+                itemType="a la mascota"
             />
         </Container>
     );

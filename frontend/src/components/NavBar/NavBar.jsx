@@ -35,7 +35,7 @@ const NavBar = ({ toggleLogin }) => {
               <Nav.Link as={Link} to="/petsmanagement">
                 GESTIÓN DE MASCOTAS
               </Nav.Link>
-              <Nav.Link as={Link} to="/#">
+              <Nav.Link as={Link} to="/adoptionrequests">
                 SOLICITUDES DE ADOPCIÓN
               </Nav.Link>
             </Nav>
@@ -48,8 +48,45 @@ const NavBar = ({ toggleLogin }) => {
         </Container>
       </Navbar>
     );
+  } else if (userRole === "superadmin") {
+    return (
+      <Navbar expand="lg" className="custom-navbar px-3">
+        <Container fluid>
+          <Navbar.Brand href="/">
+            <img src={logo} alt="Logo" className="custom-logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="main-navbar-nav" />
+          <Navbar.Collapse id="main-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/">
+                INICIO
+              </Nav.Link>
+              <Nav.Link as={Link} to="/">
+                SOLICITUDES DE ADOPCIÓN
+              </Nav.Link>
+              <NavDropdown title="GESTIÓN" id="management-dropdown">
+                <NavDropdown.Item as={Link} to="/petsmanagement">
+                  GESTIÓN DE MASCOTAS
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/usersmanagement">
+                  GESTIÓN DE USUARIOS
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/sheltersmanagement">
+                  GESTIÓN DE REFUGIOS
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <div className="d-flex gap-2">
+              <Button variant="outline-primary" onClick={handleLogout}>
+                CERRAR SESIÓN
+              </Button>
+            </div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    );
   }
-
+  
   // NavBar para usuarios normales
   return (
     <Navbar expand="lg" className="custom-navbar px-3">

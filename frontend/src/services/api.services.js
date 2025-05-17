@@ -67,3 +67,36 @@ export const loginUser = (credentials, onSuccess, onError) => {
         .then(onSuccess)
         .catch(onError);
 };
+
+export const createPet = (formData, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/pets`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const updatePet = (id, formData, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/pets/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const deletePet = (id, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/pets/${id}`, {
+        method: "DELETE",
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+

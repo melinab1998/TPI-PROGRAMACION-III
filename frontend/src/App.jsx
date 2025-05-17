@@ -19,11 +19,17 @@ import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDas
 import './utils/notifications.css';
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
+import PrivacyNotice from "./pages/PrivacyNotice/PrivacyNotice";
+import CookiesNotice from "./pages/CookiesNotice/CookiesNotice";
+import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDashboard/SuperAdminDashboard";
+import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
+import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
 
 function App() {
 
-const [showLogin, setShowLogin] = useState(false);
-const { userRole } = useContext(AuthenticationContext);
+  const [showLogin, setShowLogin] = useState(false);
+  const { userRole } = useContext(AuthenticationContext);
 
   const location = useLocation();
   useEffect(() => {
@@ -32,7 +38,7 @@ const { userRole } = useContext(AuthenticationContext);
       // Limpia el estado para evitar que se vuelva a abrir si se recarga
       window.history.replaceState({}, document.title);
     }
-  
+
     document.body.className = location.pathname === "/register" ? "custom-register" : "default-body";
   }, [location]);
 
@@ -40,9 +46,15 @@ const { userRole } = useContext(AuthenticationContext);
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={
-            userRole === "admin" ? <AdminDashboard /> : <Home />
-          }/>
+          <Route
+            index
+            element={
+              userRole === "superadmin"
+                ? <SuperAdminDashboard />
+                : userRole === "admin"
+                  ? <AdminDashboard />
+                  : <Home />
+            } />
           <Route index element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/pets" element={<Pets />} />
@@ -52,12 +64,17 @@ const { userRole } = useContext(AuthenticationContext);
           <Route path="/donation" element={<Donation />} />
           <Route path="/adoption/:id" element={<AdoptionForm />} />
           <Route path="/app-movil" element={<MobileApp />} />
+          <Route path="/privacy-notice" element={<PrivacyNotice />} />
+          <Route path="/cookies-notice" element={<CookiesNotice />} />
+          <Route path="/terms-conditions" element={<TermsAndConditions />} />
           <Route path="/petsmanagement" element={<PetsManagement/>}/>
+          <Route path="/usersmanagement" element={<UsersManagement/>}/>
+          <Route path="/sheltersmanagement" element={<SheltersManagement/>}/>
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/register" element={<Register />} />
       </Routes>
-      
+
       <Login showLogin={showLogin} toggleLogin={() => setShowLogin(false)} />
       <ToastContainer />
     </>
