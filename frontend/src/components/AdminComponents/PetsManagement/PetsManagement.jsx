@@ -5,6 +5,7 @@ import { getPets, createPet, updatePet, deletePet } from '../../../services/api.
 import PetForm from "../PetForm/PetForm"
 import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import "../PetsManagement/PetsManagement.css"
+import {errorToast} from "../../../utils/notifications.js"
 
 const PetsManagement = () => {
     const [pets, setPets] = useState([]);
@@ -83,7 +84,7 @@ const PetsManagement = () => {
             },
             (error) => {
                 console.error("Error al agregar mascota:", error);
-                setError("No se pudo agregar la mascota.");
+                errorToast("No se pudo agregar la mascota.");
             }
         );
     };
@@ -104,7 +105,7 @@ const PetsManagement = () => {
             },
             (error) => {
                 console.error("Error al actualizar mascota:", error);
-                setError("No se pudo actualizar la mascota.");
+                errorToast("No se pudo actualizar la mascota.");
             }
         );
     };
@@ -121,7 +122,7 @@ const PetsManagement = () => {
             },
             (error) => {
                 console.error("Error al eliminar la  mascota:", error);
-                setError("No se pudo eliminar la mascota.");
+                errorToast("No se pudo eliminar la mascota.");
             }
         );
     };
