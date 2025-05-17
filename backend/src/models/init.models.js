@@ -11,5 +11,4 @@ function initModels() {
 	Request.belongsTo(User, { foreignKey: "id_user" });
 }
 
-export { User, Pet, Request };
 export default initModels;
