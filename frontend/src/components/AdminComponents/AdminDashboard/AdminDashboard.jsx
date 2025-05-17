@@ -46,7 +46,7 @@ const AdminDashboard = () => {
                                 Administra el listado completo de mascotas disponibles para adopción.
                                 Agrega nuevas mascotas, edita información existente o actualiza su estado.
                             </Card.Text>
-                            <Link to="">
+                            <Link to="/petsmanagement">
                                 <Button className="primary-btn">Administrar Mascotas</Button>
                             </Link>
                         </Card.Body>
@@ -63,7 +63,7 @@ const AdminDashboard = () => {
                                 Revisa y gestiona todas las solicitudes de adopción. Aprueba solicitudes,
                                 programa entrevistas y realiza seguimiento del proceso de adopción.
                             </Card.Text>
-                            <Link to="">
+                            <Link to="/requestsmanagement">
                                 <Button className="primary-btn">Ver Solicitudes</Button>
                             </Link>
                         </Card.Body>
