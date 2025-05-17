@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { Table, Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { FaUsers, FaSave, FaTrash, FaSearch } from "react-icons/fa";
-import { getUsers, deleteUser } from "../../../services/api.services.js";
+import { getUsers, deleteUser, updateUserRole } from "../../../services/api.services.js";
 import "./UsersManagement.css";
 import PetDeleteModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal";
-import {errorToast} from "../../../utils/notifications.js"
+import { errorToast, successToast } from "../../../utils/notifications.js"
+
 
 const UsersManagement = () => {
     const [users, setUsers] = useState([]);
@@ -12,10 +13,7 @@ const UsersManagement = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
     const [hasChanges, setHasChanges] = useState(false);
-
-    const filteredUsers = users.filter(user =>
-        user.user_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const [modifiedUsers, setModifiedUsers] = useState({});
 
     useEffect(() => {
         getUsers(
@@ -42,15 +40,78 @@ const UsersManagement = () => {
                 setUsers((prevUsers) =>
                     prevUsers.filter((user) => user.id_user !== userToDelete.id_user)
                 );
+                successToast(`Usuario "${userToDelete.user_name}" eliminado correctamente.`);
                 setShowDeleteModal(false);
                 setUserToDelete(null);
             },
             (error) => {
                 console.error("Error al eliminar usuario:", error);
-                errorToast("Error al eliminar usuario");
+                errorToast(`Error al eliminar usuario "${userToDelete.user_name}".`);
             }
         );
     };
+
+    const handleRoleChange = (userId, newRole) => {
+        setUsers((prevUsers) =>
+            prevUsers.map((user) =>
+                user.id_user === userId ? { ...user, role: newRole } : user
+            )
+        );
+
+        setModifiedUsers((prev) => ({
+            ...prev,
+            [userId]: newRole,
+        }));
+
+        setHasChanges(true);
+    };
+
+    const saveChanges = () => {
+        const entries = Object.entries(modifiedUsers);
+        if (entries.length === 0) {
+            errorToast("No hay cambios para guardar.");
+            return;
+        }
+
+        let successCount = 0;
+        let failCount = 0;
+
+        entries.forEach(([id, newRole]) => {
+            updateUserRole(
+                id,
+                newRole,
+                () => {
+                    successCount++;
+                    if (successCount + failCount === entries.length) {
+                        postSave(successCount, failCount);
+                    }
+                },
+                (error) => {
+                    console.error(`Error al actualizar rol de usuario ${id}:`, error);
+                    failCount++;
+                    if (successCount + failCount === entries.length) {
+                        postSave(successCount, failCount);
+                    }
+                }
+            );
+        });
+    };
+
+    const postSave = (successCount, failCount) => {
+        if (successCount > 0) {
+            successToast(`${successCount} rol(es) actualizado(s) correctamente.`);
+        }
+        if (failCount > 0) {
+            errorToast(`${failCount} cambio(s) de rol no se pudieron guardar.`);
+        }
+
+        setModifiedUsers({});
+        setHasChanges(false);
+    };
+
+    const filteredUsers = users.filter((user) =>
+        user.user_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <Container className="users-management">
@@ -80,15 +141,13 @@ const UsersManagement = () => {
             {hasChanges && (
                 <Row className="mb-3">
                     <Col className="text-end">
-                        <Button
-                            className="add-btn"
-                            onClick={saveChanges}
-                        >
+                        <Button className="add-btn" onClick={saveChanges}>
                             <FaSave /> Guardar Cambios
                         </Button>
                     </Col>
                 </Row>
             )}
+
             <Table responsive className="users-table">
                 <thead>
                     <tr>
@@ -100,13 +159,15 @@ const UsersManagement = () => {
                 </thead>
                 <tbody>
                     {filteredUsers.map((user) => (
-                        <tr key={user.id_user} className="user-row"> 
+                        <tr key={user.id_user} className="user-row">
                             <td>{user.user_name}</td>
                             <td>{user.email}</td>
                             <td>
                                 <Form.Select
                                     value={user.role}
-                                    onChange={(e) => handleRoleChange(user.id_user, e.target.value)}
+                                    onChange={(e) =>
+                                        handleRoleChange(user.id_user, e.target.value)
+                                    }
                                     className="role-selector"
                                 >
                                     <option value="user">Usuario</option>
