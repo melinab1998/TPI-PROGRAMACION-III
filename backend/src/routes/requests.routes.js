@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createRequest } from "../services/request.services";
-import { verifyToken } from "../middlewares/auth";
+import { createRequest } from "../services/request.services.js";
+import { verifyToken } from "../middlewares/auth.js";
 
 const router = Router();
 

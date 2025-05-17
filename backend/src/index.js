@@ -4,8 +4,8 @@ import userRoutes from "./routes/users.routes.js";
 import petsRoutes from "./routes/pets.routes.js";
 import donationRoutes from "./routes/donations.routes.js";
 import requestRoutes from "./routes/requests.routes.js";
-
 import cors from "cors";
+import "./models/init.models.js";
 
 const app = express();
 const PORT = process.env.EX_PORT || 3000;

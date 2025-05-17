@@ -1,7 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import Users from "./Users.js";
-import Pets from "./Pets.js";
 
 const Request = sequelize.define(
 	"Request",
@@ -88,7 +86,4 @@ const Request = sequelize.define(
 		//timestamps: false, nos interesa saber cuando se creo y cuando se cambio este modelo.
 	}
 );
-//Cada solicitud pertenece a una mascota relacionado con su id unico
-Request.belongsTo(Pets, { foreignKey: "id_pet" });
-Request.belongsTo(Users, { foreignKey: "id_user" });
 export default Request;
