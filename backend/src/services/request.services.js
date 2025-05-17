@@ -3,6 +3,8 @@ import Request from "../models/Request.js";
 export const createRequest = async (req, res) => {
 	try {
 		const {
+			id_user,
+			id_pet,
 			name,
 			lastname,
 			address,
@@ -23,8 +25,6 @@ export const createRequest = async (req, res) => {
 			dailyWalks,
 			whatsappFollowUp,
 			termsAccepted,
-			id_user,
-			id_pet
 		} = req.body;
 
 		// Validación de campos obligatorios
@@ -42,16 +42,18 @@ export const createRequest = async (req, res) => {
 		) {
 			return res.status(400).json({ error: "Faltan campos obligatorios." });
 		}
-		
-        const existingRequest = await Requests.findOne({
+
+		const existingRequest = await Requests.findOne({
 			where: {
 				id_user,
-				id_pet
-			}
+				id_pet,
+			},
 		});
 
 		if (existingRequest) {
-			return res.status(409).json({ error: "Ya existe una solicitud de este usuario para esta mascota." });
+			return res.status(409).json({
+				error: "Ya existe una solicitud de este usuario para esta mascota.",
+			});
 		}
 
 		const newRequest = await Request.create({
@@ -76,7 +78,7 @@ export const createRequest = async (req, res) => {
 			whatsappFollowUp,
 			termsAccepted,
 			id_user,
-			id_pet
+			id_pet,
 		});
 
 		res.status(201).json(newRequest);
@@ -84,7 +86,7 @@ export const createRequest = async (req, res) => {
 		console.error(error);
 		res.status(500).json({
 			error: "server_error",
-			message: "Error al crear la solicitud"
+			message: "Error al crear la solicitud",
 		});
 	}
 };
