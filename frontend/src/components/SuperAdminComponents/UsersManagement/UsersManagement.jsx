@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Table, Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { FaUsers, FaSave, FaTrash, FaSearch } from "react-icons/fa";
-import { getUsers } from "../../../services/api.services.js";
-import DeleteConfirmationModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal"
+import { getUsers, deleteUser } from "../../../services/api.services.js";
 import "./UsersManagement.css";
+import PetDeleteModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal";
+import {errorToast} from "../../../utils/notifications.js"
 
 const UsersManagement = () => {
     const [users, setUsers] = useState([]);
@@ -27,29 +28,28 @@ const UsersManagement = () => {
     }, []);
 
     const handleDeleteClick = (userId) => {
-        const user = users.find(u => u.id === userId);
+        const user = users.find((u) => u.id_user === userId);
         setUserToDelete(user);
         setShowDeleteModal(true);
     };
 
     const confirmDelete = () => {
-        setUsers(users.filter(user => user.id !== userToDelete.id));
-        setShowDeleteModal(false);
-    };
+        if (!userToDelete) return;
 
-    const handleRoleChange = (id, newRole) => {
-        setUsers(prev =>
-            prev.map(user =>
-                user.id === id ? { ...user, role: newRole } : user
-            )
+        deleteUser(
+            userToDelete.id_user,
+            () => {
+                setUsers((prevUsers) =>
+                    prevUsers.filter((user) => user.id_user !== userToDelete.id_user)
+                );
+                setShowDeleteModal(false);
+                setUserToDelete(null);
+            },
+            (error) => {
+                console.error("Error al eliminar usuario:", error);
+                errorToast("Error al eliminar usuario");
+            }
         );
-        setHasChanges(true);
-    };
-
-    const saveChanges = () => {
-        // Aquí iría la lógica para guardar los cambios en la API
-        console.log("Changes saved:", users);
-        setHasChanges(false);
     };
 
     return (
@@ -100,13 +100,13 @@ const UsersManagement = () => {
                 </thead>
                 <tbody>
                     {filteredUsers.map((user) => (
-                        <tr key={user.id} className="user-row"> {/* Añadida clase user-row */}
+                        <tr key={user.id_user} className="user-row"> 
                             <td>{user.user_name}</td>
                             <td>{user.email}</td>
                             <td>
                                 <Form.Select
                                     value={user.role}
-                                    onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                                    onChange={(e) => handleRoleChange(user.id_user, e.target.value)}
                                     className="role-selector"
                                 >
                                     <option value="user">Usuario</option>
@@ -118,7 +118,7 @@ const UsersManagement = () => {
                                 <Button
                                     variant="danger"
                                     size="sm"
-                                    onClick={() => handleDeleteClick(user.id)}
+                                    onClick={() => handleDeleteClick(user.id_user)}
                                     className="delete-btn"
                                 >
                                     <FaTrash />
@@ -129,7 +129,7 @@ const UsersManagement = () => {
                 </tbody>
             </Table>
 
-            <DeleteConfirmationModal
+            <PetDeleteModal
                 show={showDeleteModal}
                 onHide={() => setShowDeleteModal(false)}
                 onConfirm={confirmDelete}
