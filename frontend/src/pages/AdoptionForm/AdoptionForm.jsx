@@ -2,7 +2,8 @@ import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import './AdoptionForm.css';
 import { errorToast, successToast } from '../../utils/notifications.js';
-import { validateName, validateLastName, validateAddress, validatePhone, validateCity, validateProvince, validateDNI, validateHousingType, 
+import {
+  validateName, validateLastName, validateAddress, validatePhone, validateCity, validateProvince, validateDNI, validateHousingType,
   validateOwnershipStatus,
   validateOwnerConsultation,
   validateCourtyard,
@@ -102,7 +103,7 @@ const AdoptionForm = () => {
         error = validateHasPets(value);
         break;
       case "petsNeutered":
-        error = validatePetsNeutered(value, formData.hasPets === 'yes');
+        error = validatePetsNeutered(value, formData.hasPets === true);
         break;
       case "hadOtherPets":
         error = validateHadOtherPets(value);
@@ -133,7 +134,7 @@ const AdoptionForm = () => {
   const validateForm = () => {
     let isValid = true;
     const fieldsToValidate = Object.keys(formData);
-    
+
     fieldsToValidate.forEach(field => {
       if (!validateField(field, formData[field])) {
         isValid = false;
@@ -148,13 +149,15 @@ const AdoptionForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData);
+
     e.preventDefault();
-  
+
     if (!validateForm()) {
       errorToast("Por favor complete todos los campos correctamente");
       return;
     }
-  
+
     // Simulación de envío exitoso
     successToast("¡Formulario enviado con éxito! Nos pondremos en contacto contigo pronto.");
     setFormData(initialFormState);
@@ -189,9 +192,9 @@ const AdoptionForm = () => {
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="name">
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Nombre" 
+                    <Form.Control
+                      type="text"
+                      placeholder="Nombre"
                       value={formData.name}
                       onChange={handleData}
                       onBlur={(e) => validateField("name", e.target.value)}
@@ -204,9 +207,9 @@ const AdoptionForm = () => {
 
                   <Form.Group as={Col} controlId="lastname">
                     <Form.Label>Apellido</Form.Label>
-                    <Form.Control 
-                      type="text" 
-                      placeholder="Apellido" 
+                    <Form.Control
+                      type="text"
+                      placeholder="Apellido"
                       value={formData.lastname}
                       onChange={handleData}
                       onBlur={(e) => validateField("lastname", e.target.value)}
@@ -220,8 +223,8 @@ const AdoptionForm = () => {
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="address">
                     <Form.Label>Dirección</Form.Label>
-                    <Form.Control 
-                      placeholder="San Lorenzo 2500" 
+                    <Form.Control
+                      placeholder="San Lorenzo 2500"
                       value={formData.address}
                       onChange={handleData}
                       onBlur={(e) => validateField("address", e.target.value)}
@@ -234,8 +237,8 @@ const AdoptionForm = () => {
 
                   <Form.Group as={Col} controlId="phone">
                     <Form.Label>Teléfono</Form.Label>
-                    <Form.Control 
-                      placeholder="celular/fijo" 
+                    <Form.Control
+                      placeholder="celular/fijo"
                       value={formData.phone}
                       onChange={handleData}
                       onBlur={(e) => validateField("phone", e.target.value)}
@@ -249,7 +252,7 @@ const AdoptionForm = () => {
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="city">
                     <Form.Label>Localidad</Form.Label>
-                    <Form.Control 
+                    <Form.Control
                       value={formData.city}
                       onChange={handleData}
                       onBlur={(e) => validateField("city", e.target.value)}
@@ -262,7 +265,7 @@ const AdoptionForm = () => {
 
                   <Form.Group as={Col} controlId="province">
                     <Form.Label>Provincia</Form.Label>
-                    <Form.Control 
+                    <Form.Control
                       value={formData.province}
                       onChange={handleData}
                       onBlur={(e) => validateField("province", e.target.value)}
@@ -275,7 +278,7 @@ const AdoptionForm = () => {
 
                   <Form.Group as={Col} controlId="dni">
                     <Form.Label>DNI</Form.Label>
-                    <Form.Control 
+                    <Form.Control
                       value={formData.dni}
                       onChange={handleData}
                       onBlur={(e) => validateField("dni", e.target.value)}
@@ -349,8 +352,8 @@ const AdoptionForm = () => {
                       label="Sí, pregunté y admite mascotas"
                       name="ownerConsultation"
                       id="owner-yes"
-                      checked={formData.ownerConsultation === 'yes'}
-                      onChange={() => handleRadio('ownerConsultation', 'yes')}
+                      checked={formData.ownerConsultation === 'consulted_owner_and_approved'}
+                      onChange={() => handleRadio('ownerConsultation', 'consulted_owner_and_approved')}
                       disabled={formData.ownershipStatus !== 'tenant'}
                       isInvalid={!!errors.ownerConsultation}
                     />
@@ -359,8 +362,8 @@ const AdoptionForm = () => {
                       label="No pregunté, pero el edificio admite"
                       name="ownerConsultation"
                       id="owner-building-allows"
-                      checked={formData.ownerConsultation === 'building-allows'}
-                      onChange={() => handleRadio('ownerConsultation', 'building-allows')}
+                      checked={formData.ownerConsultation === 'not_consulted_building_allows'}
+                      onChange={() => handleRadio('ownerConsultation', 'not_consulted_building_allows')}
                       disabled={formData.ownershipStatus !== 'tenant'}
                       isInvalid={!!errors.ownerConsultation}
                     />
@@ -369,8 +372,8 @@ const AdoptionForm = () => {
                       label="No pregunté"
                       name="ownerConsultation"
                       id="owner-no"
-                      checked={formData.ownerConsultation === 'no'}
-                      onChange={() => handleRadio('ownerConsultation', 'no')}
+                      checked={formData.ownerConsultation === 'not_consulted'}
+                      onChange={() => handleRadio('ownerConsultation', 'not_consulted')}
                       disabled={formData.ownershipStatus !== 'tenant'}
                       isInvalid={!!errors.ownerConsultation}
                     />
@@ -415,8 +418,8 @@ const AdoptionForm = () => {
                       label="Sí"
                       name="hasPets"
                       id="pets-yes"
-                      checked={formData.hasPets === 'yes'}
-                      onChange={() => handleRadio('hasPets', 'yes')}
+                      checked={formData.hasPets === true}
+                      onChange={() => handleRadio('hasPets', true)}
                       isInvalid={!!errors.hasPets}
                     />
                     <Form.Check
@@ -424,8 +427,8 @@ const AdoptionForm = () => {
                       label="No"
                       name="hasPets"
                       id="pets-no"
-                      checked={formData.hasPets === 'no'}
-                      onChange={() => handleRadio('hasPets', 'no')}
+                      checked={formData.hasPets === false}
+                      onChange={() => handleRadio('hasPets', false)}
                       isInvalid={!!errors.hasPets}
                     />
                   </div>
@@ -444,7 +447,7 @@ const AdoptionForm = () => {
                       id="pets-neutered-yes"
                       checked={formData.petsNeutered === 'yes'}
                       onChange={() => handleRadio('petsNeutered', 'yes')}
-                      disabled={formData.hasPets !== 'yes'}
+                      disabled={formData.hasPets !== true}
                       isInvalid={!!errors.petsNeutered}
                     />
                     <Form.Check
@@ -454,7 +457,7 @@ const AdoptionForm = () => {
                       id="pets-neutered-no"
                       checked={formData.petsNeutered === 'no'}
                       onChange={() => handleRadio('petsNeutered', 'no')}
-                      disabled={formData.hasPets !== 'yes'}
+                      disabled={formData.hasPets !== true}
                       isInvalid={!!errors.petsNeutered}
                     />
                     <Form.Check
@@ -464,7 +467,7 @@ const AdoptionForm = () => {
                       id="pets-neutered-some"
                       checked={formData.petsNeutered === 'some'}
                       onChange={() => handleRadio('petsNeutered', 'some')}
-                      disabled={formData.hasPets !== 'yes'}
+                      disabled={formData.hasPets !== true}
                       isInvalid={!!errors.petsNeutered}
                     />
                   </div>
@@ -481,8 +484,8 @@ const AdoptionForm = () => {
                       label="Sí"
                       name="hadOtherPets"
                       id="had-other-pets-yes"
-                      checked={formData.hadOtherPets === 'yes'}
-                      onChange={() => handleRadio('hadOtherPets', 'yes')}
+                      checked={formData.hadOtherPets === true}
+                      onChange={() => handleRadio('hadOtherPets', true)}
                       isInvalid={!!errors.hadOtherPets}
                     />
                     <Form.Check
@@ -490,8 +493,8 @@ const AdoptionForm = () => {
                       label="No"
                       name="hadOtherPets"
                       id="had-other-pets-no"
-                      checked={formData.hadOtherPets === 'no'}
-                      onChange={() => handleRadio('hadOtherPets', 'no')}
+                      checked={formData.hadOtherPets === false}
+                      onChange={() => handleRadio('hadOtherPets', false)}
                       isInvalid={!!errors.hadOtherPets}
                     />
                   </div>
@@ -502,9 +505,9 @@ const AdoptionForm = () => {
 
                 <Form.Group className="mb-3" controlId="reason">
                   <Form.Label>¿Por qué querés adoptar una mascota?</Form.Label>
-                  <Form.Control 
-                    as="textarea" 
-                    rows={3} 
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
                     value={formData.reason}
                     onChange={handleData}
                     onBlur={(e) => validateField("reason", e.target.value)}
@@ -517,9 +520,9 @@ const AdoptionForm = () => {
 
                 <Form.Group className="mb-3" controlId="vacationPlan">
                   <Form.Label>¿Qué harías con el animal en caso de vacaciones?</Form.Label>
-                  <Form.Control 
-                    as="textarea" 
-                    rows={3} 
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
                     value={formData.vacationPlan}
                     onChange={handleData}
                     onBlur={(e) => validateField("vacationPlan", e.target.value)}
@@ -532,9 +535,9 @@ const AdoptionForm = () => {
 
                 <Form.Group className="mb-3" controlId="movingPlan">
                   <Form.Label>¿Qué harías con el animal en caso de mudanza?</Form.Label>
-                  <Form.Control 
-                    as="textarea" 
-                    rows={3} 
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
                     value={formData.movingPlan}
                     onChange={handleData}
                     onBlur={(e) => validateField("movingPlan", e.target.value)}
@@ -580,8 +583,8 @@ const AdoptionForm = () => {
                       label="Sí"
                       name="whatsappFollowUp"
                       id="whatsapp-follow-up-yes"
-                      checked={formData.whatsappFollowUp === 'yes'}
-                      onChange={() => handleRadio('whatsappFollowUp', 'yes')}
+                      checked={formData.whatsappFollowUp === true}
+                      onChange={() => handleRadio('whatsappFollowUp', true)}
                       isInvalid={!!errors.whatsappFollowUp}
                     />
                     <Form.Check
@@ -589,8 +592,8 @@ const AdoptionForm = () => {
                       label="No"
                       name="whatsappFollowUp"
                       id="whatsapp-follow-up-no"
-                      checked={formData.whatsappFollowUp === 'no'}
-                      onChange={() => handleRadio('whatsappFollowUp', 'no')}
+                      checked={formData.whatsappFollowUp === false}
+                      onChange={() => handleRadio('whatsappFollowUp', false)}
                       isInvalid={!!errors.whatsappFollowUp}
                     />
                   </div>
