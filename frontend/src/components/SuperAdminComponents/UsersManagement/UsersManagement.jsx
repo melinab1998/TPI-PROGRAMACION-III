@@ -1,16 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Table, Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { FaUsers, FaSave, FaTrash, FaSearch } from "react-icons/fa";
+import { getUsers } from "../../../services/api.services.js";
 import DeleteConfirmationModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal"
 import "./UsersManagement.css";
 
 const UsersManagement = () => {
-    const [users, setUsers] = useState([
-        { id: 1, user_name: "Juan Pérez", email: "juan@example.com", role: "user" },
-        { id: 2, user_name: "Ana Gómez", email: "ana@example.com", role: "admin" },
-        { id: 3, user_name: "Laura Smith", email: "laura@example.com", role: "superadmin" }
-    ]);
-
+    const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
@@ -19,6 +15,16 @@ const UsersManagement = () => {
     const filteredUsers = users.filter(user =>
         user.user_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    useEffect(() => {
+        getUsers(
+            (data) => setUsers(data),
+            (error) => {
+                errorToast(error.message || "Error al obtener usuarios");
+                console.error("Error fetching users:", error);
+            }
+        );
+    }, []);
 
     const handleDeleteClick = (userId) => {
         const user = users.find(u => u.id === userId);
