@@ -148,3 +148,70 @@ export const getUsers = (onSuccess, onError) => {
         .then(onSuccess)
         .catch(onError);
 };
+
+export const getShelters = (onSuccess, onError) => {
+    fetch(`${baseUrl}/api/shelters`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const getShelterById = (id, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/shelters/${id}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const createShelter = (formData, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/shelters`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const updateShelter = (id, formData, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/shelters/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};
+
+export const deleteShelter = (id, onSuccess, onError) => {
+    fetch(`${baseUrl}/api/shelters/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    })
+        .then(handleResponse)
+        .then(onSuccess)
+        .catch(onError);
+};

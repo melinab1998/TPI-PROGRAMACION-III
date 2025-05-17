@@ -2,7 +2,7 @@ import { Router } from "express";
 import { getShelters, getShelterById, createShelter, updateShelter, deleteShelter } from "../services/shelters.services.js"
 import { verifyToken } from "../middlewares/auth.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get('/', verifyToken, getShelters);
 router.get('/:id', verifyToken, getShelterById);
