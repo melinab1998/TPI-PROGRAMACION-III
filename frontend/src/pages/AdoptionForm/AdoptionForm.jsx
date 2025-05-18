@@ -17,8 +17,12 @@ import {
   validateWhatsappFollowUp,
   validateTerms
 } from '../../utils/validations';
+import { getPetById } from '../../services/api.services.js';
+import { useParams } from 'react-router-dom';
+
 
 const AdoptionForm = () => {
+
   const initialFormState = {
     name: "",
     lastname: "",
@@ -42,9 +46,41 @@ const AdoptionForm = () => {
     termsAccepted: false
   };
 
+  const { id: id_pet } = useParams();
+  const [pet, setPet] = useState(null);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState(initialFormState);
   const [showTerms, setShowTerms] = useState(false);
+
+  useEffect(() => {
+    getPetById(
+      id_pet,
+      (data) => setPet(data),
+      (error) => setError(error.message)
+    );
+  }, [id_pet]);
+
+  useEffect(() => {
+    if (showTerms) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showTerms]);
+
+  if (error) {
+    return <div className="not-found">{error}</div>;
+  }
+
+  if (!pet) {
+    return <div className="not-found">Cargando mascota...</div>;
+  }
+
 
   const handleData = (e) => {
     const { id, value } = e.target;
@@ -163,18 +199,8 @@ const AdoptionForm = () => {
     setFormData(initialFormState);
   };
 
-  // Bloquear scroll cuando el modal esté visible
-  useEffect(() => {
-    if (showTerms) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
 
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [showTerms]);
+
 
   return (
     <Container className="adoption-form-container">
