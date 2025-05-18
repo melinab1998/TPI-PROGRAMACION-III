@@ -4,6 +4,6 @@ import { verifyToken } from "../middlewares/auth.js";
 
 const router = Router();
 
-router.post("/api/adoption/", verifyToken, createRequest);
+router.post("/api/adoption", verifyToken, createRequest);
 
 export default router;

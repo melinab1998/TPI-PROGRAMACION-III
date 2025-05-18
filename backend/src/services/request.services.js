@@ -29,6 +29,8 @@ export const createRequest = async (req, res) => {
 			termsAccepted,
 		} = req.body;
 
+		/* 
+				Arreglar
 		if (
 			!name ||
 			!lastname ||
@@ -53,7 +55,7 @@ export const createRequest = async (req, res) => {
 		) {
 			return res.status(400).json({ error: "Faltan campos obligatorios." });
 		}
-
+ */
 		const existingRequest = await Request.findOne({
 			where: {
 				id_user,

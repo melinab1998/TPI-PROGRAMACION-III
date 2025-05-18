@@ -9,7 +9,7 @@ const Request = sequelize.define(
 			allowNull: false,
 			references: {
 				model: "pets",
-				key: "id",
+				key: "id_pet",
 			},
 		},
 		id_user: {
@@ -17,7 +17,7 @@ const Request = sequelize.define(
 			allowNull: false,
 			references: {
 				model: "users",
-				key: "id",
+				key: "id_user",
 			},
 		},
 		name: {
