@@ -2,6 +2,8 @@ import Request from "../models/Request.js";
 
 export const createRequest = async (req, res) => {
 	try {
+		console.log(req.body);
+
 		const {
 			id_user,
 			id_pet,
@@ -43,7 +45,7 @@ export const createRequest = async (req, res) => {
 			return res.status(400).json({ error: "Faltan campos obligatorios." });
 		}
 
-		const existingRequest = await Requests.findOne({
+		const existingRequest = await Request.findOne({
 			where: {
 				id_user,
 				id_pet,
@@ -57,6 +59,8 @@ export const createRequest = async (req, res) => {
 		}
 
 		const newRequest = await Request.create({
+			id_user,
+			id_pet,
 			name,
 			lastname,
 			address,
@@ -77,8 +81,6 @@ export const createRequest = async (req, res) => {
 			dailyWalks,
 			whatsappFollowUp,
 			termsAccepted,
-			id_user,
-			id_pet,
 		});
 
 		res.status(201).json(newRequest);
