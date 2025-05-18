@@ -99,10 +99,14 @@ export const deletePet = (id, onSuccess, onError) => {
 		.catch(onError);
 };
 
-export const createAdoptionForm = (id_pet, formData, onSuccess, onError) => {
-	fetch(`${baseUrl}/api/adoption/${id_pet}`, {
+export const createAdoptionForm = (formData, onSuccess, onError) => {
+	console.log("Enviando a backend:", formData);
+	fetch(`${baseUrl}/api/adoption`, {
 		method: "POST",
-		headers: { "Content-Type": "application/json" },
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
 		body: JSON.stringify(formData),
 	})
 		.then(handleResponse)
