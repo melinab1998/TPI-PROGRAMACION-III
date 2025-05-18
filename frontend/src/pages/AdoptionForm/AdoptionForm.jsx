@@ -1,4 +1,4 @@
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import './AdoptionForm.css';
 import { errorToast, successToast } from '../../utils/notifications.js';
@@ -22,8 +22,9 @@ import { useParams } from 'react-router-dom';
 
 
 const AdoptionForm = () => {
-
+  const { id: id_pet } = useParams();
   const initialFormState = {
+    id_pet: id_pet,
     name: "",
     lastname: "",
     address: "",
@@ -46,7 +47,7 @@ const AdoptionForm = () => {
     termsAccepted: false
   };
 
-  const { id: id_pet } = useParams();
+
   const [pet, setPet] = useState(null);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState(initialFormState);
@@ -78,7 +79,7 @@ const AdoptionForm = () => {
   }
 
   if (!pet) {
-    return <div className="not-found">Cargando mascota...</div>;
+    return <div className="not-found">Cargando formulario...</div>;
   }
 
 
@@ -186,6 +187,8 @@ const AdoptionForm = () => {
 
   const handleSubmit = async (e) => {
     console.log(formData);
+    console.log(pet);
+
 
     e.preventDefault();
 
@@ -208,7 +211,7 @@ const AdoptionForm = () => {
         <Col md={10} lg={8}>
           <Card className="adoption-form-card">
             <Card.Header className="adoption-header">
-              <h2 className="mb-0">Formulario de adopción</h2>
+              <h2 className="mb-0">Formulario de adopción para {pet.name} </h2>
             </Card.Header>
             <Card.Body>
               <p className="adoption-text">
