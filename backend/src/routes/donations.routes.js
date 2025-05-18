@@ -1,4 +1,4 @@
-import {Router} from "express";
+import { Router } from "express";
 import { createDonation } from "../services/donations.services.js";
 
 const router = Router();

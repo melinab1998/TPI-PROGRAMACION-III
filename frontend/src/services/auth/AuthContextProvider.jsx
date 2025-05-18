@@ -5,6 +5,7 @@ import { AuthenticationContext } from "./AuthContext";
 export const AuthenticationContextProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [userRole, setUserRole] = useState(null);
+    const [userId, setUserId] = useState(null);
 
     // cada vez que cambie el token, extraemos el rol
     useEffect(() => {
@@ -12,18 +13,24 @@ export const AuthenticationContextProvider = ({ children }) => {
             try {
                 const decoded = jwtDecode(token);
                 setUserRole(decoded.role); // extraemos el rol del token
+                setUserId(decoded.id_user)
+
             } catch (error) {
                 console.error("Token inválido", error);
                 setUserRole(null);
+                setUserId(null)
             }
         } else {
             setUserRole(null);
+            setUserId(null)
         }
     }, [token]);
+
 
     const handleUserLogin = (newToken) => {
         localStorage.setItem("token", newToken);
         setToken(newToken);
+
     };
 
     const handleUserLogout = () => {
@@ -32,7 +39,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     };
 
     return (
-        <AuthenticationContext.Provider value={{ token, userRole, handleUserLogin, handleUserLogout }}>
+        <AuthenticationContext.Provider value={{ token, userRole, userId, handleUserLogin, handleUserLogout }}>
             {children}
         </AuthenticationContext.Provider>
     );
