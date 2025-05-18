@@ -10,6 +10,7 @@ export const verifyToken = (req, res, next) => {
 	}
 
 	const token = header.split(" ")[1];
+	console.log("Token extraído:", token);
 
 	if (!token) {
 		return res.status(401).json({ message: "No tiene autorizacion requerida" });
@@ -17,7 +18,7 @@ export const verifyToken = (req, res, next) => {
 
 	try {
 		const payload = jwt.verify(token, process.env.SECRETKEY);
-		console.log(payload);
+		console.log("Payload decodificado:", payload);
 
 		next();
 	} catch (error) {
