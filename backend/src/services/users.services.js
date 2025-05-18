@@ -89,3 +89,61 @@ export const loginUser = async (req, res) => {
 		console.error("Error en el login:", error);
 	}
 };
+
+export const deleteUser = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const user = await User.findByPk(id);
+		if (!user) {
+			return res.status(404).json({ message: "Usuario no encontrado" });
+		}
+
+		await user.destroy();
+		return res.status(200).json({ message: "Usuario eliminado correctamente" });
+	} catch (error) {
+		console.error("Error al eliminar usuario:", error);
+		return res
+			.status(500)
+			.json({ message: "Error interno al eliminar el usuario" });
+	}
+};
+
+export const updateUserRole = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const { role } = req.body;
+
+		const user = await User.findByPk(id);
+		if (!user) {
+			return res.status(404).json({ message: "Usuario no encontrado" });
+		}
+
+		user.role = role;
+		await user.save();
+
+		return res
+			.status(200)
+			.json({ message: "Rol del usuario actualizado correctamente", user });
+	} catch (error) {
+		console.error("Error al actualizar el rol del usuario:", error);
+		return res
+			.status(500)
+			.json({ message: "Error interno al actualizar el rol del usuario" });
+	}
+};
+
+export const getUsers = async (req, res) => {
+	try {
+		const users = await User.findAll({
+			attributes: { exclude: ["password"] },
+		});
+
+		return res.status(200).json(users);
+	} catch (error) {
+		console.error("Error al obtener los usuarios:", error);
+		return res
+			.status(500)
+			.json({ message: "Error interno al obtener los usuarios" });
+	}
+};

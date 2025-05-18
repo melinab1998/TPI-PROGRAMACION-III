@@ -1,50 +1,117 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Table, Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { FaUsers, FaSave, FaTrash, FaSearch } from "react-icons/fa";
-import DeleteConfirmationModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal"
+import { getUsers, deleteUser, updateUserRole } from "../../../services/api.services.js";
 import "./UsersManagement.css";
+import PetDeleteModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal";
+import { errorToast, successToast } from "../../../utils/notifications.js"
+
 
 const UsersManagement = () => {
-    const [users, setUsers] = useState([
-        { id: 1, user_name: "Juan Pérez", email: "juan@example.com", role: "user" },
-        { id: 2, user_name: "Ana Gómez", email: "ana@example.com", role: "admin" },
-        { id: 3, user_name: "Laura Smith", email: "laura@example.com", role: "superadmin" }
-    ]);
-
+    const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [userToDelete, setUserToDelete] = useState(null);
     const [hasChanges, setHasChanges] = useState(false);
+    const [modifiedUsers, setModifiedUsers] = useState({});
 
-    const filteredUsers = users.filter(user =>
-        user.user_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    useEffect(() => {
+        getUsers(
+            (data) => setUsers(data),
+            (error) => {
+                errorToast(error.message || "Error al obtener usuarios");
+                console.error("Error fetching users:", error);
+            }
+        );
+    }, []);
 
     const handleDeleteClick = (userId) => {
-        const user = users.find(u => u.id === userId);
+        const user = users.find((u) => u.id_user === userId);
         setUserToDelete(user);
         setShowDeleteModal(true);
     };
 
     const confirmDelete = () => {
-        setUsers(users.filter(user => user.id !== userToDelete.id));
-        setShowDeleteModal(false);
+        if (!userToDelete) return;
+
+        deleteUser(
+            userToDelete.id_user,
+            () => {
+                setUsers((prevUsers) =>
+                    prevUsers.filter((user) => user.id_user !== userToDelete.id_user)
+                );
+                successToast(`Usuario "${userToDelete.user_name}" eliminado correctamente.`);
+                setShowDeleteModal(false);
+                setUserToDelete(null);
+            },
+            (error) => {
+                console.error("Error al eliminar usuario:", error);
+                errorToast(`Error al eliminar usuario "${userToDelete.user_name}".`);
+            }
+        );
     };
 
-    const handleRoleChange = (id, newRole) => {
-        setUsers(prev =>
-            prev.map(user =>
-                user.id === id ? { ...user, role: newRole } : user
+    const handleRoleChange = (userId, newRole) => {
+        setUsers((prevUsers) =>
+            prevUsers.map((user) =>
+                user.id_user === userId ? { ...user, role: newRole } : user
             )
         );
+
+        setModifiedUsers((prev) => ({
+            ...prev,
+            [userId]: newRole,
+        }));
+
         setHasChanges(true);
     };
 
     const saveChanges = () => {
-        // Aquí iría la lógica para guardar los cambios en la API
-        console.log("Changes saved:", users);
+        const entries = Object.entries(modifiedUsers);
+        if (entries.length === 0) {
+            errorToast("No hay cambios para guardar.");
+            return;
+        }
+
+        let successCount = 0;
+        let failCount = 0;
+
+        entries.forEach(([id, newRole]) => {
+            updateUserRole(
+                id,
+                newRole,
+                () => {
+                    successCount++;
+                    if (successCount + failCount === entries.length) {
+                        postSave(successCount, failCount);
+                    }
+                },
+                (error) => {
+                    console.error(`Error al actualizar rol de usuario ${id}:`, error);
+                    failCount++;
+                    if (successCount + failCount === entries.length) {
+                        postSave(successCount, failCount);
+                    }
+                }
+            );
+        });
+    };
+
+    const postSave = (successCount, failCount) => {
+        if (successCount > 0) {
+            successToast(`${successCount} rol(es) actualizado(s) correctamente.`);
+        }
+        if (failCount > 0) {
+            errorToast(`${failCount} cambio(s) de rol no se pudieron guardar.`);
+        }
+
+        setModifiedUsers({});
         setHasChanges(false);
     };
+
+    const filteredUsers = users.filter((user) =>
+        user.user_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <Container className="users-management">
@@ -74,15 +141,13 @@ const UsersManagement = () => {
             {hasChanges && (
                 <Row className="mb-3">
                     <Col className="text-end">
-                        <Button
-                            className="add-btn"
-                            onClick={saveChanges}
-                        >
+                        <Button className="add-btn" onClick={saveChanges}>
                             <FaSave /> Guardar Cambios
                         </Button>
                     </Col>
                 </Row>
             )}
+
             <Table responsive className="users-table">
                 <thead>
                     <tr>
@@ -94,13 +159,15 @@ const UsersManagement = () => {
                 </thead>
                 <tbody>
                     {filteredUsers.map((user) => (
-                        <tr key={user.id} className="user-row"> {/* Añadida clase user-row */}
+                        <tr key={user.id_user} className="user-row">
                             <td>{user.user_name}</td>
                             <td>{user.email}</td>
                             <td>
                                 <Form.Select
                                     value={user.role}
-                                    onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                                    onChange={(e) =>
+                                        handleRoleChange(user.id_user, e.target.value)
+                                    }
                                     className="role-selector"
                                 >
                                     <option value="user">Usuario</option>
@@ -112,7 +179,7 @@ const UsersManagement = () => {
                                 <Button
                                     variant="danger"
                                     size="sm"
-                                    onClick={() => handleDeleteClick(user.id)}
+                                    onClick={() => handleDeleteClick(user.id_user)}
                                     className="delete-btn"
                                 >
                                     <FaTrash />
@@ -123,7 +190,7 @@ const UsersManagement = () => {
                 </tbody>
             </Table>
 
-            <DeleteConfirmationModal
+            <PetDeleteModal
                 show={showDeleteModal}
                 onHide={() => setShowDeleteModal(false)}
                 onConfirm={confirmDelete}

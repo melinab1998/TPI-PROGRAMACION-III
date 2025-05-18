@@ -5,18 +5,19 @@ import { getPets, createPet, updatePet, deletePet } from '../../../services/api.
 import PetForm from "../PetForm/PetForm"
 import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import "../PetsManagement/PetsManagement.css"
+import { errorToast, successToast } from "../../../utils/notifications.js"
 
 const PetsManagement = () => {
     const [pets, setPets] = useState([]);
-     useEffect(() => {
+    useEffect(() => {
         getPets(
-          (data) => setPets(data),
-          (error) => {
-            errorToast(error.message || "Error al obtener mascotas");
-            console.error("Error fetching pets:", error);
-          }
+            (data) => setPets(data),
+            (error) => {
+                errorToast(error.message || "Error al obtener mascotas");
+                console.error("Error fetching pets:", error);
+            }
         );
-      }, []);
+    }, []);
 
 
     const [formData, setFormData] = useState({
@@ -38,8 +39,8 @@ const PetsManagement = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-    const filteredPets = pets.filter(pet =>
-        pet.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredPets = (Array.isArray(pets) ? pets : []).filter(pet =>
+        pet.name && pet.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const handleSearchChange = (e) => {
@@ -73,55 +74,71 @@ const PetsManagement = () => {
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
-        
+
         createPet(
             formData,
             (newPet) => {
-                setPets([...pets, newPet]);
+                getPets(
+                    (data) => setPets(data),
+                    (error) => {
+                        errorToast(error.message || "Error al obtener mascotas");
+                        console.error("Error fetching pets:", error);
+                    }
+                );
                 setShowAddModal(false);
                 resetForm();
+                successToast("Mascota agregada con éxito.");
             },
             (error) => {
                 console.error("Error al agregar mascota:", error);
-                setError("No se pudo agregar la mascota.");
+                errorToast("No se pudo agregar la mascota.");
             }
         );
     };
-    
+
     const handleEditSubmit = (e) => {
         e.preventDefault();
-    
+
         updatePet(
-            currentPet.id_pet,   
-            formData,             
-            (updatedPet) => {     
-                const updatedPets = pets.map((pet) =>
-                    pet.id_pet === updatedPet.id_pet ? updatedPet : pet
+            currentPet.id_pet,
+            formData,
+            (updatedPet) => {
+                getPets(
+                    (data) => setPets(data),
+                    (error) => {
+                        errorToast(error.message || "Error al obtener mascotas");
+                        console.error("Error fetching pets:", error);
+                    }
                 );
-                setPets(updatedPets);       
-                setShowEditModal(false);    
-                resetForm();                
+                setShowEditModal(false);
+                resetForm();
+                successToast("Mascota actualizada con éxito.");
             },
             (error) => {
                 console.error("Error al actualizar mascota:", error);
-                setError("No se pudo actualizar la mascota.");
+                errorToast("No se pudo actualizar la mascota.");
             }
         );
     };
-    const handleDeleteSubmit = () => {
 
+    const handleDeleteSubmit = () => {
         deletePet(
             currentPet.id_pet,
-            (deletedPet) =>{
-                const updatedPets = pets.filter((pet) => 
-                    pet.id_pet !== currentPet.id_pet);
-                setPets(updatedPets);
+            (deletedPet) => {
+                getPets(
+                    (data) => setPets(data),
+                    (error) => {
+                        errorToast(error.message || "Error al obtener mascotas");
+                        console.error("Error fetching pets:", error);
+                    }
+                );
                 setShowDeleteModal(false);
                 setCurrentPet(null);
+                successToast("Mascota eliminada con éxito.");
             },
             (error) => {
-                console.error("Error al eliminar la  mascota:", error);
-                setError("No se pudo eliminar la mascota.");
+                console.error("Error al eliminar la mascota:", error);
+                errorToast("No se pudo eliminar la mascota.");
             }
         );
     };
