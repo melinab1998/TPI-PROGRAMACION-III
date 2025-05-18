@@ -29,7 +29,6 @@ export const createRequest = async (req, res) => {
 			termsAccepted,
 		} = req.body;
 
-		// Validación de campos obligatorios
 		if (
 			!name ||
 			!lastname ||
@@ -40,7 +39,17 @@ export const createRequest = async (req, res) => {
 			!dni ||
 			termsAccepted !== true ||
 			!id_user ||
-			!id_pet
+			!id_pet ||
+			!housingType ||
+			!ownershipStatus ||
+			!hasCourtyard ||
+			!hasPets ||
+			!hadOtherPets ||
+			!reason ||
+			!vacationPlan ||
+			!movingPlan ||
+			!dailyWalks ||
+			!whatsappFollowUp
 		) {
 			return res.status(400).json({ error: "Faltan campos obligatorios." });
 		}
