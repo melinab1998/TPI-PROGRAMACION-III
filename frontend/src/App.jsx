@@ -19,6 +19,7 @@ import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDas
 import './utils/notifications.css';
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
+import RequestsManagement from "./components/AdminComponents/RequestsManagement/RequestsManagement";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import PrivacyNotice from "./pages/PrivacyNotice/PrivacyNotice";
 import CookiesNotice from "./pages/CookiesNotice/CookiesNotice";
@@ -67,9 +68,10 @@ function App() {
           <Route path="/privacy-notice" element={<PrivacyNotice />} />
           <Route path="/cookies-notice" element={<CookiesNotice />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
-          <Route path="/petsmanagement" element={<PetsManagement/>}/>
-          <Route path="/usersmanagement" element={<UsersManagement/>}/>
-          <Route path="/sheltersmanagement" element={<SheltersManagement/>}/>
+          <Route path="/petsmanagement" element={<PetsManagement />} />
+          <Route path="/requestsmanagement" element={<RequestsManagement />} />
+          <Route path="/usersmanagement" element={<UsersManagement />} />
+          <Route path="/sheltersmanagement" element={<SheltersManagement />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/register" element={<Register />} />
