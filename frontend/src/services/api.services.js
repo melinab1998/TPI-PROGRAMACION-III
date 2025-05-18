@@ -163,3 +163,16 @@ export const createAdoptionForm = (formData, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
+
+export const getRequests = (onSuccess, onError) => {
+	fetch(`${baseUrl}/api/adoption`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
