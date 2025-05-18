@@ -26,10 +26,17 @@ export const AuthenticationContextProvider = ({ children }) => {
         }
     }, [token]);
 
+    useEffect(() => {
+        if (userId) {
+            console.log("Nuevo userId:", userId);
+            // Aquí puedes hacer otras acciones que dependan del userId
+        }
+    }, [userId]);
+
     const handleUserLogin = (newToken) => {
         localStorage.setItem("token", newToken);
         setToken(newToken);
-        console.log(userId);
+
     };
 
     const handleUserLogout = () => {
