@@ -7,10 +7,18 @@ const Request = sequelize.define(
 		id_pet: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			references: {
+				model: "pets",
+				key: "id",
+			},
 		},
 		id_user: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			references: {
+				model: "users",
+				key: "id",
+			},
 		},
 		name: {
 			type: DataTypes.STRING,
