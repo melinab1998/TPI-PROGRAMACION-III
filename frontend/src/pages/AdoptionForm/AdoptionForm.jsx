@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './AdoptionForm.css';
 import { errorToast, successToast } from '../../utils/notifications.js';
 import {
@@ -19,12 +19,15 @@ import {
 } from '../../utils/validations';
 import { getPetById } from '../../services/api.services.js';
 import { useParams } from 'react-router-dom';
+import { AuthenticationContext } from '../../context/AuthContextProvider.jsx';
 
 
 const AdoptionForm = () => {
   const { id: id_pet } = useParams();
+  const { userId: id_user } = useContext(AuthenticationContext);
   const initialFormState = {
     id_pet: id_pet,
+    id_user: id_user,
     name: "",
     lastname: "",
     address: "",
@@ -73,6 +76,10 @@ const AdoptionForm = () => {
       document.body.style.overflow = '';
     };
   }, [showTerms]);
+
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, id_user }));
+  }, [id_user]);
 
   if (error) {
     return <div className="not-found">{error}</div>;
