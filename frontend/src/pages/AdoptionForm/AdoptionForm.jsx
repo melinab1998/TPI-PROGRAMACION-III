@@ -19,7 +19,8 @@ import {
 } from '../../utils/validations';
 import { getPetById } from '../../services/api.services.js';
 import { useParams } from 'react-router-dom';
-import { AuthenticationContext } from '../../context/AuthContextProvider.jsx';
+import { AuthenticationContext } from '../../services/auth//AuthContext.jsx';
+import { createAdoptionForm } from '../../services/api.services.js';
 
 
 const AdoptionForm = () => {
@@ -27,7 +28,7 @@ const AdoptionForm = () => {
   const { userId: id_user } = useContext(AuthenticationContext);
   const initialFormState = {
     id_pet: id_pet,
-    id_user: id_user,
+    id_user: "",
     name: "",
     lastname: "",
     address: "",
@@ -78,14 +79,14 @@ const AdoptionForm = () => {
   }, [showTerms]);
 
   useEffect(() => {
-    setFormData(prev => ({ ...prev, id_user }));
+    setFormData(prev => ({ ...prev, id_user: id_user }));
   }, [id_user]);
 
   if (error) {
     return <div className="not-found">{error}</div>;
   }
 
-  if (!pet) {
+  if (!pet || !id_user) {
     return <div className="not-found">Cargando formulario...</div>;
   }
 
@@ -193,20 +194,30 @@ const AdoptionForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(formData);
-    console.log(pet);
-
-
     e.preventDefault();
+
+    if (!formData.id_user) {
+      errorToast("No se pudo identificar al usuario. Por favor, inicia sesión nuevamente.");
+      return;
+    }
 
     if (!validateForm()) {
       errorToast("Por favor complete todos los campos correctamente");
       return;
     }
 
-    // Simulación de envío exitoso
-    successToast("¡Formulario enviado con éxito! Nos pondremos en contacto contigo pronto.");
-    setFormData(initialFormState);
+
+    // Definí las funciones acá:
+    const onSuccess = () => {
+      successToast("¡Formulario enviado con éxito! Nos pondremos en contacto contigo pronto.");
+      setFormData(initialFormState);
+    };
+
+    const onError = (error) => {
+      errorToast(error?.message || "Hubo un error al enviar el formulario");
+    };
+
+    createAdoptionForm(formData, onSuccess, onError);
   };
 
 
