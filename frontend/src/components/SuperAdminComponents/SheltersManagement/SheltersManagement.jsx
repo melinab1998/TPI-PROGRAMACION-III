@@ -5,7 +5,6 @@ import ShelterForm from "../ShelterForm/ShelterForm";
 import "./SheltersManagement.css";
 import PetDeleteModal from '../../AdminComponents/PetDeleteModal/PetDeleteModal';
 import { getShelters, createShelter, updateShelter, deleteShelter } from '../../../services/api.services.js';
-import { validateName, validateAddress, validatePhone, validateEmail } from "../../../utils/validations.js"
 import { errorToast, successToast } from "../../../utils/notifications.js"
 
 const SheltersManagement = () => {
@@ -55,15 +54,6 @@ const SheltersManagement = () => {
         setError('');
     };
 
-    const isFormValid = () => {
-        const nameError = validateName(formData.name);
-        const addressError = validateAddress(formData.address);
-        const phoneError = validatePhone(formData.phone);
-        const emailError = validateEmail(formData.email);
-
-        return !(nameError || addressError || phoneError || emailError);
-    };
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -74,11 +64,6 @@ const SheltersManagement = () => {
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
-
-        if (!isFormValid()) {
-            errorToast("Por favor, complete los campos correctamente.");
-            return;
-        }
 
         createShelter(
             formData,
@@ -97,11 +82,6 @@ const SheltersManagement = () => {
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
-
-        if (!isFormValid()) {
-            errorToast("Por favor, complete los campos correctamente.");
-            return;
-        }
 
         updateShelter(
             currentShelter.id_shelter,
