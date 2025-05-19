@@ -20,8 +20,6 @@ app.use(petsRoutes);
 app.use(donationRoutes);
 app.use(requestRoutes);
 
-
-
 app.get("/", (req, res) => {
 	res.send("Backend funcionando!");
 });
