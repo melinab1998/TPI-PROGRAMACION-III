@@ -4,7 +4,8 @@ import { FaEdit, FaPlus, FaTrash, FaHome, FaSearch } from 'react-icons/fa';
 import ShelterForm from "../ShelterForm/ShelterForm";
 import "./SheltersManagement.css";
 import PetDeleteModal from '../../AdminComponents/PetDeleteModal/PetDeleteModal';
-import { getShelters, getShelterById, createShelter, updateShelter, deleteShelter } from '../../../services/api.services';
+import { getShelters, createShelter, updateShelter, deleteShelter } from '../../../services/api.services.js';
+import { validateName, validateAddress, validatePhone, validateEmail } from "../../../utils/validations.js"
 import { errorToast, successToast } from "../../../utils/notifications.js"
 
 const SheltersManagement = () => {
@@ -35,8 +36,6 @@ const SheltersManagement = () => {
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
-
-
     const filteredShelters = shelters.filter(shelter =>
         shelter.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -56,6 +55,15 @@ const SheltersManagement = () => {
         setError('');
     };
 
+    const isFormValid = () => {
+        const nameError = validateName(formData.name);
+        const addressError = validateAddress(formData.address);
+        const phoneError = validatePhone(formData.phone);
+        const emailError = validateEmail(formData.email);
+
+        return !(nameError || addressError || phoneError || emailError);
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -67,16 +75,15 @@ const SheltersManagement = () => {
     const handleAddSubmit = (e) => {
         e.preventDefault();
 
+        if (!isFormValid()) {
+            errorToast("Por favor, complete los campos correctamente.");
+            return;
+        }
+
         createShelter(
             formData,
             (newShelter) => {
-                getShelters(
-                    (data) => setShelters(data),
-                    (error) => {
-                        errorToast(error.message || "Error al obtener los refugios");
-                        console.error("Error fetching shelters:", error);
-                    }
-                );
+                getShelters((data) => setShelters(data));
                 setShowAddModal(false);
                 resetForm();
                 successToast("Refugio agregado con éxito.");
@@ -91,17 +98,16 @@ const SheltersManagement = () => {
     const handleEditSubmit = (e) => {
         e.preventDefault();
 
+        if (!isFormValid()) {
+            errorToast("Por favor, complete los campos correctamente.");
+            return;
+        }
+
         updateShelter(
             currentShelter.id_shelter,
             formData,
-            (updatedShelter) =>{
-                getShelters(
-                    (data) => setShelters(data),
-                    (error) => {
-                        errorToast(error.message || "Error al obtener los refugios");
-                        console.error("Error fetching shelters:", error);
-                    }
-                );
+            (updatedShelter) => {
+                getShelters((data) => setShelters(data));
                 setShowEditModal(false);
                 resetForm();
                 successToast("Refugio actualizado con éxito.");
@@ -110,15 +116,15 @@ const SheltersManagement = () => {
                 console.error("Error al actualizar refugio:", error);
                 errorToast("No se pudo actualizar el refugio.");
             }
-        )
+        );
     };
 
     const handleDeleteSubmit = () => {
-        
-       
+
+
         deleteShelter(
             currentShelter.id_shelter,
-            (deleteShelter) =>{
+            (deleteShelter) => {
                 getShelters(
                     (data) => setShelters(data),
                     (error) => {
