@@ -5,11 +5,14 @@ import { SiReacthookform } from "react-icons/si";
 import { getRequests } from '../../../services/api.services.js';
 import { errorToast } from "../../../utils/notifications.js";
 import './RequestsManagement.css';
+import DetailModal from './DetailModal/DetailModal.jsx';
 
 const RequestsManagement = () => {
     const [requests, setRequests] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [showDetailModal, setShowDetailModal] = useState(false);
+    const [selectedRequest, setSelectedRequest] = useState(null);
     const requestsPerPage = 20;
 
     useEffect(() => {
@@ -55,7 +58,8 @@ const RequestsManagement = () => {
     };
 
     const handleViewDetail = (request) => {
-        alert(`Detalle de solicitud de ${request.name}`);
+        setSelectedRequest(request);
+        setShowDetailModal(true);
     };
 
     const handleDelete = (request) => {
@@ -129,7 +133,13 @@ const RequestsManagement = () => {
                 </tbody>
             </Table>
             <Pagination className="mt-4 justify-content-center">{paginationItems}</Pagination>
+            <DetailModal
+                show={showDetailModal}
+                onHide={() => setShowDetailModal(false)}
+                request={selectedRequest || {}}
+            />
         </Container>
+
     );
 };
 
