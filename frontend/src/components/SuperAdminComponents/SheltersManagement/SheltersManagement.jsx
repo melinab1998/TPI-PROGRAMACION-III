@@ -4,7 +4,7 @@ import { FaEdit, FaPlus, FaTrash, FaHome, FaSearch } from 'react-icons/fa';
 import ShelterForm from "../ShelterForm/ShelterForm";
 import "./SheltersManagement.css";
 import PetDeleteModal from '../../AdminComponents/PetDeleteModal/PetDeleteModal';
-import { getShelters, getShelterById, createShelter, updateShelter, deleteShelter } from '../../../services/api.services';
+import { getShelters, createShelter, updateShelter, deleteShelter } from '../../../services/api.services.js';
 import { errorToast, successToast } from "../../../utils/notifications.js"
 
 const SheltersManagement = () => {
@@ -34,8 +34,6 @@ const SheltersManagement = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
-
-
 
     const filteredShelters = shelters.filter(shelter =>
         shelter.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -70,13 +68,7 @@ const SheltersManagement = () => {
         createShelter(
             formData,
             (newShelter) => {
-                getShelters(
-                    (data) => setShelters(data),
-                    (error) => {
-                        errorToast(error.message || "Error al obtener los refugios");
-                        console.error("Error fetching shelters:", error);
-                    }
-                );
+                getShelters((data) => setShelters(data));
                 setShowAddModal(false);
                 resetForm();
                 successToast("Refugio agregado con éxito.");
@@ -94,14 +86,8 @@ const SheltersManagement = () => {
         updateShelter(
             currentShelter.id_shelter,
             formData,
-            (updatedShelter) =>{
-                getShelters(
-                    (data) => setShelters(data),
-                    (error) => {
-                        errorToast(error.message || "Error al obtener los refugios");
-                        console.error("Error fetching shelters:", error);
-                    }
-                );
+            (updatedShelter) => {
+                getShelters((data) => setShelters(data));
                 setShowEditModal(false);
                 resetForm();
                 successToast("Refugio actualizado con éxito.");
@@ -110,15 +96,15 @@ const SheltersManagement = () => {
                 console.error("Error al actualizar refugio:", error);
                 errorToast("No se pudo actualizar el refugio.");
             }
-        )
+        );
     };
 
     const handleDeleteSubmit = () => {
-        
-       
+
+
         deleteShelter(
             currentShelter.id_shelter,
-            (deleteShelter) =>{
+            (deleteShelter) => {
                 getShelters(
                     (data) => setShelters(data),
                     (error) => {

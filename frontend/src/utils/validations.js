@@ -153,3 +153,43 @@ export const validateTerms = (accepted) => {
 	if (!accepted) return "Debe aceptar los términos y condiciones.";
 	return "";
 };
+
+export const validateSpecies = (species) => {
+    if (!species) return "La especie es obligatoria.";
+    return "";
+};
+
+export const validateRace = (race) => {
+    if (!race.trim()) return "La raza es obligatoria.";
+    return "";
+};
+
+export const validateAge = (age) => {
+    if (!age || parseFloat(age) < 0) return "La edad debe ser un número positivo.";
+    return "";
+};
+
+export const validateWeight = (weight) => {
+    if (!weight || parseFloat(weight) <= 0) return "El peso debe ser mayor a 0.";
+    return "";
+};
+
+export const validateGender = (gender) => {
+    if (!gender) return "El sexo es obligatorio.";
+    return "";
+};
+
+export const validateShelter = (shelter) => {
+    if (!shelter.trim()) return "El refugio es obligatorio.";
+    return "";
+};
+
+export const validateImageUrl = (url) => {
+    if (!url.trim()) return "La URL de la imagen es obligatoria.";
+    try {
+        new URL(url);
+    } catch (_) {
+        return "URL inválida.";
+    }
+    return "";
+};
