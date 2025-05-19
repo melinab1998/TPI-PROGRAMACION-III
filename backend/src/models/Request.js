@@ -98,6 +98,11 @@ const Request = sequelize.define(
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
+		state: {
+			type: DataTypes.ENUM("Pendiente", "Aprobada", "Rechazada"),
+			allowNull: false,
+			defaultValue: "Pendiente",
+		},
 	},
 	{
 		tableName: "requests",
