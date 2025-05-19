@@ -85,7 +85,7 @@ export const createPet = async (req, res) => {
     }catch(error){
       res.status(500).json({ message: "Error al actualizar la mascota." });
     }
-  }
+  };
 
 
 export const deletePet = async(req, res) =>{
