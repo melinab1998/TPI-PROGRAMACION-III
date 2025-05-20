@@ -19,6 +19,7 @@ import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDas
 import './utils/notifications.css';
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
+import RequestsManagement from "./components/AdminComponents/RequestsManagement/RequestsManagement";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 import PrivacyNotice from "./pages/PrivacyNotice/PrivacyNotice";
 import CookiesNotice from "./pages/CookiesNotice/CookiesNotice";
@@ -32,7 +33,7 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const { userRole } = useContext(AuthenticationContext);
 
-    const location = useLocation();
+  const location = useLocation();
   useEffect(() => {
     if (location.state?.showLogin) {
       setShowLogin(true);
@@ -81,6 +82,14 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={["admin", "superadmin"]}>
                 <PetsManagement />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/RequestsManagement"
+            element={
+              <ProtectedRoute allowedRoles={["admin", "superadmin"]}>
+                <RequestsManagement />
               </ProtectedRoute>
             }
           />

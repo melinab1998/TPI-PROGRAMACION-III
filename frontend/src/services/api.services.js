@@ -21,9 +21,9 @@ export const registerUser = (formData, onSuccess, onError) => {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(formData),
 	})
-	.then(handleResponse)
-	.then(onSuccess)
-	.catch(onError);
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
 };
 
 export const loginUser = (credentials, onSuccess, onError) => {
@@ -64,7 +64,6 @@ export const updateUserRole = (id, newRole, onSuccess, onError) => {
 		.catch(onError);
 };
 
-
 export const deleteUser = (id, onSuccess, onError) => {
 	fetch(`${baseUrl}/api/users/${id}`, {
 		method: "DELETE",
@@ -85,9 +84,9 @@ export const getPets = (onSuccess, onError) => {
 			"Content-Type": "application/json",
 		},
 	})
-	.then(handleResponse)
-	.then(onSuccess)
-	.catch(onError);
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
 };
 
 export const getPetById = (id, onSuccess, onError) => {
@@ -96,7 +95,6 @@ export const getPetById = (id, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
-
 
 export const createPet = (formData, onSuccess, onError) => {
 	fetch(`${baseUrl}/api/pets`, {
@@ -150,8 +148,6 @@ export const createDonation = (formData, onSuccess, onError) => {
 		.catch(onError);
 };
 
-
-
 export const createAdoptionForm = (formData, onSuccess, onError) => {
 	console.log("Enviando a backend:", formData);
 	fetch(`${baseUrl}/api/adoption`, {
@@ -166,8 +162,6 @@ export const createAdoptionForm = (formData, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
-
-
 
 export const getShelters = (onSuccess, onError) => {
 	fetch(`${baseUrl}/api/shelters`, {
@@ -188,7 +182,6 @@ export const getShelterById = (id, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
-
 
 export const createShelter = (formData, onSuccess, onError) => {
 	fetch(`${baseUrl}/api/shelters`, {
@@ -225,6 +218,33 @@ export const deleteShelter = (id, onSuccess, onError) => {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${localStorage.getItem("token")}`,
 		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
+
+export const getRequests = (onSuccess, onError) => {
+	fetch(`${baseUrl}/api/adoption`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
+
+export const updateRequests = (id, newState, onSuccess, onError) => {
+	fetch(`${baseUrl}/api/adoption`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+		body: JSON.stringify({ id, state: newState }),
 	})
 		.then(handleResponse)
 		.then(onSuccess)

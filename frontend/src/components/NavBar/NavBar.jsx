@@ -35,7 +35,7 @@ const NavBar = ({ toggleLogin }) => {
               <Nav.Link as={Link} to="/petsmanagement">
                 GESTIÓN DE MASCOTAS
               </Nav.Link>
-              <Nav.Link as={Link} to="/adoptionrequests">
+              <Nav.Link as={Link} to="/requestsmanagement">
                 SOLICITUDES DE ADOPCIÓN
               </Nav.Link>
             </Nav>
@@ -86,7 +86,7 @@ const NavBar = ({ toggleLogin }) => {
       </Navbar>
     );
   }
-  
+
   // NavBar para usuarios normales
   return (
     <Navbar expand="lg" className="custom-navbar px-3">
@@ -126,7 +126,7 @@ const NavBar = ({ toggleLogin }) => {
               CONTACTO
             </Nav.Link>
           </Nav>
-          
+
           <div className="d-flex gap-2">
             {!token ? (
               <>

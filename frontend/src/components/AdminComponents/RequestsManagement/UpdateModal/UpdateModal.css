@@ -1,0 +1,60 @@
+.request-update-modal .modal-content {
+	background-color: #fff8f0;
+	border-radius: 12px;
+	border: none;
+	box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
+	overflow: hidden;
+	color: #5d4037;
+}
+
+.request-update-modal .modal-header {
+	background-color: #ffd3b5;
+	border-bottom: 1px solid #f5e6d8;
+}
+
+.request-update-modal .modal-title {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #5d4037;
+	margin: 0;
+}
+
+.request-update-modal .modal-body {
+	font-size: 1rem;
+	padding: 1.5rem;
+	color: #5d4037;
+}
+
+.request-update-modal .modal-footer {
+	border-top: 1px solid #f5e6d8;
+	background-color: #fff8f0;
+	padding: 1rem 1.5rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.request-update-modal .btn-secondary {
+	background-color: #f5e6d8;
+	border: none;
+	color: #5d4037;
+	border-radius: 8px;
+	transition: background-color 0.2s ease;
+}
+
+.request-update-modal .btn-secondary:hover {
+	background-color: #8d6e63;
+	color: white;
+}
+
+.request-update-modal .btn-primary {
+	background-color: #f6847a;
+	border: none;
+	color: white;
+	border-radius: 8px;
+	transition: background-color 0.2s ease;
+}
+
+.request-update-modal .btn-primary:hover {
+	background-color: #cd5c5c;
+	color: white;
+}

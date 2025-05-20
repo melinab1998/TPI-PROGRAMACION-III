@@ -1,4 +1,6 @@
 import Request from "../models/Request.js";
+import User from "../models/User.js";
+import Pet from "../models/Pet.js";
 
 export const createRequest = async (req, res) => {
 	try {
@@ -101,5 +103,49 @@ export const createRequest = async (req, res) => {
 			error: "server_error",
 			message: "Error al crear la solicitud",
 		});
+	}
+};
+
+export const getRequests = async (req, res) => {
+	try {
+		const request = await Request.findAll({
+			include: [
+				{
+					model: User,
+					attributes: ["user_name", "email"],
+				},
+				{
+					model: Pet,
+					attributes: ["name", "species", "race", "age", "gender", "shelter"],
+				},
+			],
+		});
+		res.json(request);
+	} catch (error) {
+		res
+			.status(500)
+			.json({ message: "Ocurrió un error al obtener las requests." });
+	}
+};
+
+export const updateRequests = async (req, res) => {
+	try {
+		const { id } = req.body;
+		const { state } = req.body;
+
+		const request = await Request.findByPk(id);
+
+		if (!request) {
+			return res
+				.status(404)
+				.json({ message: "Ocurrió un error al obtener la solicitud." });
+		}
+
+		await request.update({ state });
+		return res
+			.status(200)
+			.json({ message: "Solicitud actualizada exitosamente.", request });
+	} catch (error) {
+		res.status(500).json({ message: "Error al actualizar la solicitud." });
 	}
 };
