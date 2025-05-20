@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Table, Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
+import { Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
 import { FaUsers, FaSave, FaTrash, FaSearch } from "react-icons/fa";
 import { getUsers, deleteUser, updateUserRole } from "../../../services/api.services.js";
 import "./UsersManagement.css";
@@ -148,7 +148,7 @@ const UsersManagement = () => {
                 </Row>
             )}
 
-            <Table responsive className="users-table">
+            <table responsive className="users-table">
                 <thead>
                     <tr>
                         <th>Nombre de Usuario</th>
@@ -188,7 +188,7 @@ const UsersManagement = () => {
                         </tr>
                     ))}
                 </tbody>
-            </Table>
+            </table>
 
             <PetDeleteModal
                 show={showDeleteModal}

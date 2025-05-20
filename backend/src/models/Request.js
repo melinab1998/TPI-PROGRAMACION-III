@@ -99,7 +99,7 @@ const Request = sequelize.define(
 			allowNull: false,
 		},
 		state: {
-			type: DataTypes.ENUM("Pendiente", "Aprobada", "Rechazada", "EN revisión"),
+			type: DataTypes.ENUM("Pendiente", "Aprobada", "Rechazada", "En revisión"),
 			allowNull: false,
 			defaultValue: "Pendiente",
 		},

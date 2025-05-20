@@ -4,12 +4,12 @@ import {
 	getRequests,
 	updateRequests,
 } from "../services/request.services.js";
-import { verifyToken } from "../middlewares/auth.js";
+import { verifyToken, authorizeRoles } from "../middlewares/auth.js";
 
 const router = Router();
 
-router.post("/api/adoption", verifyToken, createRequest);
-router.get("/api/adoption", verifyToken, getRequests);
-router.put("/api/adoption", verifyToken, updateRequests);
+router.post("/api/adoption", verifyToken, authorizeRoles("admin", "superadmin"), createRequest);
+router.get("/api/adoption", verifyToken, authorizeRoles("admin", "superadmin"), getRequests);
+router.put("/api/adoption", verifyToken, authorizeRoles("admin", "superadmin"), updateRequests);
 
 export default router;
