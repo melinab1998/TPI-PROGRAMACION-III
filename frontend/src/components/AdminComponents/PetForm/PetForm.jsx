@@ -1,5 +1,7 @@
+import React, { useState } from 'react';
 import { Modal, Button, Form, Row, Col, Alert } from 'react-bootstrap';
-import "./PetForm.css"
+import { validateName, validateSpecies, validateRace, validateAge, validateWeight, validateGender, validateShelter, validateImageUrl } from "../../../utils/validations.js";
+import "./PetForm.css";
 
 const PetForm = ({
     show,
@@ -10,6 +12,81 @@ const PetForm = ({
     isEdit = false,
     error = '',
 }) => {
+    const [errors, setErrors] = useState({
+        name: "",
+        species: "",
+        race: "",
+        age: "",
+        weight: "",
+        gender: "",
+        shelter: "",
+        imageUrl: ""
+    });
+
+    const handleData = (e) => {
+        const { name, value } = e.target;
+        handleChange(e); 
+        if (errors[name]) setErrors(prev => ({ ...prev, [name]: "" }));
+    };
+
+    const validateField = (name, value) => {
+        let error = "";
+        switch (name) {
+            case "name":
+                error = validateName(value);
+                break;
+            case "species":
+                error = validateSpecies(value);
+                break;
+            case "race":
+                error = validateRace(value);
+                break;
+            case "age":
+                error = validateAge(value);
+                break;
+            case "weight":
+                error = validateWeight(value);
+                break;
+            case "gender":
+                error = validateGender(value);
+                break;
+            case "shelter":
+                error = validateShelter(value);
+                break;
+            case "imageUrl":
+                error = validateImageUrl(value);
+                break;
+            default:
+                break;
+        }
+        setErrors(prev => ({ ...prev, [name]: error }));
+        return !error;
+    };
+
+    const validateForm = () => {
+        const isValidName = validateField("name", formData.name);
+        const isValidSpecies = validateField("species", formData.species);
+        const isValidRace = validateField("race", formData.race);
+        const isValidAge = validateField("age", formData.age);
+        const isValidWeight = validateField("weight", formData.weight);
+        const isValidGender = validateField("gender", formData.gender);
+        const isValidShelter = validateField("shelter", formData.shelter);
+        const isValidImageUrl = validateField("imageUrl", formData.imageUrl);
+        
+        return isValidName && isValidSpecies && isValidRace && isValidAge && 
+               isValidWeight && isValidGender && isValidShelter && isValidImageUrl;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+        
+        onSubmit(e);
+    };
+
     return (
         <Modal 
             show={show} 
@@ -17,7 +94,7 @@ const PetForm = ({
             centered 
             className="pet-form-modal custom-modal"
         >
-            <Form onSubmit={onSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
                     <Modal.Title>{isEdit ? `Editar Mascota: ${formData.name}` : 'Agregar Mascota'}</Modal.Title>
                 </Modal.Header>
@@ -30,10 +107,13 @@ const PetForm = ({
                             type="text"
                             name="name"
                             value={formData.name}
-                            onChange={handleChange}
+                            onChange={handleData}
+                            onBlur={(e) => validateField("name", e.target.value)}
+                            isInvalid={!!errors.name}
                             placeholder="Nombre de la mascota"
                             required
                         />
+                        <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Row>
@@ -43,12 +123,16 @@ const PetForm = ({
                                 <Form.Select
                                     name="species"
                                     value={formData.species}
-                                    onChange={handleChange}
+                                    onChange={handleData}
+                                    onBlur={(e) => validateField("species", e.target.value)}
+                                    isInvalid={!!errors.species}
                                     required
                                 >
+                                    <option value="">Seleccionar...</option>
                                     <option value="Perro">Perro</option>
                                     <option value="Gato">Gato</option>
                                 </Form.Select>
+                                <Form.Control.Feedback type="invalid">{errors.species}</Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                         <Col xs={12} md={6}>
@@ -58,9 +142,12 @@ const PetForm = ({
                                     type="text"
                                     name="race"
                                     value={formData.race}
-                                    onChange={handleChange}
+                                    onChange={handleData}
+                                    onBlur={(e) => validateField("race", e.target.value)}
+                                    isInvalid={!!errors.race}
                                     required
                                 />
+                                <Form.Control.Feedback type="invalid">{errors.race}</Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -73,10 +160,13 @@ const PetForm = ({
                                     type="number"
                                     name="age"
                                     value={formData.age}
-                                    onChange={handleChange}
+                                    onChange={handleData}
+                                    onBlur={(e) => validateField("age", e.target.value)}
+                                    isInvalid={!!errors.age}
                                     min="0"
                                     required
                                 />
+                                <Form.Control.Feedback type="invalid">{errors.age}</Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                         <Col xs={12} md={4}>
@@ -87,10 +177,13 @@ const PetForm = ({
                                     step="0.1"
                                     name="weight"
                                     value={formData.weight}
-                                    onChange={handleChange}
+                                    onChange={handleData}
+                                    onBlur={(e) => validateField("weight", e.target.value)}
+                                    isInvalid={!!errors.weight}
                                     min="0"
                                     required
                                 />
+                                <Form.Control.Feedback type="invalid">{errors.weight}</Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                         <Col xs={12} md={4}>
@@ -99,12 +192,16 @@ const PetForm = ({
                                 <Form.Select
                                     name="gender"
                                     value={formData.gender}
-                                    onChange={handleChange}
+                                    onChange={handleData}
+                                    onBlur={(e) => validateField("gender", e.target.value)}
+                                    isInvalid={!!errors.gender}
                                     required
                                 >
+                                    <option value="">Seleccionar...</option>
                                     <option value="Macho">Macho</option>
                                     <option value="Hembra">Hembra</option>
                                 </Form.Select>
+                                <Form.Control.Feedback type="invalid">{errors.gender}</Form.Control.Feedback>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -115,9 +212,12 @@ const PetForm = ({
                             type="text"
                             name="shelter"
                             value={formData.shelter}
-                            onChange={handleChange}
+                            onChange={handleData}
+                            onBlur={(e) => validateField("shelter", e.target.value)}
+                            isInvalid={!!errors.shelter}
                             required
                         />
+                        <Form.Control.Feedback type="invalid">{errors.shelter}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
@@ -126,10 +226,13 @@ const PetForm = ({
                             type="url"
                             name="imageUrl"
                             value={formData.imageUrl}
-                            onChange={handleChange}
+                            onChange={handleData}
+                            onBlur={(e) => validateField("imageUrl", e.target.value)}
+                            isInvalid={!!errors.imageUrl}
                             placeholder="https://ejemplo.com/imagen.jpg"
                             required
                         />
+                        <Form.Control.Feedback type="invalid">{errors.imageUrl}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group className="mb-3">

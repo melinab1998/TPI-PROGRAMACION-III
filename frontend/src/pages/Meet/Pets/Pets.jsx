@@ -1,26 +1,18 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect} from 'react';
 import './Pets.css';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import gatoFilter from '../../../img/gato-filter.png';
 import perroFilter from '../../../img/perro-filter.png';
 import ambosFilter from '../../../img/ambos-filter.png';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getPets } from '../../../services/api.services.js';
-import { AuthenticationContext } from "../../../services/auth/AuthContext.jsx"
 import { errorToast } from '../../../utils/notifications.js';
 
 const Pets = () => {
-  const navigate = useNavigate();
-  const { token } = useContext(AuthenticationContext);
   const [pets, setPets] = useState([]);
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-
-    if (!token) {
-      navigate("/", { state: { showLogin: true, fromPets: true } });
-      return;
-    }
 
     getPets(
       (data) => setPets(data),

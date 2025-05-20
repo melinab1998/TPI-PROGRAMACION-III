@@ -1,41 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { FaEdit, FaPlus, FaTrash, FaHome, FaSearch } from 'react-icons/fa';
 import ShelterForm from "../ShelterForm/ShelterForm";
 import "./SheltersManagement.css";
 import PetDeleteModal from '../../AdminComponents/PetDeleteModal/PetDeleteModal';
+import { getShelters, createShelter, updateShelter, deleteShelter } from '../../../services/api.services.js';
+import { errorToast, successToast } from "../../../utils/notifications.js"
 
 const SheltersManagement = () => {
-    const [shelters, setShelters] = useState([
-        {
-            id_shelter: 1,
-            name: "Refugio Esperanza",
-            address: "Calle Principal 123, Ciudad",
-            phone: "555-1234",
-            email: "contacto@esperanza.org"
-        },
-        {
-            id_shelter: 2,
-            name: "Hogar Felino",
-            address: "Avenida Central 456, Ciudad",
-            phone: "555-5678",
-            email: "info@hogarfelino.org"
-        },
-        {
-            id_shelter: 3,
-            name: "Patitas Felices",
-            address: "Calle Secundaria 789, Ciudad",
-            phone: "555-9012",
-            email: "hola@patitasfelices.org"
-        },
-        {
-            id_shelter: 4,
-            name: "Gatitos Unidos",
-            address: "Boulevard Norte 321, Ciudad",
-            phone: "555-3456",
-            email: "adopciones@gatitosunidos.org"
-        }
-    ]);
+    const [shelters, setShelters] = useState([]);
+
+    useEffect(() => {
+        getShelters(
+            (data) => setShelters(data),
+            (error) => {
+                errorToast(error.message || "Error al obtener los refugios");
+                console.error("Error fetching shelters:", error);
+            }
+        );
+    }, []);
+
 
     const [formData, setFormData] = useState({
         name: '',
@@ -80,27 +64,63 @@ const SheltersManagement = () => {
 
     const handleAddSubmit = (e) => {
         e.preventDefault();
-        const newShelter = { ...formData, id_shelter: shelters.length + 1 };
-        setShelters([...shelters, newShelter]);
-        setShowAddModal(false);
-        resetForm();
+
+        createShelter(
+            formData,
+            (newShelter) => {
+                getShelters((data) => setShelters(data));
+                setShowAddModal(false);
+                resetForm();
+                successToast("Refugio agregado con éxito.");
+            },
+            (error) => {
+                console.error("Error al agregar refugio:", error);
+                errorToast("No se pudo agregar el refugio.");
+            }
+        );
     };
 
     const handleEditSubmit = (e) => {
         e.preventDefault();
-        const updatedShelters = shelters.map((shelter) =>
-            shelter.id_shelter === currentShelter.id_shelter ? { ...formData, id_shelter: currentShelter.id_shelter } : shelter
+
+        updateShelter(
+            currentShelter.id_shelter,
+            formData,
+            (updatedShelter) => {
+                getShelters((data) => setShelters(data));
+                setShowEditModal(false);
+                resetForm();
+                successToast("Refugio actualizado con éxito.");
+            },
+            (error) => {
+                console.error("Error al actualizar refugio:", error);
+                errorToast("No se pudo actualizar el refugio.");
+            }
         );
-        setShelters(updatedShelters);
-        setShowEditModal(false);
-        resetForm();
     };
 
     const handleDeleteSubmit = () => {
-        const updatedShelters = shelters.filter((shelter) => shelter.id_shelter !== currentShelter.id_shelter);
-        setShelters(updatedShelters);
-        setShowDeleteModal(false);
-        setCurrentShelter(null);
+
+
+        deleteShelter(
+            currentShelter.id_shelter,
+            (deleteShelter) => {
+                getShelters(
+                    (data) => setShelters(data),
+                    (error) => {
+                        errorToast(error.message || "Error al obtener los refugios");
+                        console.error("Error fetching shelters:", error);
+                    }
+                );
+                setCurrentShelter(null);
+                setShowDeleteModal(false);
+                successToast("Refugio eliminado con éxito.");
+            },
+            (error) => {
+                console.error("Error al eliminar refugio:", error);
+                errorToast("No se pudo eliminar el refugio.");
+            }
+        )
     };
 
     const openEditModal = (shelter) => {

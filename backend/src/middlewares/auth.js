@@ -20,8 +20,24 @@ export const verifyToken = (req, res, next) => {
 		const payload = jwt.verify(token, process.env.SECRETKEY);
 		console.log("Payload decodificado:", payload);
 
+		req.user = payload; 
+
 		next();
 	} catch (error) {
 		return res.status(403).json({ message: "No posee permisos correctos" });
 	}
+};
+
+export const authorizeRoles = (...allowedRoles) => {
+	return (req, res, next) => {
+		if (!req.user) {
+			return res.status(401).json({ message: "No autenticado" });
+		}
+
+		if (!allowedRoles.includes(req.user.role)) {
+			return res.status(403).json({ message: "No tiene permisos suficientes" });
+		}
+
+		next();
+	};
 };

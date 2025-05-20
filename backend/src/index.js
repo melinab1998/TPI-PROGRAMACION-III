@@ -4,6 +4,7 @@ import userRoutes from "./routes/users.routes.js";
 import petsRoutes from "./routes/pets.routes.js";
 import donationRoutes from "./routes/donations.routes.js";
 import requestRoutes from "./routes/requests.routes.js";
+import sheltersRoutes from "./routes/shelters.routes.js";
 import cors from "cors";
 import initModels from "./models/init.models.js";
 
@@ -19,6 +20,7 @@ app.use(userRoutes);
 app.use(petsRoutes);
 app.use(donationRoutes);
 app.use(requestRoutes);
+app.use(sheltersRoutes);
 
 app.get("/", (req, res) => {
 	res.send("Backend funcionando!");
