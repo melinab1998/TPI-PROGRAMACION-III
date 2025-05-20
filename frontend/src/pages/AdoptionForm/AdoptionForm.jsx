@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap';
 import React, { useState, useEffect, useContext } from 'react';
 import './AdoptionForm.css';
-import { errorToast, successToast, infoToast } from '../../utils/notifications.js';
+import { errorToast, successToast} from '../../utils/notifications.js';
 import {
   validateName, validateLastName, validateAddress, validatePhone, validateCity, validateProvince, validateDNI, validateHousingType,
   validateOwnershipStatus,
@@ -18,7 +18,7 @@ import {
   validateTerms
 } from '../../utils/validations';
 import { getPetById } from '../../services/api.services.js';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { AuthenticationContext } from '../../services/auth//AuthContext.jsx';
 import { createAdoptionForm } from '../../services/api.services.js';
 
@@ -26,12 +26,6 @@ import { createAdoptionForm } from '../../services/api.services.js';
 const AdoptionForm = () => {
   const { id: id_pet } = useParams();
   const { userId: id_user } = useContext(AuthenticationContext);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!id_user) {
-      navigate("/", { state: { showLogin: true, fromAdoptionForm: true } });
-    }
-  }, [id_user]);
   const initialFormState = {
     id_pet: id_pet,
     id_user: "",
