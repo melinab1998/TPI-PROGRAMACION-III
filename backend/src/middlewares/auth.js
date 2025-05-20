@@ -20,6 +20,8 @@ export const verifyToken = (req, res, next) => {
 		const payload = jwt.verify(token, process.env.SECRETKEY);
 		console.log("Payload decodificado:", payload);
 
+		req.user = payload; 
+
 		next();
 	} catch (error) {
 		return res.status(403).json({ message: "No posee permisos correctos" });
