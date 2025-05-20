@@ -176,3 +176,17 @@ export const getRequests = (onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
+
+export const updateRequests = (id, newState, onSuccess, onError) => {
+	fetch(`${baseUrl}/api/adoption`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+		body: JSON.stringify({ id, state: newState }),
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};

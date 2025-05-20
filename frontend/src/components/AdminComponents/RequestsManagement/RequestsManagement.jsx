@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Pagination, Form } from 'react-bootstrap';
 import { FaSearch, FaEye, FaTrash, FaEdit } from 'react-icons/fa';
 import { SiReacthookform } from "react-icons/si";
-import { getRequests } from '../../../services/api.services.js';
+import { getRequests, updateRequests } from '../../../services/api.services.js';
 import { errorToast } from "../../../utils/notifications.js";
 import './RequestsManagement.css';
 import DetailModal from './DetailModal/DetailModal.jsx';
+import UpdateModal from './UpdateModal/UpdateModal.jsx';
 
 const RequestsManagement = () => {
     const [requests, setRequests] = useState([]);
@@ -14,6 +15,9 @@ const RequestsManagement = () => {
     const [showDetailModal, setShowDetailModal] = useState(false);
     const [selectedRequest, setSelectedRequest] = useState(null);
     const requestsPerPage = 20;
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [requestToUpdate, setRequestToUpdate] = useState(null);
+    const [newState, setNewState] = useState("");
 
     useEffect(() => {
         getRequests(
@@ -61,10 +65,37 @@ const RequestsManagement = () => {
         setSelectedRequest(request);
         setShowDetailModal(true);
     };
-
-    const handleDelete = (request) => {
-        alert(`Eliminar solicitud de ${request.name}`);
+    /* 
+        const handleDelete = (request) => {
+            alert(`Eliminar solicitud de ${request.name}`);
+        }; */
+    const handleUpdate = (request) => {
+        setRequestToUpdate(request);
+        setNewState(request.state || "Pendiente");
+        setShowUpdateModal(true);
     };
+
+    const handleSaveUpdate = () => {
+        updateRequests(
+            requestToUpdate.id,
+            newState,
+            (data) => {
+                // Actualiza el estado local si quieres
+                setRequests(prev =>
+                    prev.map(r =>
+                        r.id === requestToUpdate.id ? { ...r, state: newState } : r
+                    )
+                );
+                setShowUpdateModal(false);
+            },
+            (error) => {
+                errorToast(error.message || "Error al actualizar la solicitud");
+            }
+        );
+        setShowUpdateModal(false);
+    };
+
+
 
     return (
         <Container className="requests-management mt-4">
@@ -124,7 +155,7 @@ const RequestsManagement = () => {
                                 >
                                     <FaTrash /> Eliminar
                                 </Button>
-                                <Button variant="outline-warning" size="sm" >
+                                <Button variant="outline-warning" size="sm" onClick={() => handleUpdate(req)}>
                                     <FaEdit /> Atualizar
                                 </Button>
                             </td>
@@ -137,6 +168,13 @@ const RequestsManagement = () => {
                 show={showDetailModal}
                 onHide={() => setShowDetailModal(false)}
                 request={selectedRequest || {}}
+            />
+            <UpdateModal
+                show={showUpdateModal}
+                onHide={() => setShowUpdateModal(false)}
+                currentState={newState}
+                onChangeState={setNewState}
+                onSave={handleSaveUpdate}
             />
         </Container>
 

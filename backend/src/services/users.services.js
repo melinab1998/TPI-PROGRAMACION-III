@@ -77,7 +77,7 @@ export const loginUser = async (req, res) => {
 				user_name: user.user_name,
 			},
 			secretKey,
-			{ expiresIn: "1h" }
+			{ expiresIn: "20h" }
 		);
 
 		return res.status(200).json({

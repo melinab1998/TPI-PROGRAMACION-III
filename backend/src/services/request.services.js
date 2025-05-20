@@ -127,3 +127,25 @@ export const getRequests = async (req, res) => {
 			.json({ message: "Ocurrió un error al obtener las requests." });
 	}
 };
+
+export const updateRequests = async (req, res) => {
+	try {
+		const { id } = req.body;
+		const { state } = req.body;
+
+		const request = await Request.findByPk(id);
+
+		if (!request) {
+			return res
+				.status(404)
+				.json({ message: "Ocurrió un error al obtener la solicitud." });
+		}
+
+		await request.update({ state });
+		return res
+			.status(200)
+			.json({ message: "Solicitud actualizada exitosamente.", request });
+	} catch (error) {
+		res.status(500).json({ message: "Error al actualizar la solicitud." });
+	}
+};
