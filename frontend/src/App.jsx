@@ -25,6 +25,7 @@ import CookiesNotice from "./pages/CookiesNotice/CookiesNotice";
 import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDashboard/SuperAdminDashboard";
 import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
 import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
+import { infoToast } from "./utils/notifications.js";
 
 function App() {
 
@@ -32,15 +33,24 @@ function App() {
   const { userRole } = useContext(AuthenticationContext);
 
   const location = useLocation();
+  
   useEffect(() => {
-    if (location.state?.showLogin) {
-      setShowLogin(true);
-      // Limpia el estado para evitar que se vuelva a abrir si se recarga
-      window.history.replaceState({}, document.title);
-    }
+  if (location.state?.showLogin) {
+    setShowLogin(true);
 
-    document.body.className = location.pathname === "/register" ? "custom-register" : "default-body";
-  }, [location]);
+    if (location.state.fromAdoptionForm && !sessionStorage.getItem("toastShown")) {
+      infoToast("Para completar un formulario de adopción debes iniciar sesión");
+      sessionStorage.setItem("toastShown", "true");
+    }
+    window.history.replaceState({}, document.title);
+  }
+
+  document.body.className =
+    location.pathname === "/register" ? "custom-register" : "default-body";
+
+  return () => sessionStorage.removeItem("toastShown");
+}, [location]);
+
 
   return (
     <>
