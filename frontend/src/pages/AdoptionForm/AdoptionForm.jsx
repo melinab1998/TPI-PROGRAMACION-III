@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap';
 import React, { useState, useEffect, useContext } from 'react';
 import './AdoptionForm.css';
-import { errorToast, successToast } from '../../utils/notifications.js';
+import { errorToast, successToast} from '../../utils/notifications.js';
 import {
   validateName, validateLastName, validateAddress, validatePhone, validateCity, validateProvince, validateDNI, validateHousingType,
   validateOwnershipStatus,
@@ -57,6 +57,7 @@ const AdoptionForm = () => {
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState(initialFormState);
   const [showTerms, setShowTerms] = useState(false);
+
 
   useEffect(() => {
     getPetById(

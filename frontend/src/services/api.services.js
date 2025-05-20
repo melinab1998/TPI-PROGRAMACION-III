@@ -83,12 +83,11 @@ export const getPets = (onSuccess, onError) => {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `Bearer ${localStorage.getItem("token")}`,
 		},
 	})
-		.then(handleResponse)
-		.then(onSuccess)
-		.catch(onError);
+	.then(handleResponse)
+	.then(onSuccess)
+	.catch(onError);
 };
 
 export const getPetById = (id, onSuccess, onError) => {
