@@ -68,7 +68,7 @@ function App() {
           <Route
             path="/adoption/:id"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute allowedRoles={["user"]}>
                 <AdoptionForm />
               </ProtectedRoute>
             }

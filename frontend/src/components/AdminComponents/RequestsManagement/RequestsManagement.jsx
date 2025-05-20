@@ -188,7 +188,7 @@ const RequestsManagement = () => {
                                     <FaEye /> Ver Detalle
                                 </Button>
                                 <Button variant="outline-warning" size="sm" onClick={() => handleUpdate(req)}>
-                                    <FaEdit /> Atualizar
+                                    <FaEdit /> Actualizar
                                 </Button>
                             </td>
                         </tr>
