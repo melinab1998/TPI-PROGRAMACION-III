@@ -1,9 +1,10 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import "./UpdateModal.css";
 
 const UpdateModal = ({ show, onHide, currentState, onChangeState, onSave }) => {
     return (
-        <Modal show={show} onHide={onHide} centered>
+        <Modal show={show} onHide={onHide} centered className="request-update-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Actualizar Estado de Solicitud</Modal.Title>
             </Modal.Header>

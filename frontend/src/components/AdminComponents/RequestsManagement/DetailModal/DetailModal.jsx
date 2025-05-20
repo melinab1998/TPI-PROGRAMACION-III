@@ -1,9 +1,9 @@
 import { Modal, Button } from 'react-bootstrap';
-
+import './DetailModal.css';
 
 const DetailModal = ({ show, onHide, request }) => {
     return (
-        <Modal show={show} onHide={onHide} centered>
+        <Modal show={show} onHide={onHide} centered className="detail-modal">
             <Modal.Header closeButton>
                 <Modal.Title>Detalle de Solicitud #{request.id}</Modal.Title>
             </Modal.Header>

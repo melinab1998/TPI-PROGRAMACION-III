@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Pagination, Form } from 'react-bootstrap';
-import { FaSearch, FaEye, FaTrash, FaEdit } from 'react-icons/fa';
-import { SiReacthookform } from "react-icons/si";
+import { FaSearch, FaEye, FaEdit, FaClipboardList } from 'react-icons/fa';
 import { getRequests, updateRequests } from '../../../services/api.services.js';
 import { errorToast } from "../../../utils/notifications.js";
 import './RequestsManagement.css';
 import DetailModal from './DetailModal/DetailModal.jsx';
 import UpdateModal from './UpdateModal/UpdateModal.jsx';
+import './RequestsManagement.css';
 
 const RequestsManagement = () => {
     const [requests, setRequests] = useState([]);
@@ -17,6 +17,7 @@ const RequestsManagement = () => {
     const requestsPerPage = 20;
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [requestToUpdate, setRequestToUpdate] = useState(null);
+    const [stateFilter, setStateFilter] = useState('');
     const [newState, setNewState] = useState("");
 
     useEffect(() => {
@@ -29,12 +30,14 @@ const RequestsManagement = () => {
         );
     }, []);
 
-    const filteredRequests = (Array.isArray(requests) ? requests : []).filter(req =>
-        (req.name && req.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (req.lastname && req.lastname.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (req.User?.email && req.User.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (req.Pet?.name && req.Pet.name.toLowerCase().includes(searchTerm.toLowerCase()))
-    );
+    const filteredRequests = (Array.isArray(requests) ? requests : [])
+        .filter(req =>
+            ((req.name && req.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (req.lastname && req.lastname.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (req.User?.email && req.User.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (req.Pet?.name && req.Pet.name.toLowerCase().includes(searchTerm.toLowerCase())))
+            && (stateFilter === '' || req.state === stateFilter)
+        );
     const sortedRequests = [...filteredRequests].sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
@@ -100,7 +103,7 @@ const RequestsManagement = () => {
     return (
         <Container className="requests-management mt-4">
             <h2 className="section-title">
-                <SiReacthookform className="icon" /> Gestión de solicitudes
+                <FaClipboardList className="icon" /> Gestión de solicitudes
             </h2>
             <Form className="mb-3">
                 <Form.Group controlId="search">
@@ -117,6 +120,43 @@ const RequestsManagement = () => {
                     </div>
                 </Form.Group>
             </Form>
+            <div className="mb-3 d-flex gap-2 flex-wrap">
+                <Button
+                    className={`state-filter-btn${stateFilter === '' ? ' active' : ''}`}
+                    onClick={() => setStateFilter('')}
+                    size="sm"
+                >
+                    Todas
+                </Button>
+                <Button
+                    className={`state-filter-btn${stateFilter === 'Pendiente' ? ' active' : ''}`}
+                    onClick={() => setStateFilter('Pendiente')}
+                    size="sm"
+                >
+                    Pendiente
+                </Button>
+                <Button
+                    className={`state-filter-btn${stateFilter === 'En revisión' ? ' active' : ''}`}
+                    onClick={() => setStateFilter('En revisión')}
+                    size="sm"
+                >
+                    En revisión
+                </Button>
+                <Button
+                    className={`state-filter-btn${stateFilter === 'Aprobada' ? ' active' : ''}`}
+                    onClick={() => setStateFilter('Aprobada')}
+                    size="sm"
+                >
+                    Aprobada
+                </Button>
+                <Button
+                    className={`state-filter-btn${stateFilter === 'Rechazada' ? ' active' : ''}`}
+                    onClick={() => setStateFilter('Rechazada')}
+                    size="sm"
+                >
+                    Rechazada
+                </Button>
+            </div>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
@@ -146,14 +186,6 @@ const RequestsManagement = () => {
                                     onClick={() => handleViewDetail(req)}
                                 >
                                     <FaEye /> Ver Detalle
-                                </Button>
-                                <Button
-                                    variant="outline-danger"
-                                    size="sm"
-                                    className="me-2"
-                                    onClick={() => handleDelete(req)}
-                                >
-                                    <FaTrash /> Eliminar
                                 </Button>
                                 <Button variant="outline-warning" size="sm" onClick={() => handleUpdate(req)}>
                                     <FaEdit /> Atualizar

@@ -1,0 +1,147 @@
+.requests-management {
+	padding: 3rem;
+}
+
+.header-section {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 2.5rem;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.section-title {
+	font-size: 1.8rem;
+	font-weight: 600;
+	color: #5d4037;
+	display: flex;
+	align-items: center;
+	margin: 0;
+}
+
+.section-title .icon {
+	margin-right: 10px;
+	color: #f6847a;
+}
+
+.search-section {
+	width: 100%;
+	max-width: 300px;
+	margin: 0px auto 2rem auto;
+}
+
+.search-section .input-group {
+	border: 1px solid #f5e6d8;
+	border-radius: 8px;
+	background-color: #fff8f0;
+}
+
+.search-section .input-group-text {
+	background-color: #fff8f0;
+	border: none;
+	color: #8d6e63;
+}
+
+.search-section .search-input,
+.requests-management .form-control {
+	background-color: #fff8f0;
+	border: none;
+	color: #5d4037;
+}
+
+.search-section .search-input:focus,
+.requests-management .form-control:focus {
+	box-shadow: none;
+}
+
+.table {
+	background-color: #fff8f0;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 3px 10px rgba(93, 64, 55, 0.1);
+}
+
+.table thead th {
+	background-color: #ffd3b5;
+	color: #5d4037;
+	font-weight: 600;
+	border-bottom: 2px solid #f5e6d8;
+}
+
+.table tbody tr {
+	transition: background 0.2s;
+}
+
+.table tbody tr:hover {
+	background-color: #fff0e6;
+}
+
+.table td,
+.table th {
+	vertical-align: middle;
+}
+
+.btn-outline-info {
+	color: #5d4037;
+	border-color: #ffd3b5;
+	background-color: #ffd3b5;
+}
+
+.btn-outline-info:hover {
+	background-color: #ff8c7f;
+	border-color: #ff8c7f;
+	color: white;
+}
+
+.btn-outline-warning {
+	color: #5d4037;
+	border-color: #f5e6d8;
+	background-color: #f5e6d8;
+}
+
+.btn-outline-warning:hover {
+	background-color: #cd5c5c;
+	border-color: #cd5c5c;
+	color: white;
+}
+
+.pagination .page-item.active .page-link {
+	background-color: #f6847a;
+	border-color: #f6847a;
+	color: white;
+}
+
+.pagination .page-link {
+	color: #5d4037;
+}
+
+.state-filter-btn {
+	min-width: 110px;
+	font-weight: 500;
+	border-radius: 20px;
+	border: 2px solid #ffd3b5;
+	color: #5d4037;
+	background-color: #fff8f0;
+	transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.state-filter-btn.active,
+.state-filter-btn:focus,
+.state-filter-btn:hover {
+	background-color: #f6847a;
+	color: #fff;
+	border-color: #f6847a;
+}
+
+@media (max-width: 768px) {
+	.header-section {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.section-title {
+		font-size: 1.6rem;
+		margin: 10px 0;
+	}
+}
