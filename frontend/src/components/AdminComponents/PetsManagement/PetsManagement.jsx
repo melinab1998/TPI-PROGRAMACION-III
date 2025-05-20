@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
-import { FaEdit, FaPlus, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
 import { getPets, createPet, updatePet, deletePet } from '../../../services/api.services.js';
 import PetForm from "../PetForm/PetForm"
 import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import "../PetsManagement/PetsManagement.css"
 import { errorToast, successToast } from "../../../utils/notifications.js"
+import ManagementSection from '../ManagementSection/ManagementSection.jsx';
 
 const PetsManagement = () => {
     const [pets, setPets] = useState([]);
@@ -157,28 +158,16 @@ const PetsManagement = () => {
 
     return (
         <Container className="pets-management">
-            <div className="header-section">
-                <h2 className="section-title">
-                    <FaPaw className="icon" /> Gestión de Mascotas
-                </h2>
-                <Button className="add-btn" onClick={() => setShowAddModal(true)}>
-                    <FaPlus /> Agregar Mascota
-                </Button>
-            </div>
-            <div className="search-section mb-4">
-                <div className="input-group">
-                    <span className="input-group-text">
-                        <FaSearch />
-                    </span>
-                    <input
-                        type="text"
-                        className="form-control search-input"
-                        placeholder="Buscar por nombre de mascota"
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                    />
-                </div>
-            </div>
+            <ManagementSection
+                icon={FaPaw}
+                title="Gestión de Mascotas"
+                searchPlaceholder="Buscar por nombre de mascota"
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+                showAddButton={true}
+                addButtonText="Agregar Mascota"
+                onAddClick={() => setShowAddModal(true)}
+            />
             <Row className="pets-list g-4">
                 {filteredPets.map((pet) => (
                     <Col key={pet.id_pet} xl={3} lg={4} md={6} sm={12}>

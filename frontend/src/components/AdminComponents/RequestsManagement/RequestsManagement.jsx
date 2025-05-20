@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Pagination, Form } from 'react-bootstrap';
-import { FaSearch, FaEye, FaEdit, FaClipboardList } from 'react-icons/fa';
+import { FaEye, FaEdit, FaClipboardList } from 'react-icons/fa';
 import { getRequests, updateRequests } from '../../../services/api.services.js';
 import { errorToast } from "../../../utils/notifications.js";
 import './RequestsManagement.css';
 import DetailModal from './DetailModal/DetailModal.jsx';
 import UpdateModal from './UpdateModal/UpdateModal.jsx';
 import './RequestsManagement.css';
+import ManagementSection from '../ManagementSection/ManagementSection.jsx';
 
 const RequestsManagement = () => {
     const [requests, setRequests] = useState([]);
@@ -102,24 +103,13 @@ const RequestsManagement = () => {
 
     return (
         <Container className="requests-management mt-4">
-            <h2 className="section-title">
-                <FaClipboardList className="icon" /> Gestión de solicitudes
-            </h2>
-            <Form className="mb-3">
-                <Form.Group controlId="search">
-                    <div className="input-group">
-                        <span className="input-group-text">
-                            <FaSearch />
-                        </span>
-                        <Form.Control
-                            type="text"
-                            placeholder="Buscar por nombre de usuario"
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                        />
-                    </div>
-                </Form.Group>
-            </Form>
+            <ManagementSection
+                icon={FaClipboardList}
+                title="Gestión de Solicitudes"
+                searchPlaceholder="Buscar por nombre de usuario"
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+            />
             <div className="mb-3 d-flex gap-2 flex-wrap">
                 <Button
                     className={`state-filter-btn${stateFilter === '' ? ' active' : ''}`}

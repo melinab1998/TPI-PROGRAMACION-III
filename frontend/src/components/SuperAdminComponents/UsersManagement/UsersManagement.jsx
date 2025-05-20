@@ -5,6 +5,7 @@ import { getUsers, deleteUser, updateUserRole } from "../../../services/api.serv
 import "./UsersManagement.css";
 import PetDeleteModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal";
 import { errorToast, successToast } from "../../../utils/notifications.js"
+import ManagementSection from "../../AdminComponents/ManagementSection/ManagementSection.jsx";
 
 
 const UsersManagement = () => {
@@ -115,28 +116,14 @@ const UsersManagement = () => {
 
     return (
         <Container className="users-management">
-            <div className="header-section">
-                <h2 className="section-title">
-                    <FaUsers className="icon" /> Gestión de Usuarios
-                </h2>
-            </div>
+            <ManagementSection
+                icon={FaUsers}
+                title="Gestión de Usuarios"
+                searchPlaceholder="Buscar por nombre de usuario"
+                searchTerm={searchTerm}
+                onSearchChange={(e) => setSearchTerm(e.target.value)}
+            />
 
-            <Row className="mb-4">
-                <Col>
-                    <InputGroup className="search-section">
-                        <InputGroup.Text className="input-group-text">
-                            <FaSearch />
-                        </InputGroup.Text>
-                        <Form.Control
-                            type="text"
-                            placeholder="Buscar por nombre de usuario"
-                            className="form-control search-input"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </InputGroup>
-                </Col>
-            </Row>
 
             {hasChanges && (
                 <Row className="mb-3">

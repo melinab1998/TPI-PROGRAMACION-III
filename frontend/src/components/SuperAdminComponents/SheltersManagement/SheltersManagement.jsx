@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
-import { FaEdit, FaPlus, FaTrash, FaHome, FaSearch } from 'react-icons/fa';
+import { FaEdit, FaTrash, FaHome } from 'react-icons/fa';
 import ShelterForm from "../ShelterForm/ShelterForm";
 import "./SheltersManagement.css";
 import PetDeleteModal from '../../AdminComponents/PetDeleteModal/PetDeleteModal';
 import { getShelters, createShelter, updateShelter, deleteShelter } from '../../../services/api.services.js';
 import { errorToast, successToast } from "../../../utils/notifications.js"
+import ManagementSection from '../../AdminComponents/ManagementSection/ManagementSection.jsx';
 
 const SheltersManagement = () => {
     const [shelters, setShelters] = useState([]);
@@ -137,28 +138,16 @@ const SheltersManagement = () => {
 
     return (
         <Container className="shelters-management">
-            <div className="header-section">
-                <h2 className="section-title">
-                    <FaHome className="icon" /> Gestión de Refugios
-                </h2>
-                <Button className="add-btn" onClick={() => setShowAddModal(true)}>
-                    <FaPlus /> Agregar Refugio
-                </Button>
-            </div>
-            <div className="search-section mb-4">
-                <div className="input-group">
-                    <span className="input-group-text">
-                        <FaSearch />
-                    </span>
-                    <input
-                        type="text"
-                        className="form-control search-input"
-                        placeholder="Buscar por nombre de refugio"
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                    />
-                </div>
-            </div>
+            <ManagementSection
+                icon={FaHome}
+                title="Gestión de Refugios"
+                searchPlaceholder="Buscar por nombre de refugio"
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+                showAddButton={true}
+                addButtonText="Agregar Refugio"
+                onAddClick={() => setShowAddModal(true)}
+            />
             <Row className="shelters-list g-4">
                 {filteredShelters.map((shelter) => (
                     <Col key={shelter.id_shelter} xl={3} lg={4} md={6} sm={12}>
