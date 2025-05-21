@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { infoToast } from "../../utils/notifications.js"
 import { AuthenticationContext } from "../../services/auth/AuthContext";
 
 const ProtectedRoute = ({ allowedRoles, children }) => {
@@ -11,7 +11,7 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
   // Si no está logueado  mostrar toast e ir a login
   useEffect(() => {
     if (!userRole && !shownLoginToast.current) {
-      toast.info("Por favor, inicia sesión para continuar.");
+      infoToast("Por favor, inicia sesión para continuar.");
       shownLoginToast.current = true;
     }
   }, [userRole]);
@@ -29,7 +29,7 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
 
     // Si es admin  mostrar toast una sola vez, pero no redirigir
     if (userRole === "admin" && !shownDenyToast.current) {
-      toast.error("No tienes permiso para acceder a esta sección.");
+      infoToast("No tienes permiso para acceder a esta sección.");
       shownDenyToast.current = true;
     }
 
