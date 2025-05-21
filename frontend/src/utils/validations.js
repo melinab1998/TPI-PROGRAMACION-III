@@ -193,3 +193,10 @@ export const validateImageUrl = (url) => {
     }
     return "";
 };
+
+export const validateMessage = (message) => {
+	if (!message.trim()) return "Este campo es obligatorio.";
+	return "";
+};
+
+
