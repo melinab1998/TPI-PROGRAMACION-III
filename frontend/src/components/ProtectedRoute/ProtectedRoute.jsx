@@ -1,4 +1,3 @@
-// src/components/ProtectedRoute/ProtectedRoute.jsx
 import { useContext, useEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
