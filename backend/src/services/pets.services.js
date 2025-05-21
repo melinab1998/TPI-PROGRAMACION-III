@@ -26,7 +26,7 @@ export const getPets = async (req, res) => {
 export const getPetById = async (req, res) => {
   try {
     const { id } = req.params;
-    const pet = await Pet.findByPk(id);
+    const pet = await Pet.findByPk(id); 
     
     if (!pet) {
       return res.status(404).json({ 
@@ -34,8 +34,7 @@ export const getPetById = async (req, res) => {
         message: "Mascota no encontrada." 
       });
     }
-    
-    res.json(pet);
+    res.json(pet);  
   } catch (error) {
     res.status(500).json({ 
       error: "server_error",
