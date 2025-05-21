@@ -1,106 +1,202 @@
-import {Pet} from "../models/Pet.js";
+import { Pet } from "../models/Pet.js";
+import {
+  validateName,
+  validateSpecies,
+  validateRace,
+  validateAge,
+  validateWeight,
+  validateGender,
+  validateShelter,
+  validateImageUrl
+} from "../helpers/validations.js"
 
 export const getPets = async (req, res) => {
-    try {
-        const pet = await Pet.findAll();
-        res.json(pet);
-
-    } catch (error) {
-        res.status(500).json({ message: "Ocurrió un error al obtener las mascotas." });
-    }
-}
+  try {
+    const pets = await Pet.findAll();
+    res.json(pets);
+  } catch (error) {
+    res.status(500).json({ 
+      error: "server_error",
+      message: "Ocurrió un error al obtener las mascotas.",
+      details: error.message 
+    });
+  }
+};
 
 export const getPetById = async (req, res) => {
-    try {
-        const {id} = req.params
-        const pet = await Pet.findByPk(id)
-        if(!pet){
-           return res.status(404).json({ message: "Mascota no encontrada." });
-        }
-        res.json(pet)
-
-    } catch (error) {
-        res.status(500).json({ message: "Ocurrió un error al obtener la mascota." });
+  try {
+    const { id } = req.params;
+    const pet = await Pet.findByPk(id);
+    
+    if (!pet) {
+      return res.status(404).json({ 
+        error: "not_found",
+        message: "Mascota no encontrada." 
+      });
     }
-}
+    
+    res.json(pet);
+  } catch (error) {
+    res.status(500).json({ 
+      error: "server_error",
+      message: "Ocurrió un error al obtener la mascota.",
+      details: error.message 
+    });
+  }
+};
 
 export const createPet = async (req, res) => {
-  
-    try {
-      const { name, species, race, age, weight, gender, description, shelter, adopted, imageUrl } = req.body;
-  
-      if ([name, species, race, age, weight, gender, description, shelter,imageUrl].some(campo => campo === undefined || campo === null)) {
-        return res.status(400).json({
-          error: "validation_error",
-          message: "Faltan campos obligatorios.",
-        });
-      }
+  try {
+    const { 
+      name, 
+      species, 
+      race, 
+      age, 
+      weight, 
+      gender, 
+      description, 
+      shelter, 
+      adopted, 
+      imageUrl 
+    } = req.body;
 
-  
-      const newPet = await Pet.create({
-        name, 
-        species, 
-        race, 
-        age, 
-        weight, 
-        gender, 
-        description,
-        shelter,
-        adopted,  
-        imageUrl
+    const errors = {
+      ...(validateName(name) && { name: validateName(name) }),
+      ...(validateSpecies(species) && { species: validateSpecies(species) }),
+      ...(validateRace(race) && { race: validateRace(race) }),
+      ...(validateAge(age) && { age: validateAge(age) }),
+      ...(validateWeight(weight) && { weight: validateWeight(weight) }),
+      ...(validateGender(gender) && { gender: validateGender(gender) }),
+      ...(validateShelter(shelter) && { shelter: validateShelter(shelter) }),
+      ...(validateImageUrl(imageUrl) && { imageUrl: validateImageUrl(imageUrl) }),
+    };
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(400).json({
+        error: "validation_error",
+        message: "Error de validación en los datos proporcionados",
+        details: errors
       });
-  
-      return res.status(201).json({ message: "Mascota creada exitosamente.", newPet });
-    } catch (error) {
-      res.status(500).json({ message: "Ocurrió un error al crear la mascota." });
-    }
-  };
-
-  export const updatePet = async(req, res) =>{
-    try{
-      const {id} = req.params
-      const { name, species, race, age, weight, gender, description, shelter, adopted, imageUrl } = req.body;
-
-      const pet = await Pet.findByPk(id);
-
-      
-      if(!pet){
-        return res.status(404).json({ message: "Ocurrió un error al obtener la mascota." });
     }
 
-       await pet.update({
-        name, 
-        species, 
-        race, 
-        age, 
-        weight, 
-        gender, 
-        description, 
-        shelter,
-        adopted,  
-        imageUrl
-      })
-      return res.status(200).json({ message: "Mascota actualizada exitosamente.", pet });
+    const newPet = await Pet.create({
+      name, 
+      species, 
+      race, 
+      age, 
+      weight, 
+      gender, 
+      description,
+      shelter,
+      adopted: adopted || false, 
+      imageUrl
+    });
 
-    }catch(error){
-      res.status(500).json({ message: "Error al actualizar la mascota." });
-    }
-  };
+    return res.status(201).json({ 
+      message: "Mascota creada exitosamente.", 
+      pet: newPet 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      error: "server_error",
+      message: "Ocurrió un error al crear la mascota.",
+      details: error.message 
+    });
+  }
+};
 
+export const updatePet = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { 
+      name, 
+      species, 
+      race, 
+      age, 
+      weight, 
+      gender, 
+      description, 
+      shelter, 
+      adopted, 
+      imageUrl 
+    } = req.body;
 
-export const deletePet = async(req, res) =>{
-  const {id} = req.params
-  try{
     const pet = await Pet.findByPk(id);
-    if(!pet){
-      return res.status(404).json({ message: "Mascota no encontrada." });
+    
+    if (!pet) {
+      return res.status(404).json({ 
+        error: "not_found",
+        message: "Mascota no encontrada." 
+      });
+    }
+
+    const errors = {
+      ...(name && validateName(name) && { name: validateName(name) }),
+      ...(species && validateSpecies(species) && { species: validateSpecies(species) }),
+      ...(race && validateRace(race) && { race: validateRace(race) }),
+      ...(age && validateAge(age) && { age: validateAge(age) }),
+      ...(weight && validateWeight(weight) && { weight: validateWeight(weight) }),
+      ...(gender && validateGender(gender) && { gender: validateGender(gender) }),
+      ...(shelter && validateShelter(shelter) && { shelter: validateShelter(shelter) }),
+      ...(imageUrl && validateImageUrl(imageUrl) && { imageUrl: validateImageUrl(imageUrl) }),
+    };
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(400).json({
+        error: "validation_error",
+        message: "Error de validación en los datos proporcionados",
+        details: errors
+      });
+    }
+
+    await pet.update({
+      name: name || pet.name,
+      species: species || pet.species,
+      race: race || pet.race,
+      age: age !== undefined ? age : pet.age,
+      weight: weight !== undefined ? weight : pet.weight,
+      gender: gender || pet.gender,
+      description: description || pet.description,
+      shelter: shelter || pet.shelter,
+      adopted: adopted !== undefined ? adopted : pet.adopted,
+      imageUrl: imageUrl || pet.imageUrl
+    });
+
+    return res.status(200).json({ 
+      message: "Mascota actualizada exitosamente.", 
+      pet 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      error: "server_error",
+      message: "Error al actualizar la mascota.",
+      details: error.message 
+    });
+  }
+};
+
+export const deletePet = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const pet = await Pet.findByPk(id);
+    
+    if (!pet) {
+      return res.status(404).json({ 
+        error: "not_found",
+        message: "Mascota no encontrada." 
+      });
     }
 
     await pet.destroy();
-    return res.status(200).json({ message: "Mascota eliminada exitosamente.", pet });
-
-
-  }catch (error){
-    res.status(500).json({ message: "Error al eliminar la mascota." });
+    return res.status(200).json({ 
+      message: "Mascota eliminada exitosamente.", 
+      pet 
+    });
+  } catch (error) {
+    res.status(500).json({ 
+      error: "server_error",
+      message: "Error al eliminar la mascota.",
+      details: error.message 
+    });
   }
-}
+};

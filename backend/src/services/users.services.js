@@ -2,11 +2,25 @@ import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import {
+	validateEmail,
+	validatePassword,
+	validateUserName,
+} from "../helpers/validations.js"
 dotenv.config();
 
 export const createUser = async (req, res) => {
 	try {
 		const { user_name, email, password, role } = req.body;
+
+		const errorName = validateUserName(user_name);
+		if (errorName) return res.status(400).json({ message: errorName });
+
+		const errorEmail = validateEmail(email);
+		if (errorEmail) return res.status(400).json({ message: errorEmail });
+
+		const errorPassword = validatePassword(password);
+		if (errorPassword) return res.status(400).json({ message: errorPassword });
 
 		const existingEmail = await User.findOne({ where: { email } });
 		if (existingEmail) {
@@ -38,8 +52,7 @@ export const createUser = async (req, res) => {
 		}
 
 		res.status(500).json({
-			message:
-				"Hubo un error al crear el usuario. Intenta nuevamente más tarde.",
+			message: "Hubo un error al crear el usuario. Intenta nuevamente más tarde.",
 		});
 	}
 };
@@ -47,27 +60,22 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const user = await User.findOne({
-			where: {
-				email,
-			},
-		});
+
+		const errorEmail = validateEmail(email);
+		if (errorEmail) return res.status(400).json({ message: errorEmail });
+
+		const errorPassword = validatePassword(password);
+		if (errorPassword) return res.status(400).json({ message: errorPassword });
+
+		const user = await User.findOne({ where: { email } });
 		if (!user) {
-			return res
-				.status(401)
-				.json({ message: "Email y/o contraseña incorrecta" });
+			return res.status(401).json({ message: "Email y/o contraseña incorrecta" });
 		}
 
 		const comparison = await bcrypt.compare(password, user.password);
-
 		if (!comparison) {
-			return res
-				.status(401)
-				.json({ message: "Email y/o contraseña incorrecta" });
+			return res.status(401).json({ message: "Email y/o contraseña incorrecta" });
 		}
-		const user_name = user.user_name;
-
-		const secretKey = process.env.SECRETKEY;
 
 		const token = jwt.sign(
 			{
@@ -76,17 +84,18 @@ export const loginUser = async (req, res) => {
 				role: user.role,
 				user_name: user.user_name,
 			},
-			secretKey,
+			process.env.SECRETKEY,
 			{ expiresIn: "20h" }
 		);
 
 		return res.status(200).json({
 			message: "Inicio de sesión exitoso",
-			user_name,
+			user_name: user.user_name,
 			token,
 		});
 	} catch (error) {
 		console.error("Error en el login:", error);
+		return res.status(500).json({ message: "Error interno en el inicio de sesión" });
 	}
 };
 
@@ -109,10 +118,16 @@ export const deleteUser = async (req, res) => {
 	}
 };
 
+const validRoles = ["admin", "user", "superadmin"]; 
+
 export const updateUserRole = async (req, res) => {
 	try {
 		const { id } = req.params;
 		const { role } = req.body;
+
+		if (!validRoles.includes(role)) {
+			return res.status(400).json({ message: "Rol inválido" });
+		}
 
 		const user = await User.findByPk(id);
 		if (!user) {
@@ -122,9 +137,10 @@ export const updateUserRole = async (req, res) => {
 		user.role = role;
 		await user.save();
 
-		return res
-			.status(200)
-			.json({ message: "Rol del usuario actualizado correctamente", user });
+		return res.status(200).json({
+			message: "Rol del usuario actualizado correctamente",
+			user,
+		});
 	} catch (error) {
 		console.error("Error al actualizar el rol del usuario:", error);
 		return res

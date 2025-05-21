@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Pagination, Form } from 'react-bootstrap';
 import { FaEye, FaEdit, FaClipboardList } from 'react-icons/fa';
 import { getRequests, updateRequests } from '../../../services/api.services.js';
-import { errorToast } from "../../../utils/notifications.js";
+import { errorToast, successToast } from "../../../utils/notifications.js";
 import './RequestsManagement.css';
 import DetailModal from './DetailModal/DetailModal.jsx';
 import UpdateModal from './UpdateModal/UpdateModal.jsx';
@@ -84,13 +84,13 @@ const RequestsManagement = () => {
             requestToUpdate.id,
             newState,
             (data) => {
-                // Actualiza el estado local si quieres
                 setRequests(prev =>
                     prev.map(r =>
                         r.id === requestToUpdate.id ? { ...r, state: newState } : r
                     )
                 );
                 setShowUpdateModal(false);
+                successToast("Solicitud actualizada con éxito.")
             },
             (error) => {
                 errorToast(error.message || "Error al actualizar la solicitud");

@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import User from "./User.js";
 
 export const Donation = sequelize.define(
 	"Donation",
@@ -10,15 +9,6 @@ export const Donation = sequelize.define(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-
-		/* 		id_user: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: Users,
-				key: "id_user",
-			},
-		}, */
-		// si el usuario esta logeado le pedimos menos adtos
 
 		name: {
 			type: DataTypes.STRING,
