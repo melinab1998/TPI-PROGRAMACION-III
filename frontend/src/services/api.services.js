@@ -250,3 +250,17 @@ export const updateRequests = (id, newState, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
+
+
+export const createContact = (formData, onSuccess, onError) => {
+	fetch(`${baseUrl}/api/contacts`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(formData),
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
