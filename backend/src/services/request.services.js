@@ -1,6 +1,28 @@
 import Request from "../models/Request.js";
 import User from "../models/User.js";
 import Pet from "../models/Pet.js";
+import {
+	validateName,
+	validateLastName,
+	validateAddress,
+	validatePhone,
+	validateCity,
+	validateProvince,
+	validateDNI,
+	validateHousingType,
+	validateOwnershipStatus,
+	validateOwnerConsultation,
+	validateCourtyard,
+	validateHasPets,
+	validatePetsNeutered,
+	validateHadOtherPets,
+	validateReason,
+	validateVacationPlan,
+	validateMovingPlan,
+	validateDailyWalks,
+	validateWhatsappFollowUp,
+	validateTerms,
+} from "../helpers/validations.js";
 
 export const createRequest = async (req, res) => {
 	try {
@@ -31,33 +53,42 @@ export const createRequest = async (req, res) => {
 			termsAccepted,
 		} = req.body;
 
-		/* 
-				Arreglar
-		if (
-			!name ||
-			!lastname ||
-			!address ||
-			!phone ||
-			!city ||
-			!province ||
-			!dni ||
-			termsAccepted !== true ||
-			!id_user ||
-			!id_pet ||
-			!housingType ||
-			!ownershipStatus ||
-			!hasCourtyard ||
-			!hasPets ||
-			!hadOtherPets ||
-			!reason ||
-			!vacationPlan ||
-			!movingPlan ||
-			!dailyWalks ||
-			!whatsappFollowUp
-		) {
-			return res.status(400).json({ error: "Faltan campos obligatorios." });
+		// Ejecutar todas las validaciones
+		const validationErrors = {
+			name: validateName(name),
+			lastname: validateLastName(lastname),
+			address: validateAddress(address),
+			phone: validatePhone(phone),
+			city: validateCity(city),
+			province: validateProvince(province),
+			dni: validateDNI(dni),
+			housingType: validateHousingType(housingType),
+			ownershipStatus: validateOwnershipStatus(ownershipStatus),
+			ownerConsultation: validateOwnerConsultation(ownerConsultation, ownershipStatus === "tenant"),
+			hasCourtyard: validateCourtyard(hasCourtyard),
+			hasPets: validateHasPets(hasPets),
+			petsNeutered: validatePetsNeutered(petsNeutered, hasPets),
+			hadOtherPets: validateHadOtherPets(hadOtherPets),
+			reason: validateReason(reason),
+			vacationPlan: validateVacationPlan(vacationPlan),
+			movingPlan: validateMovingPlan(movingPlan),
+			dailyWalks: validateDailyWalks(dailyWalks),
+			whatsappFollowUp: validateWhatsappFollowUp(whatsappFollowUp),
+			termsAccepted: validateTerms(termsAccepted),
+		};
+
+		// Verificar si hay errores de validación
+		const hasErrors = Object.values(validationErrors).some(error => error !== "");
+
+		if (hasErrors) {
+			return res.status(400).json({
+				error: "validation_error",
+				message: "Error de validación en los datos proporcionados",
+				details: validationErrors,
+			});
 		}
- */
+
+		// Verificar si ya existe una solicitud para este usuario y mascota
 		const existingRequest = await Request.findOne({
 			where: {
 				id_user,
@@ -71,6 +102,7 @@ export const createRequest = async (req, res) => {
 			});
 		}
 
+		// Crear la nueva solicitud si todo está correcto
 		const newRequest = await Request.create({
 			id_user,
 			id_pet,
