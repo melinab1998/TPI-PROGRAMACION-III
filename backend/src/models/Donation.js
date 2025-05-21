@@ -11,15 +11,6 @@ export const Donation = sequelize.define(
 			autoIncrement: true,
 		},
 
-		/* 		id_user: {
-			type: DataTypes.INTEGER,
-			references: {
-				model: Users,
-				key: "id_user",
-			},
-		}, */
-		// si el usuario esta logeado le pedimos menos adtos
-
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
