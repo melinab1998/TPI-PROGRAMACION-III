@@ -10,13 +10,11 @@ export const createDonation = async (req, res) => {
 	try {
 		const { name, amount, email, payment_method, message } = req.body;
 
-		// Validar campos individuales
 		const nameError = validateName(name);
 		const emailError = validateEmail(email);
 		const amountError = validateAmount(amount);
 		const paymentMethodError = validatePaymentMethod(payment_method);
 
-		// Recolectar todos los errores
 		const errors = {
 			...(nameError && { name: nameError }),
 			...(emailError && { email: emailError }),
@@ -24,7 +22,6 @@ export const createDonation = async (req, res) => {
 			...(paymentMethodError && { payment_method: paymentMethodError }),
 		};
 
-		// Si hay errores, devolverlos
 		if (Object.keys(errors).length > 0) {
 			return res.status(400).json({
 				error: "validation_error",

@@ -32,7 +32,6 @@ export const createShelter = async (req, res) => {
   try {
     const { name, address, phone, email } = req.body;
 
-    // Ejecutar validaciones
     const validationErrors = {
       name: validateName(name),
       address: validateAddress(address),
@@ -40,7 +39,6 @@ export const createShelter = async (req, res) => {
       email: validateEmail(email)
     };
 
-    // Verificar si hay errores
     const hasErrors = Object.values(validationErrors).some(error => error !== "");
     
     if (hasErrors) {
@@ -76,7 +74,6 @@ export const updateShelter = async (req, res) => {
     const { id } = req.params;
     const { name, address, phone, email } = req.body;
 
-    // Ejecutar validaciones
     const validationErrors = {
       name: validateName(name),
       address: validateAddress(address),
@@ -84,7 +81,6 @@ export const updateShelter = async (req, res) => {
       email: validateEmail(email)
     };
 
-    // Verificar si hay errores
     const hasErrors = Object.values(validationErrors).some(error => error !== "");
     
     if (hasErrors) {

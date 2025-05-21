@@ -53,7 +53,6 @@ export const createRequest = async (req, res) => {
 			termsAccepted,
 		} = req.body;
 
-		// Ejecutar todas las validaciones
 		const validationErrors = {
 			name: validateName(name),
 			lastname: validateLastName(lastname),
@@ -77,7 +76,6 @@ export const createRequest = async (req, res) => {
 			termsAccepted: validateTerms(termsAccepted),
 		};
 
-		// Verificar si hay errores de validación
 		const hasErrors = Object.values(validationErrors).some(error => error !== "");
 
 		if (hasErrors) {
@@ -88,7 +86,6 @@ export const createRequest = async (req, res) => {
 			});
 		}
 
-		// Verificar si ya existe una solicitud para este usuario y mascota
 		const existingRequest = await Request.findOne({
 			where: {
 				id_user,
@@ -102,7 +99,6 @@ export const createRequest = async (req, res) => {
 			});
 		}
 
-		// Crear la nueva solicitud si todo está correcto
 		const newRequest = await Request.create({
 			id_user,
 			id_pet,

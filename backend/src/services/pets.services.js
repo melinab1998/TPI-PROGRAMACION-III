@@ -60,7 +60,6 @@ export const createPet = async (req, res) => {
       imageUrl 
     } = req.body;
 
-    // Validar campos individuales
     const errors = {
       ...(validateName(name) && { name: validateName(name) }),
       ...(validateSpecies(species) && { species: validateSpecies(species) }),
@@ -72,7 +71,6 @@ export const createPet = async (req, res) => {
       ...(validateImageUrl(imageUrl) && { imageUrl: validateImageUrl(imageUrl) }),
     };
 
-    // Verificar si hay errores
     if (Object.keys(errors).length > 0) {
       return res.status(400).json({
         error: "validation_error",
@@ -90,7 +88,7 @@ export const createPet = async (req, res) => {
       gender, 
       description,
       shelter,
-      adopted: adopted || false, // Valor por defecto si no se proporciona
+      adopted: adopted || false, 
       imageUrl
     });
 
@@ -132,7 +130,6 @@ export const updatePet = async (req, res) => {
       });
     }
 
-    // Validar campos individuales
     const errors = {
       ...(name && validateName(name) && { name: validateName(name) }),
       ...(species && validateSpecies(species) && { species: validateSpecies(species) }),
@@ -144,7 +141,6 @@ export const updatePet = async (req, res) => {
       ...(imageUrl && validateImageUrl(imageUrl) && { imageUrl: validateImageUrl(imageUrl) }),
     };
 
-    // Verificar si hay errores
     if (Object.keys(errors).length > 0) {
       return res.status(400).json({
         error: "validation_error",
