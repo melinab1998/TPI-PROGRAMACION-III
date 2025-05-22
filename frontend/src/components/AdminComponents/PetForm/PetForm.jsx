@@ -25,7 +25,7 @@ const PetForm = ({
 
     const handleData = (e) => {
         const { name, value } = e.target;
-        handleChange(e); 
+        handleChange(e);
         if (errors[name]) setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
@@ -72,26 +72,26 @@ const PetForm = ({
         const isValidGender = validateField("gender", formData.gender);
         const isValidShelter = validateField("shelter", formData.shelter);
         const isValidImageUrl = validateField("imageUrl", formData.imageUrl);
-        
-        return isValidName && isValidSpecies && isValidRace && isValidAge && 
-               isValidWeight && isValidGender && isValidShelter && isValidImageUrl;
+
+        return isValidName && isValidSpecies && isValidRace && isValidAge &&
+            isValidWeight && isValidGender && isValidShelter && isValidImageUrl;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         if (!validateForm()) {
             return;
         }
-        
+
         onSubmit(e);
     };
 
     return (
-        <Modal 
-            show={show} 
-            onHide={onHide} 
-            centered 
+        <Modal
+            show={show}
+            onHide={onHide}
+            centered
             className="pet-form-modal custom-modal"
         >
             <Form onSubmit={handleSubmit}>
@@ -247,13 +247,15 @@ const PetForm = ({
                         />
                     </Form.Group>
 
-                    <Form.Check
-                        type="checkbox"
-                        label="¿Adoptado?"
-                        name="adopted"
-                        checked={formData.adopted}
-                        onChange={handleChange}
-                    />
+                    {isEdit && (
+                        <Form.Check
+                            type="checkbox"
+                            label="¿Adoptado?"
+                            name="adopted"
+                            checked={formData.adopted}
+                            onChange={handleChange}
+                        />
+                    )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={onHide}>
