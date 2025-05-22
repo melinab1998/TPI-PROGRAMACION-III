@@ -1,7 +1,7 @@
 .pet-form-modal .modal-content {
     background-color: #FFF8F0;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
     border: none;
 }
 
@@ -15,6 +15,9 @@
 .pet-form-modal .modal-title {
     font-size: 1.5rem;
     color: #5D4037;
+    margin: 0 auto;
+	text-align: center;
+	width: 100%;
 }
 
 .pet-form-modal .form-label {
@@ -107,4 +110,22 @@
     .pet-form-modal .form-label {
         font-size: 0.9rem;
     }
+}
+
+.modal-title-centered {
+    text-align: center;
+    width: 100%;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #5D4037;
+}
+
+.form-check-input:checked {
+    background-color: #f6847a; 
+    border-color: #f6847a;
+    box-shadow: none;
+}
+
+.form-check-input {
+    border-color: #f5a89c; 
 }

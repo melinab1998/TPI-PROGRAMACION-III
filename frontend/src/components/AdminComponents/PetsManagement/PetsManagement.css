@@ -222,3 +222,8 @@
         width: auto;
     }
 }
+
+.pet-card-admin:hover {
+    transform: scale(1.01);
+}
+
