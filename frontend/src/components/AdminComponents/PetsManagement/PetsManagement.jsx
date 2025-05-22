@@ -29,7 +29,7 @@ const PetsManagement = () => {
         weight: '',
         gender: 'Macho',
         shelter: '',
-        imageUrl: '',
+        image_url: '',
         description: '',
         adopted: false,
     });
@@ -57,7 +57,7 @@ const PetsManagement = () => {
             weight: '',
             gender: 'Macho',
             shelter: '',
-            imageUrl: '',
+            image_url: '',
             description: '',
             adopted: false,
         });
@@ -173,7 +173,7 @@ const PetsManagement = () => {
                     <Col key={pet.id_pet} xl={3} lg={4} md={6} sm={12}>
                         <Card className="pet-card-admin h-100">
                             <div className="pet-image-container">
-                                <Card.Img variant="top" src={pet.imageUrl} alt={pet.name} />
+                                <Card.Img variant="top" src={pet.image_url} alt={pet.name} />
                                 {pet.adopted && (
                                     <Badge pill className="adopted-badge">
                                         Adoptado

@@ -33,7 +33,7 @@ const PetDetails = () => {
       <Card className="pet-card">
         <Card.Img
           variant="top"
-          src={pet.imageUrl}
+          src={pet.image_url}
           alt={`Imagen de ${pet.name}`}
           className="pet-card-img"
         />

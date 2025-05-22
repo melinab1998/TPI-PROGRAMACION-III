@@ -20,7 +20,7 @@ const PetForm = ({
         weight: "",
         gender: "",
         shelter: "",
-        imageUrl: ""
+        image_url: ""
     });
 
     const handleData = (e) => {
@@ -53,7 +53,7 @@ const PetForm = ({
             case "shelter":
                 error = validateShelter(value);
                 break;
-            case "imageUrl":
+            case "image_url":
                 error = validateImageUrl(value);
                 break;
             default:
@@ -71,7 +71,7 @@ const PetForm = ({
         const isValidWeight = validateField("weight", formData.weight);
         const isValidGender = validateField("gender", formData.gender);
         const isValidShelter = validateField("shelter", formData.shelter);
-        const isValidImageUrl = validateField("imageUrl", formData.imageUrl);
+        const isValidImageUrl = validateField("image_url", formData.image_url);
 
         return isValidName && isValidSpecies && isValidRace && isValidAge &&
             isValidWeight && isValidGender && isValidShelter && isValidImageUrl;
@@ -224,15 +224,15 @@ const PetForm = ({
                         <Form.Label>URL de la imagen *</Form.Label>
                         <Form.Control
                             type="url"
-                            name="imageUrl"
-                            value={formData.imageUrl}
+                            name="image_url"
+                            value={formData.image_url}
                             onChange={handleData}
-                            onBlur={(e) => validateField("imageUrl", e.target.value)}
-                            isInvalid={!!errors.imageUrl}
+                            onBlur={(e) => validateField("image_url", e.target.value)}
+                            isInvalid={!!errors.image_url}
                             placeholder="https://ejemplo.com/imagen.jpg"
                             required
                         />
-                        <Form.Control.Feedback type="invalid">{errors.imageUrl}</Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid">{errors.image_url}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
