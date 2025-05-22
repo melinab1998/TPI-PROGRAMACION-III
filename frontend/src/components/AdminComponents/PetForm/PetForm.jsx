@@ -96,7 +96,7 @@ const PetForm = ({
         >
             <Form onSubmit={handleSubmit}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{isEdit ? `Editar Mascota: ${formData.name}` : 'Agregar Mascota'}</Modal.Title>
+                    <Modal.Title className="text-center w-100">{isEdit ? `Editar Mascota: ${formData.name}` : 'Agregar Mascota'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {error && <Alert variant="danger">{error}</Alert>}
@@ -247,13 +247,28 @@ const PetForm = ({
                         />
                     </Form.Group>
 
-                    <Form.Check
-                        type="checkbox"
-                        label="¿Adoptado?"
-                        name="adopted"
-                        checked={formData.adopted}
-                        onChange={handleChange}
-                    />
+                    <Form.Group controlId="formAdopted" className="mb-3">
+                        <Form.Label className="fw-semibold text-brown">¿Adoptado?</Form.Label>
+                            <div className="d-flex align-items-center gap-3">
+                        <Form.Check
+                            type="radio"
+                            label="Sí"
+                            name="adopted"
+                            value={true}
+                            checked={formData.adopted === true}
+                            onChange={() => setFormData({ ...formData, adopted: true })}
+                        />
+                        <Form.Check
+                            type="radio"
+                            label="No"
+                            name="adopted"
+                            value={false}
+                            checked={formData.adopted === false}
+                            onChange={() => setFormData({ ...formData, adopted: false })}
+                        />
+                            </div>
+                    </Form.Group>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={onHide}>
