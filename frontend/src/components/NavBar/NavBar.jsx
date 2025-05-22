@@ -7,10 +7,15 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { infoToast } from '../../utils/notifications.js';
 import { AuthenticationContext } from "../../services/auth/AuthContext.jsx";
+import { ThemeContext } from "../../services/theme/ThemeContext";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const NavBar = ({ toggleLogin }) => {
   const navigate = useNavigate();
   const { token, handleUserLogout, userRole } = useContext(AuthenticationContext);
+
+  const { theme, toggleTheme } = useContext(ThemeContext); 
+  const isDark = theme === "dark";
 
   const handleLogout = () => {
     handleUserLogout();
@@ -18,10 +23,13 @@ const NavBar = ({ toggleLogin }) => {
     infoToast("Cerraste sesión con éxito");
   };
 
+  // Definimos una clase para aplicar tema claro/oscuro solo al navbar
+  const themeClass = isDark ? "navbar-dark bg-dark" : "navbar-light bg-light";
+
   // NavBar para administradores
   if (userRole === "admin") {
     return (
-      <Navbar expand="lg" className="custom-navbar px-3">
+      <Navbar expand="lg" className={`custom-navbar px-3 ${themeClass}`}>
         <Container fluid>
           <Navbar.Brand href="/">
             <img src={logo} alt="Logo" className="custom-logo" />
@@ -50,7 +58,7 @@ const NavBar = ({ toggleLogin }) => {
     );
   } else if (userRole === "superadmin") {
     return (
-      <Navbar expand="lg" className="custom-navbar px-3">
+      <Navbar expand="lg" className={`custom-navbar px-3 ${themeClass}`}>
         <Container fluid>
           <Navbar.Brand href="/">
             <img src={logo} alt="Logo" className="custom-logo" />
@@ -89,7 +97,7 @@ const NavBar = ({ toggleLogin }) => {
 
   // NavBar para usuarios normales
   return (
-    <Navbar expand="lg" className="custom-navbar px-3">
+    <Navbar expand="lg" className={`custom-navbar px-3 ${themeClass}`}>
       <Container fluid>
         <Navbar.Brand href="/">
           <img src={logo} alt="Logo" className="custom-logo" />
@@ -119,6 +127,9 @@ const NavBar = ({ toggleLogin }) => {
           </Nav>
 
           <div className="d-flex gap-2">
+            <Button variant="outline-secondary" onClick={toggleTheme} className="theme-toggle-btn">
+            {isDark ? <FaSun /> : <FaMoon />}
+          </Button>
             {!token ? (
               <>
                 <Button variant="outline-primary" onClick={toggleLogin}>
