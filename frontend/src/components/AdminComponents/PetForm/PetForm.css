@@ -1,3 +1,4 @@
+
 .pet-form-modal .modal-content {
     background-color: #FFF8F0;
     border-radius: 12px;
@@ -16,8 +17,8 @@
     font-size: 1.5rem;
     color: #5D4037;
     margin: 0 auto;
-	text-align: center;
-	width: 100%;
+    text-align: center;
+    width: 100%;
 }
 
 .pet-form-modal .form-label {
@@ -77,26 +78,9 @@
     background-color: #CD5C5C;
 }
 
-.pet-form-modal .modal-dialog {
-    z-index: 3000 !important;
-    max-height: 90vh;
-    margin-top: 80px;
-}
-
-.pet-form-modal .modal-content {
-    max-height: 90vh;
-    overflow-y: auto;
-}
 
 @media (max-width: 768px) {
-    .pet-form-modal .modal-dialog {
-        max-width: 90vw;
-        margin: 10vh auto;
-    }
-
     .pet-form-modal .modal-content {
-        max-height: 80vh;
-        overflow-y: auto;
         background-color: #FFF8F0;
         border-radius: 12px;
         box-shadow: 0 4px 16px rgba(93, 64, 55, 0.2);
