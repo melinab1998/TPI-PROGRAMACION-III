@@ -39,14 +39,14 @@
   color: #444;
 }
 
-.custom-btn-contactanos {
+.custom-btn-contact {
   border: 2px solid #cd5c5c !important;
   color: #cd5c5c !important;
   font-weight: 500 !important;
   transition: all 0.3s ease !important;
 }
 
-.custom-btn-contactanos:hover {
+.custom-btn-contact:hover {
   background-color: #cd5c5c !important;
   color: white !important;
   border: 2px solid #cd5c5c !important;
