@@ -215,8 +215,19 @@ const AdoptionForm = () => {
     };
 
     const onError = (error) => {
-      errorToast(error?.message || "Hubo un error al enviar el formulario");
+      console.log("Error recibido:", error);
+    
+      const errorMsg = error?.data?.error || error?.message;
+    
+      if (errorMsg?.includes("Ya existe una solicitud")) {
+        errorToast("Ya has enviado una solicitud para esta mascota.");
+      } else if (errorMsg?.includes("validación")) {
+        errorToast("Por favor completá todos los campos correctamente.");
+      } else {
+        errorToast("Hubo un error al enviar el formulario.");
+      }
     };
+    
 
     createAdoptionForm(formData, onSuccess, onError);
   };
