@@ -60,11 +60,11 @@ const fadeInCascade = {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="requisito-item">
-          <div className="requisito-circle">
-            <FiCheckCircle className="requisito-icono" />
+        <div className="requirement-item">
+          <div className="requirement-circle">
+            <FiCheckCircle className="requirement-icon" />
           </div>
-          <span className="requisito-texto">{req}</span>
+          <span className="requirement-text">{req}</span>
         </div>
       </motion.div>
     </Col>
