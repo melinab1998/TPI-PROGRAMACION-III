@@ -30,25 +30,25 @@ const AdoptionForm = () => {
     id_pet: id_pet,
     id_user: "",
     name: "",
-    lastname: "",
+    last_name: "",
     address: "",
     phone: "",
     city: "",
     province: "",
     dni: "",
-    housingType: null,
-    ownershipStatus: null,
-    ownerConsultation: null,
-    hasCourtyard: null,
-    hasPets: null,
-    petsNeutered: null,
-    hadOtherPets: null,
+    housing_type: null,
+    ownership_status: null,
+    owner_consultation: null,
+    has_courtyard: null,
+    has_pets: null,
+    pets_neutered: null,
+    had_other_pets: null,
     reason: "",
-    vacationPlan: "",
-    movingPlan: "",
-    dailyWalks: null,
-    whatsappFollowUp: null,
-    termsAccepted: false
+    vacation_plan: "",
+    moving_plan: "",
+    daily_walks: null,
+    whatsapp_follow_up: null,
+    terms_accepted: false
   };
 
 
@@ -115,7 +115,7 @@ const AdoptionForm = () => {
       case "name":
         error = validateName(value);
         break;
-      case "lastname":
+      case "last_name":
         error = validateLastName(value);
         break;
       case "address":
@@ -133,43 +133,43 @@ const AdoptionForm = () => {
       case "dni":
         error = validateDNI(value);
         break;
-      case "housingType":
+      case "housing_type":
         error = validateHousingType(value);
         break;
-      case "ownershipStatus":
+      case "ownership_status":
         error = validateOwnershipStatus(value);
         break;
-      case "ownerConsultation":
-        error = validateOwnerConsultation(value, formData.ownershipStatus === 'tenant');
+      case "owner_consultation":
+        error = validateOwnerConsultation(value, formData.ownership_status === 'tenant');
         break;
-      case "hasCourtyard":
+      case "has_courtyard":
         error = validateCourtyard(value);
         break;
-      case "hasPets":
+      case "has_pets":
         error = validateHasPets(value);
         break;
-      case "petsNeutered":
-        error = validatePetsNeutered(value, formData.hasPets === true);
+      case "pets_neutered":
+        error = validatePetsNeutered(value, formData.has_pets === true);
         break;
-      case "hadOtherPets":
+      case "had_other_pets":
         error = validateHadOtherPets(value);
         break;
       case "reason":
         error = validateReason(value);
         break;
-      case "vacationPlan":
+      case "vacation_plan":
         error = validateVacationPlan(value);
         break;
-      case "movingPlan":
+      case "moving_plan":
         error = validateMovingPlan(value);
         break;
-      case "dailyWalks":
+      case "daily_walks":
         error = validateDailyWalks(value);
         break;
-      case "whatsappFollowUp":
+      case "whatsapp_follow_up":
         error = validateWhatsappFollowUp(value);
         break;
-      case "termsAccepted":
+      case "terms_accepted":
         error = validateTerms(value);
         break;
     }
@@ -253,18 +253,18 @@ const AdoptionForm = () => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group as={Col} controlId="lastname">
+                  <Form.Group as={Col} controlId="last_name">
                     <Form.Label>Apellido</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Apellido"
-                      value={formData.lastname}
+                      value={formData.last_name}
                       onChange={handleData}
-                      onBlur={(e) => validateField("lastname", e.target.value)}
-                      isInvalid={!!errors.lastname}
+                      onBlur={(e) => validateField("last_name", e.target.value)}
+                      isInvalid={!!errors.last_name}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.lastname}
+                      {errors.last_name}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>
@@ -344,24 +344,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="CASA"
-                      name="housingType"
+                      name="housing_type"
                       id="housing-house"
-                      checked={formData.housingType === 'house'}
-                      onChange={() => handleRadio('housingType', 'house')}
-                      isInvalid={!!errors.housingType}
+                      checked={formData.housing_type === 'Casa'}
+                      onChange={() => handleRadio('housing_type', 'Casa')}
+                      isInvalid={!!errors.housing_type}
                     />
                     <Form.Check
                       type="radio"
                       label="DEPARTAMENTO"
-                      name="housingType"
+                      name="housing_type"
                       id="housing-apartment"
-                      checked={formData.housingType === 'apartment'}
-                      onChange={() => handleRadio('housingType', 'apartment')}
-                      isInvalid={!!errors.housingType}
+                      checked={formData.housing_type === 'Departamento'}
+                      onChange={() => handleRadio('housing_type', 'Departamento')}
+                      isInvalid={!!errors.housing_type}
                     />
                   </div>
-                  {errors.housingType && (
-                    <div className="text-danger small">{errors.housingType}</div>
+                  {errors.housing_type && (
+                    <div className="text-danger small">{errors.housing_type}</div>
                   )}
                 </Form.Group>
 
@@ -371,24 +371,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="PROPIETARIO"
-                      name="ownershipStatus"
+                      name="ownership_status"
                       id="ownership-owner"
-                      checked={formData.ownershipStatus === 'owner'}
-                      onChange={() => handleRadio('ownershipStatus', 'owner')}
-                      isInvalid={!!errors.ownershipStatus}
+                      checked={formData.ownership_status === 'Propietario'}
+                      onChange={() => handleRadio('ownership_status', 'Propietario')}
+                      isInvalid={!!errors.ownership_status}
                     />
                     <Form.Check
                       type="radio"
                       label="INQUILINO"
-                      name="ownershipStatus"
+                      name="ownership_status"
                       id="ownership-tenant"
-                      checked={formData.ownershipStatus === 'tenant'}
-                      onChange={() => handleRadio('ownershipStatus', 'tenant')}
-                      isInvalid={!!errors.ownershipStatus}
+                      checked={formData.ownership_status === 'Inquilino'}
+                      onChange={() => handleRadio('ownership_status', 'Inquilino')}
+                      isInvalid={!!errors.ownership_status}
                     />
                   </div>
-                  {errors.ownershipStatus && (
-                    <div className="text-danger small">{errors.ownershipStatus}</div>
+                  {errors.ownership_status && (
+                    <div className="text-danger small">{errors.ownership_status}</div>
                   )}
                 </Form.Group>
 
@@ -398,36 +398,36 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí, pregunté y admite mascotas"
-                      name="ownerConsultation"
+                      name="owner_consultation"
                       id="owner-yes"
-                      checked={formData.ownerConsultation === 'consulted_owner_and_approved'}
-                      onChange={() => handleRadio('ownerConsultation', 'consulted_owner_and_approved')}
-                      disabled={formData.ownershipStatus !== 'tenant'}
-                      isInvalid={!!errors.ownerConsultation}
+                      checked={formData.owner_consultation === 'consulted_owner_and_approved'}
+                      onChange={() => handleRadio('owner_consultation', 'consulted_owner_and_approved')}
+                      disabled={formData.ownership_status !== 'Inquilino'}
+                      isInvalid={!!errors.owner_consultation}
                     />
                     <Form.Check
                       type="radio"
                       label="No pregunté, pero el edificio admite"
-                      name="ownerConsultation"
+                      name="owner_consultation"
                       id="owner-building-allows"
-                      checked={formData.ownerConsultation === 'not_consulted_building_allows'}
-                      onChange={() => handleRadio('ownerConsultation', 'not_consulted_building_allows')}
-                      disabled={formData.ownershipStatus !== 'tenant'}
-                      isInvalid={!!errors.ownerConsultation}
+                      checked={formData.owner_consultation === 'not_consulted_building_allows'}
+                      onChange={() => handleRadio('owner_consultation', 'not_consulted_building_allows')}
+                      disabled={formData.ownership_status !== 'Inquilino'}
+                      isInvalid={!!errors.owner_consultation}
                     />
                     <Form.Check
                       type="radio"
                       label="No pregunté"
-                      name="ownerConsultation"
+                      name="owner_consultation"
                       id="owner-no"
-                      checked={formData.ownerConsultation === 'not_consulted'}
-                      onChange={() => handleRadio('ownerConsultation', 'not_consulted')}
-                      disabled={formData.ownershipStatus !== 'tenant'}
-                      isInvalid={!!errors.ownerConsultation}
+                      checked={formData.owner_consultation === 'not_consulted'}
+                      onChange={() => handleRadio('owner_consultation', 'not_consulted')}
+                      disabled={formData.ownership_status !== 'Inquilino'}
+                      isInvalid={!!errors.owner_consultation}
                     />
                   </div>
-                  {errors.ownerConsultation && (
-                    <div className="text-danger small">{errors.ownerConsultation}</div>
+                  {errors.owner_consultation && (
+                    <div className="text-danger small">{errors.owner_consultation}</div>
                   )}
                 </Form.Group>
 
@@ -437,24 +437,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí"
-                      name="hasCourtyard"
+                      name="has_courtyard"
                       id="courtyard-yes"
-                      checked={formData.hasCourtyard === true}
-                      onChange={() => handleRadio('hasCourtyard', true)}
-                      isInvalid={!!errors.hasCourtyard}
+                      checked={formData.has_courtyard === true}
+                      onChange={() => handleRadio('has_courtyard', true)}
+                      isInvalid={!!errors.has_courtyard}
                     />
                     <Form.Check
                       type="radio"
                       label="No"
-                      name="hasCourtyard"
+                      name="has_courtyard"
                       id="courtyard-no"
-                      checked={formData.hasCourtyard === false}
-                      onChange={() => handleRadio('hasCourtyard', false)}
-                      isInvalid={!!errors.hasCourtyard}
+                      checked={formData.has_courtyard === false}
+                      onChange={() => handleRadio('has_courtyard', false)}
+                      isInvalid={!!errors.has_courtyard}
                     />
                   </div>
-                  {errors.hasCourtyard && (
-                    <div className="text-danger small">{errors.hasCourtyard}</div>
+                  {errors.has_courtyard && (
+                    <div className="text-danger small">{errors.has_courtyard}</div>
                   )}
                 </Form.Group>
 
@@ -464,24 +464,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí"
-                      name="hasPets"
+                      name="has_pets"
                       id="pets-yes"
-                      checked={formData.hasPets === true}
-                      onChange={() => handleRadio('hasPets', true)}
-                      isInvalid={!!errors.hasPets}
+                      checked={formData.has_pets === true}
+                      onChange={() => handleRadio('has_pets', true)}
+                      isInvalid={!!errors.has_pets}
                     />
                     <Form.Check
                       type="radio"
                       label="No"
-                      name="hasPets"
+                      name="has_pets"
                       id="pets-no"
-                      checked={formData.hasPets === false}
-                      onChange={() => handleRadio('hasPets', false)}
-                      isInvalid={!!errors.hasPets}
+                      checked={formData.has_pets === false}
+                      onChange={() => handleRadio('has_pets', false)}
+                      isInvalid={!!errors.has_pets}
                     />
                   </div>
-                  {errors.hasPets && (
-                    <div className="text-danger small">{errors.hasPets}</div>
+                  {errors.has_pets && (
+                    <div className="text-danger small">{errors.has_pets}</div>
                   )}
                 </Form.Group>
 
@@ -491,36 +491,36 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí"
-                      name="petsNeutered"
+                      name="pets_neutered"
                       id="pets-neutered-yes"
-                      checked={formData.petsNeutered === 'yes'}
-                      onChange={() => handleRadio('petsNeutered', 'yes')}
-                      disabled={formData.hasPets !== true}
-                      isInvalid={!!errors.petsNeutered}
+                      checked={formData.pets_neutered === 'yes'}
+                      onChange={() => handleRadio('pets_neutered', 'yes')}
+                      disabled={formData.has_pets !== true}
+                      isInvalid={!!errors.pets_neutered}
                     />
                     <Form.Check
                       type="radio"
                       label="No"
-                      name="petsNeutered"
+                      name="pets_neutered"
                       id="pets-neutered-no"
-                      checked={formData.petsNeutered === 'no'}
-                      onChange={() => handleRadio('petsNeutered', 'no')}
-                      disabled={formData.hasPets !== true}
-                      isInvalid={!!errors.petsNeutered}
+                      checked={formData.pets_neutered === 'no'}
+                      onChange={() => handleRadio('pets_neutered', 'no')}
+                      disabled={formData.has_pets !== true}
+                      isInvalid={!!errors.pets_neutered}
                     />
                     <Form.Check
                       type="radio"
                       label="Algunos sí, otros no"
-                      name="petsNeutered"
+                      name="pets_neutered"
                       id="pets-neutered-some"
-                      checked={formData.petsNeutered === 'some'}
-                      onChange={() => handleRadio('petsNeutered', 'some')}
-                      disabled={formData.hasPets !== true}
-                      isInvalid={!!errors.petsNeutered}
+                      checked={formData.pets_neutered === 'some'}
+                      onChange={() => handleRadio('pets_neutered', 'some')}
+                      disabled={formData.has_pets !== true}
+                      isInvalid={!!errors.pets_neutered}
                     />
                   </div>
-                  {errors.petsNeutered && (
-                    <div className="text-danger small">{errors.petsNeutered}</div>
+                  {errors.pets_neutered && (
+                    <div className="text-danger small">{errors.pets_neutered}</div>
                   )}
                 </Form.Group>
 
@@ -530,24 +530,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí"
-                      name="hadOtherPets"
+                      name="had_other_pets"
                       id="had-other-pets-yes"
-                      checked={formData.hadOtherPets === true}
-                      onChange={() => handleRadio('hadOtherPets', true)}
-                      isInvalid={!!errors.hadOtherPets}
+                      checked={formData.had_other_pets === true}
+                      onChange={() => handleRadio('had_other_pets', true)}
+                      isInvalid={!!errors.had_other_pets}
                     />
                     <Form.Check
                       type="radio"
                       label="No"
-                      name="hadOtherPets"
+                      name="had_other_pets"
                       id="had-other-pets-no"
-                      checked={formData.hadOtherPets === false}
-                      onChange={() => handleRadio('hadOtherPets', false)}
-                      isInvalid={!!errors.hadOtherPets}
+                      checked={formData.had_other_pets === false}
+                      onChange={() => handleRadio('had_other_pets', false)}
+                      isInvalid={!!errors.had_other_pets}
                     />
                   </div>
-                  {errors.hadOtherPets && (
-                    <div className="text-danger small">{errors.hadOtherPets}</div>
+                  {errors.had_other_pets && (
+                    <div className="text-danger small">{errors.had_other_pets}</div>
                   )}
                 </Form.Group>
 
@@ -566,33 +566,33 @@ const AdoptionForm = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="vacationPlan">
+                <Form.Group className="mb-3" controlId="vacation_plan">
                   <Form.Label>¿Qué harías con el animal en caso de vacaciones?</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    value={formData.vacationPlan}
+                    value={formData.vacation_plan}
                     onChange={handleData}
-                    onBlur={(e) => validateField("vacationPlan", e.target.value)}
-                    isInvalid={!!errors.vacationPlan}
+                    onBlur={(e) => validateField("vacation_plan", e.target.value)}
+                    isInvalid={!!errors.vacation_plan}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.vacationPlan}
+                    {errors.vacation_plan}
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="movingPlan">
+                <Form.Group className="mb-3" controlId="moving_plan">
                   <Form.Label>¿Qué harías con el animal en caso de mudanza?</Form.Label>
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    value={formData.movingPlan}
+                    value={formData.moving_plan}
                     onChange={handleData}
-                    onBlur={(e) => validateField("movingPlan", e.target.value)}
-                    isInvalid={!!errors.movingPlan}
+                    onBlur={(e) => validateField("moving_plan", e.target.value)}
+                    isInvalid={!!errors.moving_plan}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors.movingPlan}
+                    {errors.moving_plan}
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -602,24 +602,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí"
-                      name="dailyWalks"
+                      name="daily_walks"
                       id="daily-walks-yes"
-                      checked={formData.dailyWalks === 'yes'}
-                      onChange={() => handleRadio('dailyWalks', 'yes')}
-                      isInvalid={!!errors.dailyWalks}
+                      checked={formData.daily_walks === 'yes'}
+                      onChange={() => handleRadio('daily_walks', 'yes')}
+                      isInvalid={!!errors.daily_walks}
                     />
                     <Form.Check
                       type="radio"
                       label="No"
-                      name="dailyWalks"
+                      name="daily_walks"
                       id="daily-walks-no"
-                      checked={formData.dailyWalks === 'no'}
-                      onChange={() => handleRadio('dailyWalks', 'no')}
-                      isInvalid={!!errors.dailyWalks}
+                      checked={formData.daily_walks === 'no'}
+                      onChange={() => handleRadio('daily_walks', 'no')}
+                      isInvalid={!!errors.daily_walks}
                     />
                   </div>
-                  {errors.dailyWalks && (
-                    <div className="text-danger small">{errors.dailyWalks}</div>
+                  {errors.daily_walks && (
+                    <div className="text-danger small">{errors.daily_walks}</div>
                   )}
                 </Form.Group>
 
@@ -629,24 +629,24 @@ const AdoptionForm = () => {
                     <Form.Check
                       type="radio"
                       label="Sí"
-                      name="whatsappFollowUp"
+                      name="whatsapp_follow_up"
                       id="whatsapp-follow-up-yes"
-                      checked={formData.whatsappFollowUp === true}
-                      onChange={() => handleRadio('whatsappFollowUp', true)}
-                      isInvalid={!!errors.whatsappFollowUp}
+                      checked={formData.whatsapp_follow_up === true}
+                      onChange={() => handleRadio('whatsapp_follow_up', true)}
+                      isInvalid={!!errors.whatsapp_follow_up}
                     />
                     <Form.Check
                       type="radio"
                       label="No"
-                      name="whatsappFollowUp"
+                      name="whatsapp_follow_up"
                       id="whatsapp-follow-up-no"
-                      checked={formData.whatsappFollowUp === false}
-                      onChange={() => handleRadio('whatsappFollowUp', false)}
-                      isInvalid={!!errors.whatsappFollowUp}
+                      checked={formData.whatsapp_follow_up === false}
+                      onChange={() => handleRadio('whatsapp_follow_up', false)}
+                      isInvalid={!!errors.whatsapp_follow_up}
                     />
                   </div>
-                  {errors.whatsappFollowUp && (
-                    <div className="text-danger small">{errors.whatsappFollowUp}</div>
+                  {errors.whatsapp_follow_up && (
+                    <div className="text-danger small">{errors.whatsapp_follow_up}</div>
                   )}
                 </Form.Group>
 
@@ -677,7 +677,7 @@ const AdoptionForm = () => {
                   </>
                 )}
 
-                <Form.Group className="mb-3" controlId="termsAccepted">
+                <Form.Group className="mb-3" controlId="terms_accepted">
                   <Form.Check
                     type="checkbox"
                     label={
@@ -685,12 +685,12 @@ const AdoptionForm = () => {
                         Acepto los <span onClick={handleTerms} className="text-[#CD5C5C] opacity-80 underline cursor-pointer">términos y condiciones</span>.
                       </>
                     }
-                    checked={formData.termsAccepted}
+                    checked={formData.terms_accepted}
                     onChange={handleCheckbox}
-                    isInvalid={!!errors.termsAccepted}
+                    isInvalid={!!errors.terms_accepted}
                   />
-                  {errors.termsAccepted && (
-                    <div className="text-danger small">{errors.termsAccepted}</div>
+                  {errors.terms_accepted && (
+                    <div className="text-danger small">{errors.terms_accepted}</div>
                   )}
                 </Form.Group>
 

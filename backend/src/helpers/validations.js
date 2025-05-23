@@ -45,9 +45,9 @@ export const validateName = (name) => {
 	return "";
 };
 
-export const validateLastName = (lastName) => {
-	if (!lastName.trim()) return "El apellido es obligatorio.";
-	if (lastName.length < 2)
+export const validateLastName = (last_name) => {
+	if (!last_name.trim()) return "El apellido es obligatorio.";
+	if (last_name.length < 2)
 		return "El apellido debe tener al menos 2 caracteres.";
 	return "";
 };
@@ -82,42 +82,42 @@ export const validateDNI = (dni) => {
 	return "";
 };
 
-export const validateHousingType = (housingType) => {
-	if (!housingType) return "Debe seleccionar un tipo de vivienda.";
+export const validateHousingType = (housing_type) => {
+	if (!housing_type) return "Debe seleccionar un tipo de vivienda.";
 	return "";
 };
 
-export const validateOwnershipStatus = (ownershipStatus) => {
-	if (!ownershipStatus) return "Debe indicar si es propietario o inquilino.";
+export const validateOwnershipStatus = (ownership_status) => {
+	if (!ownership_status) return "Debe indicar si es propietario o inquilino.";
 	return "";
 };
 
-export const validateOwnerConsultation = (ownerConsultation, isTenant) => {
-	if (isTenant && !ownerConsultation)
+export const validateOwnerConsultation = (owner_consultation, isTenant) => {
+	if (isTenant && !owner_consultation)
 		return "Debe indicar si consultó al dueño.";
 	return "";
 };
 
-export const validateCourtyard = (hasCourtyard) => {
-	if (hasCourtyard === null || hasCourtyard === undefined)
+export const validateCourtyard = (has_courtyard) => {
+	if (has_courtyard === null || has_courtyard === undefined)
 		return "Debe indicar si tiene patio.";
 	return "";
 };
 
-export const validateHasPets = (hasPets) => {
-	if (hasPets === null || hasPets === undefined)
+export const validateHasPets = (has_pets) => {
+	if (has_pets=== null || has_pets === undefined)
 		return "Debe indicar si tiene otras mascotas.";
 	return "";
 };
 
-export const validatePetsNeutered = (petsNeutered, hasPets) => {
-	if (hasPets === true && !petsNeutered)
+export const validatePetsNeutered = (pets_neutered, has_pets) => {
+	if (has_pets === true && !pets_neutered)
 		return "Debe indicar si sus mascotas están castradas.";
 	return "";
 };
 
-export const validateHadOtherPets = (hadOtherPets) => {
-	if (hadOtherPets === null || hadOtherPets === undefined)
+export const validateHadOtherPets = (had_other_pets) => {
+	if (had_other_pets === null || had_other_pets === undefined)
 		return "Debe indicar si tuvo otras mascotas.";
 	return "";
 };
@@ -137,14 +137,14 @@ export const validateMovingPlan = (plan) => {
 	return "";
 };
 
-export const validateDailyWalks = (dailyWalks) => {
-	if (dailyWalks === null || dailyWalks === undefined)
+export const validateDailyWalks = (daily_walks) => {
+	if (daily_walks === null || daily_walks === undefined)
 		return "Debe indicar si tiene tiempo para paseos diarios.";
 	return "";
 };
 
-export const validateWhatsappFollowUp = (followUp) => {
-	if (followUp === null || followUp === undefined)
+export const validateWhatsappFollowUp = (whatsapp_follow_up) => {
+	if (whatsapp_follow_up === null || whatsapp_follow_up === undefined)
 		return "Debe indicar si acepta seguimiento por WhatsApp.";
 	return "";
 };

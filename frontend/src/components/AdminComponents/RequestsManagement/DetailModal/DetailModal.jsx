@@ -11,17 +11,17 @@ const DetailModal = ({ show, onHide, request }) => {
                 <Row>
                     <Col md={6}>
                         <ul className="list-unstyled">
-                            <li><strong>Usuario:</strong> {request.name} {request.lastname}</li>
+                            <li><strong>Usuario:</strong> {request.name} {request.last_name}</li>
                             <li><strong>Mascota:</strong> {request.Pet?.name}</li>
                             <li><strong>Teléfono:</strong> {request.phone}</li>
                             <li><strong>Ciudad:</strong> {request.city}</li>
-                            <li><strong>Tipo de vivienda:</strong> {request.housingType}</li>
-                            <li><strong>Consulta propietario:</strong> {request.ownerConsultation ? "Sí" : "No"}</li>
-                            <li><strong>Tiene otras mascotas:</strong> {request.hasPets ? "Sí" : "No"}</li>
-                            <li><strong>Paseos diarios:</strong> {request.dailyWalks ? "Sí" : "No"}</li>
+                            <li><strong>Tipo de vivienda:</strong> {request.housing_type}</li>
+                            <li><strong>Consulta propietario:</strong> {request.owner_consultation ? "Sí" : "No"}</li>
+                            <li><strong>Tiene otras mascotas:</strong> {request.has_pets ? "Sí" : "No"}</li>
+                            <li><strong>Paseos diarios:</strong> {request.daily_walks ? "Sí" : "No"}</li>
                             <li><strong>Motivo de adopción:</strong> {request.reason}</li>
-                            <li><strong>Mudanza:</strong> {request.movingPlan}</li>
-                            <li><strong>Seguimiento por WhatsApp:</strong> {request.whatsappFollowUp ? "Sí" : "No"}</li>
+                            <li><strong>Mudanza:</strong> {request.moving_plan}</li>
+                            <li><strong>Seguimiento por WhatsApp:</strong> {request.whatsapp_follow_up ? "Sí" : "No"}</li>
                         </ul>
                     </Col>
                     <Col md={6}>
@@ -30,11 +30,11 @@ const DetailModal = ({ show, onHide, request }) => {
                             <li><strong>Dirección:</strong> {request.address}</li>
                             <li><strong>DNI:</strong> {request.dni}</li>
                             <li><strong>Provincia:</strong> {request.province}</li>
-                            <li><strong>Condición de vivienda:</strong> {request.ownershipStatus}</li>
-                            <li><strong>Patio:</strong> {request.hasCourtyard ? "Sí" : "No"}</li>
-                            <li><strong>Otras mascotas castradas:</strong> {request.petsNeutered ? "Sí" : "No"}</li>
-                            <li><strong>Tuvo otras mascotas:</strong> {request.hadOtherPets ? "Sí" : "No"}</li>
-                            <li><strong>Vacaciones:</strong> {request.vacationPlan}</li>
+                            <li><strong>Condición de vivienda:</strong> {request.ownership_status}</li>
+                            <li><strong>Patio:</strong> {request.has_courtyard ? "Sí" : "No"}</li>
+                            <li><strong>Otras mascotas castradas:</strong> {request.pets_neutered ? "Sí" : "No"}</li>
+                            <li><strong>Tuvo otras mascotas:</strong> {request.had_other_pets ? "Sí" : "No"}</li>
+                            <li><strong>Vacaciones:</strong> {request.vacation_plan}</li>
                             <li><strong>Estado:</strong> {request.state || "Pendiente"}</li>
                             <li><strong>Fecha de solicitud:</strong> {new Date(request.createdAt).toLocaleDateString()}</li>
                         </ul>
