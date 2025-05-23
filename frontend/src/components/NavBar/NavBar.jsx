@@ -85,6 +85,9 @@ const NavBar = ({ toggleLogin }) => {
               </NavDropdown>
             </Nav>
             <div className="d-flex gap-2">
+              <Button variant="outline-secondary" onClick={toggleTheme} className="theme-toggle-btn">
+              {isDark ? <FaSun /> : <FaMoon />}
+              </Button>
               <Button variant="outline-primary" onClick={handleLogout}>
                 CERRAR SESIÓN
               </Button>
