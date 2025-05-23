@@ -15,7 +15,7 @@ export const validatePassword = (password) => {
 export const validatePasswordLogin = (password) => {
 	if (!password) return "Contraseña es obligatoria.";
 	if (password.length < 6)
-		return "Email y/o contraseña incorrectos";
+		return "Email y/o contraseña incorrecta";
 	return "";
 };
 

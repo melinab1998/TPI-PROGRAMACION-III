@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import {
 	validateEmail,
 	validatePassword,
+	validatePasswordLogin,
 	validateUserName,
 } from "../helpers/validations.js"
 dotenv.config();
@@ -64,7 +65,7 @@ export const loginUser = async (req, res) => {
 		const errorEmail = validateEmail(email);
 		if (errorEmail) return res.status(400).json({ message: errorEmail });
 
-		const errorPassword = validatePassword(password);
+		const errorPassword = validatePasswordLogin(password);
 		if (errorPassword) return res.status(400).json({ message: errorPassword });
 
 		const user = await User.findOne({ where: { email } });
