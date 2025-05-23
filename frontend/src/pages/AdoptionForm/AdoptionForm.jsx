@@ -211,7 +211,11 @@ const AdoptionForm = () => {
     // Definí las funciones acá:
     const onSuccess = () => {
       successToast("¡Formulario enviado con éxito! Nos pondremos en contacto contigo pronto.");
-      setFormData(initialFormState);
+      setFormData({
+        ...initialFormState,
+        id_user,
+        id_pet,
+      });
     };
 
     const onError = (error) => {
