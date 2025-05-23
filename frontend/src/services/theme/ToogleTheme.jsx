@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { Button } from "react-bootstrap";
-import { ThemeContext } from "../../services/theme/ThemeContext";
 import { LIGHT_THEME } from "../../services/consts";
 import { FaSun, FaMoon } from "react-icons/fa";
+import useTheme from "../../services/theme/useTheme";
 
 const ToggleTheme = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme, toggleTheme } = useTheme();
 
     return (
         <Button onClick={toggleTheme} variant="outline-secondary">
