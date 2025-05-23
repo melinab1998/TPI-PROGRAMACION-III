@@ -6,7 +6,7 @@
 
 .custom-navbar {
   height: 110px;
-  background-color: #F8F3ED;
+  background-color: #F8F3ED !important;
   font-family: 'Poppins', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
