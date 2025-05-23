@@ -12,6 +12,13 @@ export const validatePassword = (password) => {
 	return "";
 };
 
+export const validatePasswordLogin = (password) => {
+	if (!password) return "Contraseña es obligatoria.";
+	if (password.length < 6)
+		return "Email y/o contraseña incorrectos";
+	return "";
+};
+
 export const validateConfirmPassword = (confirmPassword, password) => {
 	if (!confirmPassword) return "Debe confirmar la contraseña.";
 	if (confirmPassword !== password) return "Las contraseñas no coinciden.";
