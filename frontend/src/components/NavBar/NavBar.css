@@ -119,7 +119,7 @@
   .dark-theme .custom-navbar .navbar-collapse {
     background-color: #1f1f1f !important;
   }
-  
+
 }
 
 
@@ -162,4 +162,21 @@
   border-color: rgba(0, 0, 0, 0.2) !important;
   box-shadow: none !important;
   outline: none !important;
+}
+
+.dark-theme .custom-navbar .dropdown-menu {
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid #444 !important;
+}
+
+.dark-theme .custom-navbar .dropdown-item {
+  color: white !important;
+}
+
+.dark-theme .custom-navbar .dropdown-item:hover,
+.dark-theme .custom-navbar .dropdown-item:focus,
+.dark-theme .custom-navbar .dropdown-item:active {
+  background-color: #333 !important;
+  color: #f29a8e !important;
 }
