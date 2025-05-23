@@ -140,7 +140,7 @@
 
 /* ==== Botón toggle theme ==== */
 .theme-toggle-btn.btn-outline-secondary {
-  background-color: white !important;
+  background-color: #F8F3ED !important;
   color: black !important;
   border-color: rgba(0, 0, 0, 0.2) !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
@@ -157,7 +157,7 @@
 
 .theme-toggle-btn.btn-outline-secondary:focus,
 .theme-toggle-btn.btn-outline-secondary:active {
-  background-color: white !important;
+  background-color: #F8F3ED !important;
   color: black !important;
   border-color: rgba(0, 0, 0, 0.2) !important;
   box-shadow: none !important;
