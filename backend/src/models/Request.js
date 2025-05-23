@@ -24,7 +24,7 @@ const Request = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		lastname: {
+		last_name: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -48,29 +48,29 @@ const Request = sequelize.define(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		housingType: {
+		housing_type: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		ownershipStatus: {
+		ownership_status: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		ownerConsultation: {
+		owner_consultation: {
 			type: DataTypes.STRING,
 		},
-		hasCourtyard: {
+		has_courtyard: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
-		hasPets: {
+		has_pets: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
-		petsNeutered: {
+		pets_neutered: {
 			type: DataTypes.STRING,
 		},
-		hadOtherPets: {
+		had_other_pets: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
@@ -78,23 +78,23 @@ const Request = sequelize.define(
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		vacationPlan: {
+		vacation_plan: {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		movingPlan: {
+		moving_plan: {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		dailyWalks: {
+		daily_walks: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		whatsappFollowUp: {
+		whatsapp_follow_up: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},
-		termsAccepted: {
+		terms_accepted: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 		},

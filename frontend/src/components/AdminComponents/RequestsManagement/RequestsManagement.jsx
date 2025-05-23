@@ -34,7 +34,7 @@ const RequestsManagement = () => {
     const filteredRequests = (Array.isArray(requests) ? requests : [])
         .filter(req =>
             ((req.name && req.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-                (req.lastname && req.lastname.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (req.last_name && req.last_name.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (req.User?.email && req.User.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
                 (req.Pet?.name && req.Pet.name.toLowerCase().includes(searchTerm.toLowerCase())))
             && (stateFilter === '' || req.state === stateFilter)
@@ -163,7 +163,7 @@ const RequestsManagement = () => {
                     {currentRequests.map(req => (
                         <tr key={req.id}>
                             <td>{req.id}</td>
-                            <td>{req.name} {req.lastname}</td>
+                            <td>{req.name} {req.last_name}</td>
                             <td>{req.User?.email}</td>
                             <td>{req.Pet?.name}</td>
                             <td>{req.state}</td>

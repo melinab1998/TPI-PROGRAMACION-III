@@ -16,7 +16,6 @@ export const Contact = sequelize.define(
 		email: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: true,
 		},
 		message: {
 			type: DataTypes.TEXT,

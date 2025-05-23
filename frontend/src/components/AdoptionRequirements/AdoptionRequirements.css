@@ -62,7 +62,7 @@
     line-height: 1.6;
 }
 
-.requisito-item {
+.requirement-item {
     display: flex;
     align-items: center;
     background-color: white;
@@ -75,20 +75,20 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.requisito-item:hover {
+.requirement-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     border-color: rgba(242, 154, 142, 0.3); 
 }
 
-.requisito-icono {
+.requirement-icon {
     font-size: 1.5rem;
     margin-right: 1.2rem;
     color: #e57373;
     flex-shrink: 0;
 }
 
-.requisito-texto {
+.requirement-text {
     color: #444;
     font-size: 1rem;
     font-weight: 500; 

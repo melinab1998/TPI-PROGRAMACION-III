@@ -47,7 +47,7 @@ export const Pet = sequelize.define(
 			allowNull: true,
 			defaultValue: false,
 		},
-		imageUrl: {
+		image_url: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},

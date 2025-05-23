@@ -50,7 +50,7 @@ const Pets = () => {
         {filteredPets.map((pet) => (
           <Col key={pet.id_pet} xs={12} sm={6} md={4} className="mb-4 d-flex">
             <Card className="w-full h-full">
-              <Card.Img variant="top" src={pet.imageUrl} className="object-cover h-64 w-full" />
+              <Card.Img variant="top" src={pet.image_url} className="object-cover h-64 w-full" />
               <Card.Body>
                 <Card.Title className="name">{pet.name}</Card.Title>
                 <Card.Text className="text"><b>Especie: </b> {pet.species}</Card.Text>

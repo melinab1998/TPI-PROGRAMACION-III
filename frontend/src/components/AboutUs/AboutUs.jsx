@@ -95,7 +95,7 @@ const AboutUs = () => {
               transition={{ delay: 1.7, duration: 1.2 }}
             >
               <Link to="/contact">
-                <Button variant="outline-dark" className="custom-btn-contactanos">
+                <Button variant="outline-dark" className="custom-btn-contact">
                   Contactanos
                 </Button>
               </Link>

@@ -56,7 +56,7 @@ export const createPet = async (req, res) => {
       description, 
       shelter, 
       adopted, 
-      imageUrl 
+      image_url
     } = req.body;
 
     const errors = {
@@ -67,7 +67,7 @@ export const createPet = async (req, res) => {
       ...(validateWeight(weight) && { weight: validateWeight(weight) }),
       ...(validateGender(gender) && { gender: validateGender(gender) }),
       ...(validateShelter(shelter) && { shelter: validateShelter(shelter) }),
-      ...(validateImageUrl(imageUrl) && { imageUrl: validateImageUrl(imageUrl) }),
+      ...(validateImageUrl(image_url) && { image_url: validateImageUrl(image_url) }),
     };
 
     if (Object.keys(errors).length > 0) {
@@ -88,7 +88,7 @@ export const createPet = async (req, res) => {
       description,
       shelter,
       adopted: adopted || false, 
-      imageUrl
+      image_url
     });
 
     return res.status(201).json({ 
@@ -117,7 +117,7 @@ export const updatePet = async (req, res) => {
       description, 
       shelter, 
       adopted, 
-      imageUrl 
+      image_url
     } = req.body;
 
     const pet = await Pet.findByPk(id);
@@ -137,7 +137,7 @@ export const updatePet = async (req, res) => {
       ...(weight && validateWeight(weight) && { weight: validateWeight(weight) }),
       ...(gender && validateGender(gender) && { gender: validateGender(gender) }),
       ...(shelter && validateShelter(shelter) && { shelter: validateShelter(shelter) }),
-      ...(imageUrl && validateImageUrl(imageUrl) && { imageUrl: validateImageUrl(imageUrl) }),
+      ...(image_url && validateImageUrl(image_url) && { image_url: validateImageUrl(image_url) }),
     };
 
     if (Object.keys(errors).length > 0) {
@@ -158,7 +158,7 @@ export const updatePet = async (req, res) => {
       description: description || pet.description,
       shelter: shelter || pet.shelter,
       adopted: adopted !== undefined ? adopted : pet.adopted,
-      imageUrl: imageUrl || pet.imageUrl
+      image_url: image_url || pet.image_url
     });
 
     return res.status(200).json({ 
