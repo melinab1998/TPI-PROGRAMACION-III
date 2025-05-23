@@ -7,14 +7,14 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { infoToast } from '../../utils/notifications.js';
 import { AuthenticationContext } from "../../services/auth/AuthContext.jsx";
-import { ThemeContext } from "../../services/theme/ThemeContext";
+import useTheme from "../../hooks/useTheme.js";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 const NavBar = ({ toggleLogin }) => {
   const navigate = useNavigate();
   const { token, handleUserLogout, userRole } = useContext(AuthenticationContext);
 
-  const { theme, toggleTheme } = useContext(ThemeContext); 
+  const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
   const handleLogout = () => {
