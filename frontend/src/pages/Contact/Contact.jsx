@@ -68,17 +68,17 @@ const Contact = () => {
   };
 
   return (
-    <section className="contacto-section">
+    <section className="contact-section">
       <Container>
         <Row>
-          <Col md={6} className="contacto-info">
-            <h2 className="contacto-titulo">Contáctanos</h2>
-            <h4 className="contacto-subtitulo">¿Cómo podemos ayudarte?</h4>
-            <p className="contacto-texto">
+          <Col md={6} className="contact-information">
+            <h2 className="contact-title">Contáctanos</h2>
+            <h4 className="contact-subtitle">¿Cómo podemos ayudarte?</h4>
+            <p className="contact-networks">
               Si tenés alguna consulta, querés colaborar o simplemente hablarnos, estamos para escucharte. 
               Completá el formulario o escribinos por nuestras redes sociales:
             </p>
-            <div className="contacto-redes">
+            <div className="contact-networks">
               <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
               <a href="https://x.com/" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
               <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
@@ -86,7 +86,7 @@ const Contact = () => {
           </Col>
 
           <Col md={6}>
-            <Form className="contacto-formulario" onSubmit={handleSubmit}>
+            <Form className="contact-form" onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control 
@@ -136,7 +136,7 @@ const Contact = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Button className="contacto-boton" type="submit">
+              <Button className="contact-button" type="submit">
                 Contactar
               </Button>
             </Form>

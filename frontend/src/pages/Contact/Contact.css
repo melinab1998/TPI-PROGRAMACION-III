@@ -1,4 +1,4 @@
-.contacto-section {
+.contact-section {
     padding: 4rem 0;
     min-height: 80vh; 
     display: flex;
@@ -6,34 +6,34 @@
     justify-content: center;
 }
 
-.contacto-container {
+.contact-container {
     width: 100%;
     max-width: 1200px;
     padding: 0 2rem;
 }
 
-.contacto-info {
+.contact-information {
     padding-right: 2rem;
     margin-bottom: 2rem;
     border-left: 2px solid #f5c6b3;
     padding-left: 2rem;
 }
 
-.contacto-titulo {
+.contact-title {
     color: #8b0000;
     font-weight: bold;
     font-size: 2.5rem; 
     margin-bottom: 0.5rem;
 }
 
-.contacto-subtitulo {
+.contact-subtitle {
     font-size: 1.6rem; 
     color: #A0522D;
     margin-bottom: 1rem;
     font-weight: 500;
 }
 
-.contacto-texto {
+.contact-text {
     color: #5C2E00;
     font-size: 1.05rem;
     line-height: 1.6;
@@ -41,34 +41,34 @@
     max-width: 90%;
 }
 
-.contacto-redes {
+.contact-networks {
     display: flex;
     gap: 1.2rem;
     margin-top: 1rem;
 }
 
-.contacto-redes a {
+.contact-networks a {
     color: #CD5C5C;
     font-size: 1.9rem; 
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.contacto-redes a:hover {
+.contact-networks a:hover {
     color: #8b0000;
     transform: scale(1.25);
 }
 
-.contacto-formulario label {
+.contact-form label {
     color: #8b0000;
     font-weight: 500;
 }
 
-.contacto-formulario .form-control {
+.contact-form .form-control {
     border-radius: 10px;
     border-color: #f5c6b3;
 }
 
-.contacto-boton {
+.contact-button {
     background-color: #F08080;
     border-color: #F08080;
     color: #fff;
@@ -78,9 +78,9 @@
     transition: background-color 0.3s ease;
 }
 
-.contacto-boton:hover,
-.contacto-boton:focus,
-.contacto-boton:active {
+.contact-button:hover,
+.contact-button:focus,
+.contact-button:active {
     background-color: #e57373;
     border-color: #e57373;
     box-shadow: none;
