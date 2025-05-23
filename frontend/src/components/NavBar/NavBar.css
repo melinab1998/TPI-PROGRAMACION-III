@@ -6,8 +6,9 @@
 
 .custom-navbar {
   height: 110px;
-  background-color: #F8F3ED;
+  background-color: #F8F3ED !important;
   font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .custom-logo {
@@ -114,4 +115,68 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 9998;
   }
+
+  .dark-theme .custom-navbar .navbar-collapse {
+    background-color: #1f1f1f !important;
+  }
+
+}
+
+
+/* ==== Tema oscuro ==== */
+.dark-theme .custom-navbar {
+  background-color: #1f1f1f !important;
+}
+
+.dark-theme .custom-navbar .navbar-brand,
+.dark-theme .custom-navbar .nav-link {
+  color: white !important;
+}
+
+.dark-theme .custom-navbar .navbar-brand:hover,
+.dark-theme .custom-navbar .nav-link:hover {
+  color: #f29a8e !important;
+}
+
+/* ==== Botón toggle theme ==== */
+.theme-toggle-btn.btn-outline-secondary {
+  background-color: #F8F3ED !important;
+  color: black !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  padding: 6px 12px;
+}
+
+.theme-toggle-btn.btn-outline-secondary:hover {
+  background-color: #f29a8e !important; /* rosa */
+  color: white !important;
+  border-color: #f29a8e !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.theme-toggle-btn.btn-outline-secondary:focus,
+.theme-toggle-btn.btn-outline-secondary:active {
+  background-color: #F8F3ED !important;
+  color: black !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.dark-theme .custom-navbar .dropdown-menu {
+  background-color: #1e1e1e !important;
+  color: white !important;
+  border: 1px solid #444 !important;
+}
+
+.dark-theme .custom-navbar .dropdown-item {
+  color: white !important;
+}
+
+.dark-theme .custom-navbar .dropdown-item:hover,
+.dark-theme .custom-navbar .dropdown-item:focus,
+.dark-theme .custom-navbar .dropdown-item:active {
+  background-color: #333 !important;
+  color: #f29a8e !important;
 }
