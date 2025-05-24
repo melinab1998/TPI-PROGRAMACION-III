@@ -69,7 +69,7 @@ function Donation() {
         Swal.fire({
           title: "¡Gracias por tu donación!",
           text: "Tu apoyo hace una gran diferencia 💖",
-          image_url: donationImg,
+          imageUrl: donationImg,
           imageWidth: 300,
           imageHeight: 300,
           imageAlt: "Imagen de agradecimiento",
