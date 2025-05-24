@@ -1,9 +1,5 @@
 const baseUrl = import.meta.env.VITE_BASE_SERVER_URL;
 
-/*handleResponse:
-- Se encarga de verificar si la respuesta de la solicitud fetch es OK (200-299) o no.
-- Si la respuesta no es OK, lanza un error con los datos y el mensaje de error.*/
-
 const handleResponse = async (res) => {
 	const data = await res.json();
 	if (!res.ok) {
@@ -11,9 +7,6 @@ const handleResponse = async (res) => {
 	}
 	return data;
 };
-
-/*onSuccess: La función a llamar cuando la solicitud es exitosa
-onError: La función a llamar cuando se produce un error*/
 
 export const registerUser = (formData, onSuccess, onError) => {
 	fetch(`${baseUrl}/api/register`, {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
 import { getPets, createPet, updatePet, deletePet } from '../../../services/api.services.js';

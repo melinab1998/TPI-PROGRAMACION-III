@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
@@ -69,7 +69,7 @@ function Donation() {
         Swal.fire({
           title: "¡Gracias por tu donación!",
           text: "Tu apoyo hace una gran diferencia 💖",
-          image_url: donationImg,
+          imageUrl: donationImg,
           imageWidth: 300,
           imageHeight: 300,
           imageAlt: "Imagen de agradecimiento",

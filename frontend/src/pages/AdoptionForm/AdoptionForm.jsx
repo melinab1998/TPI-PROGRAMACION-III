@@ -1,5 +1,5 @@
 import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap';
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './AdoptionForm.css';
 import { errorToast, successToast} from '../../utils/notifications.js';
 import {
