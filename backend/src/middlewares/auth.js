@@ -6,14 +6,14 @@ export const verifyToken = (req, res, next) => {
 	const header = req.header("Authorization");
 
 	if (!header) {
-		return res.status(401).json({ message: "No tiene autorizacion requerida" });
+		return res.status(401).json({ message: "No tiene la autorizacion requerida" });
 	}
 
 	const token = header.split(" ")[1];
 	console.log("Token extraído:", token);
 
 	if (!token) {
-		return res.status(401).json({ message: "No tiene autorizacion requerida" });
+		return res.status(401).json({ message: "No tiene la autorizacion requerida" });
 	}
 
 	try {
@@ -24,7 +24,7 @@ export const verifyToken = (req, res, next) => {
 
 		next();
 	} catch (error) {
-		return res.status(403).json({ message: "No posee permisos correctos" });
+		return res.status(403).json({ message: "No posee los permisos necesarios" });
 	}
 };
 
