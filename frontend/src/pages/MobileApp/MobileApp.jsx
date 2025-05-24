@@ -13,14 +13,14 @@ const MobileApp = () => {
         }, []);
 
     return (
-    <section className="contacto-section">
+    <section className="contact-section">
         <Container className="text-center">
-        <h2 className="contacto-titulo mb-5">Descargá nuestra aplicación móvil</h2>
+        <h2 className="contact-title mb-5">Descargá nuestra aplicación móvil</h2>
         <Row className="justify-content-center">
             <Col xs={12} md={6} lg={5} className="mb-4">
             <div className="qr-block">
                 <FaAndroid size={70} color="#3ddc84" />
-                <p className="qr-texto">
+                <p className="qr-text">
                 Escaneá el código QR y descargá la versión Android
                 </p>
                 <img
@@ -28,7 +28,7 @@ const MobileApp = () => {
                 alt="QR Android"
                 className="qr-image my-3"
                 />
-                <p className="download-texto">
+                <p className="download-text">
                 O hace click en Google Play
                 </p>
                 <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
@@ -39,7 +39,7 @@ const MobileApp = () => {
             <Col xs={12} md={6} lg={5} className="mb-4">
             <div className="qr-block">
                 <FaApple size={70} color="#000000" />
-                <p className="qr-texto">
+                <p className="qr-text">
                 Escaneá el código QR y descargá la versión iOS
                 </p>
                 <img
@@ -47,7 +47,7 @@ const MobileApp = () => {
                 alt="QR iOS"
                 className="qr-image my-3"
                 />
-                <p className="download-texto">
+                <p className="download-text">
                 O hace click en App Store
                 </p>
                 <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">

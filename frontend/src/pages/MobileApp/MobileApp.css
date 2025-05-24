@@ -1,4 +1,4 @@
-.contacto-section {
+.contact-section {
     padding: 4rem 0;
     min-height: 80vh;
     display: flex;
@@ -32,8 +32,8 @@
     margin: 1rem 0;
 }
 
-.qr-texto,
-.download-texto {
+.qr-text,
+.download-text {
     font-size: 1.1rem;
     font-weight: 600;
     color: #5C2E00;
