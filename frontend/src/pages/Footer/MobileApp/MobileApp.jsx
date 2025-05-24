@@ -2,10 +2,10 @@ import React, { useEffect} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaAndroid, FaApple } from "react-icons/fa";
 import "./MobileApp.css";
-import QrIos from "../../img/qr-ios.png";
-import QrAndroid from "../../img/qr-android.png";
-import GoogleStoreIcon from "../../img/google-play-badge-es.png";
-import AppStoreIcon from "../../img/app-store-badge.svg";
+import QrIos from "../../../img/qr-ios.png"
+import QrAndroid from "../../../img/qr-android.png";
+import GoogleStoreIcon from "../../../img/google-play-badge-es.png";
+import AppStoreIcon from "../../../img/app-store-badge.svg";
 
 const MobileApp = () => {
     useEffect(() => {

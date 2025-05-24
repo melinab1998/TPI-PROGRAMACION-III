@@ -12,15 +12,15 @@ import PetDetails from "./pages/Meet/PetDetails/PetDetails";
 import Login from "./components/Login/Login";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MobileApp from "./pages/MobileApp/MobileApp";
+import MobileApp from "./pages/Footer/MobileApp/MobileApp.jsx"
 import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDashboard"
 import './utils/notifications.css';
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
 import RequestsManagement from "./components/AdminComponents/RequestsManagement/RequestsManagement";
-import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
-import PrivacyNotice from "./pages/PrivacyNotice/PrivacyNotice";
-import CookiesNotice from "./pages/CookiesNotice/CookiesNotice";
+import TermsAndConditions from "./pages/Footer/TermsAndConditions/TermsAndConditions.jsx"
+import PrivacyNotice from "./pages/Footer/PrivacyNotice/PrivacyNotice.jsx"
+import CookiesNotice from "./pages/Footer/CookiesNotice/CookiesNotice.jsx"
 import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDashboard/SuperAdminDashboard";
 import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
 import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
