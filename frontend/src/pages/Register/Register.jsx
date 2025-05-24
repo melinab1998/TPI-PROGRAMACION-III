@@ -168,7 +168,7 @@ const Register = () => {
         <div className="networks mt-3">
           <a href=""><FaFacebook size={40} /></a>
           <a href=""><BsTwitterX size={40} color="black" /></a>
-          <a href=""><FaInstagram size={40} color="#E1306C" /></a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram size={40} color="#E1306C" /></a>
         </div>
       </div>
     </div>
