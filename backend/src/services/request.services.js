@@ -172,7 +172,7 @@ export const updateRequests = async (req, res) => {
 		await request.update({ state });
 		return res
 			.status(200)
-			.json({ message: "Solicitud actualizada exitosamente.", request });
+			.json({ message: "Solicitud actualizada con éxito.", request });
 	} catch (error) {
 		res.status(500).json({ message: "Error al actualizar la solicitud." });
 	}

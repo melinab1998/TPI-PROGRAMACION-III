@@ -92,7 +92,7 @@ export const createPet = async (req, res) => {
     });
 
     return res.status(201).json({ 
-      message: "Mascota creada exitosamente.", 
+      message: "Mascota creada con éxito.", 
       pet: newPet 
     });
   } catch (error) {
@@ -162,7 +162,7 @@ export const updatePet = async (req, res) => {
     });
 
     return res.status(200).json({ 
-      message: "Mascota actualizada exitosamente.", 
+      message: "Mascota actualizada con éxito.", 
       pet 
     });
   } catch (error) {
@@ -188,7 +188,7 @@ export const deletePet = async (req, res) => {
 
     await pet.destroy();
     return res.status(200).json({ 
-      message: "Mascota eliminada exitosamente.", 
+      message: "Mascota eliminada con éxito.", 
       pet 
     });
   } catch (error) {

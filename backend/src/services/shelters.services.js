@@ -57,7 +57,7 @@ export const createShelter = async (req, res) => {
     });
 
     return res.status(201).json({ 
-      message: "Refugio creado exitosamente.", 
+      message: "Refugio creado con éxito.", 
       newShelter 
     });
   } catch (error) {
@@ -104,7 +104,7 @@ export const updateShelter = async (req, res) => {
     });
 
     return res.status(200).json({ 
-      message: "Refugio actualizado exitosamente.", 
+      message: "Refugio actualizado con éxito.", 
       shelter 
     });
   } catch (error) {
@@ -126,7 +126,7 @@ export const deleteShelter = async (req, res) => {
 
     await shelter.destroy();
     return res.status(200).json({ 
-      message: "Refugio eliminado exitosamente.", 
+      message: "Refugio eliminado con éxito.", 
       shelter 
     });
   } catch (error) {
