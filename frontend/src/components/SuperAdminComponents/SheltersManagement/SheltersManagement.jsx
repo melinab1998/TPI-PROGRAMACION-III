@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaHome } from 'react-icons/fa';
 import ShelterForm from "../ShelterForm/ShelterForm";

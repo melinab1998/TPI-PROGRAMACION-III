@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -23,8 +23,7 @@ const Login = ({ showLogin, toggleLogin }) => {
         loginUser(
             { email, password },
             (data) => {
-                // onSuccess
-                handleUserLogin(data.token); // Usamos el contexto para manejar el login
+                handleUserLogin(data.token); 
                 console.log(data.token);
                 setEmail('');
                 setPassword('');
@@ -32,7 +31,6 @@ const Login = ({ showLogin, toggleLogin }) => {
                 infoToast(`¡Bienvenido a Mi Hogar, ${data.user_name || 'usuario'}!`);
             },
             (error) => {
-                // onError
                 errorToast(error.message || "Error al iniciar sesión");
                 console.error(error);
             }
