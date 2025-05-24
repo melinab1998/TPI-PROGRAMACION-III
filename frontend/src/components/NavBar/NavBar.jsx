@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { infoToast } from '../../utils/notifications.js';
 import { AuthenticationContext } from "../../services/auth/AuthContext.jsx";
-import useTheme from "../../hooks/useTheme.js";
+import useTheme from "../../hooks/useTheme.jsx"
 import { FaSun, FaMoon } from "react-icons/fa";
 
 const NavBar = ({ toggleLogin }) => {
