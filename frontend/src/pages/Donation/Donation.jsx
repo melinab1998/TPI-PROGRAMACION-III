@@ -92,8 +92,8 @@ function Donation() {
         <Col md={8}>
           <Card className="donation-card">
             <Card.Header className="donation-header text-center">
-              <h2 className="titulo-con-icono mb-0">
-                <FaPaw className="icono-patita me-2" />
+              <h2 className="title-with-icon mb-0">
+                <FaPaw className="paw-icon me-2" />
                 Doná a nuestra causa
               </h2>
             </Card.Header>
