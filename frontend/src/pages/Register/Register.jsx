@@ -80,10 +80,10 @@ const Register = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center min-vh-100 imagen">
+    <div className="container d-flex justify-content-center align-items-center min-vh-100 image">
       <div className="card p-4 form" style={{ width: "500px", borderRadius: "10px" }}>
         <div className="cont-header-form">
-          <h2 className="titulo font-semibold">Regístrate</h2>
+          <h2 className="title font-semibold">Regístrate</h2>
           <img className="logo" src={logo} alt="Logo" />
         </div>
         <Form onSubmit={handleSubmit}>
@@ -165,7 +165,7 @@ const Register = () => {
             navigate("/", { state: { showLogin: true } });
           }}>Inicia Sesión</a>
         </p>
-        <div className="social mt-3">
+        <div className="networks mt-3">
           <a href=""><FaFacebook size={40} /></a>
           <a href=""><BsTwitterX size={40} color="black" /></a>
           <a href=""><FaInstagram size={40} color="#E1306C" /></a>
