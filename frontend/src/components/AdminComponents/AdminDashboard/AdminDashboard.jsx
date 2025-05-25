@@ -2,12 +2,12 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaPaw, FaClipboardList, FaHeart } from "react-icons/fa";
-import { errorToast } from '../../utils/notifications.js';
+import { errorToast } from "../../../utils/notifications.js"
 import "./AdminDashboard.css";
 import { getStats } from "../../../services/api.services";
 
 const AdminDashboard = () => {
-    const [stats, setStats] = ([
+    const [stats, setStats] = useState ([
         { value: 0, label: "Mascotas en adopción", icon: <FaPaw /> },
         { value: 0, label: "Solicitudes pendientes", icon: <FaClipboardList /> },
         { value: 0, label: "Adopciones exitosas", icon: <FaHeart /> }
@@ -16,11 +16,12 @@ const AdminDashboard = () => {
     useEffect(() =>{
         getStats(
             (data) => {
-                setStats([
+                const formatedStats = [
                     { value: data.petsInAdoption, label: "Mascotas en adopción", icon: <FaPaw /> },
                     { value: data.pendingRequests, label: "Solicitudes pendientes", icon: <FaClipboardList /> },
                     { value: data.successfulAdoptions, label: "Adopciones exitosas", icon: <FaHeart /> },
-                ]);
+                ];
+                setStats(formatedStats);
             },
             (error) =>{
                 errorToast("Error al obtener los datos")
