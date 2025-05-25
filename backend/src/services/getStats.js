@@ -5,6 +5,6 @@ export const getStats = async(req, res) =>{
     try{
         const petsInAdoption = await Pet.count({where:{adopted: false}});
         const pendingRequests = await Request.count({where:{state: 'pendiente'}});
-
+        const successfulAdoptions = await Request.count({where:{state: 'Aprobada'}});
     }
 }
