@@ -9,7 +9,6 @@ async function seed() {
 	try {
 		initModels();
 		await sequelize.authenticate();
-		console.log("Conexión establecida correctamente.");
 
 		// Limpiar tablas por si quedo informacion
 		await Request.destroy({ where: {} });
@@ -18,11 +17,12 @@ async function seed() {
 
 		// Crear usuarios
 		const userData = [];
-		for (let i = 1; i <= 20; i++) {
+		for (let i = 1; i <= 50; i++) {
 			userData.push({
 				user_name: faker.name.findName(),
 				email: `user${i}@example.com`,
-				password: "123456",
+				password:
+					"$2b$10$vv2O23cP1zGj9Bamz1lFqes2aEojRV9jY0bPjiM809IfviCZuFW0m",
 				role: i === 1 ? "admin" : "user",
 			});
 		}
@@ -50,7 +50,7 @@ async function seed() {
 		];
 		const petGenders = ["Macho", "Hembra"];
 		const petData = [];
-		for (let i = 1; i <= 20; i++) {
+		for (let i = 1; i <= 50; i++) {
 			const species = faker.random.arrayElement(petSpecies);
 			const gender = faker.random.arrayElement(petGenders);
 			const race =
@@ -74,7 +74,7 @@ async function seed() {
 		// Crear solicitudes
 		const requestStates = ["Pendiente", "Aprobada", "Rechazada", "En revisión"];
 		const requestData = [];
-		for (let i = 0; i < 20; i++) {
+		for (let i = 0; i < 50; i++) {
 			const user = users[i];
 			const pet = pets[i];
 			requestData.push({
