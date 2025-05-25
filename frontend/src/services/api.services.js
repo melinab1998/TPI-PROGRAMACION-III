@@ -257,3 +257,17 @@ export const createContact = (formData, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
+
+
+export const getStats = (onSuccess, onError) => {
+	fetch(`${baseUrl}/api/stats`, {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
