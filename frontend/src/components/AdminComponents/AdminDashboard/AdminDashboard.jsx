@@ -1,14 +1,15 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaPaw, FaClipboardList, FaHeart } from "react-icons/fa";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
-    const stats = [
-        { value: 25, label: "Mascotas en adopción", icon: <FaPaw /> },
-        { value: 5, label: "Solicitudes pendientes", icon: <FaClipboardList /> },
-        { value: 42, label: "Adopciones exitosas", icon: <FaHeart /> }
-    ];
+    const [stats, setStats] = ([
+        { value: 0, label: "Mascotas en adopción", icon: <FaPaw /> },
+        { value: 0, label: "Solicitudes pendientes", icon: <FaClipboardList /> },
+        { value: 0, label: "Adopciones exitosas", icon: <FaHeart /> }
+    ]);
 
     return (
         <Container className="admin-dashboard">
