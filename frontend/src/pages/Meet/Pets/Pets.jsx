@@ -15,7 +15,10 @@ const Pets = () => {
   useEffect(() => {
 
     getPets(
-      (data) => setPets(data),
+      (data) => {
+        const disponibles = data.filter(pet => !pet.adopted);
+        setPets(disponibles);
+      },
       (error) => {
         errorToast(error.message || "Error al obtener mascotas");
         console.error("Error fetching pets:", error);
