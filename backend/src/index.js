@@ -39,7 +39,7 @@ sequelize
 	.then(() => {
 		console.log("Conectado a la base de datos");
 		sequelize
-			.sync({ force: true })
+			.sync({ force: false })
 			.then(() => {
 				console.log("Sincronización exitosa");
 			})
