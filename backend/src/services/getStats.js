@@ -4,6 +4,6 @@ import Request  from "../models/Request.js";
 export const getStats = async(req, res) =>{
     try{
         const petsInAdoption = await Pet.count({where:{adopted: false}});
-        
+        const pendiongRequests = await Request.count({where:{state: 'pendiente'}});
     }
 }
