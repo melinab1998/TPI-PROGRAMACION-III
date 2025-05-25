@@ -1,34 +1,10 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaPaw, FaClipboardList, FaHeart } from "react-icons/fa";
-import { errorToast } from "../../../utils/notifications.js"
-import "./AdminDashboard.css";
-import { getStats } from "../../../services/api.services";
+import StatsDashboard from "../../StatsDashboard";
+
 
 const AdminDashboard = () => {
-    const [stats, setStats] = useState ([
-        { value: 0, label: "Mascotas en adopción", icon: <FaPaw /> },
-        { value: 0, label: "Solicitudes pendientes", icon: <FaClipboardList /> },
-        { value: 0, label: "Adopciones exitosas", icon: <FaHeart /> }
-    ]);
-
-    useEffect(() =>{
-        getStats(
-            (data) => {
-                const formatedStats = [
-                    { value: data.petsInAdoption, label: "Mascotas en adopción", icon: <FaPaw /> },
-                    { value: data.pendingRequests, label: "Solicitudes pendientes", icon: <FaClipboardList /> },
-                    { value: data.successfulAdoptions, label: "Adopciones exitosas", icon: <FaHeart /> },
-                ];
-                setStats(formatedStats);
-            },
-            (error) =>{
-                errorToast("Error al obtener los datos")
-            }
-        )
-    },[])
-
     return (
         <Container className="admin-dashboard">
             <div className="dashboard-header">
@@ -36,23 +12,7 @@ const AdminDashboard = () => {
                 <p className="dashboard-subtitle">Gestión de mascotas y solicitudes de adopción</p>
             </div>
 
-            <Row className="stats-row">
-                {stats.map((stat, index) => (
-                    <Col md={4} key={index}>
-                        <Card className="stat-card">
-                            <Card.Body>
-                                <div className="stat-icon">
-                                    {stat.icon}
-                                </div>
-                                <div className="stat-content">
-                                    <span className="stat-number">{stat.value}</span>
-                                    <span className="stat-label">{stat.label}</span>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
+            <StatsDashboard />
             <Row className="management-cards">
                 <Col md={6}>
                     <Card className="management-card pets-card">

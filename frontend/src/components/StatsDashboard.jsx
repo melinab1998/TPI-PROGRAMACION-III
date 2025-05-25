@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { FaPaw, FaClipboardList, FaHeart } from "react-icons/fa";
-import { getStats } from "../../../services/api.services";
-import { errorToast } from "../../../utils/notifications.js";
+import { getStats } from "../services/api.services.js";
+import { errorToast } from "../utils/notifications.js";
 
 const StatsDashboard = () => {
   const [stats, setStats] = useState([
