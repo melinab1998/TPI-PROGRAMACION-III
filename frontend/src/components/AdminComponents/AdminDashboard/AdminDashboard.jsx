@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaPaw, FaClipboardList, FaHeart } from "react-icons/fa";
-import StatsDashboard from "../../StatsDashboard";
+import StatsDashboard from "../../StatsDashboard/StatsDashboard";
 
 
 const AdminDashboard = () => {
