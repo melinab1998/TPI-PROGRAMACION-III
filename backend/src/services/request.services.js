@@ -23,6 +23,7 @@ import {
 	validateWhatsappFollowUp,
 	validateTerms,
 } from "../helpers/validations.js";
+import { where } from "sequelize";
 
 export const createRequest = async (req, res) => {
 	try {
@@ -170,10 +171,19 @@ export const updateRequests = async (req, res) => {
 		}
 
 		await request.update({ state });
+		
+		if(state === "Aprobada"){
+			await Pet.update(
+				{adopted: true},
+				{where:{id_pet: request.id_pet}}
+			);
+		}
+
 		return res
 			.status(200)
 			.json({ message: "Solicitud actualizada con éxito.", request });
 	} catch (error) {
+		console.log(error)
 		res.status(500).json({ message: "Error al actualizar la solicitud." });
 	}
 };
