@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaPaw, FaClipboardList, FaUsers, FaHome } from "react-icons/fa";
+import StatsDashboard from "../../StatsDashboard";
 import "../../AdminComponents/AdminDashboard/AdminDashboard.css"
 
 const SuperAdminDashboard = () => {
@@ -11,6 +12,7 @@ const SuperAdminDashboard = () => {
                 <h1 className="dashboard-title">Panel de Super Administración</h1>
                 <p className="dashboard-subtitle">Gestión completa de la plataforma de adopción</p>
             </div>
+            <StatsDashboard />
             <Row className="management-cards g-3">
                     <Col md={6}>
                     <Card className="management-card">
