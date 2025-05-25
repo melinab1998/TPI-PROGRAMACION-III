@@ -6,6 +6,7 @@ import donationRoutes from "./routes/donations.routes.js";
 import requestRoutes from "./routes/requests.routes.js";
 import sheltersRoutes from "./routes/shelters.routes.js";
 import contactRoutes from "./routes/contacts.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js"
 import cors from "cors";
 import initModels from "./models/init.models.js";
 
@@ -23,6 +24,7 @@ app.use(donationRoutes);
 app.use(requestRoutes);
 app.use(sheltersRoutes);
 app.use(contactRoutes);
+app.use(dashboardRoutes)
 
 app.get("/", (req, res) => {
 	res.send("Backend funcionando!");
