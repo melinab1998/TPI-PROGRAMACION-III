@@ -13,7 +13,7 @@ const Footer = () => {
     const isDark = theme === "dark";
 
     return (
-        <footer className={`py-5 border-top custom-footer ${isDark ? "footer-dark" : "footer-light"}`}>
+        <footer className={`py-5 custom-footer ${isDark ? "footer-dark" : "footer-light"}`}>
             <Container>
                 <Row className="text-center text-md-start align-items-stretch h-100">
                     <Col md={4} className="d-flex flex-column align-items-center justify-content-center text-center h-100">
