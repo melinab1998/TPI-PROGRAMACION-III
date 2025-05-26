@@ -1,3 +1,4 @@
+
 .donation-card {
     border-color: #CD5C5C;
     border-radius: 0.5rem;
@@ -32,20 +33,22 @@
 
 .donation-text {
     text-align: center;
-    margin-bottom: 30px;
+    margin: 15px 0;
     color: #333;
-    font-style: italic;
     font-size: 1.1rem;
 }
 
 .donation-form .section-title {
-    color: #CD5C5C;
-    margin-bottom: 1rem;
+  color: #CD5C5C;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #eedad9;
 }
 
 .donation-boton {
     padding: 12px;
-    background-color: #F88379;
+    background-color:  #CD5C5C;
     color: white;
     font-weight: bold;
     border: none;
@@ -85,9 +88,10 @@
 
 
 .btn-lost-pet-primary {
-    background-color: #F88379;
-    border-color: #F88379;
+    background-color:  #CD5C5C;
+    border-color:  #CD5C5C;
     color: white;
+    font-weight: bolder;
 }
 
 .btn-lost-pet-primary:hover {

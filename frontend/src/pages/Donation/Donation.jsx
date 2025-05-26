@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { errorToast } from '../../utils/notifications.js';
@@ -10,7 +9,6 @@ import { validateDonationName, validateEmail, validateAmount, validatePaymentMet
 import { createDonation } from '../../services/api.services.js';
 
 function Donation() {
-  const navigate = useNavigate();
   const initialState = {
     name: "",
     email: "",
@@ -73,7 +71,7 @@ function Donation() {
           imageWidth: 300,
           imageHeight: 300,
           imageAlt: "Imagen de agradecimiento",
-          confirmButtonText: "Volver",
+          confirmButtonText: "Aceptar",
           confirmButtonColor: "#CD5C5C",
         });
 
@@ -87,23 +85,23 @@ function Donation() {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5 donation-container">
       <Row className="justify-content-center">
-        <Col md={8}>
+        <Col md={8} lg={7}>
           <Card className="donation-card">
-            <Card.Header className="donation-header text-center">
+            <Card.Header className="donation-header text-center py-3">
               <h2 className="title-with-icon mb-0">
                 <FaPaw className="paw-icon me-2" />
                 Doná a nuestra causa
               </h2>
             </Card.Header>
-            <Card.Body>
-              <p className="donation-text">
-                Con tu ayuda, podemos seguir rescatando, alimentando y cuidando a más animales que lo necesitan. ¡Gracias por tu apoyo!
+            <Card.Body className="px-4 py-3">
+              <p className="donation-text mb-4">
+                Con tu ayuda, podemos seguir rescatando, alimentando y cuidando a más animales que lo necesitan.
               </p>
 
               <Form className="donation-form" onSubmit={handleSubmit}>
-                <h5 className="section-title">Tus Datos</h5>
+                <h5 className="section-title mb-3">Tus Datos</h5>
 
                 <Form.Group className="mb-3">
                   <Form.Label>Nombre:</Form.Label>
@@ -162,7 +160,7 @@ function Donation() {
                   <Form.Control.Feedback type="invalid">{errors.payment_method}</Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-4">
                   <Form.Label>Mensaje (opcional):</Form.Label>
                   <Form.Control
                     as="textarea"
@@ -173,12 +171,8 @@ function Donation() {
                   />
                 </Form.Group>
 
-                <div className="d-flex justify-content-between mt-4">
-                  <Button variant="secondary" className="btn-lost-pet-secondary" onClick={() => {
-                    window.scrollTo(0, 0);
-                    navigate('/');
-                  }}>Volver</Button>
-                  <Button type="submit" className="btn-lost-pet-primary">Donar ahora</Button>
+                <div className="d-flex justify-content-center mt-3">
+                  <Button type="submit" className="btn-lost-pet-primary py-2">Donar ahora</Button>
                 </div>
               </Form>
             </Card.Body>

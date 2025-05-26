@@ -38,7 +38,7 @@ const fadeInCascade = {
           viewport={{ once: true }}
           transition={{ duration: 2.5 }}  
           >
-            Requisitos de adopcion
+            Requisitos de adopción
           </motion.h2>
           <motion.p
           className="adoption-subtitle"
