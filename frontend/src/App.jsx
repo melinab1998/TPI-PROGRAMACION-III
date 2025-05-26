@@ -27,21 +27,17 @@ import SheltersManagement from "./components/SuperAdminComponents/SheltersManage
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
-
   const [showLogin, setShowLogin] = useState(false);
   const { userRole } = useContext(AuthenticationContext);
-
   const location = useLocation();
+
   useEffect(() => {
     if (location.state?.showLogin) {
       setShowLogin(true);
-      // Limpia el estado para evitar que se vuelva a abrir si se recarga
       window.history.replaceState({}, document.title);
     }
-
     document.body.className = location.pathname === "/register" ? "custom-register" : "default-body";
   }, [location]);
-
 
   return (
     <>
@@ -50,63 +46,37 @@ function App() {
           <Route
             index
             element={
-              userRole === "superadmin"
-                ? <SuperAdminDashboard />
-                : userRole === "admin"
-                  ? <AdminDashboard />
-                  : <Home />
-            } />
-          <Route index element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/pets" element={<Pets />} />
-          <Route path="/pets/:id" element={<PetDetails />} />
-          <Route path="/donation" element={<Donation />} />
-          <Route
-            path="/adoption/:id"
-            element={
-              <ProtectedRoute allowedRoles={["user"]}>
-                <AdoptionForm />
-              </ProtectedRoute>
+              userRole === "superadmin" ? <SuperAdminDashboard />
+              : userRole === "admin" ? <AdminDashboard />
+              : <Home />
             }
           />
-          <Route path="/app-movil" element={<MobileApp />} />
-          <Route path="/privacy-notice" element={<PrivacyNotice />} />
-          <Route path="/cookies-notice" element={<CookiesNotice />} />
-          <Route path="/terms-conditions" element={<TermsAndConditions />} />
-          <Route
-            path="/petsmanagement"
-            element={
-              <ProtectedRoute allowedRoles={["admin", "superadmin"]}>
-                <PetsManagement />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/requestsmanagement"
-            element={
-              <ProtectedRoute allowedRoles={["admin", "superadmin"]}>
-                <RequestsManagement />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/usersmanagement"
-            element={
-              <ProtectedRoute allowedRoles={["superadmin"]}>
-                <UsersManagement />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/sheltersmanagement"
-            element={
-              <ProtectedRoute allowedRoles={["superadmin"]}>
-                <SheltersManagement />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="contact" element={<Contact />} />
+          <Route path="pets" element={<Pets />} />
+          <Route path="pets/:id" element={<PetDetails />} />
+          <Route path="donation" element={<Donation />} />
+          <Route path="app-movil" element={<MobileApp />} />
+          <Route path="privacy-notice" element={<PrivacyNotice />} />
+          <Route path="cookies-notice" element={<CookiesNotice />} />
+          <Route path="terms-conditions" element={<TermsAndConditions />} />
+
+          <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
+            <Route path="adoption/:id" element={<AdoptionForm />} />
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["admin", "superadmin"]} />}>
+            <Route path="petsmanagement" element={<PetsManagement />} />
+            <Route path="requestsmanagement" element={<RequestsManagement />} />
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["superadmin"]} />}>
+            <Route path="usersmanagement" element={<UsersManagement />} />
+            <Route path="sheltersmanagement" element={<SheltersManagement />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Route>
+
         <Route path="/register" element={<Register />} />
       </Routes>
 
