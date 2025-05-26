@@ -9,6 +9,7 @@ import { infoToast } from '../../utils/notifications.js';
 import { AuthenticationContext } from "../../services/auth/AuthContext.jsx";
 import useTheme from "../../hooks/useTheme.jsx"
 import { FaSun, FaMoon } from "react-icons/fa";
+import logoDark from "../../img/logo-dark-theme.png"
 
 const NavBar = ({ toggleLogin }) => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const NavBar = ({ toggleLogin }) => {
       <Navbar expand="lg" className={`custom-navbar px-3 ${themeClass}`}>
         <Container fluid>
           <Navbar.Brand href="/">
-            <img src={logo} alt="Logo" className="custom-logo" />
+            <img src={isDark ? logoDark : logo} alt="Logo" className="custom-logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar-nav" />
           <Navbar.Collapse id="main-navbar-nav">
@@ -49,7 +50,7 @@ const NavBar = ({ toggleLogin }) => {
             </Nav>
             <div className="d-flex gap-2">
               <Button variant="outline-secondary" onClick={toggleTheme} className="theme-toggle-btn">
-              {isDark ? <FaSun /> : <FaMoon />}
+                {isDark ? <FaSun /> : <FaMoon />}
               </Button>
               <Button variant="outline-primary" onClick={handleLogout}>
                 CERRAR SESIÓN
@@ -64,7 +65,7 @@ const NavBar = ({ toggleLogin }) => {
       <Navbar expand="lg" className={`custom-navbar px-3 ${themeClass}`}>
         <Container fluid>
           <Navbar.Brand href="/">
-            <img src={logo} alt="Logo" className="custom-logo" />
+            <img src={isDark ? logoDark : logo} alt="Logo" className="custom-logo" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar-nav" />
           <Navbar.Collapse id="main-navbar-nav">
@@ -89,7 +90,7 @@ const NavBar = ({ toggleLogin }) => {
             </Nav>
             <div className="d-flex gap-2">
               <Button variant="outline-secondary" onClick={toggleTheme} className="theme-toggle-btn">
-              {isDark ? <FaSun /> : <FaMoon />}
+                {isDark ? <FaSun /> : <FaMoon />}
               </Button>
               <Button variant="outline-primary" onClick={handleLogout}>
                 CERRAR SESIÓN
@@ -106,7 +107,7 @@ const NavBar = ({ toggleLogin }) => {
     <Navbar expand="lg" className={`custom-navbar px-3 ${themeClass}`}>
       <Container fluid>
         <Navbar.Brand href="/">
-          <img src={logo} alt="Logo" className="custom-logo" />
+          <img src={isDark ? logoDark : logo} alt="Logo" className="custom-logo" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="main-navbar-nav" />
@@ -134,8 +135,8 @@ const NavBar = ({ toggleLogin }) => {
 
           <div className="d-flex gap-2">
             <Button variant="outline-secondary" onClick={toggleTheme} className="theme-toggle-btn">
-            {isDark ? <FaSun /> : <FaMoon />}
-          </Button>
+              {isDark ? <FaSun /> : <FaMoon />}
+            </Button>
             {!token ? (
               <>
                 <Button variant="outline-primary" onClick={toggleLogin}>
