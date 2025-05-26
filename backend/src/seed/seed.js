@@ -50,6 +50,27 @@ async function seed() {
 		];
 		const petGenders = ["Macho", "Hembra"];
 		const petData = [];
+		const catImages = [
+			"https://cdn2.thecatapi.com/images/12j.jpg",
+			"https://cdn2.thecatapi.com/images/40b.jpg",
+			"https://cdn2.thecatapi.com/images/7lf.jpg",
+			"https://cdn2.thecatapi.com/images/8fr.png",
+			"https://cdn2.thecatapi.com/images/bp3.jpg",
+			"https://cdn2.thecatapi.com/images/cg6.jpg",
+			"https://cdn2.thecatapi.com/images/dql.jpg",
+			"https://cdn2.thecatapi.com/images/5s7.jpg",
+			"https://cdn2.thecatapi.com/images/6i8.jpg",
+			"https://cdn2.thecatapi.com/images/MjA1MTUwOQ.jpg",
+			"https://cdn2.thecatapi.com/images/EzYYrmFp7.jpg",
+			"https://cdn2.thecatapi.com/images/agwTe5TSe.jpg",
+			"https://cdn2.thecatapi.com/images/1rq.jpg",
+			"https://28.media.tumblr.com/tumblr_lt95ovYgPG1r4xjo2o1_1280.jpg",
+			"https://cdn2.thecatapi.com/images/2fs.jpg",
+			"https://cdn2.thecatapi.com/images/7t0.jpg",
+			"https://cdn2.thecatapi.com/images/b79.jpg",
+			"https://cdn2.thecatapi.com/images/buh.jpg",
+			"https://cdn2.thecatapi.com/images/cno.jpg",
+		];
 		for (let i = 1; i <= 50; i++) {
 			const species = faker.random.arrayElement(petSpecies);
 			const gender = faker.random.arrayElement(petGenders);
@@ -57,6 +78,10 @@ async function seed() {
 				species === "Perro"
 					? faker.random.arrayElement(petDogRaces)
 					: faker.random.arrayElement(petCatRaces);
+			const image_url =
+				species === "Perro"
+					? `https://placedog.net/350/250?id=${i}`
+					: catImages[Math.floor(Math.random() * catImages.length)];
 			petData.push({
 				name: faker.name.firstName(),
 				species,
@@ -66,13 +91,13 @@ async function seed() {
 				gender,
 				description: faker.lorem.sentence(),
 				shelter: faker.company.companyName(),
-				image_url: `https://placekitten.com/200/${300 + i}`,
+				image_url,
 			});
 		}
 		const pets = await Pet.bulkCreate(petData, { returning: true });
 
 		// Crear solicitudes
-		const requestStates = ["Pendiente", "Aprobada", "Rechazada", "En revisión"];
+		const requestStates = ["Pendiente", "Rechazada", "En revisión"];
 		const requestData = [];
 		for (let i = 0; i < 50; i++) {
 			const user = users[i];
