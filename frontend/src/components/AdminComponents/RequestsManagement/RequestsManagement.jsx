@@ -8,11 +8,11 @@ import DetailModal from './DetailModal/DetailModal.jsx';
 import UpdateModal from './UpdateModal/UpdateModal.jsx';
 import './RequestsManagement.css';
 import ManagementSection from '../ManagementSection/ManagementSection.jsx';
+import usePagination from '../../../hooks/usePagination';
 
 const RequestsManagement = () => {
     const [requests, setRequests] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
     const [showDetailModal, setShowDetailModal] = useState(false);
     const [selectedRequest, setSelectedRequest] = useState(null);
     const requestsPerPage = 20;
@@ -42,10 +42,15 @@ const RequestsManagement = () => {
     const sortedRequests = [...filteredRequests].sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
-    const indexOfLast = currentPage * requestsPerPage;
-    const indexOfFirst = indexOfLast - requestsPerPage;
-    const currentRequests = sortedRequests.slice(indexOfFirst, indexOfLast);
-    const totalPages = Math.ceil(filteredRequests.length / requestsPerPage);
+
+    // hook de paginación
+    const {
+        currentPage,
+        totalPages,
+        currentData: currentRequests,
+        goToPage,
+        setCurrentPage: setPage
+    } = usePagination(sortedRequests, requestsPerPage);
 
     const paginationItems = [];
     for (let number = 1; number <= totalPages; number++) {
@@ -53,7 +58,7 @@ const RequestsManagement = () => {
             <Pagination.Item
                 key={number}
                 active={number === currentPage}
-                onClick={() => setCurrentPage(number)}
+                onClick={() => goToPage(number)}
             >
                 {number}
             </Pagination.Item>
@@ -62,7 +67,7 @@ const RequestsManagement = () => {
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-        setCurrentPage(1);
+        setPage(1);
     };
 
     const handleViewDetail = (request) => {
