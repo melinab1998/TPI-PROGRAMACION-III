@@ -1,16 +1,16 @@
 .links-footer {
     color: black;
-    font-weight: 600;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .links-footer:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 
 footer {
     background-color: #F8F3ED;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* === Estilos para tema oscuro === */
@@ -24,6 +24,6 @@ footer {
     color: white;
 }
 
-.footer-dark .links-footer:hover {
-    color: #f29a8e;
+.footer-dark .copyright-text {
+    color: white;
 }
