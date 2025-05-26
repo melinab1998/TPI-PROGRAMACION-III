@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "./Footer.css";
 import footerLogo from "../../img/logo.png";
+import footerLogoDark from "../../img/logo-dark-theme.png"
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -31,7 +32,7 @@ const Footer = () => {
                     </Col>
 
                     <Col md={4} className="d-flex flex-column align-items-center text-center h-100 my-4 my-md-0">
-                        <img src={footerLogo} alt="Mi Hogar Logo" width={80} />
+                        <img src={isDark ? footerLogoDark : footerLogo} alt="Mi Hogar Logo" width={80} />
                         <div className="mt-3 d-flex justify-content-center gap-3">
                             <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
                                 <FaFacebook size={40} />
