@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Container, Button, Form, Row, Col, InputGroup } from "react-bootstrap";
+import { Container, Button, Form, Row, Col, InputGroup, Pagination } from "react-bootstrap";
 import { FaUsers, FaSave, FaTrash, FaSearch } from "react-icons/fa";
 import { getUsers, deleteUser, updateUserRole } from "../../../services/api.services.js";
 import "./UsersManagement.css";
 import PetDeleteModal from "../../AdminComponents/PetDeleteModal/PetDeleteModal";
 import { errorToast, successToast } from "../../../utils/notifications.js"
 import ManagementSection from "../../AdminComponents/ManagementSection/ManagementSection.jsx";
+import usePagination from '../../../hooks/usePagination';
 
 
 const UsersManagement = () => {
@@ -110,9 +111,32 @@ const UsersManagement = () => {
         setHasChanges(false);
     };
 
+    const usersPerPage = 15;
     const filteredUsers = users.filter((user) =>
         user.user_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    // Hook de paginación
+    const {
+        currentPage,
+        totalPages,
+        currentData: currentUsers,
+        goToPage,
+        setCurrentPage: setPage
+    } = usePagination(filteredUsers, usersPerPage);
+
+    const paginationItems = [];
+    for (let number = 1; number <= totalPages; number++) {
+        paginationItems.push(
+            <Pagination.Item
+                key={number}
+                active={number === currentPage}
+                onClick={() => goToPage(number)}
+            >
+                {number}
+            </Pagination.Item>
+        );
+    }
 
     return (
         <Container className="users-management">
@@ -121,7 +145,7 @@ const UsersManagement = () => {
                 title="Gestión de Usuarios"
                 searchPlaceholder="Buscar por nombre de usuario"
                 searchTerm={searchTerm}
-                onSearchChange={(e) => setSearchTerm(e.target.value)}
+                onSearchChange={(e) => { setSearchTerm(e.target.value); setPage(1); }}
             />
 
 
@@ -145,7 +169,7 @@ const UsersManagement = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredUsers.map((user) => (
+                    {currentUsers.map((user) => (
                         <tr key={user.id_user} className="user-row">
                             <td>{user.user_name}</td>
                             <td>{user.email}</td>
@@ -176,6 +200,7 @@ const UsersManagement = () => {
                     ))}
                 </tbody>
             </table>
+            <Pagination className="mt-4 justify-content-center">{paginationItems}</Pagination>
 
             <PetDeleteModal
                 show={showDeleteModal}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Card, Badge } from 'react-bootstrap';
+import { Button, Container, Row, Col, Card, Badge, Pagination } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaPaw, FaDog, FaCat, FaSearch } from 'react-icons/fa';
 import { getPets, createPet, updatePet, deletePet } from '../../../services/api.services.js';
 import PetForm from "../PetForm/PetForm"
@@ -7,6 +7,7 @@ import PetDeleteModal from '../PetDeleteModal/PetDeleteModal';
 import "../PetsManagement/PetsManagement.css"
 import { errorToast, successToast } from "../../../utils/notifications.js"
 import ManagementSection from '../ManagementSection/ManagementSection.jsx';
+import usePagination from '../../../hooks/usePagination';
 
 const PetsManagement = () => {
     const [pets, setPets] = useState([]);
@@ -40,12 +41,36 @@ const PetsManagement = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
+    const petsPerPage = 12;
     const filteredPets = (Array.isArray(pets) ? pets : []).filter(pet =>
         pet.name && pet.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    // Usar hook de paginación
+    const {
+        currentPage,
+        totalPages,
+        currentData: currentPets,
+        goToPage,
+        setCurrentPage: setPage
+    } = usePagination(filteredPets, petsPerPage);
+
+    const paginationItems = [];
+    for (let number = 1; number <= totalPages; number++) {
+        paginationItems.push(
+            <Pagination.Item
+                key={number}
+                active={number === currentPage}
+                onClick={() => goToPage(number)}
+            >
+                {number}
+            </Pagination.Item>
+        );
+    }
+
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
+        setPage(1);
     };
 
     const resetForm = () => {
@@ -169,7 +194,7 @@ const PetsManagement = () => {
                 onAddClick={() => setShowAddModal(true)}
             />
             <Row className="pets-list g-4">
-                {filteredPets.map((pet) => (
+                {currentPets.map((pet) => (
                     <Col key={pet.id_pet} xl={3} lg={4} md={6} sm={12}>
                         <Card className="pet-card-admin h-100">
                             <div className="pet-image-container">
@@ -215,6 +240,7 @@ const PetsManagement = () => {
                     </Col>
                 ))}
             </Row>
+            <Pagination className="mt-4 justify-content-center">{paginationItems}</Pagination>
 
             <PetForm
                 show={showAddModal || showEditModal}
