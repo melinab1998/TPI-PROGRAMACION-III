@@ -91,7 +91,9 @@
     background-color:  #CD5C5C;
     border-color:  #CD5C5C;
     color: white;
+    font-size: 1.1rem;
     font-weight: bolder;
+    padding: 1.5rem;
 }
 
 .btn-lost-pet-primary:hover {
