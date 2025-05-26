@@ -38,7 +38,7 @@ const Footer = () => {
                                 <FaFacebook size={40} />
                             </a>
                             <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
-                                <BsTwitterX size={40} color="black" />
+                                <BsTwitterX size={40} color={isDark ? "white" : "black"} />
                             </a>
                             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
                                 <FaInstagram size={40} color="E1306C" />
@@ -65,7 +65,7 @@ const Footer = () => {
 
                 <hr className="my-4" />
 
-                <div className="text-center text-muted small">
+                <div className="text-center small copyright-text">
                     © 2025 - Mi Hogar. Todos los derechos reservados.
                 </div>
             </Container>
