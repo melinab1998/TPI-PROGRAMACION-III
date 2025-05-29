@@ -19,7 +19,7 @@ const DonationSection = () => {
     return (
         <section className="donation-section">
             <Container>
-                <Row className="align-items-center">
+                <Row className="align-items-center flex-column felx-md-row">
                     <Col md={6}>
                         <motion.img
                             src={donationImg}
