@@ -3,7 +3,7 @@ import "../HeroSection/HeroSection.css";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const HeroSection = () => {
+ const HeroSection = () => {
   return (
     <div className="hero-section d-flex align-items-center">
       <Container className="text-white text-center">
@@ -39,4 +39,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HeroSection; 
