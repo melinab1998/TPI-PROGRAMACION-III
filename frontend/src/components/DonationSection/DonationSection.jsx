@@ -19,8 +19,8 @@ const DonationSection = () => {
     return (
         <section className="donation-section">
             <Container>
-                <Row className="align-items-center flex-column felx-md-row">  
-                    <Col xs={12} md={6} className="text-center mb-4 mb-md-0">
+                <Row className="align-items-center">
+                    <Col md={6}>
                         <motion.img
                             src={donationImg}
                             alt="Imagen de donacion"
