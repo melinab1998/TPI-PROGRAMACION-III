@@ -173,8 +173,16 @@
         max-width: 100%;
     }
 
-    .stat-card{
+    .stat-card, .management-card{
         width: 80%;
         margin: auto;
     }
+
+    .card-text-dash{
+        padding-bottom: 10px;
+    }
+
+         
+   
+   
 }
