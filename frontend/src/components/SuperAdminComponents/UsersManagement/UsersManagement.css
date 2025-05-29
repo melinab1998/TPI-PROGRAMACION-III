@@ -1,5 +1,6 @@
 .users-management {
     padding: 3rem;
+    overflow-x: hidden;
 }
 
 .header-section {
