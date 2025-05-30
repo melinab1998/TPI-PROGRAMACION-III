@@ -23,7 +23,7 @@ async function seed() {
 				email: `user${i}@example.com`,
 				password:
 					"$2b$10$vv2O23cP1zGj9Bamz1lFqes2aEojRV9jY0bPjiM809IfviCZuFW0m",
-				role: i === 1 ? "admin" : "user",
+				role: i === 1 ? "superadmin" : "user",
 			});
 		}
 		const users = await User.bulkCreate(userData, { returning: true });
