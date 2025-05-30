@@ -228,7 +228,7 @@ const RequestsManagement = () => {
                                 {userRole === "superadmin" && (
                                 <Button
                                 variant="danger"
-                                className="ms-2"
+                                className="delete-btn-req ms-2"
                                 onClick={() => handleShowDeleteModal(req)}
                             >
                                 <FaTrash /> 

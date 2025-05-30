@@ -134,6 +134,20 @@
 	border-color: #f6847a;
 }
 
+.delete-btn-req {
+	padding: 0.5rem;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+	background-color: indianred;
+	border-color: indianred;
+	margin: 0 auto;
+}
+
+.table td:last-child {
+	white-space: nowrap;
+	width: 1%;
+}
+
 @media (max-width: 768px) {
 	.header-section {
 		flex-direction: column;
