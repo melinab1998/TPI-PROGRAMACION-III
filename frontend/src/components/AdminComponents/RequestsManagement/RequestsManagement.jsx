@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, Button, Pagination, Form } from 'react-bootstrap';
-import { FaEye, FaEdit, FaClipboardList } from 'react-icons/fa';
-import { getRequests, updateRequests } from '../../../services/api.services.js';
+import { FaEye, FaEdit, FaClipboardList, FaTrash } from 'react-icons/fa';
+import { getRequests, updateRequests, deleteRequest } from '../../../services/api.services.js';
 import { errorToast, successToast } from "../../../utils/notifications.js";
 import './RequestsManagement.css';
 import DetailModal from './DetailModal/DetailModal.jsx';
 import UpdateModal from './UpdateModal/UpdateModal.jsx';
+import PetDeleteModal from '../PetDeleteModal/PetDeleteModal.jsx';
 import './RequestsManagement.css';
 import ManagementSection from '../ManagementSection/ManagementSection.jsx';
 import usePagination from '../../../hooks/usePagination';
+import { useContext } from "react";
+import { AuthenticationContext } from '../../../services/auth/AuthContext.jsx'
+
 
 const RequestsManagement = () => {
+    const { userRole } = useContext(AuthenticationContext);
     const [requests, setRequests] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [showDetailModal, setShowDetailModal] = useState(false);
@@ -20,6 +25,8 @@ const RequestsManagement = () => {
     const [requestToUpdate, setRequestToUpdate] = useState(null);
     const [stateFilter, setStateFilter] = useState('');
     const [newState, setNewState] = useState("");
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [requestToDelete, setRequestToDelete] = useState(null);
 
     useEffect(() => {
         getRequests(
@@ -104,6 +111,39 @@ const RequestsManagement = () => {
         setShowUpdateModal(false);
     };
 
+    const handleDeleteRequestSubmit = () => {
+        deleteRequest(
+            requestToDelete.id,
+            () => {
+                
+                getRequests(
+                    (data) => setRequests(data),
+                    (error) => {
+                        console.error("Error al obtener solicitudes:", error);
+                        errorToast(error.message || "Error al obtener solicitudes");
+                    }
+                );
+    
+                
+                setShowDeleteModal(false);
+                setRequestToDelete(null);
+    
+                
+                successToast("Solicitud eliminada con éxito.");
+            },
+            (error) => {
+                console.error("Error al eliminar la solicitud:", error);
+                errorToast("No se pudo eliminar la solicitud.");
+            }
+        );
+    };
+
+    const handleShowDeleteModal = (request) => {
+        setRequestToDelete(request);
+        setShowDeleteModal(true);
+    };
+    
+
 
 
     return (
@@ -185,12 +225,31 @@ const RequestsManagement = () => {
                                 <Button variant="outline-warning" size="sm" onClick={() => handleUpdate(req)}>
                                     <FaEdit /> Actualizar
                                 </Button>
+                                {userRole === "superadmin" && (
+                                <Button
+                                variant="danger"
+                                className="ms-2"
+                                onClick={() => handleShowDeleteModal(req)}
+                            >
+                                <FaTrash /> 
+                            </Button>
+                                 )}
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
             <Pagination className="mt-4 justify-content-center">{paginationItems}</Pagination>
+
+
+            <PetDeleteModal
+                show={showDeleteModal}
+                onHide={() => setShowDeleteModal(false)}
+                onConfirm={handleDeleteRequestSubmit}
+                itemName={""}
+                itemType="la solicitud"
+            />
+
             <DetailModal
                 show={showDetailModal}
                 onHide={() => setShowDetailModal(false)}
