@@ -78,15 +78,15 @@
 
 @media (max-width: 768px) {
   .button {
-    width: 100%; /* Ocupa todo el ancho disponible */ /* Espacio entre botones */
-    font-size: 1rem; /* Tamaño de fuente ligeramente menor */
-    padding: 0.5rem 1rem; /* Padding más ajustado */
-    justify-content: center; /* Centra el contenido */
+    width: 100%; 
+    font-size: 1rem; 
+    padding: 0.5rem 1rem; 
+    justify-content: center; 
   }
   
   .filter-buttons-container {
-    flex-direction: column; /* Apila los botones verticalmente */
-    gap: 0.5rem; /* Espacio entre botones */
+    flex-direction: column; 
+    gap: 0.5rem;
   }
 
   .title{
