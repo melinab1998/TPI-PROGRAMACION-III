@@ -128,8 +128,11 @@
 }
 
 .actions-cell {
-    width: 100px;
-    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0.5rem;
+    width: auto; 
 }
 
 .search-section {
@@ -184,31 +187,31 @@
         justify-content: space-between;
         align-items: center;
         padding: 0.5rem 0;
-        border-bottom: 1px solid #eee;
+        
     }
 
     .users-table tbody td::before {
         content: attr(data-label);
+        color: #5D4037;
         font-weight: bold;
-        color: #555;
-    }
-
-    .users-table .actions-cell {
-        display: flex;
-        justify-content: flex-end;
+        
     }
 
     .role-selector{
         width: 190px;
     }
 
- .users-table .actions-cell {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem; 
-    border-bottom: none;
-}
+    .actions-cell {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 0.5rem;
+        
+    }
+    .delete-btn {
+        margin: 0;
+    }
 
+   
     
  
 }
