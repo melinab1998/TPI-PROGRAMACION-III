@@ -76,5 +76,21 @@
     outline: none !important;
 }
 
+@media (max-width: 768px) {
+  .button {
+    width: 100%; /* Ocupa todo el ancho disponible */ /* Espacio entre botones */
+    font-size: 1rem; /* Tamaño de fuente ligeramente menor */
+    padding: 0.5rem 1rem; /* Padding más ajustado */
+    justify-content: center; /* Centra el contenido */
+  }
+  
+  .filter-buttons-container {
+    flex-direction: column; /* Apila los botones verticalmente */
+    gap: 0.5rem; /* Espacio entre botones */
+  }
 
+  .title{
+    margin: 0;
+  }
+}
 

@@ -4,7 +4,7 @@ const usePagination = (data = [], itemsPerPage = 10) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const totalPages = useMemo(
-        () => Math.ceil(data.length / itemsPerPage) 
+        () => Math.ceil(data.length / itemsPerPage), 
         [data.length, itemsPerPage]
     );
 

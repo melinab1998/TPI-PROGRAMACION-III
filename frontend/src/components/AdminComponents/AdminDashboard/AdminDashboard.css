@@ -145,7 +145,11 @@
 
 @media (max-width: 768px) {
     .dashboard-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1rem;
     }
 
     .stat-card,
