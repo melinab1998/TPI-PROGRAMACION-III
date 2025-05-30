@@ -169,36 +169,37 @@ const UsersManagement = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentUsers.map((user) => (
-                        <tr key={user.id_user} className="user-row">
-                            <td>{user.user_name}</td>
-                            <td>{user.email}</td>
-                            <td>
-                                <Form.Select
-                                    value={user.role}
-                                    onChange={(e) =>
-                                        handleRoleChange(user.id_user, e.target.value)
-                                    }
-                                    className="role-selector"
-                                >
-                                    <option value="user">Usuario</option>
-                                    <option value="admin">Administrador</option>
-                                    <option value="superadmin">Super Administrador</option>
-                                </Form.Select>
-                            </td>
-                            <td className="actions-cell">
-                                <Button
-                                    variant="danger"
-                                    size="sm"
-                                    onClick={() => handleDeleteClick(user.id_user)}
-                                    className="delete-btn"
-                                >
-                                    <FaTrash />
-                                </Button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+    {currentUsers.map((user) => (
+        <tr key={user.id_user} className="user-row">
+            <td data-label="Nombre de Usuario">{user.user_name}</td>
+            <td data-label="Email">{user.email}</td>
+            <td data-label="Rol">
+                <Form.Select
+                    value={user.role}
+                    onChange={(e) =>
+                        handleRoleChange(user.id_user, e.target.value)
+                    }
+                    className="role-selector"
+                >
+                    <option value="user">Usuario</option>
+                    <option value="admin">Administrador</option>
+                    <option value="superadmin">Super Administrador</option>
+                </Form.Select>
+            </td>
+            <td data-label="Acciones" className="actions-cell">
+                <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDeleteClick(user.id_user)}
+                    className="delete-btn"
+                >
+                    <FaTrash />
+                </Button>
+            </td>
+        </tr>
+    ))}
+</tbody>
+
             </table>
             <Pagination className="mt-4 justify-content-center">{paginationItems}</Pagination>
 
