@@ -4,7 +4,7 @@ import './DetailModal.css';
 const DetailModal = ({ show, onHide, request }) => {
     return (
         <Modal show={show} onHide={onHide} centered className="detail-modal">
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title>Detalle de solicitud #{request.id}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
