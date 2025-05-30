@@ -187,3 +187,23 @@ export const updateRequests = async (req, res) => {
 		res.status(500).json({ message: "Error al actualizar la solicitud." });
 	}
 };
+
+
+export const deleteRequest = async (req, res) => {
+	try {
+		const { id } = req.params;
+
+		const request = await Request.findByPk(id);
+		if (!request) {
+			return res.status(404).json({ message: "Solicitud no encontrada" });
+		}
+
+		await request.destroy();
+		return res.status(200).json({ message: "Solicitud eliminada correctamente" });
+	} catch (error) {
+		console.error("Error al eliminar la solicitud:", error);
+		return res
+			.status(500)
+			.json({ message: "Error interno al eliminar la solicitud" });
+	}
+};
