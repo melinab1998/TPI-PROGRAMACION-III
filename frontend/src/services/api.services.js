@@ -271,3 +271,16 @@ export const getStats = (onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
+
+export const deleteRequest = (id, onSuccess, onError) => {
+	fetch(`${baseUrl}/api/adoption/${id}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.getItem("token")}`,
+		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
