@@ -86,6 +86,8 @@
 
 @media (max-width: 768px) { 
 
+  
+
   .custom-logo {
     margin: 0;
     width: 85px;
@@ -99,6 +101,12 @@
   .custom-navbar .btn {
     width: 100%;
   }
+  .theme-toggle-btn{
+    width: 40px !important;
+   
+
+  }
+
 
   .me-auto.navbar-nav{
     margin: 15px 0;
