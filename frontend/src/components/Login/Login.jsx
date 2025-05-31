@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,16 +15,40 @@ import { AuthenticationContext } from '../../services/auth/AuthContext.jsx'
 const Login = ({ showLogin, toggleLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const { handleUserLogin } = useContext(AuthenticationContext);
+
+    useEffect(() => {
+        if (showLogin) {
+            const savedEmail = localStorage.getItem('login_email');
+            const savedPassword = localStorage.getItem('login_password');
+            if (savedEmail && savedPassword) {
+                setEmail(savedEmail);
+                setPassword(savedPassword);
+                setRememberMe(true);
+            } else {
+                setEmail('');
+                setPassword('');
+                setRememberMe(false);
+            }
+        }
+    }, [showLogin]);
 
     const handleLogin = (e) => {
         e.preventDefault();
+        if (rememberMe) {
+            localStorage.setItem('login_email', email);
+            localStorage.setItem('login_password', password);
+        } else {
+            localStorage.removeItem('login_email');
+            localStorage.removeItem('login_password');
+        }
+
 
         loginUser(
             { email, password },
             (data) => {
-                handleUserLogin(data.token); 
-                console.log(data.token);
+                handleUserLogin(data.token);
                 setEmail('');
                 setPassword('');
                 toggleLogin();
@@ -73,7 +97,7 @@ const Login = ({ showLogin, toggleLogin }) => {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox" label="Recuérdame" />
+                            <Form.Check type="checkbox" label="Recuérdame" checked={rememberMe} onChange={() => setRememberMe(!rememberMe)} />
                         </Form.Group>
 
                         <Button variant="primary" type="submit" className="login-btn">
