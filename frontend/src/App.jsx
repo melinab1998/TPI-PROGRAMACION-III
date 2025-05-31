@@ -47,8 +47,8 @@ function App() {
             index
             element={
               userRole === "superadmin" ? <SuperAdminDashboard />
-              : userRole === "admin" ? <AdminDashboard />
-              : <Home />
+                : userRole === "admin" ? <AdminDashboard />
+                  : <Home />
             }
           />
           <Route path="contact" element={<Contact />} />
