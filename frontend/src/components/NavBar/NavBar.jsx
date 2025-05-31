@@ -20,7 +20,7 @@ const NavBar = ({ toggleLogin }) => {
 
   const handleLogout = () => {
     handleUserLogout();
-    navigate("/", { state: { showLogin: true } });
+    navigate("/");
     infoToast("Cerraste sesión con éxito");
   };
 
