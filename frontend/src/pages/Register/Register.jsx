@@ -65,9 +65,7 @@ const Register = () => {
       formData,
       () => {
         successToast("¡Registro exitoso! Ahora puedes iniciar sesión.");
-        setTimeout(() => {
-          navigate("/", { state: { showLogin: true } });
-        }, 2000);
+        navigate("/", { state: { showLogin: true } });
       },
       ({ data, message }) => {
         if (data?.error === "email_exists") {
