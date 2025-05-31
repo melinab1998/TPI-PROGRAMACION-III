@@ -1,9 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
 import logo from '../../img/logo.png';
+import { Form, Modal, Button } from 'react-bootstrap';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -11,13 +9,14 @@ import './Login.css';
 import { infoToast, errorToast } from '../../utils/notifications.js';
 import { loginUser } from '../../services/api.services.js';
 import { AuthenticationContext } from '../../services/auth/AuthContext.jsx'
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ showLogin, toggleLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const { handleUserLogin } = useContext(AuthenticationContext);
-
+    const navigate = useNavigate();
     useEffect(() => {
         if (showLogin) {
             const savedEmail = localStorage.getItem('login_email');
@@ -53,6 +52,11 @@ const Login = ({ showLogin, toggleLogin }) => {
                 setPassword('');
                 toggleLogin();
                 infoToast(`¡Bienvenido a Mi Hogar, ${data.user_name || 'usuario'}!`);
+                const redirectPath = localStorage.getItem("redirectAfterLogin");
+                if (redirectPath) {
+                    navigate(redirectPath);
+                    localStorage.removeItem("redirectAfterLogin");
+                }
             },
             (error) => {
                 errorToast(error.message || "Error al iniciar sesión");

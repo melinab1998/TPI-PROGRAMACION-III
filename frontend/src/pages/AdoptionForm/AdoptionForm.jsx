@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap';
 import { useState, useEffect, useContext } from 'react';
 import './AdoptionForm.css';
-import { errorToast, successToast} from '../../utils/notifications.js';
+import { errorToast, successToast } from '../../utils/notifications.js';
 import {
   validateName, validateLastName, validateAddress, validatePhone, validateCity, validateProvince, validateDNI, validateHousingType,
   validateOwnershipStatus,
@@ -18,7 +18,7 @@ import {
   validateTerms
 } from '../../utils/validations';
 import { getPetById } from '../../services/api.services.js';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { AuthenticationContext } from '../../services/auth//AuthContext.jsx';
 import { createAdoptionForm } from '../../services/api.services.js';
 
@@ -51,7 +51,7 @@ const AdoptionForm = () => {
     terms_accepted: false
   };
 
-
+  const navigate = useNavigate();
   const [pet, setPet] = useState(null);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState(initialFormState);
@@ -216,13 +216,14 @@ const AdoptionForm = () => {
         id_user,
         id_pet,
       });
+      navigate("/pets");
     };
 
     const onError = (error) => {
       console.log("Error recibido:", error);
-    
+
       const errorMsg = error?.data?.error || error?.message;
-    
+
       if (errorMsg?.includes("Ya existe una solicitud")) {
         errorToast("Ya has enviado una solicitud para esta mascota.");
       } else if (errorMsg?.includes("validación")) {
@@ -231,7 +232,7 @@ const AdoptionForm = () => {
         errorToast("Hubo un error al enviar el formulario.");
       }
     };
-    
+
 
     createAdoptionForm(formData, onSuccess, onError);
   };
