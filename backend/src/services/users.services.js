@@ -192,7 +192,7 @@ export const forgotPassword = async (req, res) => {
 		expiresIn: "1h",
 	});
 
-	const resetUrl = `http://localhost:5173/reset-password?token=${token}`;
+	const resetUrl = `${process.env.RESET_URL}?token=${token}`;
 
 	await transporter.sendMail({
 		to: user.email,
@@ -202,4 +202,26 @@ export const forgotPassword = async (req, res) => {
 	});
 
 	res.json({ message: "Correo de recuperación enviado" });
+};
+
+export const resetPassword = async (req, res) => {
+	const { token, newPassword } = req.body;
+
+	try {
+		const decoded = jwt.verify(token, process.env.SECRETKEY);
+		const user = await User.findByPk(decoded.id_user);
+
+		if (!user) {
+			return res.status(404).json({ message: "Usuario no encontrado" });
+		}
+
+		const hashedPassword = await bcrypt.hash(newPassword, 10);
+		user.password = hashedPassword;
+		await user.save();
+
+		res.json({ message: "Contraseña restablecida con éxito" });
+	} catch (error) {
+		console.error("Error al restablecer la contraseña:", error);
+		res.status(500).json({ message: "Error al restablecer la contraseña" });
+	}
 };
