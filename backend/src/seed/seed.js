@@ -2,6 +2,7 @@ import sequelize from "../config/db.js";
 import User from "../models/User.js";
 import Pet from "../models/Pet.js";
 import Request from "../models/Request.js";
+import Shelter from "../models/Shelter.js";
 import initModels from "../models/init.models.js";
 import faker from "faker";
 
@@ -14,6 +15,7 @@ async function seed() {
 		await Request.destroy({ where: {} });
 		await Pet.destroy({ where: {} });
 		await User.destroy({ where: {} });
+		await Shelter.destroy({ where: {} });
 
 		// Crear usuarios
 		const userData = [];
@@ -132,6 +134,18 @@ async function seed() {
 			});
 		}
 		await Request.bulkCreate(requestData);
+
+		// Crear shelters
+		const shelterData = [];
+		for (let i = 1; i <= 10; i++) {
+			shelterData.push({
+				name: `Refugio ${i}`,
+				address: faker.address.streetAddress(),
+				phone: faker.phone.phoneNumber(),
+				email: `shelter${i}@example.com`,
+			});
+		}
+		await Shelter.bulkCreate(shelterData);
 
 		console.log("Datos de prueba insertados correctamente.");
 		process.exit(0);
