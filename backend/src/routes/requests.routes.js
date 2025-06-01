@@ -22,7 +22,7 @@ router.get(
 	getRequests
 );
 router.put(
-	"/api/adoption:id",
+	"/api/adoption/:id",
 	verifyToken,
 	authorizeRoles("admin", "superadmin"),
 	updateRequests

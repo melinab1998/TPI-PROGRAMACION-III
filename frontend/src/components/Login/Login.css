@@ -51,11 +51,9 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	color: black;
+	margin: 0.5rem 0;
 }
 
-.login-form a {
-	color: #f29a8e;
-}
 
 .login-form .login-btn {
 	background-color: #f29a8e;
@@ -70,7 +68,12 @@
 	background-color: #f29a8e;
 	opacity: 100%;
 	
-}  
+
+}
+
+.login-link{
+	color:#f29a8e;
+}
 
 @media (max-width: 768px) {
 .modal-login {

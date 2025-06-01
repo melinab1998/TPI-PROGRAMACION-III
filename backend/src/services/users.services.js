@@ -198,7 +198,7 @@ export const forgotPassword = async (req, res) => {
 		to: user.email,
 		subject: "Recupera tu contraseña",
 		html: `<p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>
-		   <a href="${resetUrl}">${resetUrl}</a>`,
+		<a href="${resetUrl}">${resetUrl}</a>`,
 	});
 
 	res.json({ message: "Correo de recuperación enviado" });
@@ -207,7 +207,7 @@ export const forgotPassword = async (req, res) => {
 export const resetPassword = async (req, res) => {
 	const { token, newPassword } = req.body;
 
-	const errorPassword = validatePassword(password);
+	const errorPassword = validatePassword(newPassword);
 	if (errorPassword) return res.status(400).json({ message: errorPassword });
 	try {
 		const decoded = jwt.verify(token, process.env.SECRETKEY);

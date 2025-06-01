@@ -63,13 +63,13 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Restablecer Contraseña</h2>
-            <p>Ingresa tu nueva contraseña.</p>
+        <div className="container mt-5 h-[70vh]">
+            <h2 className='!text-[#5D4037]'>Restablecer Contraseña</h2>
+            <p className='!text-[#5D4037]'>Ingresa tu nueva contraseña.</p>
             <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Col>
-                        <Form.Label htmlFor="password">Nueva Contraseña</Form.Label>
+                        <Form.Label htmlFor="password" className='!text-[#5D4037]'>Nueva Contraseña</Form.Label>
                         <Form.Control
                             type="password"
                             id="password"
@@ -78,6 +78,7 @@ const ResetPassword = () => {
                             onBlur={e => validateField('password', e.target.value)}
                             isInvalid={!!errors.password}
                             placeholder="Nueva contraseña"
+                            className='md:!w-105 !mr-10'
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.password}
@@ -86,7 +87,7 @@ const ResetPassword = () => {
                 </Row>
                 <Row className="mb-3">
                     <Col>
-                        <Form.Label htmlFor="confirm_password">Confirmar Contraseña</Form.Label>
+                        <Form.Label htmlFor="confirm_password" className='!text-[#5D4037]'>Confirmar Contraseña</Form.Label>
                         <Form.Control
                             type="password"
                             id="confirm_password"
@@ -95,13 +96,14 @@ const ResetPassword = () => {
                             onBlur={e => validateField('confirm_password', e.target.value)}
                             isInvalid={!!errors.confirm_password}
                             placeholder="Confirmar contraseña"
+                            className='md:!w-105 !mr-10'
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.confirm_password}
                         </Form.Control.Feedback>
                     </Col>
                 </Row>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" className='contact-button mb-3'>
                     Cambiar contraseña
                 </Button>
             </Form>

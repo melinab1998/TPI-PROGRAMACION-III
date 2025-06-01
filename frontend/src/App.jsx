@@ -63,7 +63,7 @@ function App() {
           <Route path="cookies-notice" element={<CookiesNotice />} />
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password/:token" element={<ResetPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
 
           <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
             <Route path="adoption/:id" element={<AdoptionForm />} />
@@ -83,7 +83,6 @@ function App() {
         </Route>
 
         <Route path="/register" element={<Register />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
 
       <Login showLogin={showLogin} toggleLogin={() => setShowLogin(false)} />

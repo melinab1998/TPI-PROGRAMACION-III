@@ -2,14 +2,14 @@ import { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import logo from '../../img/logo.png';
 import { Form, Modal, Button } from 'react-bootstrap';
-import { FaFacebook } from 'react-icons/fa';
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import './Login.css';
 import { infoToast, errorToast } from '../../utils/notifications.js';
 import { loginUser } from '../../services/api.services.js';
 import { AuthenticationContext } from '../../services/auth/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom';
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { BsTwitterX } from "react-icons/bs";
 
 const Login = ({ showLogin, toggleLogin }) => {
     const [email, setEmail] = useState('');
@@ -84,9 +84,10 @@ const Login = ({ showLogin, toggleLogin }) => {
                             <Form.Label className='modal-title'>E-mail</Form.Label>
                             <Form.Control type="email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)} />
+                                onChange={(e) => setEmail(e.target.value)} 
+                                className="mb-2"/>
                             <Form.Text className="text-muted">
-                                ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin}> Registrate aquí</Link>
+                                ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin} className="login-link"> Registrate aquí</Link>
                             </Form.Text>
                         </Form.Group>
 
@@ -94,9 +95,10 @@ const Login = ({ showLogin, toggleLogin }) => {
                             <Form.Label className='modal-title'>Contraseña</Form.Label>
                             <Form.Control type="password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)} />
+                                onChange={(e) => setPassword(e.target.value)} 
+                                className="mb-2"/>
                             <Form.Text className="text-muted">
-                                <Link to="/forgot-password" onClick={toggleLogin}>¿Olvidaste tu contraseña?</Link>
+                                <Link to="/forgot-password" onClick={toggleLogin} className="login-link">¿Olvidaste tu contraseña?</Link>
                             </Form.Text>
                         </Form.Group>
 
@@ -108,14 +110,11 @@ const Login = ({ showLogin, toggleLogin }) => {
                             Iniciar Sesión
                         </Button>
 
-                        <div className="separator my-4 text-center text-muted">
-                            <span>O Inicia Sesión con</span>
+                        <div className="networks mt-4">
+                            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><FaFacebook size={40} /></a>
+                            <a href="https://x.com/" target="_blank" rel="noopener noreferrer"><BsTwitterX size={40} color="black" /></a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram size={40} color="#E1306C" /></a>
                         </div>
-
-                        <Button variant="light" className="w-100 d-flex align-items-center justify-content-center gap-2 mb-2 border">
-                            <FcGoogle size={25} />
-                            Continuar con Google
-                        </Button>
                     </Form>
                 </motion.div>
             </Modal.Body>
