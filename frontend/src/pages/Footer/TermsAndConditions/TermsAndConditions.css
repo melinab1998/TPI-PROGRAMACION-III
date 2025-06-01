@@ -1,12 +1,6 @@
-body, html {
-    background-color: #fff7f5;
-    margin: 0;
-    padding: 0;
-}
 
 .terms-container {
     background-color: #f2dfcf;
-    padding: 3rem 1rem;
     display: flex;
     justify-content: center;
 }
