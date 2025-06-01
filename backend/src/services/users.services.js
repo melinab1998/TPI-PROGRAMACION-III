@@ -176,8 +176,8 @@ export const getUsers = async (req, res) => {
 const transporter = nodemailer.createTransport({
 	service: "gmail",
 	auth: {
-		user: "tuemail@gmail.com",
-		pass: "tu_app_password",
+		user: process.env.EMAIL_APP,
+		pass: process.env.EMAIL_APP_PASS,
 	},
 });
 

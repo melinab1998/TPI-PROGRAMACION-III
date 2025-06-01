@@ -284,7 +284,7 @@ export const deleteRequest = (id, onSuccess, onError) => {
 };
 
 export const forgotPasswordRequest = (email, onSuccess, onError) => {
-	fetch(`${baseUrl}/api/reset-password`, {
+	fetch(`${baseUrl}/api/forgot-password`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
