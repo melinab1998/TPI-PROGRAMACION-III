@@ -244,7 +244,6 @@ export const updateRequests = (id, newState, onSuccess, onError) => {
 		.catch(onError);
 };
 
-
 export const createContact = (formData, onSuccess, onError) => {
 	fetch(`${baseUrl}/api/contacts`, {
 		method: "POST",
@@ -257,7 +256,6 @@ export const createContact = (formData, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
-
 
 export const getStats = (onSuccess, onError) => {
 	fetch(`${baseUrl}/api/stats`, {
@@ -279,6 +277,19 @@ export const deleteRequest = (id, onSuccess, onError) => {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${localStorage.getItem("token")}`,
 		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
+
+export const forgotPasswordRequest = (email, onSuccess, onError) => {
+	fetch(`${baseUrl}/api/reset-password`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ email }),
 	})
 		.then(handleResponse)
 		.then(onSuccess)
