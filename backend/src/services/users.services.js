@@ -86,7 +86,7 @@ export const loginUser = async (req, res) => {
 				user_name: user.user_name,
 			},
 			process.env.SECRETKEY,
-			{ expiresIn: "20h" }
+			{ expiresIn: "1h" }
 		);
 
 		return res.status(200).json({
