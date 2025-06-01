@@ -26,6 +26,7 @@ import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDas
 import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
 import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           <Route path="cookies-notice" element={<CookiesNotice />} />
           <Route path="terms-conditions" element={<TermsAndConditions />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password/:token" element={<ResetPassword />} />
 
           <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
             <Route path="adoption/:id" element={<AdoptionForm />} />
@@ -81,6 +83,7 @@ function App() {
         </Route>
 
         <Route path="/register" element={<Register />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
 
       <Login showLogin={showLogin} toggleLogin={() => setShowLogin(false)} />
