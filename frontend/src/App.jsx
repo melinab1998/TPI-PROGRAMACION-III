@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MobileApp from "./pages/Footer/MobileApp/MobileApp.jsx"
 import AdminDashboard from "./components/AdminComponents/AdminDashboard/AdminDashboard"
 import './utils/notifications.css';
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
 import { AuthenticationContext } from "../../frontend/src/services/auth/AuthContext"
 import PetsManagement from "./components/AdminComponents/PetsManagement/PetsManagement";
 import RequestsManagement from "./components/AdminComponents/RequestsManagement/RequestsManagement";
@@ -25,6 +26,7 @@ import SuperAdminDashboard from "./components/SuperAdminComponents/SuperAdminDas
 import UsersManagement from "./components/SuperAdminComponents/UsersManagement/UsersManagement";
 import SheltersManagement from "./components/SuperAdminComponents/SheltersManagement/SheltersManagement";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
+
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -59,6 +61,7 @@ function App() {
           <Route path="privacy-notice" element={<PrivacyNotice />} />
           <Route path="cookies-notice" element={<CookiesNotice />} />
           <Route path="terms-conditions" element={<TermsAndConditions />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
 
           <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
             <Route path="adoption/:id" element={<AdoptionForm />} />
