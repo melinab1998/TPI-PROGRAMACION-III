@@ -231,13 +231,13 @@ export const getRequests = (onSuccess, onError) => {
 };
 
 export const updateRequests = (id, newState, onSuccess, onError) => {
-	fetch(`${baseUrl}/api/adoption`, {
+	fetch(`${baseUrl}/api/adoption/${id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${localStorage.getItem("token")}`,
 		},
-		body: JSON.stringify({ id, state: newState }),
+		body: JSON.stringify({ state: newState }),
 	})
 		.then(handleResponse)
 		.then(onSuccess)

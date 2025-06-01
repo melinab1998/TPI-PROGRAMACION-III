@@ -64,7 +64,10 @@ export const createRequest = async (req, res) => {
 			dni: validateDNI(dni),
 			housing_type: validateHousingType(housing_type),
 			ownership_status: validateOwnershipStatus(ownership_status),
-			owner_consultation: validateOwnerConsultation(owner_consultation, ownership_status === "tenant"),
+			owner_consultation: validateOwnerConsultation(
+				owner_consultation,
+				ownership_status === "tenant"
+			),
 			has_courtyard: validateCourtyard(has_courtyard),
 			has_pets: validateHasPets(has_pets),
 			pets_neutered: validatePetsNeutered(pets_neutered, has_pets),
@@ -77,7 +80,9 @@ export const createRequest = async (req, res) => {
 			terms_accepted: validateTerms(terms_accepted),
 		};
 
-		const hasErrors = Object.values(validationErrors).some(error => error !== "");
+		const hasErrors = Object.values(validationErrors).some(
+			(error) => error !== ""
+		);
 
 		if (hasErrors) {
 			return res.status(400).json({
@@ -159,7 +164,7 @@ export const getRequests = async (req, res) => {
 
 export const updateRequests = async (req, res) => {
 	try {
-		const { id } = req.body;
+		const { id } = req.params;
 		const { state } = req.body;
 
 		const request = await Request.findByPk(id);
@@ -171,11 +176,11 @@ export const updateRequests = async (req, res) => {
 		}
 
 		await request.update({ state });
-		
-		if(state === "Aprobada"){
+
+		if (state === "Aprobada") {
 			await Pet.update(
-				{adopted: true},
-				{where:{id_pet: request.id_pet}}
+				{ adopted: true },
+				{ where: { id_pet: request.id_pet } }
 			);
 		}
 
@@ -183,11 +188,10 @@ export const updateRequests = async (req, res) => {
 			.status(200)
 			.json({ message: "Solicitud actualizada con éxito.", request });
 	} catch (error) {
-		console.log(error)
+		console.log(error);
 		res.status(500).json({ message: "Error al actualizar la solicitud." });
 	}
 };
-
 
 export const deleteRequest = async (req, res) => {
 	try {
@@ -199,7 +203,9 @@ export const deleteRequest = async (req, res) => {
 		}
 
 		await request.destroy();
-		return res.status(200).json({ message: "Solicitud eliminada correctamente" });
+		return res
+			.status(200)
+			.json({ message: "Solicitud eliminada correctamente" });
 	} catch (error) {
 		console.error("Error al eliminar la solicitud:", error);
 		return res
