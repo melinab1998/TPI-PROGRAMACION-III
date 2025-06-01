@@ -29,7 +29,8 @@
 }
 
 .hero-section p {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  font-weight: 100;
   text-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
@@ -43,7 +44,6 @@
   padding: 0.7rem 1.75rem !important;
   min-width: 150px;
   font-size: 1.1rem;
-  letter-spacing: 0.8px !important;
 }
 
 .btn-adopta:hover {

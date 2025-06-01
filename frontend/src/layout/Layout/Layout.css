@@ -1,6 +1,7 @@
 body{
     background-color: #eedfd0;
     overflow-x: hidden;
+    font-family: 'Poppins', sans-serif; 
 }
 
 button:focus,
