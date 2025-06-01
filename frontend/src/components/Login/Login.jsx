@@ -116,11 +116,6 @@ const Login = ({ showLogin, toggleLogin }) => {
                             <FcGoogle size={25} />
                             Continuar con Google
                         </Button>
-
-                        <Button variant="light" className="w-100 d-flex align-items-center justify-content-center gap-2 border mt-10">
-                            <FaFacebook size={25} className="text-primary" />
-                            Continuar con Facebook
-                        </Button>
                     </Form>
                 </motion.div>
             </Modal.Body>
