@@ -295,3 +295,19 @@ export const forgotPasswordRequest = (email, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
+
+export const resetPasswordRequest = (
+	token,
+	newPassword,
+	onSuccess,
+	onError
+) => {
+	fetch(`${baseUrl}/api/reset-password`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ token, newPassword }),
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
