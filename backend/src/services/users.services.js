@@ -207,6 +207,8 @@ export const forgotPassword = async (req, res) => {
 export const resetPassword = async (req, res) => {
 	const { token, newPassword } = req.body;
 
+	const errorPassword = validatePassword(password);
+	if (errorPassword) return res.status(400).json({ message: errorPassword });
 	try {
 		const decoded = jwt.verify(token, process.env.SECRETKEY);
 		const user = await User.findByPk(decoded.id_user);
