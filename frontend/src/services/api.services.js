@@ -231,19 +231,18 @@ export const getRequests = (onSuccess, onError) => {
 };
 
 export const updateRequests = (id, newState, onSuccess, onError) => {
-	fetch(`${baseUrl}/api/adoption`, {
+	fetch(`${baseUrl}/api/adoption/${id}`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${localStorage.getItem("token")}`,
 		},
-		body: JSON.stringify({ id, state: newState }),
+		body: JSON.stringify({ state: newState }),
 	})
 		.then(handleResponse)
 		.then(onSuccess)
 		.catch(onError);
 };
-
 
 export const createContact = (formData, onSuccess, onError) => {
 	fetch(`${baseUrl}/api/contacts`, {
@@ -257,7 +256,6 @@ export const createContact = (formData, onSuccess, onError) => {
 		.then(onSuccess)
 		.catch(onError);
 };
-
 
 export const getStats = (onSuccess, onError) => {
 	fetch(`${baseUrl}/api/stats`, {
@@ -279,6 +277,35 @@ export const deleteRequest = (id, onSuccess, onError) => {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${localStorage.getItem("token")}`,
 		},
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
+
+export const forgotPasswordRequest = (email, onSuccess, onError) => {
+	fetch(`${baseUrl}/api/forgot-password`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ email }),
+	})
+		.then(handleResponse)
+		.then(onSuccess)
+		.catch(onError);
+};
+
+export const resetPasswordRequest = (
+	token,
+	newPassword,
+	onSuccess,
+	onError
+) => {
+	fetch(`${baseUrl}/api/reset-password`, {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ token, newPassword }),
 	})
 		.then(handleResponse)
 		.then(onSuccess)

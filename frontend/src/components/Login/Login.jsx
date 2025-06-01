@@ -96,7 +96,7 @@ const Login = ({ showLogin, toggleLogin }) => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} />
                             <Form.Text className="text-muted">
-                                <a href="/">¿Olvidaste tu contraseña?</a>
+                                <Link to="/forgot-password" onClick={toggleLogin}>¿Olvidaste tu contraseña?</Link>
                             </Form.Text>
                         </Form.Group>
 
