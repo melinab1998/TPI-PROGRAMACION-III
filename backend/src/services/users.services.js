@@ -7,8 +7,9 @@ import {
 	validatePassword,
 	validatePasswordLogin,
 	validateUserName,
-} from "../helpers/validations.js"
+} from "../helpers/validations.js";
 dotenv.config();
+import nodemailer from "nodemailer";
 
 export const createUser = async (req, res) => {
 	try {
@@ -53,7 +54,8 @@ export const createUser = async (req, res) => {
 		}
 
 		res.status(500).json({
-			message: "Hubo un error al crear el usuario. Intenta nuevamente más tarde.",
+			message:
+				"Hubo un error al crear el usuario. Intenta nuevamente más tarde.",
 		});
 	}
 };
@@ -70,12 +72,16 @@ export const loginUser = async (req, res) => {
 
 		const user = await User.findOne({ where: { email } });
 		if (!user) {
-			return res.status(401).json({ message: "Email y/o contraseña incorrecta" });
+			return res
+				.status(401)
+				.json({ message: "Email y/o contraseña incorrecta" });
 		}
 
 		const comparison = await bcrypt.compare(password, user.password);
 		if (!comparison) {
-			return res.status(401).json({ message: "Email y/o contraseña incorrecta" });
+			return res
+				.status(401)
+				.json({ message: "Email y/o contraseña incorrecta" });
 		}
 
 		const token = jwt.sign(
@@ -86,7 +92,7 @@ export const loginUser = async (req, res) => {
 				user_name: user.user_name,
 			},
 			process.env.SECRETKEY,
-			{ expiresIn: "20h" }
+			{ expiresIn: "1h" }
 		);
 
 		return res.status(200).json({
@@ -96,7 +102,9 @@ export const loginUser = async (req, res) => {
 		});
 	} catch (error) {
 		console.error("Error en el login:", error);
-		return res.status(500).json({ message: "Error interno en el inicio de sesión" });
+		return res
+			.status(500)
+			.json({ message: "Error interno en el inicio de sesión" });
 	}
 };
 
@@ -119,7 +127,7 @@ export const deleteUser = async (req, res) => {
 	}
 };
 
-const validRoles = ["admin", "user", "superadmin"]; 
+const validRoles = ["admin", "user", "superadmin"];
 
 export const updateUserRole = async (req, res) => {
 	try {
@@ -163,4 +171,35 @@ export const getUsers = async (req, res) => {
 			.status(500)
 			.json({ message: "Error interno al obtener los usuarios" });
 	}
+};
+
+const transporter = nodemailer.createTransport({
+	service: "gmail",
+	auth: {
+		user: "tuemail@gmail.com",
+		pass: "tu_app_password",
+	},
+});
+
+export const forgotPassword = async (req, res) => {
+	const { email } = req.body;
+	const user = await User.findOne({ where: { email } });
+	if (!user) {
+		return res.status(404).json({ message: "Usuario no encontrado" });
+	}
+
+	const token = jwt.sign({ id_user: user.id_user }, process.env.SECRETKEY, {
+		expiresIn: "1h",
+	});
+
+	const resetUrl = `http://localhost:5173/reset-password?token=${token}`;
+
+	await transporter.sendMail({
+		to: user.email,
+		subject: "Recupera tu contraseña",
+		html: `<p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>
+		   <a href="${resetUrl}">${resetUrl}</a>`,
+	});
+
+	res.json({ message: "Correo de recuperación enviado" });
 };
