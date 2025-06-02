@@ -10,6 +10,7 @@ import { AuthenticationContext } from '../../services/auth/AuthContext.jsx'
 import { useNavigate } from 'react-router-dom';
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import { jwtDecode } from "jwt-decode";
 
 const Login = ({ showLogin, toggleLogin }) => {
     const [email, setEmail] = useState('');
@@ -57,6 +58,11 @@ const Login = ({ showLogin, toggleLogin }) => {
                     navigate(redirectPath);
                     localStorage.removeItem("redirectAfterLogin");
                 }
+                const decoded = jwtDecode(data.token);
+                const role = decoded.role;
+                if (role === "superadmin" || role === "admin") {
+                    navigate("/")
+                }
             },
             (error) => {
                 errorToast(error.message || "Error al iniciar sesión");
@@ -84,8 +90,8 @@ const Login = ({ showLogin, toggleLogin }) => {
                             <Form.Label className='modal-title'>E-mail</Form.Label>
                             <Form.Control type="email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)} 
-                                className="mb-2"/>
+                                onChange={(e) => setEmail(e.target.value)}
+                                className="mb-2" />
                             <Form.Text className="text-muted">
                                 ¿No tienes cuenta?<Link to="/register" onClick={toggleLogin} className="login-link"> Registrate aquí</Link>
                             </Form.Text>
@@ -95,8 +101,8 @@ const Login = ({ showLogin, toggleLogin }) => {
                             <Form.Label className='modal-title'>Contraseña</Form.Label>
                             <Form.Control type="password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)} 
-                                className="mb-2"/>
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="mb-2" />
                             <Form.Text className="text-muted">
                                 <Link to="/forgot-password" onClick={toggleLogin} className="login-link">¿Olvidaste tu contraseña?</Link>
                             </Form.Text>
