@@ -10,9 +10,6 @@
 - **Adopción de mascotas** 🐶  
   Publicá y descubrí mascotas que están buscando un hogar.
 
-- **Mascotas perdidas** 🔎  
-  Reportá mascotas perdidas o encontradas y ayudá a reunirlas con sus familias.
-
 
 ### Frontend:
 
