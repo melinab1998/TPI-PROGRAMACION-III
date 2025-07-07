@@ -51,3 +51,11 @@
 .store-badge:hover {
     transform: scale(1.05);
 }
+
+@media (max-width: 768px) {
+
+    .contact-title{
+        font-size: 2rem;
+    }
+
+}

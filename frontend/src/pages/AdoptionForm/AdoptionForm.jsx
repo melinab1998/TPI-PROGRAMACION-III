@@ -2,6 +2,7 @@ import { Container, Row, Col, Form, Button, Card, Image } from 'react-bootstrap'
 import { useState, useEffect, useContext } from 'react';
 import './AdoptionForm.css';
 import { errorToast, successToast } from '../../utils/notifications.js';
+import { FaPaw } from 'react-icons/fa';
 import {
   validateName, validateLastName, validateAddress, validatePhone, validateCity, validateProvince, validateDNI, validateHousingType,
   validateOwnershipStatus,
@@ -246,13 +247,14 @@ const AdoptionForm = () => {
         <Col md={10} lg={8}>
           <Card className="adoption-form-card">
             <Card.Header className="adoption-header">
-              <h2 className="mb-0">Formulario de adopción para {pet.name} </h2>
+              <h3 className="mb-0">Formulario de adopción para {pet.name}</h3>
             </Card.Header>
             <Card.Body>
               <p className="adoption-text">
                 Completa este formulario para solicitar la adopción.
               </p>
               <Form className="adoption-form" onSubmit={handleSubmit}>
+                <h5 className="adoption-form-subtitle mt-4 mb-3">1. Datos Personales del Solicitante</h5>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="name">
                     <Form.Label>Nombre</Form.Label>
@@ -354,7 +356,10 @@ const AdoptionForm = () => {
                   </Form.Group>
                 </Row>
 
+                <hr className="my-4" />
+
                 <Form.Group className="mb-3">
+                  <h5 className="adoption-form-subtitle mt-4 mb-3">2. Información de la Vivienda</h5>
                   <Form.Label>¿En qué tipo de vivienda habitás?</Form.Label>
                   <div className="mb-3">
                     <Form.Check
@@ -474,7 +479,10 @@ const AdoptionForm = () => {
                   )}
                 </Form.Group>
 
+                <hr className="my-4" />
+
                 <Form.Group className="mb-3">
+                  <h5 className="adoption-form-subtitle mt-4 mb-3">3. Experiencia y Entorno con Mascotas</h5>
                   <Form.Label>¿Tenés otros animales?</Form.Label>
                   <div className="mb-3">
                     <Form.Check
@@ -567,7 +575,10 @@ const AdoptionForm = () => {
                   )}
                 </Form.Group>
 
+                <hr className="my-4" />
+
                 <Form.Group className="mb-3" controlId="reason">
+                  <h5 className="adoption-form-subtitle mt-4 mb-3">4. Compromiso y Responsabilidad</h5>
                   <Form.Label>¿Por qué querés adoptar una mascota?</Form.Label>
                   <Form.Control
                     as="textarea"
@@ -639,7 +650,10 @@ const AdoptionForm = () => {
                   )}
                 </Form.Group>
 
+                <hr className="my-4" />
+
                 <Form.Group className="mb-3">
+                  <h5 className="adoption-form-subtitle mt-4 mb-3">5. Consentimiento y Aceptación</h5>
                   <Form.Label>¿Estás de acuerdo con un seguimiento vía WhatsApp?</Form.Label>
                   <div className="mb-3">
                     <Form.Check
@@ -710,7 +724,7 @@ const AdoptionForm = () => {
                   )}
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" className="m-2" type="submit">
                   Enviar
                 </Button>
               </Form>

@@ -81,7 +81,7 @@ const Register = () => {
     <div className="container d-flex justify-content-center align-items-center min-vh-100 image">
       <div className="card p-4 form" style={{ width: "500px", borderRadius: "10px" }}>
         <div className="cont-header-form">
-          <h2 className="title font-semibold">Regístrate</h2>
+          <h2 className="title-register font-semibold">Regístrate</h2>
           <img className="logo" src={logo} alt="Logo" />
         </div>
         <Form onSubmit={handleSubmit}>

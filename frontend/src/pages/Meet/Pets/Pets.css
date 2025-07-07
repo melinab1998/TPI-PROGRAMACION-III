@@ -1,6 +1,8 @@
 .title {
     color: #CD5C5C;
     font-weight: bold;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
 }
 
 .button {
@@ -10,9 +12,9 @@
     border-color: #f29a8e;
     color: #fff;
     font-weight: 500;
-    font-size: 1.1rem;             
-    padding: 0.75rem 1.5rem;        
-    border-radius: 8px;             
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 12px rgba(240, 128, 128, 0.3);
     background-color: #f29a8e;
@@ -34,7 +36,7 @@
     outline: none !important;
 }
 
-.name{
+.name {
     color: #CD5C5C;
     font-weight: bold;
     font-size: 1.5rem;
@@ -46,16 +48,15 @@
     margin: 0.6rem 0;
 }
 
-.button-details{
+.button-details {
     background-color: #F08080;
     border-color: #F08080;
     color: #fff;
     font-weight: 500;
-    font-size: 1rem;             
-    padding: 0.65rem 1.3rem;       
-    border-radius: 8px;             
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(240, 128, 128, 0.3);
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    padding: 0.65rem 1.3rem;
+    border-radius: 8px;
     text-decoration: none;
 }
 
@@ -76,20 +77,20 @@
 }
 
 @media (max-width: 768px) {
-  .button {
-    width: 100%; 
-    font-size: 1rem; 
-    padding: 0.5rem 1rem; 
-    justify-content: center; 
-  }
-  
-  .filter-buttons-container {
-    flex-direction: column; 
-    gap: 0.5rem;
-  }
+    .button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        justify-content: center;
+    }
 
-  .title{
-    margin: 0;
-  }
+    .filter-buttons-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .title {
+        margin: 2rem 0;
+    }
+
 }
-

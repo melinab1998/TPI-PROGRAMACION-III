@@ -37,7 +37,7 @@ const PetDetails = () => {
           alt={`Imagen de ${pet.name}`}
           className="pet-card-img"
         />
-        <Card.Body>
+        <Card.Body className="card-body-det">
           <Card.Title className="pet-card-title">{pet.name}</Card.Title>
           <Card.Subtitle className="pet-card-subtitle">{pet.species}</Card.Subtitle>
 

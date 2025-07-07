@@ -1,4 +1,3 @@
-
 .donation-card {
     border-color: #CD5C5C;
     border-radius: 0.5rem;
@@ -39,16 +38,16 @@
 }
 
 .donation-form .section-title {
-  color: #CD5C5C;
-  font-size: 1.2rem;
-  font-weight: 600;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid #eedad9;
+    color: #CD5C5C;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #eedad9;
 }
 
 .donation-boton {
     padding: 12px;
-    background-color:  #CD5C5C;
+    background-color: #CD5C5C;
     color: white;
     font-weight: bold;
     border: none;
@@ -88,8 +87,8 @@
 
 
 .btn-lost-pet-primary {
-    background-color:  #CD5C5C;
-    border-color:  #CD5C5C;
+    background-color: #CD5C5C;
+    border-color: #CD5C5C;
     color: white;
     font-size: 1.1rem;
     font-weight: bolder;
@@ -138,9 +137,8 @@
 }
 
 @media (max-width: 768px) {
-
-    .form-row>div[class*="col-"] {
-        margin-bottom: 1rem;
+    .container{
+        padding: 1rem;
+        margin: 1rem 0 !important;
     }
-
 }

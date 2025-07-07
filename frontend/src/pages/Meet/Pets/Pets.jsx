@@ -56,7 +56,7 @@ const Pets = () => {
 
   return (
     <Container>
-      <h2 className="py-10 title">Mascotas en Adopción</h2>
+      <h2 className="title">Mascotas en Adopción</h2>
       <div className="d-flex justify-start mb-10 gap-4 flex-wrap filter-buttons-container">
         <Button onClick={() => { setFilter('all'); setPage(1); }} className="w-35 button">
           <img src={ambosFilter} alt="" width={35} />
@@ -90,7 +90,7 @@ const Pets = () => {
           </Col>
         ))}
       </Row>
-      <Pagination className="mt-4 justify-content-center">{paginationItems}</Pagination>
+      <Pagination className="mt-3.5 mb-4 justify-content-center">{paginationItems}</Pagination>
     </Container>
   );
 }

@@ -1,64 +1,85 @@
 .container-pet-card {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    justify-content: center;
     padding: 40px 20px;
 }
 
 .pet-card {
-    width: 600px;
-    padding: 30px 35px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
     background: white;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body-det {
+    padding: 0.5rem;
 }
 
 .pet-card-img {
-    max-height: 300px;
+    width: 100%;
+    height: 325px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .pet-card-title {
     font-size: 2.4rem;
     font-weight: bold;
     color: #CD5C5C;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 .pet-card-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #6c757d;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    text-align: center;
 }
 
 .pet-card-info {
     font-size: 1.1rem;
     color: #333;
-    margin-bottom: 15px;
-    line-height: 1.6;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .pet-card-info p {
-    margin: 5px 0;
+    margin: 8px 0;
+    display: flex;
+}
+
+.pet-card-info strong {
+    min-width: 80px;
+    display: inline-block;
+    color: #555;
 }
 
 .pet-card-description {
     font-size: 1.1rem;
     color: #555;
-    font-family: 'Arial', sans-serif;
-    font-style: italic;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    line-height: 1.7;
+    margin: 25px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-left: 4px solid #CD5C5C;
+    border-radius: 0 8px 8px 0;
 }
 
 .pet-card-buttons {
     display: flex;
-    gap: 10px;
-    width: 100%;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .btn-adopt {
@@ -69,13 +90,18 @@
     padding: 12px;
     font-size: 1.1rem;
     border-radius: 8px;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
     color: white;
-    text-align: center;
 }
 
 .btn-adopt:hover {
     background-color: #b94b4b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-adopt:active {
+    transform: translateY(0);
 }
 
 .not-found {
@@ -111,5 +137,6 @@
     .btn-adopt {
         padding: 10px;
         font-size: 1rem;
+        text-align: center;
     }
 }

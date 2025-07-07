@@ -35,10 +35,11 @@
   width: 80px;
 }
 
-.title {
+.title-register {
   font-family: 'Raleway', sans-serif;
   margin: 20px 0px;
   font-weight:bold;
+  color: #CD5C5C;
 }
 
 .p {

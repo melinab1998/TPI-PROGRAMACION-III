@@ -1,4 +1,3 @@
-
 .terms-container {
     background-color: #f2dfcf;
     display: flex;
@@ -6,12 +5,12 @@
 }
 
 .terms-section {
-    padding: 4rem 0;
+    padding: 3.5rem 0;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 .terms-block {
@@ -54,8 +53,28 @@
     color: #5C2E00;
 }
 
+.terms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.terms-list-item {
+    margin-bottom: 1rem;
+}
+
+.terms-list-item::before {
+    content: "•";
+    margin-right: 0.5rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+
+    .terms-section{
+        padding: 1rem 0;
+    }
+
     .terms-block {
         padding: 1.5rem;
         border-radius: 16px;
